@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f2efe6" />
+    <meta
+      name="description"
+      content="Career Engine — a small incremental game about trying tasks, choosing a field, and building a meaningful career practice."
+    />
+    <title>Career Engine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="masthead">
+        <div>
+          <p class="eyebrow">Guidance terminal no. 01</p>
+          <h1>Career Engine</h1>
+        </div>
+        <div class="masthead-meta">
+          <span id="save-status">local save · ready</span>
+          <button class="text-button" id="reset-button" type="button">begin again</button>
+        </div>
+      </header>
+
+      <section class="console" aria-label="Career guidance console">
+        <div class="console-lights" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="console-copy">
+          <span class="prompt">&gt;</span>
+          <span id="console-message" aria-live="polite">You do not need to know what you want to be. Begin with a verb.</span>
+          <span class="cursor" aria-hidden="true"></span>
+        </div>
+      </section>
+
+      <main>
+        <section class="scoreboard" aria-label="Career progress">
+          <div class="primary-score">
+            <span class="score-label">Current direction</span>
+            <strong id="direction-value">Undecided</strong>
+          </div>
+          <dl>
+            <div><dt>Insight</dt><dd id="insight-value">0</dd></div>
+            <div><dt>Mastery</dt><dd id="mastery-value">0</dd></div>
+            <div><dt>Impact</dt><dd id="impact-value">0</dd></div>
+            <div><dt>Practice rate</dt><dd><span id="rate-value">0</span><small>/sec</small></dd></div>
+          </dl>
+        </section>
+
+        <div class="game-grid">
+          <div class="game-column">
+            <section class="module" id="explore-module">
+              <div class="module-heading">
+                <span class="module-number">01</span>
+                <div><p class="kicker">Start here</p><h2>Try the work</h2></div>
+              </div>
+              <p class="module-intro" id="action-intro">
+                Careers are bundles of activities. Test a few before choosing a title.
+              </p>
+              <div class="action-stack" id="starter-actions"></div>
+              <div class="work-action" id="work-action" hidden>
+                <button class="primary-action" id="work-button" type="button">
+                  <span id="work-button-label">Complete a work cycle</span>
+                  <small>+1 mastery · +0.25 insight</small>
+                </button>
+                <p id="work-description"></p>
+              </div>
+            </section>
+
+            <section class="module locked-module" id="field-module" aria-labelledby="field-heading">
+              <div class="module-heading">
+                <span class="module-number">02</span>
+                <div><p class="kicker">Unlock at 12 insight</p><h2 id="field-heading">Choose a field</h2></div>
+              </div>
+              <p class="module-intro">Not a lifetime commitment. Choose one lens for this run.</p>
+              <div class="choice-list" id="field-choices"></div>
+              <p class="lock-note" id="field-lock">Gather 12 insight to compare fields.</p>
+            </section>
+
+            <section class="module locked-module" id="specialty-module" aria-labelledby="specialty-heading">
+              <div class="module-heading">
+                <span class="module-number">03</span>
+                <div><p class="kicker">Unlock at 20 mastery</p><h2 id="specialty-heading">Specialize</h2></div>
+              </div>
+              <p class="module-intro">Go deeper. Each specialty changes the projects and stories you encounter.</p>
+              <div class="choice-list" id="specialty-choices"></div>
+              <p class="lock-note" id="specialty-lock">Choose a field and build 20 mastery.</p>
+            </section>
+          </div>
+
+          <div class="game-column">
+            <section class="module" id="constellation-module">
+              <div class="module-heading">
+                <span class="module-number">A</span>
+                <div><p class="kicker">Your pattern</p><h2>Career constellation</h2></div>
+              </div>
+              <p class="module-intro">A record of what you chose to do—not a personality verdict.</p>
+              <div class="constellation" id="constellation" aria-label="Activity preferences">
+                <div class="axis analyze"><span>Analyze</span><b id="analyze-value">0</b><i></i></div>
+                <div class="axis build"><span>Build</span><b id="build-value">0</b><i></i></div>
+                <div class="axis care"><span>Care</span><b id="care-value">0</b><i></i></div>
+                <div class="axis advocate"><span>Advocate</span><b id="advocate-value">0</b><i></i></div>
+              </div>
+              <p class="pattern-note" id="pattern-note">No pattern yet. Your actions will sketch one.</p>
+            </section>
+
+            <section class="module" id="engine-module">
+              <div class="module-heading">
+                <span class="module-number">B</span>
+                <div><p class="kicker">Build capacity</p><h2>Practice engine</h2></div>
+              </div>
+              <div class="upgrade-list" id="upgrade-list"></div>
+            </section>
+
+            <section class="module locked-module" id="projects-module">
+              <div class="module-heading">
+                <span class="module-number">C</span>
+                <div><p class="kicker">Work that matters</p><h2>Projects</h2></div>
+              </div>
+              <div id="project-card"></div>
+              <p class="lock-note" id="project-lock">Choose a field to receive a project brief.</p>
+            </section>
+          </div>
+        </div>
+      </main>
+
+      <footer>
+        <p>An exploratory prototype. It suggests activities to investigate; it does not tell you who to become.</p>
+        <span>v0.1 · progress stays in this browser</span>
+      </footer>
+    </div>
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>
