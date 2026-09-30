@@ -1,4 +1,4 @@
-import { AXES, careerTree, upgrades } from "./careers.js";
+import { AXES, careerTree, upgrades } from "./careers.js?v=0.2.0";
 import {
   SAVE_KEY,
   availableChoices,
@@ -19,7 +19,7 @@ import {
   purchaseUpgrade,
   tick,
   work,
-} from "./game-engine.js";
+} from "./game-engine.js?v=0.2.0";
 
 const $ = (selector) => document.querySelector(selector);
 const elements = {

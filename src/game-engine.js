@@ -1,4 +1,4 @@
-import { AXES, careerTree, fieldForPath, findNode, nodesForPath, upgrades } from "./careers.js";
+import { AXES, careerTree, fieldForPath, findNode, nodesForPath, upgrades } from "./careers.js?v=0.2.0";
 
 export const SAVE_KEY = "career-engine-save-v2";
 
