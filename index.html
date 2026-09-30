@@ -43,7 +43,7 @@
         <section class="scoreboard" aria-label="Career progress">
           <div class="primary-score">
             <span class="score-label">Current direction</span>
-            <strong id="direction-value">Undecided</strong>
+            <strong id="direction-value">Choose a field</strong>
           </div>
           <dl>
             <div><dt>Insight</dt><dd id="insight-value">0</dd></div>
@@ -55,42 +55,31 @@
 
         <div class="game-grid">
           <div class="game-column">
-            <section class="module" id="explore-module">
+            <section class="module" id="path-module" aria-labelledby="path-heading">
               <div class="module-heading">
                 <span class="module-number">01</span>
-                <div><p class="kicker">Start here</p><h2>Try the work</h2></div>
+                <div><p class="kicker" id="path-kicker">Decision 1 · field</p><h2 id="path-heading">Choose a field</h2></div>
               </div>
-              <p class="module-intro" id="action-intro">
-                Careers are bundles of activities. Test a few before choosing a title.
-              </p>
-              <div class="action-stack" id="starter-actions"></div>
-              <div class="work-action" id="work-action" hidden>
+              <nav class="path-trail" id="path-trail" aria-label="Selected career path"></nav>
+              <p class="module-intro" id="path-intro">Begin broadly. Each choice will reveal only the next useful distinction.</p>
+              <div class="choice-list" id="path-choices"></div>
+              <p class="lock-note" id="path-lock" hidden>Complete the current starter brief to open the next decision.</p>
+              <div class="job-leaf" id="job-leaf" hidden></div>
+            </section>
+
+            <section class="module locked-module" id="practice-module">
+              <div class="module-heading">
+                <span class="module-number">02</span>
+                <div><p class="kicker">Learn by doing</p><h2>Practice the work</h2></div>
+              </div>
+              <p class="module-intro" id="action-intro">Choose a field to receive your first small work cycle.</p>
+              <div class="work-action" id="work-action">
                 <button class="primary-action" id="work-button" type="button">
                   <span id="work-button-label">Complete a work cycle</span>
-                  <small>+1 mastery · +0.25 insight</small>
+                  <small>+1 mastery · +1 insight</small>
                 </button>
                 <p id="work-description"></p>
               </div>
-            </section>
-
-            <section class="module locked-module" id="field-module" aria-labelledby="field-heading">
-              <div class="module-heading">
-                <span class="module-number">02</span>
-                <div><p class="kicker">Unlock at 12 insight</p><h2 id="field-heading">Choose a field</h2></div>
-              </div>
-              <p class="module-intro">Not a lifetime commitment. Choose one lens for this run.</p>
-              <div class="choice-list" id="field-choices"></div>
-              <p class="lock-note" id="field-lock">Gather 12 insight to compare fields.</p>
-            </section>
-
-            <section class="module locked-module" id="specialty-module" aria-labelledby="specialty-heading">
-              <div class="module-heading">
-                <span class="module-number">03</span>
-                <div><p class="kicker">Unlock at 20 mastery</p><h2 id="specialty-heading">Specialize</h2></div>
-              </div>
-              <p class="module-intro">Go deeper. Each specialty changes the projects and stories you encounter.</p>
-              <div class="choice-list" id="specialty-choices"></div>
-              <p class="lock-note" id="specialty-lock">Choose a field and build 20 mastery.</p>
             </section>
           </div>
 
@@ -132,7 +121,7 @@
 
       <footer>
         <p>An exploratory prototype. It suggests activities to investigate; it does not tell you who to become.</p>
-        <span>v0.1 · progress stays in this browser</span>
+        <span>v0.2 · progress stays in this browser</span>
       </footer>
     </div>
     <script type="module" src="src/app.js"></script>

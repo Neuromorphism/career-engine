@@ -1,50 +1,36 @@
-import { AXES, fields, starterActions, upgrades } from "./careers.js";
+import { AXES, careerTree, upgrades } from "./careers.js";
 import {
   SAVE_KEY,
-  canChooseField,
-  canChooseSpecialty,
+  availableChoices,
   canPurchase,
-  chooseField,
-  chooseSpecialty,
+  choicesUnlocked,
+  chooseNode,
   completeProject,
   createInitialState,
+  currentField,
+  currentNode,
   currentProject,
-  explore,
+  directionName,
   hydrateState,
+  isLeaf,
   leadingPattern,
+  pathNodes,
   practiceRate,
   purchaseUpgrade,
-  specialtyName,
   tick,
   work,
 } from "./game-engine.js";
 
 const $ = (selector) => document.querySelector(selector);
 const elements = {
-  console: $("#console-message"),
-  direction: $("#direction-value"),
-  insight: $("#insight-value"),
-  mastery: $("#mastery-value"),
-  impact: $("#impact-value"),
-  rate: $("#rate-value"),
-  starterActions: $("#starter-actions"),
-  actionIntro: $("#action-intro"),
-  workAction: $("#work-action"),
-  workButton: $("#work-button"),
-  workButtonLabel: $("#work-button-label"),
-  workDescription: $("#work-description"),
-  fieldModule: $("#field-module"),
-  fieldChoices: $("#field-choices"),
-  fieldLock: $("#field-lock"),
-  specialtyModule: $("#specialty-module"),
-  specialtyChoices: $("#specialty-choices"),
-  specialtyLock: $("#specialty-lock"),
-  upgrades: $("#upgrade-list"),
-  projectsModule: $("#projects-module"),
-  projectCard: $("#project-card"),
-  projectLock: $("#project-lock"),
-  pattern: $("#pattern-note"),
-  saveStatus: $("#save-status"),
+  console: $("#console-message"), direction: $("#direction-value"), insight: $("#insight-value"),
+  mastery: $("#mastery-value"), impact: $("#impact-value"), rate: $("#rate-value"),
+  pathKicker: $("#path-kicker"), pathHeading: $("#path-heading"), pathTrail: $("#path-trail"),
+  pathIntro: $("#path-intro"), pathChoices: $("#path-choices"), pathLock: $("#path-lock"),
+  jobLeaf: $("#job-leaf"), practiceModule: $("#practice-module"), actionIntro: $("#action-intro"),
+  workButton: $("#work-button"), workButtonLabel: $("#work-button-label"), workDescription: $("#work-description"),
+  upgrades: $("#upgrade-list"), projectsModule: $("#projects-module"), projectCard: $("#project-card"),
+  projectLock: $("#project-lock"), pattern: $("#pattern-note"), saveStatus: $("#save-status"),
 };
 
 function load() {
@@ -52,10 +38,7 @@ function load() {
     const raw = localStorage.getItem(SAVE_KEY);
     const parsed = raw ? JSON.parse(raw) : null;
     const next = hydrateState(parsed);
-    if (parsed?.savedAt) {
-      return tick(next, (Date.now() - parsed.savedAt) / 1000);
-    }
-    return next;
+    return parsed?.savedAt ? tick(next, (Date.now() - parsed.savedAt) / 1000) : next;
   } catch {
     return createInitialState();
   }
@@ -69,6 +52,10 @@ let lastDynamicSignature = "";
 function format(value, digits = 0) {
   if (value >= 1000) return Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 }).format(value);
   return value.toFixed(digits);
+}
+
+function indefiniteArticle(phrase) {
+  return /^[aeiou]/i.test(phrase) ? "an" : "a";
 }
 
 function save() {
@@ -92,70 +79,78 @@ function commit(nextState, pulseTarget) {
   save();
 }
 
-function renderStarterActions() {
-  if (state.field) {
-    elements.starterActions.hidden = true;
-    elements.workAction.hidden = false;
-    elements.actionIntro.textContent = "You chose a field. Practice its central loop manually before your engine compounds it.";
-    const field = fields[state.field];
-    elements.workButtonLabel.textContent = field.workLabel;
-    elements.workDescription.textContent = field.workDescription;
-    return;
+function renderPath() {
+  const node = currentNode(state);
+  const choices = availableChoices(state);
+  const unlocked = choicesUnlocked(state);
+  const depth = state.path.length + 1;
+  const trail = pathNodes(state);
+
+  elements.pathTrail.innerHTML = trail.length
+    ? trail.map((item, index) => `<span>${index + 1}. ${item.name}</span>`).join("<i>→</i>")
+    : "";
+
+  if (!node) {
+    elements.pathKicker.textContent = "Decision 1 · field";
+    elements.pathHeading.textContent = "Choose a field";
+    elements.pathIntro.textContent = "Begin broadly. Each choice reveals only the next useful distinction.";
+  } else if (choices.length) {
+    const label = node.decisionLabel || "specialization";
+    elements.pathKicker.textContent = `Decision ${depth} · ${label}`;
+    elements.pathHeading.textContent = `Choose ${indefiniteArticle(label)} ${label}`;
+    elements.pathIntro.textContent = node.blurb;
+  } else {
+    elements.pathKicker.textContent = "Real-world job leaf";
+    elements.pathHeading.textContent = node.jobTitle || node.name;
+    elements.pathIntro.textContent = node.blurb;
   }
-  elements.starterActions.hidden = false;
-  elements.workAction.hidden = true;
-  elements.starterActions.innerHTML = starterActions.map((action) => `
-    <button class="task-button" type="button" data-axis="${action.id}">
-      <span>${action.label}</span>
-      <span><em>${action.verb}</em><small>${action.reward}</small></span>
+
+  elements.pathChoices.innerHTML = choices.map((choice) => `
+    <button class="choice-button" type="button" data-node="${choice.id}" ${unlocked ? "" : "disabled"}>
+      <strong>${choice.name}</strong><span>${choice.blurb}</span>
+      ${choice.jobTitle ? '<em>job leaf</em>' : `<em>${choice.children?.length || 0} paths</em>`}
     </button>
   `).join("");
-  elements.starterActions.querySelectorAll("[data-axis]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const action = starterActions.find((item) => item.id === button.dataset.axis);
-      const message = action.messages[state.actions % action.messages.length];
-      commit(explore(state, action.id, message), elements.insight);
-    });
+  elements.pathChoices.querySelectorAll("[data-node]").forEach((button) => {
+    button.addEventListener("click", () => commit(chooseNode(state, button.dataset.node), elements.direction));
   });
+
+  elements.pathLock.hidden = unlocked || choices.length === 0;
+  elements.jobLeaf.hidden = !node || !isLeaf(state);
+  if (node && isLeaf(state)) {
+    const evidence = (node.evidence || []).map((item) => `
+      <li><a href="${item.url}" target="_blank" rel="noreferrer">${item.label}</a><span>${item.note}</span></li>
+    `).join("");
+    elements.jobLeaf.innerHTML = `
+      <p class="job-stamp">Specific occupation reached</p>
+      <p>This branch stops here because it already names recognizable work. Other branches need more levels.</p>
+      ${evidence ? `<details><summary>Evidence behind this job</summary><ul>${evidence}</ul></details>` : ""}
+    `;
+  }
 }
 
-function renderFields() {
-  const unlocked = canChooseField(state) || Boolean(state.field);
-  elements.fieldModule.classList.toggle("is-unlocked", unlocked);
-  elements.fieldLock.hidden = unlocked;
-  elements.fieldChoices.innerHTML = Object.entries(fields).map(([id, field]) => `
-    <button class="choice-button ${state.field === id ? "is-selected" : ""}" type="button" data-field="${id}" ${!canChooseField(state) && state.field !== id ? "disabled" : ""}>
-      <strong>${field.name}</strong><span>${field.blurb}</span>
-    </button>
-  `).join("");
-  elements.fieldChoices.querySelectorAll("[data-field]").forEach((button) => {
-    button.addEventListener("click", () => commit(chooseField(state, button.dataset.field), elements.direction));
-  });
-}
-
-function renderSpecialties() {
-  const unlocked = canChooseSpecialty(state) || Boolean(state.specialty);
-  elements.specialtyModule.classList.toggle("is-unlocked", unlocked);
-  elements.specialtyLock.hidden = unlocked;
-  if (!state.field) {
-    elements.specialtyChoices.innerHTML = "";
+function renderPractice() {
+  const node = currentNode(state);
+  const field = currentField(state);
+  const enabled = Boolean(node && field);
+  elements.practiceModule.classList.toggle("is-unlocked", enabled);
+  elements.workButton.disabled = !enabled;
+  if (!enabled) {
+    elements.actionIntro.textContent = "Choose a field to receive your first small work cycle.";
+    elements.workButtonLabel.textContent = "Choose a field first";
+    elements.workDescription.textContent = "The first decision now comes before any point-building.";
     return;
   }
-  elements.specialtyChoices.innerHTML = fields[state.field].specialties.map((specialty) => `
-    <button class="choice-button ${state.specialty === specialty.id ? "is-selected" : ""}" type="button" data-specialty="${specialty.id}" ${!canChooseSpecialty(state) && state.specialty !== specialty.id ? "disabled" : ""}>
-      <strong>${specialty.name}</strong><span>${specialty.blurb}</span>
-    </button>
-  `).join("");
-  elements.specialtyChoices.querySelectorAll("[data-specialty]").forEach((button) => {
-    button.addEventListener("click", () => commit(chooseSpecialty(state, button.dataset.specialty), elements.direction));
-  });
+  elements.actionIntro.textContent = `Practice within ${node.name}. Manual work builds the insight used to improve your engine.`;
+  elements.workButtonLabel.textContent = node.workLabel || field.workLabel;
+  elements.workDescription.textContent = node.workDescription || field.workDescription;
 }
 
 function renderUpgrades() {
   elements.upgrades.innerHTML = upgrades.map((upgrade) => {
     const owned = Boolean(state.upgrades[upgrade.id]);
-    const missing = upgrade.specialtyRequired && !state.specialty
-      ? "specialty required"
+    const missing = upgrade.leafRequired && !isLeaf(state)
+      ? "job leaf required"
       : state.mastery < upgrade.masteryRequired
         ? `${upgrade.masteryRequired} mastery required`
         : `${upgrade.cost} insight`;
@@ -172,29 +167,37 @@ function renderUpgrades() {
 }
 
 function renderProject() {
+  const node = currentNode(state);
   const project = currentProject(state);
-  elements.projectsModule.classList.toggle("is-unlocked", Boolean(state.field));
-  elements.projectLock.hidden = Boolean(state.field);
-  if (!state.field) {
+  elements.projectsModule.classList.toggle("is-unlocked", Boolean(node));
+  elements.projectLock.hidden = Boolean(node);
+  if (!node) {
     elements.projectCard.innerHTML = "";
     return;
   }
   if (!project) {
-    elements.projectCard.innerHTML = `<div class="project-card"><span class="project-label">Run complete</span><h3>A practice with momentum</h3><p class="project-complete">You completed every project in this prototype. Begin again to compare another field and constellation.</p></div>`;
+    const hasNext = Boolean(node.children?.length);
+    elements.projectCard.innerHTML = `
+      <div class="project-card project-done">
+        <span class="project-label">${hasNext ? "Starter brief complete" : "Role sample complete"}</span>
+        <h3>${hasNext ? "The next decision is open" : "You reached the end of this prototype branch"}</h3>
+        <p class="project-complete">${hasNext ? "Return to module 01 and choose the next specialization." : "Begin again to compare the work and path of another job."}</p>
+      </div>`;
     return;
   }
+  const nodeProjectCount = node.projects?.length || 1;
   const percent = Math.min(100, (state.mastery / project.requirement) * 100);
   elements.projectCard.innerHTML = `
     <div class="project-card">
-      <span class="project-label">Project ${state.completedProjects + 1} of ${fields[state.field].projects.length}</span>
+      <span class="project-label">${node.jobTitle ? `Job sample ${project.index + 1} of ${nodeProjectCount}` : "Starter brief"} · ${node.name}</span>
       <h3>${project.title}</h3>
       <p>${project.description}</p>
+      <div class="deliverable"><b>Deliverable</b><span>${project.deliverable}</span></div>
       <div class="project-meter" style="--project-fill:${percent}%"><i></i></div>
       <button class="project-button" type="button" ${state.mastery < project.requirement ? "disabled" : ""}>
-        ${state.mastery < project.requirement ? `${format(state.mastery, 1)} / ${project.requirement} mastery` : `Complete project · +${project.impact} impact`}
+        ${state.mastery < project.requirement ? `${format(state.mastery, 1)} / ${project.requirement} mastery` : `Submit project · +${project.impact} impact`}
       </button>
-    </div>
-  `;
+    </div>`;
   elements.projectCard.querySelector("button")?.addEventListener("click", () => commit(completeProject(state), elements.impact));
 }
 
@@ -207,37 +210,26 @@ function renderConstellation() {
   elements.pattern.textContent = leadingPattern(state);
 }
 
+function dynamicSignature() {
+  const project = currentProject(state);
+  return [choicesUnlocked(state), project ? state.mastery >= project.requirement : "none", ...upgrades.map((upgrade) => canPurchase(state, upgrade))].join("|");
+}
+
 function render() {
   elements.console.textContent = state.lastMessage;
-  elements.direction.textContent = specialtyName(state);
+  elements.direction.textContent = directionName(state);
   elements.insight.textContent = format(state.insight, state.insight % 1 ? 1 : 0);
   elements.mastery.textContent = format(state.mastery, state.mastery % 1 ? 1 : 0);
   elements.impact.textContent = format(state.impact);
   elements.rate.textContent = format(practiceRate(state), 2);
-  renderStarterActions();
-  renderFields();
-  renderSpecialties();
-  renderUpgrades();
-  renderProject();
-  renderConstellation();
+  renderPath(); renderPractice(); renderUpgrades(); renderProject(); renderConstellation();
   lastDynamicSignature = dynamicSignature();
-}
-
-function dynamicSignature() {
-  const project = currentProject(state);
-  return [
-    canChooseSpecialty(state),
-    project ? state.mastery >= project.requirement : "none",
-    ...upgrades.map((upgrade) => canPurchase(state, upgrade)),
-  ].join("|");
 }
 
 elements.workButton.addEventListener("click", () => commit(work(state), elements.mastery));
 $("#reset-button").addEventListener("click", () => {
   if (window.confirm("Begin a new run? Your current local progress will be replaced.")) {
-    state = createInitialState();
-    save();
-    render();
+    state = createInitialState(); save(); render();
   }
 });
 
@@ -247,17 +239,11 @@ function frame(now) {
   const next = tick(state, elapsed);
   if (next !== state) {
     state = next;
-    if (now - lastSaved > 2000) {
-      save();
-      lastSaved = now;
-    }
+    if (now - lastSaved > 2000) { save(); lastSaved = now; }
     elements.mastery.textContent = format(state.mastery, 1);
     const signature = dynamicSignature();
     if (signature !== lastDynamicSignature) {
-      renderProject();
-      renderSpecialties();
-      renderUpgrades();
-      lastDynamicSignature = signature;
+      renderPath(); renderProject(); renderUpgrades(); lastDynamicSignature = signature;
     }
   }
   requestAnimationFrame(frame);

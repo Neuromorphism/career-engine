@@ -222,10 +222,45 @@ button:disabled { cursor: not-allowed; color: #8c8c83; border-color: #aaa89e; bo
 .choice-button strong, .choice-button span { display: block; }
 .choice-button strong { font-family: var(--serif); font-size: 18px; }
 .choice-button span { margin-top: 3px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+.choice-button em {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--red);
+  font-size: 8px;
+  font-style: normal;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
 .choice-button.is-selected { color: white; background: var(--blue); border-color: #075762; }
 .choice-button.is-selected span { color: #d6f0ef; }
 
 .lock-note { margin: 14px 0 0; color: var(--red); font-size: 10px; }
+
+.path-trail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin: 14px 0 0;
+}
+.path-trail:empty { display: none; }
+.path-trail span { padding: 5px 7px; color: #075762; background: #dceced; border: 1px solid #98bec2; font-size: 8px; text-transform: uppercase; letter-spacing: .05em; }
+.path-trail i { color: var(--muted); font-style: normal; font-size: 10px; }
+
+.job-leaf {
+  margin-top: 15px;
+  padding: 13px;
+  background: #e5eee3;
+  border: 1px solid var(--green);
+}
+.job-leaf p { margin: 0 0 9px; color: #3f5744; font-size: 10px; line-height: 1.5; }
+.job-leaf .job-stamp { color: var(--green); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
+.job-leaf details { padding-top: 8px; border-top: 1px solid #a9c1aa; }
+.job-leaf summary { cursor: pointer; font-size: 9px; font-weight: 500; text-transform: uppercase; letter-spacing: .08em; }
+.job-leaf ul { margin: 10px 0 0; padding: 0; list-style: none; }
+.job-leaf li + li { margin-top: 9px; }
+.job-leaf a { color: #075762; font-size: 10px; font-weight: 500; }
+.job-leaf li span { display: block; margin-top: 2px; color: var(--muted); font-size: 9px; line-height: 1.45; }
 
 .constellation { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
 .constellation::before { content: ""; position: absolute; inset: 50% 20%; border-top: 1px dashed var(--line); transform: rotate(18deg); }
@@ -249,6 +284,10 @@ button:disabled { cursor: not-allowed; color: #8c8c83; border-color: #aaa89e; bo
 .project-card .project-label { color: var(--yellow); font-size: 9px; letter-spacing: .13em; text-transform: uppercase; }
 .project-card h3 { margin: 5px 0 7px; font-family: var(--serif); font-size: 22px; }
 .project-card p { color: #c9c7bd; font-size: 10px; line-height: 1.5; }
+.deliverable { margin: 12px 0; padding: 9px 10px; color: #e2dfd1; background: #282a24; border-left: 3px solid var(--yellow); }
+.deliverable b, .deliverable span { display: block; }
+.deliverable b { margin-bottom: 3px; color: var(--yellow); font-size: 8px; letter-spacing: .12em; text-transform: uppercase; }
+.deliverable span { font-size: 9px; line-height: 1.45; }
 .project-meter { height: 5px; margin: 12px 0; background: #44463f; }
 .project-meter i { display: block; width: var(--project-fill); height: 100%; background: var(--yellow); }
 .project-button { padding: 11px; color: var(--ink); background: var(--yellow); text-align: center; }

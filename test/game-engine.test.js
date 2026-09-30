@@ -1,56 +1,94 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { upgrades } from "../src/careers.js";
+import { careerTree, upgrades } from "../src/careers.js";
 import {
-  canChooseField,
-  chooseField,
-  chooseSpecialty,
+  availableChoices,
+  choicesUnlocked,
+  chooseNode,
   completeProject,
   createInitialState,
-  explore,
+  currentNode,
+  currentProject,
+  isLeaf,
   practiceRate,
   purchaseUpgrade,
   tick,
   work,
 } from "../src/game-engine.js";
 
-test("exploration builds insight and the chosen constellation axis", () => {
-  const initial = createInitialState();
-  const next = explore(initial, "build", "made something");
-  assert.equal(next.insight, 1);
-  assert.equal(next.constellation.build, 1);
-  assert.equal(next.lastMessage, "made something");
+function chooseAndComplete(state, nodeId) {
+  let next = chooseNode(state, nodeId);
+  const project = currentProject(next);
+  next = { ...next, mastery: Math.max(next.mastery, project.requirement) };
+  return completeProject(next);
+}
+
+test("the first interaction is a choice among six fields", () => {
+  const state = createInitialState();
+  assert.equal(state.path.length, 0);
+  assert.deepEqual(availableChoices(state).map((node) => node.name), [
+    "Engineering", "Medicine", "Law", "Skilled Trades", "Science", "Business",
+  ]);
+  assert.equal(work(state), state);
 });
 
-test("a field unlocks at twelve insight", () => {
+test("choosing a field immediately starts its small starter project", () => {
+  const state = chooseNode(createInitialState(), "engineering");
+  assert.deepEqual(state.path, ["engineering"]);
+  assert.equal(currentProject(state).title, "Compare a shelf bracket");
+  assert.equal(state.constellation.analyze, 1);
+  assert.equal(state.constellation.build, 1);
+});
+
+test("the next specialization is exposed but locked until the starter brief is complete", () => {
+  let state = chooseNode(createInitialState(), "engineering");
+  assert.equal(availableChoices(state).length, 3);
+  assert.equal(choicesUnlocked(state), false);
+  assert.equal(chooseNode(state, "electrical-engineering"), state);
+  for (let i = 0; i < 3; i += 1) state = work(state);
+  state = completeProject(state);
+  assert.equal(choicesUnlocked(state), true);
+  state = chooseNode(state, "electrical-engineering");
+  assert.equal(currentNode(state).name, "Electrical Engineering");
+});
+
+test("a long branch can reach the specific GPU RTL job leaf", () => {
   let state = createInitialState();
-  for (let i = 0; i < 12; i += 1) state = explore(state, "analyze", "observe");
-  assert.equal(canChooseField(state), true);
-  state = chooseField(state, "engineering");
-  assert.equal(state.field, "engineering");
+  for (const id of ["engineering", "electrical-engineering", "digital-design", "vlsi-design"]) {
+    state = chooseAndComplete(state, id);
+  }
+  state = chooseNode(state, "gpu-rtl-design-engineer");
+  assert.equal(isLeaf(state), true);
+  assert.equal(currentNode(state).jobTitle, "GPU RTL Design Engineer");
+  assert.equal(currentProject(state).title, "Specify a two-client GPU arbiter");
+  assert.equal(currentNode(state).evidence.some((item) => item.type === "job_posting"), true);
 });
 
-test("manual practice leads to a specialty", () => {
-  let state = { ...createInitialState(), insight: 12 };
-  state = chooseField(state, "medicine");
-  for (let i = 0; i < 20; i += 1) state = work(state);
-  state = chooseSpecialty(state, "family");
-  assert.equal(state.specialty, "family");
-  assert.equal(state.mastery, 20);
+test("short branches can reach a job after one specialization decision", () => {
+  let state = chooseAndComplete(createInitialState(), "trades");
+  state = chooseNode(state, "service-plumber");
+  assert.equal(isLeaf(state), true);
+  assert.deepEqual(state.path, ["trades", "service-plumber"]);
 });
 
 test("purchased upgrades produce mastery over time", () => {
-  let state = { ...createInitialState(), insight: 20, field: "law" };
+  let state = chooseNode(createInitialState(), "science");
+  state = { ...state, insight: 12, mastery: 4 };
   state = purchaseUpgrade(state, "notebook");
   assert.equal(practiceRate(state), upgrades[0].rate);
   state = tick(state, 10);
-  assert.equal(state.mastery, 2.5);
+  assert.equal(state.mastery, 6);
 });
 
-test("projects reward impact without spending mastery", () => {
-  let state = { ...createInitialState(), field: "trades", mastery: 20 };
-  state = completeProject(state);
-  assert.equal(state.completedProjects, 1);
-  assert.equal(state.impact, 12);
-  assert.equal(state.mastery, 20);
+test("all tree ids are unique and every leaf has projects and evidence", () => {
+  const ids = [];
+  const leaves = [];
+  const visit = (nodes) => nodes.forEach((node) => {
+    ids.push(node.id);
+    if (node.children?.length) visit(node.children);
+    else leaves.push(node);
+  });
+  visit(careerTree);
+  assert.equal(new Set(ids).size, ids.length);
+  assert.equal(leaves.every((node) => node.jobTitle && node.projects?.length && node.evidence?.length), true);
 });

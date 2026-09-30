@@ -1,6 +1,6 @@
 # Career Engine
 
-Career Engine is a text-first incremental game about discovering careers through activities. Players begin undecided, try four kinds of work, choose a field, build mastery manually, automate a professional practice, specialize, and complete projects with visible community impact.
+Career Engine is a text-first incremental game about discovering careers through activities. Players first choose a broad field, complete a small representative work sample, then reuse the same decision module to drill through a variable-depth specialization tree until they reach a recognizable real-world job.
 
 The interface takes inspiration from the progressive disclosure and compact modular rhythm of incremental games while using an original visual system, content, and mechanics.
 
@@ -23,11 +23,13 @@ There is no build step or runtime dependency. GitHub Pages can serve the reposit
 
 ## Current prototype
 
-- four opening activity types: Analyze, Build, Care, and Advocate;
-- four fields: Engineering, Medicine, Law, and Skilled Trades;
-- three specialties per field;
+- six fields: Engineering, Medicine, Law, Skilled Trades, Science, and Business;
+- variable-depth paths rather than a fixed number of tiers;
+- job leaves ranging from two choices deep to paths such as Electrical Engineering → Digital Design → VLSI / ASIC Design → GPU RTL Design Engineer;
+- leaf-role evidence links to O*NET and current employer postings where available;
+- small, reviewable work artifacts at every level rather than implausibly large starter projects;
 - an upgrade engine producing mastery over time;
-- three projects per field;
+- multi-project job samples on selected deep paths;
 - an activity constellation that records choices without presenting itself as an aptitude test;
 - autosave and up to four hours of capped offline progress.
 
