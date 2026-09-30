@@ -46,11 +46,14 @@
             <strong id="direction-value">Choose a field</strong>
           </div>
           <dl>
-            <div><dt>Insight</dt><dd id="insight-value">0</dd></div>
             <div><dt>Mastery</dt><dd id="mastery-value">0</dd></div>
-            <div><dt>Impact</dt><dd id="impact-value">0</dd></div>
             <div><dt>Practice rate</dt><dd><span id="rate-value">0</span><small>/sec</small></dd></div>
           </dl>
+          <div class="goal-score">
+            <div><span class="score-label">Run objective</span><strong id="goal-status">Reach a job</strong></div>
+            <p id="goal-copy">Choose through to a real-world job, then reach 10,000 mastery.</p>
+            <div class="goal-meter" id="goal-meter" role="progressbar" aria-label="Progress toward 10,000 mastery"><i></i></div>
+          </div>
         </section>
 
         <div class="game-grid">
@@ -76,7 +79,7 @@
               <div class="work-action" id="work-action">
                 <button class="primary-action" id="work-button" type="button">
                   <span id="work-button-label">Complete a work cycle</span>
-                  <small>+1 mastery · +1 insight</small>
+                  <small>+1 mastery</small>
                 </button>
                 <p id="work-description"></p>
               </div>
@@ -91,10 +94,10 @@
               </div>
               <p class="module-intro">A record of what you chose to do—not a personality verdict.</p>
               <div class="constellation" id="constellation" aria-label="Activity preferences">
-                <div class="axis analyze"><span>Analyze</span><b id="analyze-value">0</b><i></i></div>
-                <div class="axis build"><span>Build</span><b id="build-value">0</b><i></i></div>
-                <div class="axis care"><span>Care</span><b id="care-value">0</b><i></i></div>
-                <div class="axis advocate"><span>Advocate</span><b id="advocate-value">0</b><i></i></div>
+                <div class="axis analyze"><span>Analyze</span><i></i></div>
+                <div class="axis build"><span>Build</span><i></i></div>
+                <div class="axis care"><span>Care</span><i></i></div>
+                <div class="axis advocate"><span>Advocate</span><i></i></div>
               </div>
               <p class="pattern-note" id="pattern-note">No pattern yet. Your actions will sketch one.</p>
             </section>
@@ -121,9 +124,9 @@
 
       <footer>
         <p>An exploratory prototype. It suggests activities to investigate; it does not tell you who to become.</p>
-        <span>v0.2 · progress stays in this browser</span>
+        <span>v0.3 · progress stays in this browser</span>
       </footer>
     </div>
-    <script type="module" src="src/app.js?v=0.2.0"></script>
+    <script type="module" src="src/app.js?v=0.3.0"></script>
   </body>
 </html>

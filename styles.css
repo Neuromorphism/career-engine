@@ -111,7 +111,7 @@ h1 {
 
 .scoreboard {
   display: grid;
-  grid-template-columns: minmax(240px, 1.4fr) 2fr;
+  grid-template-columns: minmax(220px, 1.15fr) minmax(190px, .7fr) minmax(260px, 1.15fr);
   gap: 24px;
   padding: 36px 0 24px;
   border-bottom: 2px solid var(--ink);
@@ -134,7 +134,7 @@ h1 {
 
 .scoreboard dl {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
   margin: 0;
 }
@@ -143,6 +143,21 @@ h1 {
 dt, dd { margin: 0; }
 dd { margin-top: 6px; font-family: var(--serif); font-size: 30px; font-variant-numeric: tabular-nums; }
 dd small { margin-left: 3px; font-family: var(--mono); font-size: 10px; color: var(--muted); }
+
+.goal-score {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 14px;
+  align-items: end;
+  padding-left: 18px;
+  border-left: 1px solid var(--line);
+}
+.goal-score strong { display: block; margin-top: 4px; color: var(--red); font-family: var(--serif); font-size: 24px; line-height: 1; }
+.goal-score p { align-self: end; margin: 0; color: var(--muted); font-size: 9px; line-height: 1.45; }
+.goal-meter { grid-column: 1 / -1; height: 7px; margin-top: 10px; overflow: hidden; background: #d7d2c4; border: 1px solid #aaa597; }
+.goal-meter i { display: block; width: var(--goal-fill, 0%); height: 100%; background: var(--red); transition: width 280ms ease; }
+.goal-score.is-complete strong { color: var(--green); }
+.goal-score.is-complete .goal-meter i { background: var(--green); }
 
 .game-grid {
   display: grid;
@@ -264,8 +279,7 @@ button:disabled { cursor: not-allowed; color: #8c8c83; border-color: #aaa89e; bo
 
 .constellation { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
 .constellation::before { content: ""; position: absolute; inset: 50% 20%; border-top: 1px dashed var(--line); transform: rotate(18deg); }
-.axis { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; gap: 10px; padding: 10px; background: var(--paper); border: 1px solid var(--line); }
-.axis b { font-family: var(--serif); font-size: 22px; }
+.axis { position: relative; z-index: 1; display: grid; gap: 10px; padding: 10px; background: var(--paper); border: 1px solid var(--line); }
 .axis i { grid-column: 1 / -1; height: 4px; background: #ddd8ca; overflow: hidden; }
 .axis i::after { content: ""; display: block; width: var(--fill, 0%); height: 100%; background: var(--axis-color, var(--ink)); transition: width 280ms ease; }
 .axis.analyze { --axis-color: var(--blue); }
@@ -309,6 +323,7 @@ footer p { margin: 0; }
   .scoreboard { gap: 18px; }
   .scoreboard dl { grid-template-columns: 1fr 1fr; }
   .scoreboard dl div { padding: 9px 0 9px 12px; }
+  .goal-score { padding: 14px 0 0; border-left: 0; border-top: 1px solid var(--line); }
   footer { flex-direction: column; }
 }
 

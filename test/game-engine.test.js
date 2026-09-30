@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { careerTree, upgrades } from "../src/careers.js";
 import {
+  GOAL_MASTERY,
   availableChoices,
   choicesUnlocked,
   chooseNode,
@@ -9,6 +10,8 @@ import {
   createInitialState,
   currentNode,
   currentProject,
+  goalProgress,
+  hydrateState,
   isLeaf,
   practiceRate,
   purchaseUpgrade,
@@ -73,11 +76,31 @@ test("short branches can reach a job after one specialization decision", () => {
 
 test("purchased upgrades produce mastery over time", () => {
   let state = chooseNode(createInitialState(), "science");
-  state = { ...state, insight: 12, mastery: 4 };
+  state = { ...state, mastery: 12 };
   state = purchaseUpgrade(state, "notebook");
+  assert.equal(state.mastery, 4);
   assert.equal(practiceRate(state), upgrades[0].rate);
   state = tick(state, 10);
   assert.equal(state.mastery, 6);
+});
+
+test("the run completes only at 10,000 mastery and full job depth", () => {
+  let state = createInitialState();
+  for (const id of ["engineering", "electrical-engineering", "digital-design", "vlsi-design"]) {
+    state = chooseAndComplete(state, id);
+  }
+  state = { ...state, mastery: GOAL_MASTERY };
+  assert.equal(state.careerComplete, false);
+  assert.equal(goalProgress(state), 1);
+  state = chooseNode(state, "gpu-rtl-design-engineer");
+  assert.equal(state.careerComplete, true);
+});
+
+test("legacy saves keep mastery without reviving retired score currencies", () => {
+  const state = hydrateState({ mastery: 37, insight: 99, impact: 12, path: [] });
+  assert.equal(state.mastery, 37);
+  assert.equal("insight" in state, false);
+  assert.equal("impact" in state, false);
 });
 
 test("all tree ids are unique and every leaf has projects and evidence", () => {

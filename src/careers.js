@@ -1,7 +1,7 @@
 export const AXES = ["analyze", "build", "care", "advocate"];
 
-const p = (title, description, deliverable, requirement, impact) => ({
-  title, description, deliverable, requirement, impact,
+const p = (title, description, deliverable, requirement) => ({
+  title, description, deliverable, requirement,
 });
 
 const source = (label, url, note, type = "occupation_reference") => ({ label, url, note, type });
@@ -175,10 +175,10 @@ export const careerTree = [
 ];
 
 export const upgrades = [
-  { id: "notebook", name: "Working notebook", description: "Capture observations and turn them into a repeatable practice.", cost: 8, rate: 0.2, masteryRequired: 3 },
-  { id: "mentor", name: "Mentor cadence", description: "Regular feedback catches blind spots and accelerates learning.", cost: 20, rate: 0.7, masteryRequired: 10 },
-  { id: "peer-team", name: "Peer review", description: "Compare approaches and catch errors before they compound.", cost: 45, rate: 1.8, masteryRequired: 22 },
-  { id: "workflow", name: "Trusted workflow", description: "Systematize routine work so attention stays on judgment and exceptions.", cost: 90, rate: 4.5, masteryRequired: 40, leafRequired: true },
+  { id: "notebook", name: "Working notebook", description: "Capture observations and turn them into a repeatable practice.", cost: 8, rate: 0.2 },
+  { id: "mentor", name: "Mentor cadence", description: "Regular feedback catches blind spots and accelerates learning.", cost: 20, rate: 0.7 },
+  { id: "peer-team", name: "Peer review", description: "Compare approaches and catch errors before they compound.", cost: 45, rate: 1.8 },
+  { id: "workflow", name: "Trusted workflow", description: "Systematize routine work so attention stays on judgment and exceptions.", cost: 90, rate: 4.5, leafRequired: true },
 ];
 
 export function findNode(path) {

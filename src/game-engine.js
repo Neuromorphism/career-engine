@@ -1,17 +1,17 @@
-import { AXES, careerTree, fieldForPath, findNode, nodesForPath, upgrades } from "./careers.js?v=0.2.0";
+import { AXES, careerTree, fieldForPath, findNode, nodesForPath, upgrades } from "./careers.js?v=0.3.0";
 
 export const SAVE_KEY = "career-engine-save-v2";
+export const GOAL_MASTERY = 10_000;
 
 export function createInitialState() {
   return {
-    insight: 0,
     mastery: 0,
-    impact: 0,
     actions: 0,
     path: [],
     constellation: Object.fromEntries(AXES.map((axis) => [axis, 0])),
     upgrades: {},
     completedProjectKeys: [],
+    careerComplete: false,
     lastMessage: "Choose a field. You can refine the direction after trying a small piece of its work.",
     savedAt: Date.now(),
   };
@@ -22,13 +22,18 @@ export function hydrateState(input) {
   if (!input || typeof input !== "object") return fresh;
   const state = {
     ...fresh,
-    ...input,
+    mastery: Number.isFinite(input.mastery) ? Math.max(0, input.mastery) : 0,
+    actions: Number.isFinite(input.actions) ? Math.max(0, input.actions) : 0,
     path: Array.isArray(input.path) ? input.path : [],
     constellation: { ...fresh.constellation, ...(input.constellation || {}) },
     upgrades: { ...(input.upgrades || {}) },
     completedProjectKeys: Array.isArray(input.completedProjectKeys) ? input.completedProjectKeys : [],
+    careerComplete: Boolean(input.careerComplete),
+    lastMessage: typeof input.lastMessage === "string" ? input.lastMessage : fresh.lastMessage,
+    savedAt: Number.isFinite(input.savedAt) ? input.savedAt : fresh.savedAt,
   };
   if (state.path.length && !findNode(state.path)) state.path = [];
+  state.careerComplete = isLeaf(state) && state.mastery >= GOAL_MASTERY;
   return state;
 }
 
@@ -43,6 +48,15 @@ export function currentField(state) {
 export function isLeaf(state) {
   const node = currentNode(state);
   return Boolean(node && (!node.children || node.children.length === 0));
+}
+
+function withGoalCheck(state) {
+  if (state.careerComplete || !isLeaf(state) || state.mastery < GOAL_MASTERY) return state;
+  return {
+    ...state,
+    careerComplete: true,
+    lastMessage: `Career mastered. You reached ${GOAL_MASTERY.toLocaleString()} mastery as a ${currentNode(state).name}. Begin again whenever you want to explore another path.`,
+  };
 }
 
 export function projectKey(nodeId, index) {
@@ -71,14 +85,14 @@ export function chooseNode(state, nodeId) {
   const field = state.path.length ? currentField(state) : node;
   const constellation = { ...state.constellation };
   if (!state.path.length) field.axes.forEach((axis) => { constellation[axis] += 1; });
-  return {
+  return withGoalCheck({
     ...state,
     path: [...state.path, nodeId],
     constellation,
     lastMessage: node.jobTitle
       ? `${node.name} reached: a real-world job leaf. Its projects are grounded in occupation data and current postings where available.`
       : `${node.name} selected. Try its starter brief before narrowing the path again.`,
-  };
+  });
 }
 
 export function work(state) {
@@ -87,14 +101,13 @@ export function work(state) {
   if (!node || !field) return state;
   const constellation = { ...state.constellation };
   field.axes.forEach((axis) => { constellation[axis] += 0.2; });
-  return {
+  return withGoalCheck({
     ...state,
-    insight: state.insight + 1,
     mastery: state.mastery + 1,
     actions: state.actions + 1,
     constellation,
     lastMessage: node.workDescription || field.workDescription,
-  };
+  });
 }
 
 export function practiceRate(state) {
@@ -104,8 +117,7 @@ export function practiceRate(state) {
 export function canPurchase(state, upgrade) {
   return Boolean(state.path.length)
     && !state.upgrades[upgrade.id]
-    && state.insight >= upgrade.cost
-    && state.mastery >= upgrade.masteryRequired
+    && state.mastery >= upgrade.cost
     && (!upgrade.leafRequired || isLeaf(state));
 }
 
@@ -114,7 +126,7 @@ export function purchaseUpgrade(state, upgradeId) {
   if (!upgrade || !canPurchase(state, upgrade)) return state;
   return {
     ...state,
-    insight: state.insight - upgrade.cost,
+    mastery: state.mastery - upgrade.cost,
     upgrades: { ...state.upgrades, [upgrade.id]: true },
     lastMessage: `${upgrade.name} added. Your practice now develops ${upgrade.rate} mastery per second.`,
   };
@@ -133,9 +145,8 @@ export function completeProject(state) {
   if (!project || state.mastery < project.requirement) return state;
   return {
     ...state,
-    impact: state.impact + project.impact,
     completedProjectKeys: [...state.completedProjectKeys, project.key],
-    lastMessage: `${project.title} complete. Impact +${project.impact}. Keep the artifact; real careers are built from reviewed work, not just accumulated points.`,
+    lastMessage: `${project.title} complete. The next decision is open. Keep the artifact; real careers are built from reviewed work, not mastery alone.`,
   };
 }
 
@@ -144,7 +155,11 @@ export function tick(state, elapsedSeconds) {
   const rate = practiceRate(state);
   if (rate === 0) return state;
   const elapsed = Math.min(elapsedSeconds, 60 * 60 * 4);
-  return { ...state, mastery: state.mastery + rate * elapsed };
+  return withGoalCheck({ ...state, mastery: state.mastery + rate * elapsed });
+}
+
+export function goalProgress(state) {
+  return Math.max(0, Math.min(1, state.mastery / GOAL_MASTERY));
 }
 
 export function directionName(state) {

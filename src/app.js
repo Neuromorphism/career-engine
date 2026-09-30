@@ -1,5 +1,6 @@
-import { AXES, careerTree, upgrades } from "./careers.js?v=0.2.0";
+import { AXES, careerTree, upgrades } from "./careers.js?v=0.3.0";
 import {
+  GOAL_MASTERY,
   SAVE_KEY,
   availableChoices,
   canPurchase,
@@ -11,6 +12,7 @@ import {
   currentNode,
   currentProject,
   directionName,
+  goalProgress,
   hydrateState,
   isLeaf,
   leadingPattern,
@@ -19,12 +21,12 @@ import {
   purchaseUpgrade,
   tick,
   work,
-} from "./game-engine.js?v=0.2.0";
+} from "./game-engine.js?v=0.3.0";
 
 const $ = (selector) => document.querySelector(selector);
 const elements = {
-  console: $("#console-message"), direction: $("#direction-value"), insight: $("#insight-value"),
-  mastery: $("#mastery-value"), impact: $("#impact-value"), rate: $("#rate-value"),
+  console: $("#console-message"), direction: $("#direction-value"), mastery: $("#mastery-value"),
+  rate: $("#rate-value"), goal: $("#goal-status"), goalMeter: $("#goal-meter"), goalCopy: $("#goal-copy"),
   pathKicker: $("#path-kicker"), pathHeading: $("#path-heading"), pathTrail: $("#path-trail"),
   pathIntro: $("#path-intro"), pathChoices: $("#path-choices"), pathLock: $("#path-lock"),
   jobLeaf: $("#job-leaf"), practiceModule: $("#practice-module"), actionIntro: $("#action-intro"),
@@ -123,7 +125,7 @@ function renderPath() {
     `).join("");
     elements.jobLeaf.innerHTML = `
       <p class="job-stamp">Specific occupation reached</p>
-      <p>This branch stops here because it already names recognizable work. Other branches need more levels.</p>
+      <p>This branch stops here because it names recognizable work. Build ${GOAL_MASTERY.toLocaleString()} mastery at this full job depth to complete the run.</p>
       ${evidence ? `<details><summary>Evidence behind this job</summary><ul>${evidence}</ul></details>` : ""}
     `;
   }
@@ -138,10 +140,10 @@ function renderPractice() {
   if (!enabled) {
     elements.actionIntro.textContent = "Choose a field to receive your first small work cycle.";
     elements.workButtonLabel.textContent = "Choose a field first";
-    elements.workDescription.textContent = "The first decision now comes before any point-building.";
+    elements.workDescription.textContent = "The first decision now comes before any mastery-building.";
     return;
   }
-  elements.actionIntro.textContent = `Practice within ${node.name}. Manual work builds the insight used to improve your engine.`;
+  elements.actionIntro.textContent = `Practice within ${node.name}. Each work cycle adds one mastery.`;
   elements.workButtonLabel.textContent = node.workLabel || field.workLabel;
   elements.workDescription.textContent = node.workDescription || field.workDescription;
 }
@@ -151,9 +153,7 @@ function renderUpgrades() {
     const owned = Boolean(state.upgrades[upgrade.id]);
     const missing = upgrade.leafRequired && !isLeaf(state)
       ? "job leaf required"
-      : state.mastery < upgrade.masteryRequired
-        ? `${upgrade.masteryRequired} mastery required`
-        : `${upgrade.cost} insight`;
+      : `${upgrade.cost} mastery`;
     return `
       <button class="upgrade-button ${owned ? "is-owned" : ""}" type="button" data-upgrade="${upgrade.id}" ${owned || !canPurchase(state, upgrade) ? "disabled" : ""}>
         <span><strong>${upgrade.name}</strong><span>${upgrade.description}</span></span>
@@ -177,11 +177,14 @@ function renderProject() {
   }
   if (!project) {
     const hasNext = Boolean(node.children?.length);
+    const leafMessage = state.careerComplete
+      ? "Run complete. Begin again whenever you want to explore the work of another job."
+      : `Keep building your practice engine until you reach ${GOAL_MASTERY.toLocaleString()} mastery.`;
     elements.projectCard.innerHTML = `
       <div class="project-card project-done">
         <span class="project-label">${hasNext ? "Starter brief complete" : "Role sample complete"}</span>
-        <h3>${hasNext ? "The next decision is open" : "You reached the end of this prototype branch"}</h3>
-        <p class="project-complete">${hasNext ? "Return to module 01 and choose the next specialization." : "Begin again to compare the work and path of another job."}</p>
+        <h3>${hasNext ? "The next decision is open" : state.careerComplete ? "Career mastered" : "Build toward full mastery"}</h3>
+        <p class="project-complete">${hasNext ? "Return to module 01 and choose the next specialization." : leafMessage}</p>
       </div>`;
     return;
   }
@@ -195,33 +198,49 @@ function renderProject() {
       <div class="deliverable"><b>Deliverable</b><span>${project.deliverable}</span></div>
       <div class="project-meter" style="--project-fill:${percent}%"><i></i></div>
       <button class="project-button" type="button" ${state.mastery < project.requirement ? "disabled" : ""}>
-        ${state.mastery < project.requirement ? `${format(state.mastery, 1)} / ${project.requirement} mastery` : `Submit project · +${project.impact} impact`}
+        ${state.mastery < project.requirement ? `${format(state.mastery, 1)} / ${project.requirement} mastery` : "Submit project"}
       </button>
     </div>`;
-  elements.projectCard.querySelector("button")?.addEventListener("click", () => commit(completeProject(state), elements.impact));
+  elements.projectCard.querySelector("button")?.addEventListener("click", () => commit(completeProject(state), elements.mastery));
 }
 
 function renderConstellation() {
   const max = Math.max(1, ...AXES.map((axis) => state.constellation[axis]));
   AXES.forEach((axis) => {
-    $(`#${axis}-value`).textContent = format(state.constellation[axis], 1);
-    $(`.axis.${axis}`).style.setProperty("--fill", `${(state.constellation[axis] / max) * 100}%`);
+    const element = $(`.axis.${axis}`);
+    element.style.setProperty("--fill", `${(state.constellation[axis] / max) * 100}%`);
+    element.setAttribute("aria-label", `${axis}: ${Math.round((state.constellation[axis] / max) * 100)} percent of your current activity pattern`);
   });
   elements.pattern.textContent = leadingPattern(state);
 }
 
 function dynamicSignature() {
   const project = currentProject(state);
-  return [choicesUnlocked(state), project ? state.mastery >= project.requirement : "none", ...upgrades.map((upgrade) => canPurchase(state, upgrade))].join("|");
+  return [state.careerComplete, choicesUnlocked(state), project ? state.mastery >= project.requirement : "none", ...upgrades.map((upgrade) => canPurchase(state, upgrade))].join("|");
+}
+
+function renderGoal() {
+  const atJob = isLeaf(state);
+  const progress = goalProgress(state);
+  elements.goal.textContent = state.careerComplete ? "Career mastered" : atJob ? `${Math.floor(progress * 100)}%` : "Reach a job";
+  elements.goalCopy.textContent = state.careerComplete
+    ? `${GOAL_MASTERY.toLocaleString()} mastery reached at full job depth.`
+    : atJob
+      ? `${format(state.mastery, 0)} / ${GOAL_MASTERY.toLocaleString()} mastery`
+      : `Choose through to a real-world job, then reach ${GOAL_MASTERY.toLocaleString()} mastery.`;
+  elements.goalMeter.style.setProperty("--goal-fill", `${progress * 100}%`);
+  elements.goalMeter.setAttribute("aria-valuenow", String(Math.round(progress * 100)));
+  elements.goalMeter.setAttribute("aria-valuemin", "0");
+  elements.goalMeter.setAttribute("aria-valuemax", "100");
+  elements.goalMeter.parentElement.classList.toggle("is-complete", state.careerComplete);
 }
 
 function render() {
   elements.console.textContent = state.lastMessage;
   elements.direction.textContent = directionName(state);
-  elements.insight.textContent = format(state.insight, state.insight % 1 ? 1 : 0);
   elements.mastery.textContent = format(state.mastery, state.mastery % 1 ? 1 : 0);
-  elements.impact.textContent = format(state.impact);
   elements.rate.textContent = format(practiceRate(state), 2);
+  renderGoal();
   renderPath(); renderPractice(); renderUpgrades(); renderProject(); renderConstellation();
   lastDynamicSignature = dynamicSignature();
 }
@@ -238,9 +257,18 @@ function frame(now) {
   lastFrame = now;
   const next = tick(state, elapsed);
   if (next !== state) {
+    const completedNow = !state.careerComplete && next.careerComplete;
     state = next;
+    if (completedNow) {
+      render();
+      save();
+      pulse(elements.goal);
+      requestAnimationFrame(frame);
+      return;
+    }
     if (now - lastSaved > 2000) { save(); lastSaved = now; }
     elements.mastery.textContent = format(state.mastery, 1);
+    renderGoal();
     const signature = dynamicSignature();
     if (signature !== lastDynamicSignature) {
       renderPath(); renderProject(); renderUpgrades(); lastDynamicSignature = signature;
