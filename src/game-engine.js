@@ -1,14 +1,18 @@
-import { careerTree, fieldForPath, findNode, nodesForPath, upgrades } from "./careers.js?v=0.4.0";
+import { careerTree, fieldForPath, findNode, findNodeById, nodesForPath } from "./careers.js?v=0.5.0";
+import { curriculumFor } from "./curricula.js?v=0.5.0";
 
-export const SAVE_KEY = "career-engine-save-v2";
+export const SAVE_KEY = "career-engine-save-v3";
 export const GOAL_MASTERY = 10_000;
+
+const REWARDS = [1, 2, 3, 5, 8, 13, 21];
+const RATES = [0.04, 0.07, 0.11, 0.17, 0.26, 0.38, 0.55];
 
 export function createInitialState() {
   return {
     mastery: 0,
     actions: 0,
     path: [],
-    upgrades: {},
+    completedLearningKeys: [],
     completedProjectKeys: [],
     careerComplete: false,
     lastMessage: "Choose a field. You can refine the direction after trying a small piece of its work.",
@@ -19,20 +23,26 @@ export function createInitialState() {
 export function hydrateState(input) {
   const fresh = createInitialState();
   if (!input || typeof input !== "object") return fresh;
+  const hasLearningProgress = Array.isArray(input.completedLearningKeys);
   const state = {
     ...fresh,
     mastery: Number.isFinite(input.mastery) ? Math.max(0, input.mastery) : 0,
     actions: Number.isFinite(input.actions) ? Math.max(0, input.actions) : 0,
     path: Array.isArray(input.path) ? input.path : [],
-    upgrades: { ...(input.upgrades || {}) },
+    completedLearningKeys: Array.isArray(input.completedLearningKeys) ? input.completedLearningKeys : [],
     completedProjectKeys: Array.isArray(input.completedProjectKeys) ? input.completedProjectKeys : [],
     careerComplete: Boolean(input.careerComplete),
     lastMessage: typeof input.lastMessage === "string" ? input.lastMessage : fresh.lastMessage,
     savedAt: Number.isFinite(input.savedAt) ? input.savedAt : fresh.savedAt,
   };
   if (state.path.length && !findNode(state.path)) state.path = [];
-  state.careerComplete = isLeaf(state) && state.mastery >= GOAL_MASTERY;
-  return state;
+  if (!hasLearningProgress && state.path.length > 1) {
+    state.completedLearningKeys = nodesForPath(state.path).slice(0, -1).flatMap((node, index) => (
+      learningTrackForNode(node, index + 1)?.activities.map((activity) => activity.key) || []
+    ));
+  }
+  state.careerComplete = false;
+  return withGoalCheck(state);
 }
 
 export function currentNode(state) {
@@ -49,7 +59,13 @@ export function isLeaf(state) {
 }
 
 function withGoalCheck(state) {
-  if (state.careerComplete || !isLeaf(state) || state.mastery < GOAL_MASTERY) return state;
+  if (
+    state.careerComplete
+    || !isLeaf(state)
+    || !learningTrackComplete(state)
+    || currentProject(state)
+    || state.mastery < GOAL_MASTERY
+  ) return state;
   return {
     ...state,
     careerComplete: true,
@@ -66,6 +82,64 @@ export function firstProjectComplete(state, node = currentNode(state)) {
   return state.completedProjectKeys.includes(projectKey(node.id, 0));
 }
 
+export function learningKey(nodeId, index) {
+  return `${nodeId}:${index}`;
+}
+
+function learningValues(index, depth) {
+  const reward = Math.round((REWARDS[index] || REWARDS.at(-1) + ((index - REWARDS.length + 1) * 13)) * depth);
+  const rate = Number(((RATES[index] || RATES.at(-1) + ((index - RATES.length + 1) * 0.17)) * depth).toFixed(2));
+  return { reward, rate };
+}
+
+export function learningTrackForNode(node, depth = 1) {
+  const curriculum = node ? curriculumFor(node.id) : null;
+  if (!curriculum) return null;
+  return {
+    ...curriculum,
+    nodeId: node.id,
+    nodeName: node.name,
+    activities: curriculum.activities.map((activity, index) => ({
+      ...activity,
+      ...learningValues(index, depth),
+      index,
+      key: learningKey(node.id, index),
+    })),
+  };
+}
+
+export function learningTracksForPath(state) {
+  return pathNodes(state).map((node, index) => learningTrackForNode(node, index + 1)).filter(Boolean);
+}
+
+export function learningTrackComplete(state, node = currentNode(state)) {
+  if (!node) return false;
+  const match = findNodeById(node.id);
+  const track = learningTrackForNode(node, match?.depth || state.path.length || 1);
+  return Boolean(track?.activities.length)
+    && track.activities.every((activity) => state.completedLearningKeys.includes(activity.key));
+}
+
+export function currentLearningActivity(state) {
+  const node = currentNode(state);
+  if (!node) return null;
+  const track = learningTrackForNode(node, state.path.length);
+  return track?.activities.find((activity) => !state.completedLearningKeys.includes(activity.key)) || null;
+}
+
+export function completeLearningActivity(state, nodeId, activityIndex) {
+  const node = currentNode(state);
+  const nextActivity = currentLearningActivity(state);
+  if (!node || node.id !== nodeId || !nextActivity || nextActivity.index !== activityIndex) return state;
+  return withGoalCheck({
+    ...state,
+    mastery: state.mastery + nextActivity.reward,
+    actions: state.actions + 1,
+    completedLearningKeys: [...state.completedLearningKeys, nextActivity.key],
+    lastMessage: `${nextActivity.title} complete. +${nextActivity.reward} mastery and +${nextActivity.rate}/sec practice capacity.`,
+  });
+}
+
 export function availableChoices(state) {
   if (!state.path.length) return careerTree;
   return currentNode(state)?.children || [];
@@ -73,7 +147,7 @@ export function availableChoices(state) {
 
 export function choicesUnlocked(state) {
   if (!state.path.length) return true;
-  return firstProjectComplete(state);
+  return learningTrackComplete(state) && firstProjectComplete(state);
 }
 
 export function chooseNode(state, nodeId) {
@@ -85,42 +159,24 @@ export function chooseNode(state, nodeId) {
     path: [...state.path, nodeId],
     lastMessage: node.jobTitle
       ? `${node.name} reached: a real-world job leaf. Its projects are grounded in occupation data and current postings where available.`
-      : `${node.name} selected. Try its starter brief before narrowing the path again.`,
+      : `${node.name} selected. Complete its learning track and applied brief before narrowing the path again.`,
   });
 }
 
 export function work(state) {
+  const activity = currentLearningActivity(state);
   const node = currentNode(state);
-  const field = currentField(state);
-  if (!node || !field) return state;
-  return withGoalCheck({
-    ...state,
-    mastery: state.mastery + 1,
-    actions: state.actions + 1,
-    lastMessage: node.workDescription || field.workDescription,
-  });
+  return activity && node ? completeLearningActivity(state, node.id, activity.index) : state;
 }
 
 export function practiceRate(state) {
-  return upgrades.reduce((rate, upgrade) => rate + (state.upgrades[upgrade.id] ? upgrade.rate : 0), 0);
-}
-
-export function canPurchase(state, upgrade) {
-  return Boolean(state.path.length)
-    && !state.upgrades[upgrade.id]
-    && state.mastery >= upgrade.cost
-    && (!upgrade.leafRequired || isLeaf(state));
-}
-
-export function purchaseUpgrade(state, upgradeId) {
-  const upgrade = upgrades.find((item) => item.id === upgradeId);
-  if (!upgrade || !canPurchase(state, upgrade)) return state;
-  return {
-    ...state,
-    mastery: state.mastery - upgrade.cost,
-    upgrades: { ...state.upgrades, [upgrade.id]: true },
-    lastMessage: `${upgrade.name} added. Your practice now develops ${upgrade.rate} mastery per second.`,
-  };
+  return state.completedLearningKeys.reduce((rate, key) => {
+    const separator = key.lastIndexOf(":");
+    const nodeId = key.slice(0, separator);
+    const index = Number(key.slice(separator + 1));
+    const match = findNodeById(nodeId);
+    return rate + (match && Number.isInteger(index) ? learningValues(index, match.depth).rate : 0);
+  }, 0);
 }
 
 export function currentProject(state) {
@@ -133,12 +189,12 @@ export function currentProject(state) {
 
 export function completeProject(state) {
   const project = currentProject(state);
-  if (!project || state.mastery < project.requirement) return state;
-  return {
+  if (!project || !learningTrackComplete(state) || state.mastery < project.requirement) return state;
+  return withGoalCheck({
     ...state,
     completedProjectKeys: [...state.completedProjectKeys, project.key],
     lastMessage: `${project.title} complete. The next decision is open. Keep the artifact; real careers are built from reviewed work, not mastery alone.`,
-  };
+  });
 }
 
 export function tick(state, elapsedSeconds) {

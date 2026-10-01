@@ -120,6 +120,7 @@ export const careerTree = [
       { id: "primary-care", name: "Primary Care", decisionLabel: "primary-care specialty", blurb: "First-contact, continuous, comprehensive care and prevention.", projects: [p("Prepare a preventive visit", "Review a fictional chart and identify preventive topics, medication questions, and follow-up needs without diagnosing.", "Pre-visit planning note and prioritized agenda.", 8, 5)], children: [{ id: "family-medicine-physician", name: "Family Medicine Physician", jobTitle: "Family Medicine Physician", blurb: "Provide broad care across ages and conditions, often over long relationships with patients and families.", projects: [p("Coordinate a follow-up plan", "Reconcile a fictional patient's concerns, medications, test follow-up, and practical barriers into a clear plan.", "Plain-language after-visit summary and follow-up checklist.", 14, 10)], evidence: [source("Mayo Clinic · Family Medicine careers", "https://jobs.mayoclinic.org/familymedicine", "Career page describes outpatient, inpatient, urgent-care, obstetric, academic, and community practice settings.", "job_posting_collection"), onet("29-1215.00", "Family Medicine Physicians", "Federal occupation reference.")] }] },
       { id: "emergency-medicine-physician", name: "Emergency Medicine Physician", jobTitle: "Emergency Medicine Physician", blurb: "Rapidly evaluate undifferentiated illness or injury, stabilize urgent problems, and coordinate disposition.", projects: [p("Triage three teaching cases", "Rank three fictional cases by urgency using airway, breathing, circulation, mental status, and time sensitivity.", "Triage order with reasons, missing data, and escalation triggers.", 8, 10)], evidence: [onet("29-1214.00", "Emergency Medicine Physicians", "Federal task and occupation reference.")] },
       { id: "general-pediatrician", name: "General Pediatrician", jobTitle: "General Pediatrician", blurb: "Support health, development, prevention, and illness care from infancy through adolescence.", projects: [p("Prepare a well-child visit", "Organize a fictional visit around growth, development, prevention, family questions, and age-appropriate communication.", "Visit agenda and parent-facing question list.", 8, 10)], evidence: [onet("29-1221.00", "Pediatricians, General", "Federal task and occupation reference.")] },
+      { id: "surgery", name: "Surgery", decisionLabel: "surgical role", blurb: "Evaluate surgical disease, prepare patients and teams, perform supervised procedures, and manage recovery and complications.", projects: [p("Prepare a surgical consult", "Organize a fictional consultation around stability, focused history and examination, labs, imaging, operative indications, alternatives, and escalation.", "Consult note, prioritized problem list, and preoperative question set.", 8, 8)], children: [{ id: "general-surgeon", name: "General Surgeon", jobTitle: "General Surgeon", blurb: "Manage common abdominal, soft-tissue, breast, endocrine, trauma, and perioperative surgical problems.", projects: [p("Plan an appendicitis pathway", "Map a fictional patient's presentation from stabilization and diagnostic uncertainty through consent, operation, pathology, and recovery.", "Care pathway with decision points, complications, and patient-facing explanation.", 14, 12)], evidence: [source("ACGME · Surgery program requirements", "https://www.acgme.org/globalassets/pfassets/programrequirements/440_generalsurgery_2023.pdf", "Accreditation requirements frame general surgery as supervised, progressive residency education in patient care and operative management.", "training_reference")] }] },
     ],
   },
   {
@@ -171,13 +172,6 @@ export const careerTree = [
   },
 ];
 
-export const upgrades = [
-  { id: "notebook", name: "Working notebook", description: "Capture observations and turn them into a repeatable practice.", cost: 8, rate: 0.2 },
-  { id: "mentor", name: "Mentor cadence", description: "Regular feedback catches blind spots and accelerates learning.", cost: 20, rate: 0.7 },
-  { id: "peer-team", name: "Peer review", description: "Compare approaches and catch errors before they compound.", cost: 45, rate: 1.8 },
-  { id: "workflow", name: "Trusted workflow", description: "Systematize routine work so attention stays on judgment and exceptions.", cost: 90, rate: 4.5, leafRequired: true },
-];
-
 export function findNode(path) {
   let nodes = careerTree;
   let current = null;
@@ -187,6 +181,15 @@ export function findNode(path) {
     nodes = current.children || [];
   }
   return current;
+}
+
+export function findNodeById(nodeId, nodes = careerTree, depth = 1) {
+  for (const node of nodes) {
+    if (node.id === nodeId) return { node, depth };
+    const match = findNodeById(nodeId, node.children || [], depth + 1);
+    if (match) return match;
+  }
+  return null;
 }
 
 export function nodesForPath(path) {

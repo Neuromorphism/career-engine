@@ -1,26 +1,26 @@
-import { upgrades } from "./careers.js?v=0.4.0";
 import {
   GOAL_MASTERY,
   SAVE_KEY,
   availableChoices,
-  canPurchase,
   choicesUnlocked,
   chooseNode,
+  completeLearningActivity,
   completeProject,
   createInitialState,
   currentField,
+  currentLearningActivity,
   currentNode,
   currentProject,
   directionName,
   goalProgress,
   hydrateState,
   isLeaf,
+  learningTrackComplete,
+  learningTracksForPath,
   pathNodes,
   practiceRate,
-  purchaseUpgrade,
   tick,
-  work,
-} from "./game-engine.js?v=0.4.0";
+} from "./game-engine.js?v=0.5.0";
 
 const $ = (selector) => document.querySelector(selector);
 const elements = {
@@ -29,14 +29,15 @@ const elements = {
   pathKicker: $("#path-kicker"), pathHeading: $("#path-heading"), pathTrail: $("#path-trail"),
   pathIntro: $("#path-intro"), pathChoices: $("#path-choices"), pathLock: $("#path-lock"),
   jobLeaf: $("#job-leaf"), practiceModule: $("#practice-module"), actionIntro: $("#action-intro"),
-  workButton: $("#work-button"), workButtonLabel: $("#work-button-label"), workDescription: $("#work-description"),
-  upgrades: $("#upgrade-list"), projectsModule: $("#projects-module"), projectCard: $("#project-card"),
+  trainingSummary: $("#training-summary"), trainingProgress: $("#training-progress"),
+  trainingRate: $("#training-rate"), trainingMeter: $("#training-meter"), learningPath: $("#learning-path"),
+  projectsModule: $("#projects-module"), projectCard: $("#project-card"),
   projectLock: $("#project-lock"), saveStatus: $("#save-status"),
 };
 
 function load() {
   try {
-    const raw = localStorage.getItem(SAVE_KEY);
+    const raw = localStorage.getItem(SAVE_KEY) || localStorage.getItem("career-engine-save-v2");
     const parsed = raw ? JSON.parse(raw) : null;
     const next = hydrateState(parsed);
     return parsed?.savedAt ? tick(next, (Date.now() - parsed.savedAt) / 1000) : next;
@@ -117,6 +118,7 @@ function renderPath() {
   });
 
   elements.pathLock.hidden = unlocked || choices.length === 0;
+  elements.pathLock.textContent = "Complete the current training path and applied project to open the next decision.";
   elements.jobLeaf.hidden = !node || !isLeaf(state);
   if (node && isLeaf(state)) {
     const evidence = (node.evidence || []).map((item) => `
@@ -132,42 +134,67 @@ function renderPath() {
 
 function renderPractice() {
   const node = currentNode(state);
-  const field = currentField(state);
-  const enabled = Boolean(node && field);
+  const enabled = Boolean(node && currentField(state));
+  const tracks = learningTracksForPath(state);
+  const activeTrack = tracks.at(-1);
+  const nextActivity = currentLearningActivity(state);
   elements.practiceModule.classList.toggle("is-unlocked", enabled);
-  elements.workButton.disabled = !enabled;
   if (!enabled) {
-    elements.actionIntro.textContent = "Choose a field to receive your first small work cycle.";
-    elements.workButtonLabel.textContent = "Choose a field first";
-    elements.workDescription.textContent = "The first decision now comes before any mastery-building.";
+    elements.actionIntro.textContent = "Choose a field to reveal its learning sequence.";
+    elements.trainingSummary.hidden = true;
+    elements.learningPath.innerHTML = '<p class="empty-training">Training adapts to the field, specialty, and role you choose.</p>';
     return;
   }
-  elements.actionIntro.textContent = `Practice within ${node.name}. Each work cycle adds one mastery.`;
-  elements.workButtonLabel.textContent = node.workLabel || field.workLabel;
-  elements.workDescription.textContent = node.workDescription || field.workDescription;
-}
 
-function renderUpgrades() {
-  elements.upgrades.innerHTML = upgrades.map((upgrade) => {
-    const owned = Boolean(state.upgrades[upgrade.id]);
-    const missing = upgrade.leafRequired && !isLeaf(state)
-      ? "job leaf required"
-      : `${upgrade.cost} mastery`;
+  const completed = activeTrack.activities.filter((activity) => state.completedLearningKeys.includes(activity.key)).length;
+  const percent = (completed / activeTrack.activities.length) * 100;
+  elements.actionIntro.textContent = nextActivity
+    ? `${activeTrack.title}: complete each step in order. Every step adds mastery and lasting practice capacity.`
+    : `${activeTrack.title} complete. Finish the applied project to open the next career decision.`;
+  elements.trainingSummary.hidden = false;
+  elements.trainingProgress.textContent = `${completed} / ${activeTrack.activities.length} complete`;
+  elements.trainingRate.textContent = `+${format(practiceRate(state), 2)}/sec total capacity`;
+  elements.trainingMeter.style.setProperty("--training-fill", `${percent}%`);
+  elements.trainingMeter.setAttribute("aria-valuenow", String(Math.round(percent)));
+  elements.trainingMeter.setAttribute("aria-valuemin", "0");
+  elements.trainingMeter.setAttribute("aria-valuemax", "100");
+
+  elements.learningPath.innerHTML = tracks.map((track, trackIndex) => {
+    const isCurrent = trackIndex === tracks.length - 1;
+    const trackDone = track.activities.every((activity) => state.completedLearningKeys.includes(activity.key));
     return `
-      <button class="upgrade-button ${owned ? "is-owned" : ""}" type="button" data-upgrade="${upgrade.id}" ${owned || !canPurchase(state, upgrade) ? "disabled" : ""}>
-        <span><strong>${upgrade.name}</strong><span>${upgrade.description}</span></span>
-        <b>${owned ? `installed · +${upgrade.rate}/s` : missing}</b>
-      </button>
-    `;
+      <section class="learning-stage ${trackDone ? "is-complete" : ""} ${isCurrent ? "is-current" : "is-history"}">
+        <header>
+          <span>${String(trackIndex + 1).padStart(2, "0")}</span>
+          <div><small>${track.nodeName}</small><h3>${track.title}</h3></div>
+          <b>${trackDone ? "complete" : isCurrent ? "in progress" : "locked"}</b>
+        </header>
+        ${isCurrent ? `<p>${track.summary}</p><div class="activity-list">${track.activities.map((activity) => {
+          const done = state.completedLearningKeys.includes(activity.key);
+          const active = nextActivity?.key === activity.key;
+          const status = done ? "complete" : active ? "available" : "locked";
+          return `
+            <button class="learning-activity is-${status}" type="button" data-node="${track.nodeId}" data-activity="${activity.index}" ${active ? "" : "disabled"}>
+              <span class="activity-marker">${done ? "✓" : String(activity.index + 1).padStart(2, "0")}</span>
+              <span class="activity-copy"><small>${activity.kind}</small><strong>${activity.title}</strong><span>${activity.description}</span></span>
+              <span class="activity-reward"><b>+${activity.reward}</b><small>mastery</small><em>+${activity.rate}/s</em></span>
+            </button>`;
+        }).join("")}</div>` : ""}
+      </section>`;
   }).join("");
-  elements.upgrades.querySelectorAll("[data-upgrade]").forEach((button) => {
-    button.addEventListener("click", () => commit(purchaseUpgrade(state, button.dataset.upgrade), elements.rate));
+
+  elements.learningPath.querySelectorAll("[data-activity]").forEach((button) => {
+    button.addEventListener("click", () => commit(
+      completeLearningActivity(state, button.dataset.node, Number(button.dataset.activity)),
+      elements.mastery,
+    ));
   });
 }
 
 function renderProject() {
   const node = currentNode(state);
   const project = currentProject(state);
+  const trainingComplete = learningTrackComplete(state);
   elements.projectsModule.classList.toggle("is-unlocked", Boolean(node));
   elements.projectLock.hidden = Boolean(node);
   if (!node) {
@@ -196,8 +223,12 @@ function renderProject() {
       <p>${project.description}</p>
       <div class="deliverable"><b>Deliverable</b><span>${project.deliverable}</span></div>
       <div class="project-meter" style="--project-fill:${percent}%"><i></i></div>
-      <button class="project-button" type="button" ${state.mastery < project.requirement ? "disabled" : ""}>
-        ${state.mastery < project.requirement ? `${format(state.mastery, 1)} / ${project.requirement} mastery` : "Submit project"}
+      <button class="project-button" type="button" ${!trainingComplete || state.mastery < project.requirement ? "disabled" : ""}>
+        ${!trainingComplete
+          ? "Finish the training path first"
+          : state.mastery < project.requirement
+            ? `${format(state.mastery, 1)} / ${project.requirement} mastery`
+            : "Submit project"}
       </button>
     </div>`;
   elements.projectCard.querySelector("button")?.addEventListener("click", () => commit(completeProject(state), elements.mastery));
@@ -205,7 +236,12 @@ function renderProject() {
 
 function dynamicSignature() {
   const project = currentProject(state);
-  return [state.careerComplete, choicesUnlocked(state), project ? state.mastery >= project.requirement : "none", ...upgrades.map((upgrade) => canPurchase(state, upgrade))].join("|");
+  return [
+    state.careerComplete,
+    choicesUnlocked(state),
+    state.completedLearningKeys.length,
+    project ? state.mastery >= project.requirement : "none",
+  ].join("|");
 }
 
 function renderGoal() {
@@ -230,11 +266,10 @@ function render() {
   elements.mastery.textContent = format(state.mastery, state.mastery % 1 ? 1 : 0);
   elements.rate.textContent = format(practiceRate(state), 2);
   renderGoal();
-  renderPath(); renderPractice(); renderUpgrades(); renderProject();
+  renderPath(); renderPractice(); renderProject();
   lastDynamicSignature = dynamicSignature();
 }
 
-elements.workButton.addEventListener("click", () => commit(work(state), elements.mastery));
 $("#reset-button").addEventListener("click", () => {
   if (window.confirm("Begin a new run? Your current local progress will be replaced.")) {
     state = createInitialState(); save(); render();
@@ -260,7 +295,7 @@ function frame(now) {
     renderGoal();
     const signature = dynamicSignature();
     if (signature !== lastDynamicSignature) {
-      renderPath(); renderProject(); renderUpgrades(); lastDynamicSignature = signature;
+      renderPath(); renderPractice(); renderProject(); lastDynamicSignature = signature;
     }
   }
   requestAnimationFrame(frame);
