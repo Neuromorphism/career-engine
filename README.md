@@ -31,7 +31,6 @@ There is no build step or runtime dependency. GitHub Pages can serve the reposit
 - an upgrade engine producing mastery over time;
 - a single-score economy and a 10,000-mastery finish line available only at job depth;
 - multi-project job samples on selected deep paths;
-- an activity constellation that records choices without presenting itself as an aptitude test;
 - autosave and up to four hours of capped offline progress.
 
 The much larger career taxonomy is maintained separately in the parent research project. This prototype intentionally tests the core loop with a small hand-authored set before loading thousands of career records.

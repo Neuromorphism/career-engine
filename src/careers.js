@@ -1,5 +1,3 @@
-export const AXES = ["analyze", "build", "care", "advocate"];
-
 const p = (title, description, deliverable, requirement) => ({
   title, description, deliverable, requirement,
 });
@@ -20,7 +18,6 @@ export const careerTree = [
     blurb: "Design, test, and improve systems under technical and human constraints.",
     workLabel: "Run a small design cycle",
     workDescription: "Define the need, make one assumption explicit, test it, and record what changed.",
-    axes: ["analyze", "build"],
     projects: [p(
       "Compare a shelf bracket",
       "A small wall shelf needs a bracket. Compare two shapes or materials using load, cost, manufacturability, and safety—not intuition alone.",
@@ -117,7 +114,7 @@ export const careerTree = [
   {
     id: "medicine", name: "Medicine", decisionLabel: "medical practice area",
     blurb: "Prevent, diagnose, and treat illness while communicating uncertainty and coordinating care.",
-    workLabel: "Reason through a teaching case", workDescription: "Organize a fictional case, identify missing information, and explain the next safe step.", axes: ["care", "analyze"],
+    workLabel: "Reason through a teaching case", workDescription: "Organize a fictional case, identify missing information, and explain the next safe step.",
     projects: [p("Build a focused history", "From a fictional, non-emergency teaching vignette, organize symptoms by timeline and identify questions that would change the next step.", "Problem representation, five follow-up questions, and a red-flag checklist.", 3, 3)],
     children: [
       { id: "primary-care", name: "Primary Care", decisionLabel: "primary-care specialty", blurb: "First-contact, continuous, comprehensive care and prevention.", projects: [p("Prepare a preventive visit", "Review a fictional chart and identify preventive topics, medication questions, and follow-up needs without diagnosing.", "Pre-visit planning note and prioritized agenda.", 8, 5)], children: [{ id: "family-medicine-physician", name: "Family Medicine Physician", jobTitle: "Family Medicine Physician", blurb: "Provide broad care across ages and conditions, often over long relationships with patients and families.", projects: [p("Coordinate a follow-up plan", "Reconcile a fictional patient's concerns, medications, test follow-up, and practical barriers into a clear plan.", "Plain-language after-visit summary and follow-up checklist.", 14, 10)], evidence: [source("Mayo Clinic · Family Medicine careers", "https://jobs.mayoclinic.org/familymedicine", "Career page describes outpatient, inpatient, urgent-care, obstetric, academic, and community practice settings.", "job_posting_collection"), onet("29-1215.00", "Family Medicine Physicians", "Federal occupation reference.")] }] },
@@ -128,7 +125,7 @@ export const careerTree = [
   {
     id: "law", name: "Law", decisionLabel: "legal practice area",
     blurb: "Interpret rules, investigate facts, advise clients, negotiate, and advocate within institutions.",
-    workLabel: "Analyze a short fact pattern", workDescription: "Separate facts, assumptions, legal questions, client goals, and next research steps.", axes: ["advocate", "analyze"],
+    workLabel: "Analyze a short fact pattern", workDescription: "Separate facts, assumptions, legal questions, client goals, and next research steps.",
     projects: [p("Spot the issues", "Read a fictional one-page dispute and distinguish known facts, disputed facts, legal questions, and practical client goals.", "Four-column issue sheet and three research questions.", 3, 3)],
     children: [
       { id: "criminal-law", name: "Criminal Law", decisionLabel: "criminal-law role", blurb: "Cases involving alleged offenses, liberty, evidence, procedure, and constitutional rights.", projects: [p("Build a case chronology", "Organize a fictional police report, witness note, and video timestamp without deciding guilt.", "Sourced timeline with contradictions and missing evidence.", 8, 5)], children: [{ id: "public-defender", name: "Public Defender", jobTitle: "Public Defender", blurb: "Represent clients who cannot afford counsel through interviews, research, negotiation, hearings, trials, and appeals.", projects: [p("Plan an initial client interview", "Turn a fictional charging document into a client-centered interview plan that protects confidentiality and tests the timeline.", "Interview outline, immediate-deadline checklist, and investigation requests.", 14, 10)], evidence: [source("Chester County · Attorney I, Public Defender", "https://www.governmentjobs.com/jobs/5346212-0/attorney-i-t-public-defender", "Posting lists client and witness interviews, legal research, evaluating defenses, hearings, negotiation, and reporting.", "job_posting"), onet("23-1011.00", "Lawyers", "Federal occupation reference.")] }] },
@@ -139,7 +136,7 @@ export const careerTree = [
   {
     id: "trades", name: "Skilled Trades", decisionLabel: "trade",
     blurb: "Install, fabricate, diagnose, maintain, and repair physical systems safely.",
-    workLabel: "Plan and verify a safe task", workDescription: "Identify hazards, tools, materials, sequence, inspection points, and a final functional test.", axes: ["build", "analyze"],
+    workLabel: "Plan and verify a safe task", workDescription: "Identify hazards, tools, materials, sequence, inspection points, and a final functional test.",
     projects: [p("Write a safe work plan", "For a fictional bench repair, identify energy sources, isolation steps, PPE, tools, and the check before return to service.", "Pre-task plan and verification checklist. Never practice on live systems.", 3, 3)],
     children: [
       { id: "commercial-electrician", name: "Commercial Electrician", jobTitle: "Commercial Electrician", blurb: "Install and troubleshoot building power, lighting, controls, raceways, panels, and equipment.", projects: [p("Map a training-board circuit", "On paper or a de-energized trainer, trace source, protection, switch, load, grounding, and test points.", "Marked-up schematic, material list, and safe test sequence.", 8, 10)], evidence: [onet("47-2111.00", "Electricians", "Federal tasks include installing, maintaining, and testing electrical wiring and equipment.")] },
@@ -150,7 +147,7 @@ export const careerTree = [
   {
     id: "science", name: "Science", decisionLabel: "scientific domain",
     blurb: "Ask testable questions, gather evidence, quantify uncertainty, and revise explanations.",
-    workLabel: "Run a small investigation", workDescription: "State a testable question, define one variable, record observations, and separate results from interpretation.", axes: ["analyze", "care"],
+    workLabel: "Run a small investigation", workDescription: "State a testable question, define one variable, record observations, and separate results from interpretation.",
     projects: [p("Measure one variable", "Choose a safe everyday phenomenon, make five consistent measurements, and record conditions that could distort the result.", "Question, method, data table, tiny chart, and uncertainty note.", 3, 3)],
     children: [
       { id: "life-sciences", name: "Life Sciences", decisionLabel: "life-science focus", blurb: "Living systems from molecules and cells to organisms and ecosystems.", projects: [p("Design a controlled comparison", "Create a harmless paper experiment plan with control, treatment, replicate, measurement, and contamination risks.", "Experimental matrix and predicted outcomes.", 8, 5)], children: [{ id: "cell-biology-scientist", name: "Cell Biology Research Scientist", jobTitle: "Cell Biology Research Scientist", blurb: "Design and execute cell-based experiments, maintain cultures, validate reagents, analyze data, and communicate results.", projects: [p("Plan an antibody validation", "Design a simplified control matrix comparing target-positive, target-negative, and process-control samples.", "Plate map, acceptance criteria, and a result-interpretation guide.", 14, 10)], evidence: [source("Thermo Fisher · Scientist I", "https://jobs.thermofisher.com/global/en/job/R-01365624", "Posting includes cell culture, biological samples, antibody validation, titer checks, planning, documentation, and teamwork.", "job_posting"), onet("19-1029.00", "Biological Scientists", "Federal occupation reference.")] }] },
@@ -162,7 +159,7 @@ export const careerTree = [
   {
     id: "business", name: "Business", decisionLabel: "business function",
     blurb: "Coordinate people, customers, money, operations, and information to create and sustain value.",
-    workLabel: "Prepare a small decision", workDescription: "Define the decision, customer or stakeholder, evidence, economics, risks, and next reversible step.", axes: ["analyze", "advocate"],
+    workLabel: "Prepare a small decision", workDescription: "Define the decision, customer or stakeholder, evidence, economics, risks, and next reversible step.",
     projects: [p("Write a one-page decision memo", "Compare two small options using customer value, cost, risk, evidence quality, and what can be tested cheaply.", "Recommendation, table of evidence, key risk, and next experiment.", 3, 3)],
     children: [
       { id: "finance", name: "Finance", decisionLabel: "finance job", blurb: "Measure performance, plan resources, evaluate investments, and communicate financial implications.", projects: [p("Explain a budget variance", "Compare a tiny plan and actuals table, separate price and volume effects, and identify the question behind the variance.", "Variance bridge and three questions for the operating team.", 8, 5)], children: [{ id: "fp-and-a-analyst", name: "FP&A / Financial Analyst", jobTitle: "Financial Planning & Analysis Analyst", blurb: "Build budgets and forecasts, analyze results, and help business leaders understand financial tradeoffs.", projects: [p("Build a three-month forecast", "Use a simple historical dataset and explicit drivers to forecast revenue and expense under base and downside cases.", "Driver-based forecast, assumptions, and management summary.", 14, 10)], evidence: [source("JPMorgan Chase · Finance & Business Management Analyst", "https://careers.jpmorgan.com/global/en/students/programs/finance-fulltime-analyst", "Program describes analysis, reporting, budgets, forecasts, financial statements, controls, and strategic decisions.", "job_posting_collection"), onet("13-2051.00", "Financial and Investment Analysts", "Federal occupation reference.")] }] },

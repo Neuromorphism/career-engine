@@ -277,17 +277,6 @@ button:disabled { cursor: not-allowed; color: #8c8c83; border-color: #aaa89e; bo
 .job-leaf a { color: #075762; font-size: 10px; font-weight: 500; }
 .job-leaf li span { display: block; margin-top: 2px; color: var(--muted); font-size: 9px; line-height: 1.45; }
 
-.constellation { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
-.constellation::before { content: ""; position: absolute; inset: 50% 20%; border-top: 1px dashed var(--line); transform: rotate(18deg); }
-.axis { position: relative; z-index: 1; display: grid; gap: 10px; padding: 10px; background: var(--paper); border: 1px solid var(--line); }
-.axis i { grid-column: 1 / -1; height: 4px; background: #ddd8ca; overflow: hidden; }
-.axis i::after { content: ""; display: block; width: var(--fill, 0%); height: 100%; background: var(--axis-color, var(--ink)); transition: width 280ms ease; }
-.axis.analyze { --axis-color: var(--blue); }
-.axis.build { --axis-color: var(--yellow); }
-.axis.care { --axis-color: var(--green); }
-.axis.advocate { --axis-color: var(--red); }
-.pattern-note { margin: 13px 0 0; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-family: var(--serif); font-size: 16px; line-height: 1.35; }
-
 .upgrade-button { display: grid; grid-template-columns: 1fr auto; gap: 10px; padding: 11px 12px; }
 .upgrade-button strong, .upgrade-button span { display: block; }
 .upgrade-button span { margin-top: 3px; color: var(--muted); font-size: 9px; line-height: 1.4; }

@@ -39,8 +39,6 @@ test("choosing a field immediately starts its small starter project", () => {
   const state = chooseNode(createInitialState(), "engineering");
   assert.deepEqual(state.path, ["engineering"]);
   assert.equal(currentProject(state).title, "Compare a shelf bracket");
-  assert.equal(state.constellation.analyze, 1);
-  assert.equal(state.constellation.build, 1);
 });
 
 test("the next specialization is exposed but locked until the starter brief is complete", () => {
@@ -96,11 +94,12 @@ test("the run completes only at 10,000 mastery and full job depth", () => {
   assert.equal(state.careerComplete, true);
 });
 
-test("legacy saves keep mastery without reviving retired score currencies", () => {
-  const state = hydrateState({ mastery: 37, insight: 99, impact: 12, path: [] });
+test("legacy saves keep mastery without reviving retired systems", () => {
+  const state = hydrateState({ mastery: 37, insight: 99, impact: 12, constellation: { analyze: 8 }, path: [] });
   assert.equal(state.mastery, 37);
   assert.equal("insight" in state, false);
   assert.equal("impact" in state, false);
+  assert.equal("constellation" in state, false);
 });
 
 test("all tree ids are unique and every leaf has projects and evidence", () => {

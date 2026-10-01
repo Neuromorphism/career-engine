@@ -1,4 +1,4 @@
-import { AXES, careerTree, fieldForPath, findNode, nodesForPath, upgrades } from "./careers.js?v=0.3.0";
+import { careerTree, fieldForPath, findNode, nodesForPath, upgrades } from "./careers.js?v=0.4.0";
 
 export const SAVE_KEY = "career-engine-save-v2";
 export const GOAL_MASTERY = 10_000;
@@ -8,7 +8,6 @@ export function createInitialState() {
     mastery: 0,
     actions: 0,
     path: [],
-    constellation: Object.fromEntries(AXES.map((axis) => [axis, 0])),
     upgrades: {},
     completedProjectKeys: [],
     careerComplete: false,
@@ -25,7 +24,6 @@ export function hydrateState(input) {
     mastery: Number.isFinite(input.mastery) ? Math.max(0, input.mastery) : 0,
     actions: Number.isFinite(input.actions) ? Math.max(0, input.actions) : 0,
     path: Array.isArray(input.path) ? input.path : [],
-    constellation: { ...fresh.constellation, ...(input.constellation || {}) },
     upgrades: { ...(input.upgrades || {}) },
     completedProjectKeys: Array.isArray(input.completedProjectKeys) ? input.completedProjectKeys : [],
     careerComplete: Boolean(input.careerComplete),
@@ -82,13 +80,9 @@ export function chooseNode(state, nodeId) {
   const choices = availableChoices(state);
   const node = choices.find((item) => item.id === nodeId);
   if (!node || !choicesUnlocked(state)) return state;
-  const field = state.path.length ? currentField(state) : node;
-  const constellation = { ...state.constellation };
-  if (!state.path.length) field.axes.forEach((axis) => { constellation[axis] += 1; });
   return withGoalCheck({
     ...state,
     path: [...state.path, nodeId],
-    constellation,
     lastMessage: node.jobTitle
       ? `${node.name} reached: a real-world job leaf. Its projects are grounded in occupation data and current postings where available.`
       : `${node.name} selected. Try its starter brief before narrowing the path again.`,
@@ -99,13 +93,10 @@ export function work(state) {
   const node = currentNode(state);
   const field = currentField(state);
   if (!node || !field) return state;
-  const constellation = { ...state.constellation };
-  field.axes.forEach((axis) => { constellation[axis] += 0.2; });
   return withGoalCheck({
     ...state,
     mastery: state.mastery + 1,
     actions: state.actions + 1,
-    constellation,
     lastMessage: node.workDescription || field.workDescription,
   });
 }
@@ -169,12 +160,4 @@ export function directionName(state) {
 
 export function pathNodes(state) {
   return nodesForPath(state.path);
-}
-
-export function leadingPattern(state) {
-  const sorted = AXES.map((axis) => [axis, state.constellation[axis]]).sort((a, b) => b[1] - a[1]);
-  if (sorted[0][1] === 0) return "No pattern yet. Choosing a field will sketch the first connection.";
-  const labels = { analyze: "analysis", build: "making", care: "care", advocate: "advocacy" };
-  if (sorted[0][1] === sorted[1][1]) return `Your choices currently connect ${labels[sorted[0][0]]} with ${labels[sorted[1][0]]}.`;
-  return `You have returned most often to ${labels[sorted[0][0]]}. That is a clue to investigate, not a verdict.`;
 }

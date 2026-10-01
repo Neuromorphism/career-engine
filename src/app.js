@@ -1,4 +1,4 @@
-import { AXES, careerTree, upgrades } from "./careers.js?v=0.3.0";
+import { upgrades } from "./careers.js?v=0.4.0";
 import {
   GOAL_MASTERY,
   SAVE_KEY,
@@ -15,13 +15,12 @@ import {
   goalProgress,
   hydrateState,
   isLeaf,
-  leadingPattern,
   pathNodes,
   practiceRate,
   purchaseUpgrade,
   tick,
   work,
-} from "./game-engine.js?v=0.3.0";
+} from "./game-engine.js?v=0.4.0";
 
 const $ = (selector) => document.querySelector(selector);
 const elements = {
@@ -32,7 +31,7 @@ const elements = {
   jobLeaf: $("#job-leaf"), practiceModule: $("#practice-module"), actionIntro: $("#action-intro"),
   workButton: $("#work-button"), workButtonLabel: $("#work-button-label"), workDescription: $("#work-description"),
   upgrades: $("#upgrade-list"), projectsModule: $("#projects-module"), projectCard: $("#project-card"),
-  projectLock: $("#project-lock"), pattern: $("#pattern-note"), saveStatus: $("#save-status"),
+  projectLock: $("#project-lock"), saveStatus: $("#save-status"),
 };
 
 function load() {
@@ -204,16 +203,6 @@ function renderProject() {
   elements.projectCard.querySelector("button")?.addEventListener("click", () => commit(completeProject(state), elements.mastery));
 }
 
-function renderConstellation() {
-  const max = Math.max(1, ...AXES.map((axis) => state.constellation[axis]));
-  AXES.forEach((axis) => {
-    const element = $(`.axis.${axis}`);
-    element.style.setProperty("--fill", `${(state.constellation[axis] / max) * 100}%`);
-    element.setAttribute("aria-label", `${axis}: ${Math.round((state.constellation[axis] / max) * 100)} percent of your current activity pattern`);
-  });
-  elements.pattern.textContent = leadingPattern(state);
-}
-
 function dynamicSignature() {
   const project = currentProject(state);
   return [state.careerComplete, choicesUnlocked(state), project ? state.mastery >= project.requirement : "none", ...upgrades.map((upgrade) => canPurchase(state, upgrade))].join("|");
@@ -241,7 +230,7 @@ function render() {
   elements.mastery.textContent = format(state.mastery, state.mastery % 1 ? 1 : 0);
   elements.rate.textContent = format(practiceRate(state), 2);
   renderGoal();
-  renderPath(); renderPractice(); renderUpgrades(); renderProject(); renderConstellation();
+  renderPath(); renderPractice(); renderUpgrades(); renderProject();
   lastDynamicSignature = dynamicSignature();
 }
 
