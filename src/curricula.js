@@ -200,7 +200,7 @@ export const curricula = {
     "Medical school",
     "Complete a simplified preclinical-to-clinical sequence before selecting a residency path.",
     [
-      step("Learn structure and function", "Connect anatomy, physiology, and cell biology across the cardiovascular, respiratory, renal, and nervous systems."),
+      step("Learn human body", "Connect anatomy, physiology, and cell biology across the cardiovascular, respiratory, renal, and nervous systems."),
       step("Learn mechanisms of disease", "Relate pathology, microbiology, immunology, and pharmacology to why illness presents as it does."),
       step("Practice history and examination", "Organize a patient-centered history, focused examination, vital signs, and clear problem representation."),
       step("Build a differential diagnosis", "Use prevalence, severity, mechanism, and discriminating findings to rank plausible explanations."),
