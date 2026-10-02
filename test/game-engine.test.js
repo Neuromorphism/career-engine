@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 import { careerTree } from "../src/careers.js";
 import {
   GOAL_MASTERY,
+  aiPracticeRate,
+  aiRivalStatus,
   availableChoices,
   choicesUnlocked,
   chooseNode,
@@ -115,6 +117,31 @@ test("surgical cases are sequential and locked behind the residency milestone", 
   assert.equal(completeLearningActivity(state, "surgery", 2), state);
   state = completeLearningActivity(state, "surgery", 0);
   assert.equal(currentLearningActivity(state).title, "Evaluate a surgical consult");
+});
+
+test("the AI rival pauses for supervised surgical practice", () => {
+  let state = chooseAndComplete(createInitialState(), "medicine");
+  state = chooseNode(state, "surgery");
+  assert.equal(aiPracticeRate(state), 0);
+  assert.match(aiRivalStatus(state).headline, /not allowed to operate/i);
+});
+
+test("the AI rival accelerates on basic corporate contract work", () => {
+  let state = chooseAndComplete(createInitialState(), "law");
+  state = chooseNode(state, "corporate-associate");
+  assert.ok(aiPracticeRate(state) >= 4);
+  assert.match(aiRivalStatus(state).headline, /contract templates/i);
+  assert.match(aiRivalStatus(state).detail, /benefits/i);
+});
+
+test("AI mode advances the rival and records when it wins", () => {
+  let state = chooseNode(createInitialState(), "engineering");
+  state = tick(state, 10, { aiMode: true });
+  assert.equal(state.aiMastery, 7.5);
+  state = { ...state, aiMastery: GOAL_MASTERY - 1 };
+  state = tick(state, 2, { aiMode: true });
+  assert.equal(state.aiMastery, GOAL_MASTERY);
+  assert.equal(state.raceWinner, "ai");
 });
 
 test("the run completes only at 10,000 mastery and full job depth", () => {

@@ -12,6 +12,8 @@ npm start
 
 Then open `http://localhost:4173`.
 
+Open `http://localhost:4173/ai/` for the adversarial version, where a path-sensitive AI rival races the player to 10,000 mastery. The two modes keep separate local saves.
+
 ## Test
 
 ```bash
@@ -33,6 +35,7 @@ There is no build step or runtime dependency. GitHub Pages can serve the reposit
 - learning activities that grant immediate mastery and lasting practice capacity;
 - a single-score economy and a 10,000-mastery finish line available only at job depth;
 - multi-project job samples on selected deep paths;
-- autosave and up to four hours of capped offline progress.
+- autosave and up to four hours of capped offline progress;
+- an optional `/ai/` race whose rival accelerates on text and data work, but slows or pauses for physical, licensed, and relationship-intensive practice.
 
 The much larger career taxonomy is maintained separately in the parent research project. This prototype intentionally tests the core loop with a small hand-authored set before loading thousands of career records.

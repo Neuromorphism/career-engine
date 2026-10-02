@@ -1,7 +1,9 @@
-import { careerTree, fieldForPath, findNode, findNodeById, nodesForPath } from "./careers.js?v=0.5.0";
-import { curriculumFor } from "./curricula.js?v=0.5.0";
+import { careerTree, fieldForPath, findNode, findNodeById, nodesForPath } from "./careers.js?v=0.6.0";
+import { curriculumFor } from "./curricula.js?v=0.6.0";
+import { rivalProfileForPath } from "./ai-rival.js?v=0.6.0";
 
 export const SAVE_KEY = "career-engine-save-v3";
+export const AI_SAVE_KEY = "career-engine-ai-save-v1";
 export const GOAL_MASTERY = 10_000;
 
 const REWARDS = [1, 2, 3, 5, 8, 13, 21];
@@ -10,11 +12,13 @@ const RATES = [0.04, 0.07, 0.11, 0.17, 0.26, 0.38, 0.55];
 export function createInitialState() {
   return {
     mastery: 0,
+    aiMastery: 0,
     actions: 0,
     path: [],
     completedLearningKeys: [],
     completedProjectKeys: [],
     careerComplete: false,
+    raceWinner: null,
     lastMessage: "Choose a field. You can refine the direction after trying a small piece of its work.",
     savedAt: Date.now(),
   };
@@ -27,11 +31,13 @@ export function hydrateState(input) {
   const state = {
     ...fresh,
     mastery: Number.isFinite(input.mastery) ? Math.max(0, input.mastery) : 0,
+    aiMastery: Number.isFinite(input.aiMastery) ? Math.max(0, input.aiMastery) : 0,
     actions: Number.isFinite(input.actions) ? Math.max(0, input.actions) : 0,
     path: Array.isArray(input.path) ? input.path : [],
     completedLearningKeys: Array.isArray(input.completedLearningKeys) ? input.completedLearningKeys : [],
     completedProjectKeys: Array.isArray(input.completedProjectKeys) ? input.completedProjectKeys : [],
     careerComplete: Boolean(input.careerComplete),
+    raceWinner: input.raceWinner === "player" || input.raceWinner === "ai" ? input.raceWinner : null,
     lastMessage: typeof input.lastMessage === "string" ? input.lastMessage : fresh.lastMessage,
     savedAt: Number.isFinite(input.savedAt) ? input.savedAt : fresh.savedAt,
   };
@@ -69,7 +75,10 @@ function withGoalCheck(state) {
   return {
     ...state,
     careerComplete: true,
-    lastMessage: `Career mastered. You reached ${GOAL_MASTERY.toLocaleString()} mastery as a ${currentNode(state).name}. Begin again whenever you want to explore another path.`,
+    raceWinner: state.raceWinner || "player",
+    lastMessage: state.raceWinner === "ai"
+      ? `Career mastered—but the AI reached ${GOAL_MASTERY.toLocaleString()} first. You finished the path; begin again to try a different race.`
+      : `Career mastered. You reached ${GOAL_MASTERY.toLocaleString()} mastery as a ${currentNode(state).name}. Begin again whenever you want to explore another path.`,
   };
 }
 
@@ -179,6 +188,24 @@ export function practiceRate(state) {
   }, 0);
 }
 
+export function aiRivalStatus(state) {
+  const activity = currentLearningActivity(state);
+  const profile = rivalProfileForPath(pathNodes(state), activity);
+  const difference = state.mastery - state.aiMastery;
+  let relative;
+  if (state.raceWinner === "player") relative = "You reached mastery first. The rival has stopped.";
+  else if (state.raceWinner === "ai") relative = "AI reached mastery first. You can still finish the career path.";
+  else if (!state.path.length) relative = "The race begins when you choose a field.";
+  else if (Math.abs(difference) < 1) relative = "You are running nearly even.";
+  else if (difference > 0) relative = `You lead by ${Math.floor(difference).toLocaleString()} mastery.`;
+  else relative = `AI leads by ${Math.floor(Math.abs(difference)).toLocaleString()} mastery.`;
+  return { ...profile, relative };
+}
+
+export function aiPracticeRate(state) {
+  return state.raceWinner ? 0 : aiRivalStatus(state).rate;
+}
+
 export function currentProject(state) {
   const node = currentNode(state);
   if (!node) return null;
@@ -197,12 +224,43 @@ export function completeProject(state) {
   });
 }
 
-export function tick(state, elapsedSeconds) {
+export function tick(state, elapsedSeconds, { aiMode = false } = {}) {
   if (!state.path.length || elapsedSeconds <= 0) return state;
-  const rate = practiceRate(state);
-  if (rate === 0) return state;
   const elapsed = Math.min(elapsedSeconds, 60 * 60 * 4);
-  return withGoalCheck({ ...state, mastery: state.mastery + rate * elapsed });
+  const rate = practiceRate(state);
+  const aiRate = aiMode ? aiPracticeRate(state) : 0;
+  if (rate === 0 && aiRate === 0) return state;
+
+  let raceWinner = state.raceWinner;
+  let lastMessage = state.lastMessage;
+  const nextMastery = state.mastery + (rate * elapsed);
+  let nextAiMastery = state.aiMastery + (aiRate * elapsed);
+
+  if (aiMode && !raceWinner) {
+    const playerEligible = isLeaf(state) && learningTrackComplete(state) && !currentProject(state) && rate > 0;
+    const playerFinishTime = playerEligible && state.mastery < GOAL_MASTERY
+      ? (GOAL_MASTERY - state.mastery) / rate
+      : Number.POSITIVE_INFINITY;
+    const aiFinishTime = aiRate > 0 && state.aiMastery < GOAL_MASTERY
+      ? (GOAL_MASTERY - state.aiMastery) / aiRate
+      : Number.POSITIVE_INFINITY;
+
+    if (aiFinishTime <= elapsed && aiFinishTime < playerFinishTime) {
+      raceWinner = "ai";
+      nextAiMastery = GOAL_MASTERY;
+      lastMessage = "AI reached 10,000 mastery first. The path remains open—finish it, learn where the rival slowed down, and race again.";
+    } else if (playerFinishTime <= elapsed) {
+      raceWinner = "player";
+    }
+  }
+
+  return withGoalCheck({
+    ...state,
+    mastery: nextMastery,
+    aiMastery: nextAiMastery,
+    raceWinner,
+    lastMessage,
+  });
 }
 
 export function goalProgress(state) {

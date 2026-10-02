@@ -86,6 +86,23 @@ h1 {
   cursor: pointer;
 }
 
+.text-link {
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  text-decoration: none;
+}
+
+.edition-mark {
+  display: inline-block;
+  color: var(--red);
+  font-family: var(--mono);
+  font-size: .28em;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  vertical-align: .65em;
+}
+
 .console {
   display: grid;
   grid-template-columns: 68px 1fr;
@@ -158,6 +175,55 @@ dd small { margin-left: 3px; font-family: var(--mono); font-size: 10px; color: v
 .goal-meter i { display: block; width: var(--goal-fill, 0%); height: 100%; background: var(--red); transition: width 280ms ease; }
 .goal-score.is-complete strong { color: var(--green); }
 .goal-score.is-complete .goal-meter i { background: var(--green); }
+
+.ai-race {
+  --ai-accent: #e65d37;
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  margin-top: 24px;
+  color: #eeebde;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 23px, rgba(255,255,255,.025) 23px 24px),
+    #151712;
+  border: 1px solid #000;
+  box-shadow: var(--shadow);
+}
+
+.ai-race-head {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px;
+  border-right: 1px solid #45473f;
+}
+
+.ai-race-head h2 { margin: 0; font-family: var(--serif); font-size: 28px; line-height: 1; }
+.ai-status { width: fit-content; padding: 5px 7px; color: #fff2d1; border: 1px solid var(--ai-accent); font-size: 8px; letter-spacing: .12em; text-transform: uppercase; }
+.ai-race-body { display: grid; grid-template-columns: 135px minmax(220px, .9fr) minmax(260px, 1.2fr); }
+.ai-counter, .race-lanes, .ai-brief { padding: 18px; }
+.ai-counter, .race-lanes { border-right: 1px solid #45473f; }
+.ai-counter > span { color: #a8aaa0; font-size: 8px; letter-spacing: .12em; text-transform: uppercase; }
+.ai-counter strong { display: block; margin: 5px 0 3px; color: var(--ai-accent); font-family: var(--serif); font-size: 38px; font-variant-numeric: tabular-nums; line-height: 1; }
+.ai-counter small { color: #a8aaa0; font-size: 8px; }
+.race-lanes { display: grid; align-content: center; gap: 15px; }
+.race-lane { display: grid; grid-template-columns: 28px 1fr; gap: 9px; align-items: center; }
+.race-lane > span { color: #a8aaa0; font-size: 8px; letter-spacing: .08em; text-transform: uppercase; }
+.race-lane > div { height: 8px; overflow: hidden; background: #393b34; border: 1px solid #585a51; }
+.race-lane i { display: block; height: 100%; transition: width 280ms ease; }
+.player-lane i { width: var(--player-fill, 0%); background: var(--yellow); }
+.ai-lane i { width: var(--ai-fill, 0%); background: var(--ai-accent); }
+.ai-brief { align-self: center; }
+.ai-brief strong { display: block; color: #fffdf6; font-family: var(--serif); font-size: 17px; line-height: 1.15; }
+.ai-brief p { margin: 6px 0 0; color: #b9b9b0; font-size: 9px; line-height: 1.5; }
+.ai-brief .ai-relative { color: var(--yellow); font-weight: 500; }
+.ai-race.is-paused { --ai-accent: #777a70; }
+.ai-race.player-ahead .ai-relative { color: #a9d7af; }
+.ai-race.ai-ahead .ai-relative { color: #ff8b67; }
+.ai-race.race-complete { outline: 3px solid var(--yellow); outline-offset: 3px; }
+
+.ai-mode .console { border-left: 5px solid var(--red); }
+.ai-mode .scoreboard { padding-bottom: 20px; }
 
 .game-grid {
   display: grid;
@@ -409,10 +475,22 @@ footer p { margin: 0; }
   .scoreboard dl { grid-template-columns: 1fr 1fr; }
   .scoreboard dl div { padding: 9px 0 9px 12px; }
   .goal-score { padding: 14px 0 0; border-left: 0; border-top: 1px solid var(--line); }
+  .ai-race { grid-template-columns: 1fr; }
+  .ai-race-head { flex-direction: row; align-items: end; gap: 12px; border-right: 0; border-bottom: 1px solid #45473f; }
+  .ai-race-body { grid-template-columns: 1fr 1.3fr; }
+  .ai-counter { border-right: 1px solid #45473f; }
+  .race-lanes { border-right: 0; }
+  .ai-brief { grid-column: 1 / -1; border-top: 1px solid #45473f; }
   .learning-activity { grid-template-columns: 25px minmax(0, 1fr); }
   .activity-reward { grid-column: 2; display: flex; gap: 4px; align-items: baseline; text-align: left; }
   .activity-reward b, .activity-reward small, .activity-reward em { display: inline; margin: 0; }
   footer { flex-direction: column; }
+}
+
+@media (max-width: 420px) {
+  .ai-race-body { grid-template-columns: 1fr; }
+  .ai-counter, .race-lanes { border-right: 0; border-bottom: 1px solid #45473f; }
+  .ai-brief { grid-column: auto; border-top: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

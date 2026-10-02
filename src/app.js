@@ -1,6 +1,8 @@
 import {
   GOAL_MASTERY,
+  AI_SAVE_KEY,
   SAVE_KEY,
+  aiRivalStatus,
   availableChoices,
   choicesUnlocked,
   chooseNode,
@@ -20,7 +22,11 @@ import {
   pathNodes,
   practiceRate,
   tick,
-} from "./game-engine.js?v=0.5.0";
+} from "./game-engine.js?v=0.6.0";
+
+const aiMode = document.body.dataset.mode === "ai";
+const saveKey = aiMode ? AI_SAVE_KEY : SAVE_KEY;
+const saveLabel = aiMode ? "AI save" : "local save";
 
 const $ = (selector) => document.querySelector(selector);
 const elements = {
@@ -33,14 +39,17 @@ const elements = {
   trainingRate: $("#training-rate"), trainingMeter: $("#training-meter"), learningPath: $("#learning-path"),
   projectsModule: $("#projects-module"), projectCard: $("#project-card"),
   projectLock: $("#project-lock"), saveStatus: $("#save-status"),
+  aiPanel: $("#ai-race"), aiMastery: $("#ai-mastery-value"), aiRate: $("#ai-rate-value"),
+  aiStatus: $("#ai-status"), aiHeadline: $("#ai-headline"), aiDetail: $("#ai-detail"),
+  aiRelative: $("#ai-relative"), aiMeter: $("#ai-meter"), playerRaceMeter: $("#player-race-meter"),
 };
 
 function load() {
   try {
-    const raw = localStorage.getItem(SAVE_KEY) || localStorage.getItem("career-engine-save-v2");
+    const raw = localStorage.getItem(saveKey) || (!aiMode ? localStorage.getItem("career-engine-save-v2") : null);
     const parsed = raw ? JSON.parse(raw) : null;
     const next = hydrateState(parsed);
-    return parsed?.savedAt ? tick(next, (Date.now() - parsed.savedAt) / 1000) : next;
+    return parsed?.savedAt ? tick(next, (Date.now() - parsed.savedAt) / 1000, { aiMode }) : next;
   } catch {
     return createInitialState();
   }
@@ -62,9 +71,9 @@ function indefiniteArticle(phrase) {
 
 function save() {
   state.savedAt = Date.now();
-  localStorage.setItem(SAVE_KEY, JSON.stringify(state));
-  elements.saveStatus.textContent = "local save · complete";
-  window.setTimeout(() => { elements.saveStatus.textContent = "local save · ready"; }, 700);
+  localStorage.setItem(saveKey, JSON.stringify(state));
+  elements.saveStatus.textContent = `${saveLabel} · complete`;
+  window.setTimeout(() => { elements.saveStatus.textContent = `${saveLabel} · ready`; }, 700);
 }
 
 function pulse(element) {
@@ -247,17 +256,47 @@ function dynamicSignature() {
 function renderGoal() {
   const atJob = isLeaf(state);
   const progress = goalProgress(state);
-  elements.goal.textContent = state.careerComplete ? "Career mastered" : atJob ? `${Math.floor(progress * 100)}%` : "Reach a job";
-  elements.goalCopy.textContent = state.careerComplete
-    ? `${GOAL_MASTERY.toLocaleString()} mastery reached at full job depth.`
-    : atJob
-      ? `${format(state.mastery, 0)} / ${GOAL_MASTERY.toLocaleString()} mastery`
-      : `Choose through to a real-world job, then reach ${GOAL_MASTERY.toLocaleString()} mastery.`;
+  elements.goal.textContent = aiMode
+    ? state.raceWinner === "player" ? "You won" : state.raceWinner === "ai" ? "AI won" : "Beat the AI"
+    : state.careerComplete ? "Career mastered" : atJob ? `${Math.floor(progress * 100)}%` : "Reach a job";
+  elements.goalCopy.textContent = aiMode
+    ? state.raceWinner
+      ? state.raceWinner === "player" ? "You reached career mastery first." : "Finish the path, then race again."
+      : `Reach a real-world job and ${GOAL_MASTERY.toLocaleString()} mastery before the rival.`
+    : state.careerComplete
+      ? `${GOAL_MASTERY.toLocaleString()} mastery reached at full job depth.`
+      : atJob
+        ? `${format(state.mastery, 0)} / ${GOAL_MASTERY.toLocaleString()} mastery`
+        : `Choose through to a real-world job, then reach ${GOAL_MASTERY.toLocaleString()} mastery.`;
   elements.goalMeter.style.setProperty("--goal-fill", `${progress * 100}%`);
   elements.goalMeter.setAttribute("aria-valuenow", String(Math.round(progress * 100)));
   elements.goalMeter.setAttribute("aria-valuemin", "0");
   elements.goalMeter.setAttribute("aria-valuemax", "100");
   elements.goalMeter.parentElement.classList.toggle("is-complete", state.careerComplete);
+}
+
+function renderAI() {
+  if (!aiMode || !elements.aiPanel) return;
+  const rival = aiRivalStatus(state);
+  const aiProgress = Math.max(0, Math.min(1, state.aiMastery / GOAL_MASTERY));
+  const playerProgress = goalProgress(state);
+  const paused = rival.rate === 0 && state.path.length > 0 && !state.raceWinner;
+  elements.aiMastery.textContent = format(state.aiMastery, state.aiMastery % 1 ? 1 : 0);
+  elements.aiRate.textContent = format(state.raceWinner ? 0 : rival.rate, 2);
+  elements.aiHeadline.textContent = rival.headline;
+  elements.aiDetail.textContent = rival.detail;
+  elements.aiRelative.textContent = rival.relative;
+  elements.aiStatus.textContent = state.raceWinner
+    ? state.raceWinner === "player" ? "race won" : "race lost"
+    : paused ? "AI paused" : state.path.length ? "AI learning" : "awaiting field";
+  elements.aiMeter.style.setProperty("--ai-fill", `${aiProgress * 100}%`);
+  elements.playerRaceMeter.style.setProperty("--player-fill", `${playerProgress * 100}%`);
+  elements.aiMeter.setAttribute("aria-valuenow", String(Math.round(aiProgress * 100)));
+  elements.playerRaceMeter.setAttribute("aria-valuenow", String(Math.round(playerProgress * 100)));
+  elements.aiPanel.classList.toggle("is-paused", paused);
+  elements.aiPanel.classList.toggle("ai-ahead", state.aiMastery > state.mastery && !state.raceWinner);
+  elements.aiPanel.classList.toggle("player-ahead", state.mastery > state.aiMastery && !state.raceWinner);
+  elements.aiPanel.classList.toggle("race-complete", Boolean(state.raceWinner));
 }
 
 function render() {
@@ -266,6 +305,7 @@ function render() {
   elements.mastery.textContent = format(state.mastery, state.mastery % 1 ? 1 : 0);
   elements.rate.textContent = format(practiceRate(state), 2);
   renderGoal();
+  renderAI();
   renderPath(); renderPractice(); renderProject();
   lastDynamicSignature = dynamicSignature();
 }
@@ -279,20 +319,22 @@ $("#reset-button").addEventListener("click", () => {
 function frame(now) {
   const elapsed = (now - lastFrame) / 1000;
   lastFrame = now;
-  const next = tick(state, elapsed);
+  const next = tick(state, elapsed, { aiMode });
   if (next !== state) {
     const completedNow = !state.careerComplete && next.careerComplete;
+    const raceResolvedNow = aiMode && !state.raceWinner && next.raceWinner;
     state = next;
-    if (completedNow) {
+    if (completedNow || raceResolvedNow) {
       render();
       save();
-      pulse(elements.goal);
+      pulse(raceResolvedNow && elements.aiMastery ? elements.aiMastery : elements.goal);
       requestAnimationFrame(frame);
       return;
     }
     if (now - lastSaved > 2000) { save(); lastSaved = now; }
     elements.mastery.textContent = format(state.mastery, 1);
     renderGoal();
+    renderAI();
     const signature = dynamicSignature();
     if (signature !== lastDynamicSignature) {
       renderPath(); renderPractice(); renderProject(); lastDynamicSignature = signature;

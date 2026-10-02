@@ -3,30 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f2efe6" />
-    <meta
-      name="description"
-      content="Career Engine — a small incremental game about trying tasks, choosing a field, and building a meaningful career practice."
-    />
-    <title>Career Engine</title>
+    <meta name="theme-color" content="#171814" />
+    <meta name="description" content="Career Engine / AI — master a career before the artificial rival does." />
+    <title>Career Engine / AI Race</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
   </head>
-  <body>
+  <body class="ai-mode" data-mode="ai">
     <div class="page-shell">
       <header class="masthead">
         <div>
-          <p class="eyebrow">Guidance terminal no. 01</p>
-          <h1>Career Engine</h1>
+          <p class="eyebrow">Adversarial guidance terminal</p>
+          <h1>Career Engine <span class="edition-mark">/ AI</span></h1>
         </div>
         <div class="masthead-meta">
-          <a class="text-link" href="ai/">race the AI</a>
-          <span id="save-status">local save · ready</span>
+          <a class="text-link" href="../">standard mode</a>
+          <span id="save-status">AI save · ready</span>
           <button class="text-button" id="reset-button" type="button">begin again</button>
         </div>
       </header>
@@ -35,7 +29,7 @@
         <div class="console-lights" aria-hidden="true"><i></i><i></i><i></i></div>
         <div class="console-copy">
           <span class="prompt">&gt;</span>
-          <span id="console-message" aria-live="polite">You do not need to know what you want to be. Begin with a verb.</span>
+          <span id="console-message" aria-live="polite">Choose a field. The rival begins learning when you do.</span>
           <span class="cursor" aria-hidden="true"></span>
         </div>
       </section>
@@ -47,13 +41,45 @@
             <strong id="direction-value">Choose a field</strong>
           </div>
           <dl>
-            <div><dt>Mastery</dt><dd id="mastery-value">0</dd></div>
+            <div><dt>Your mastery</dt><dd id="mastery-value">0</dd></div>
             <div><dt>Practice rate</dt><dd><span id="rate-value">0</span><small>/sec</small></dd></div>
           </dl>
           <div class="goal-score">
-            <div><span class="score-label">Run objective</span><strong id="goal-status">Reach a job</strong></div>
-            <p id="goal-copy">Choose through to a real-world job, then reach 10,000 mastery.</p>
+            <div><span class="score-label">Race objective</span><strong id="goal-status">Beat the AI</strong></div>
+            <p id="goal-copy">Reach a real-world job and 10,000 mastery before the rival.</p>
             <div class="goal-meter" id="goal-meter" role="progressbar" aria-label="Progress toward 10,000 mastery"><i></i></div>
+          </div>
+        </section>
+
+        <section class="ai-race" id="ai-race" aria-labelledby="ai-race-heading">
+          <div class="ai-race-head">
+            <div>
+              <p class="kicker">Live competitor model</p>
+              <h2 id="ai-race-heading">The other learner</h2>
+            </div>
+            <span class="ai-status" id="ai-status">awaiting field</span>
+          </div>
+          <div class="ai-race-body">
+            <div class="ai-counter">
+              <span>AI mastery</span>
+              <strong id="ai-mastery-value">0</strong>
+              <small>+<span id="ai-rate-value">0.00</span>/sec</small>
+            </div>
+            <div class="race-lanes" aria-label="Player and AI race progress">
+              <div class="race-lane player-lane">
+                <span>You</span>
+                <div id="player-race-meter" role="progressbar" aria-label="Your race progress" aria-valuemin="0" aria-valuemax="100"><i></i></div>
+              </div>
+              <div class="race-lane ai-lane">
+                <span>AI</span>
+                <div id="ai-meter" role="progressbar" aria-label="AI race progress" aria-valuemin="0" aria-valuemax="100"><i></i></div>
+              </div>
+            </div>
+            <div class="ai-brief">
+              <strong id="ai-headline">The rival is waiting for you to choose a field.</strong>
+              <p id="ai-detail">Its pace changes with the work.</p>
+              <p class="ai-relative" id="ai-relative">The race begins when you choose a field.</p>
+            </div>
           </div>
         </section>
 
@@ -99,10 +125,10 @@
       </main>
 
       <footer>
-        <p>An exploratory prototype. It suggests activities to investigate; it does not tell you who to become.</p>
-        <span>v0.6 · progress stays in this browser</span>
+        <p>A speculative game model, not a forecast. AI speed reflects task characteristics; professional authority and accountability stay human.</p>
+        <span>v0.6/AI · separate local save</span>
       </footer>
     </div>
-    <script type="module" src="src/app.js?v=0.6.0"></script>
+    <script type="module" src="../src/app.js?v=0.6.0"></script>
   </body>
 </html>
