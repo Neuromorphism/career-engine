@@ -1,5 +1,5 @@
 import { currentNode } from '../src/game-engine.js?v=0.9.0';
-import { escapeHtml as e } from '../src/career-ui.js?v=0.9.0';
+import { escapeHtml as e } from '../src/career-ui.js?v=0.9.1';
 import { worldData, worldMetrics, citizenReady, citizenAssignment, assignmentOptions, projectReadiness } from './world-engine.js?v=0.9.0';
 import { worldStatus } from './world-status.js?v=0.9.0';
 const percent = value => `${Math.round(value * 100)}%`;
@@ -22,8 +22,7 @@ export function mountWorldUI(handlers) {
     <section class="module world-status" aria-labelledby="world-status-heading"><p class="kicker">The community's current character</p><h2 id="world-status-heading">World Status</h2><div id="world-status-content"></div></section>
     <section class="module" aria-labelledby="world-metrics-heading"><p class="kicker">Expertise → capabilities → services</p><h2 id="world-metrics-heading">World capacity</h2><div class="world-metrics" id="world-metrics"></div><p class="module-intro">Capacity shows progress toward the required skill mix. Delivered service coverage is limited by the scarcest required capability, facilities, and reliability. Project assignments temporarily remove citizens from routine services.</p></section>
     <section class="module" aria-labelledby="citizens-heading"><p class="kicker">No citizen disappears when a new career begins</p><h2 id="citizens-heading">Your citizens</h2><div id="citizen-roster" class="citizen-roster"></div></section>
-    <section class="module" aria-labelledby="world-projects-heading"><p class="kicker">Many contributors · one shared achievement</p><h2 id="world-projects-heading">Shared projects</h2><p class="module-intro">Assign qualified citizens to a project, then commission it once the team meets every requirement. Contributors return to their usual services afterward; the institution adds facility capacity. Career mission scenarios are separate from these world projects.</p><div id="world-projects" class="world-projects"></div></section>
-    <div class="active-citizen-heading"><p class="kicker">Active citizen's career</p><h2 id="active-citizen-heading"></h2></div>`;
+    <section class="module" aria-labelledby="world-projects-heading"><p class="kicker">Many contributors · one shared achievement</p><h2 id="world-projects-heading">Shared projects</h2><p class="module-intro">Assign qualified citizens to a project, then commission it once the team meets every requirement. Contributors return to their usual services afterward; the institution adds facility capacity. Career mission scenarios are separate from these world projects.</p><div id="world-projects" class="world-projects"></div></section>`;
   document.querySelector('#add-citizen-form').addEventListener('submit', event => {
     event.preventDefault(); handlers.add(document.querySelector('#citizen-name').value, document.querySelector('#citizen-origin').value);
   });

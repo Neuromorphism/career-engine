@@ -18,4 +18,4 @@ Read `01-approach.md` and `03-results-and-coverage.md` first. Use `02-sources.md
 
 ## Persistent world and linked endpoints
 
-The user requested one persistent world populated by citizens from successive career playthroughs, with world metrics driven by citizen mastery. Read `09-world-implementation.md` for the implemented hub, three endpoints, persistent citizens, world metrics, projects, and World Status. `08-persistent-world-plan.md` retains the original design and future roadmap. World time and demographic/economic simulation remain planned.
+The user requested one persistent world populated by citizens from successive career playthroughs, with world metrics driven by citizen mastery. Read `09-world-implementation.md` for the three endpoints, persistent citizens, world metrics, projects, and World Status. `08-persistent-world-plan.md` retains the original design and future roadmap. World time and demographic/economic simulation remain planned. Read `10-two-section-interface.md` for the current Choose path / Do work interface and its progression selector.

@@ -1,8 +1,8 @@
-import { startCareerApp } from '../src/app.js?v=0.9.0';
-import { showLoadError, downloadJSON } from '../src/career-ui.js?v=0.9.0';
+import { startCareerApp } from '../src/app.js?v=0.9.1';
+import { showLoadError, downloadJSON } from '../src/career-ui.js?v=0.9.1';
 import { createWorldStore } from './save-store.js?v=0.9.0';
 import { activeCitizen, addCitizen, switchCitizen, assignCitizen, renameWorld, commissionProject, hydrateWorld } from './world-engine.js?v=0.9.0';
-import { mountWorldUI, renderWorldUI, worldFeedback } from './world-ui.js?v=0.9.0';
+import { mountWorldUI, renderWorldUI, worldFeedback } from './world-ui.js?v=0.9.1';
 const store = createWorldStore();
 let app, mounted = false;
 function changeWorld(transform, message) {
@@ -18,9 +18,14 @@ const handlers = {
   add(name, origin) {
     changeWorld(world => addCitizen(world, name, origin), 'A new citizen is ready. Everyone else keeps their career and contribution.');
     document.querySelector('#citizen-name').value = '';
+    document.querySelector('#world-overview').open = false;
     document.querySelector('#active-citizen-heading').scrollIntoView({ behavior: 'smooth', block: 'start' });
   },
-  switch(id) { changeWorld(world => switchCitizen(world, id), 'You are continuing this citizen’s professional life.'); document.querySelector('#active-citizen-heading').scrollIntoView({ behavior: 'smooth', block: 'start' }); },
+  switch(id) {
+    changeWorld(world => switchCitizen(world, id), 'You are continuing this citizen’s professional life.');
+    document.querySelector('#world-overview').open = false;
+    document.querySelector('#active-citizen-heading').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  },
   assign(id, assignment, availability) { changeWorld(world => assignCitizen(world, id, assignment, availability), 'Work assignment updated. World capacity has been recalculated.'); },
   rename(name) { changeWorld(world => renameWorld(world, name), 'World name saved.'); },
   commission(id) { changeWorld(world => commissionProject(world, id), 'Shared project commissioned once. The institution remains; contributors return to their usual services.'); },
@@ -36,7 +41,7 @@ const handlers = {
 try {
   app = startCareerApp({
     mode: 'world', store,
-    onAddCitizen() { document.querySelector('#citizen-name').focus(); document.querySelector('#add-citizen-form').scrollIntoView({ behavior: 'smooth', block: 'center' }); },
+    onAddCitizen() { document.querySelector('#world-overview').open = true; document.querySelector('#citizen-name').focus(); document.querySelector('#add-citizen-form').scrollIntoView({ behavior: 'smooth', block: 'center' }); },
     onChange(career) {
       store.syncCareer(career);
       if (!mounted) { mountWorldUI(handlers); mounted = true; }

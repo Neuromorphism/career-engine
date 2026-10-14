@@ -16,6 +16,10 @@ Open `http://localhost:4173` to go directly to the single-path game. Its navigat
 
 All three endpoints use one career ontology, curriculum library, action system, and core interface. Existing normal saves carry into the single-path subproject on the same site address; AI saves stay separate.
 
+## Career interface
+
+Every mode presents two primary sections: **Choose path** and **Do work**. Choose path offers the next unlocked career decision. Do work presents the current training step’s three actions, then an applied project, then the next unlocked occupation-specific contribution. Mastery progress explains when work opens; completed choices remain in a collapsible work history. World controls and AI competition details are available in compact overview disclosures.
+
 ## Persistent world
 
 World mode lets you add, name, switch, and continue citizens. Their mastery and career choices remain when you develop someone else. Qualified citizens supply their assigned services, with bounded expertise and explicit work availability. Six world domains explain capability, service coverage, and bottlenecks; seven shared projects require appropriately qualified teams and count their benefits once.

@@ -5,16 +5,135 @@ export function mountCareerUI(mode) {
   document.querySelector(`[data-endpoint="${mode}"]`).setAttribute('aria-current', 'page');
   if (mode === 'ai') {
     document.body.classList.add('ai-mode');
-    document.querySelector('.game-grid').insertAdjacentHTML('beforebegin', AI_PANEL);
+    document.querySelector('.game-grid').insertAdjacentHTML('beforebegin', `<details class="edition-overview"><summary>AI competition status</summary>${AI_PANEL}</details>`);
   }
   if (mode === 'world') {
     document.querySelector('#reset-button').textContent = 'add citizen';
-    document.querySelector('#world-dashboard').hidden = false;
+    document.querySelector('#world-overview').hidden = false;
+    document.querySelector('#active-citizen-label').hidden = false;
     document.querySelector('.goal-score .score-label').textContent = 'Citizen progress';
   }
 }
-const TEMPLATE = "    <div class=\"page-shell\">\n      <header class=\"masthead\">\n        <div>\n          <p class=\"eyebrow\">Guidance terminal no. 01</p>\n          <h1>Career Engine</h1>\n        </div>\n        <div class=\"masthead-meta\">\n          <span class=\"edition-label\" id=\"edition-label\"></span>\n          <span id=\"save-status\">local save · ready</span>\n          <button class=\"text-button\" id=\"reset-button\" type=\"button\">begin again</button>\n        </div>\n      </header>\n\n      <nav class=\"mode-nav\" aria-label=\"Ways to play\"><a href=\"../\">Career Engine home</a><a href=\"../single-path/\" data-endpoint=\"single\">Single path</a><a href=\"../world/\" data-endpoint=\"world\">World</a><a href=\"../ai/\" data-endpoint=\"ai\">AI competition</a></nav>\n      <div id=\"world-dashboard\" hidden></div>\n      <section class=\"console\" aria-label=\"Career guidance console\">\n        <div class=\"console-lights\" aria-hidden=\"true\"><i></i><i></i><i></i></div>\n        <div class=\"console-copy\">\n          <span class=\"prompt\">&gt;</span>\n          <span id=\"console-message\" aria-live=\"polite\">You do not need to know what you want to be. Begin with a verb.</span>\n          <span class=\"cursor\" aria-hidden=\"true\"></span>\n        </div>\n      </section>\n\n      <main>\n        <section class=\"scoreboard\" aria-label=\"Career progress\">\n          <div class=\"primary-score\">\n            <span class=\"score-label\">Current direction</span>\n            <strong id=\"direction-value\">Choose a field</strong>\n          </div>\n          <dl>\n            <div><dt>Mastery</dt><dd id=\"mastery-value\">0</dd></div>\n            <div><dt>Practice rate</dt><dd><span id=\"rate-value\">0</span><small>/sec</small></dd></div>\n          </dl>\n          <div class=\"goal-score\">\n            <div><span class=\"score-label\">Run objective</span><strong id=\"goal-status\">Reach a job</strong></div>\n            <p id=\"goal-copy\">Choose through to a real-world job, then reach 10,000 mastery.</p>\n            <div class=\"goal-meter\" id=\"goal-meter\" role=\"progressbar\" aria-label=\"Progress toward 10,000 mastery\"><i></i></div>\n          </div>\n        </section>\n\n        <div class=\"game-grid\">\n          <div class=\"game-column\">\n            <section class=\"module\" id=\"path-module\" aria-labelledby=\"path-heading\">\n              <div class=\"module-heading\">\n                <span class=\"module-number\">01</span>\n                <div><p class=\"kicker\" id=\"path-kicker\">Decision 1 · field</p><h2 id=\"path-heading\">Choose a field</h2></div>\n              </div>\n              <nav class=\"path-trail\" id=\"path-trail\" aria-label=\"Selected career path\"></nav>\n              <p class=\"module-intro\" id=\"path-intro\">Begin broadly. Each choice will reveal only the next useful distinction.</p>\n              <div class=\"choice-list\" id=\"path-choices\"></div>\n              <p class=\"lock-note\" id=\"path-lock\" hidden>Complete the current starter brief to open the next decision.</p>\n              <div class=\"job-leaf\" id=\"job-leaf\" hidden></div>\n              <details class=\"career-atlas\">\n                <summary>Explore the full career tree</summary>\n                <p id=\"atlas-count\" class=\"module-intro\"></p>\n                <label for=\"atlas-search\">Find a career or specialty</label>\n                <input id=\"atlas-search\" type=\"search\" placeholder=\"Try bridge, heart, quantum…\" />\n                <div id=\"atlas-tree\"></div>\n              </details>\n            </section>\n\n            <section class=\"module locked-module\" id=\"projects-module\">\n              <div class=\"module-heading\">\n                <span class=\"module-number\">03</span>\n                <div><p class=\"kicker\">Work that matters</p><h2>Projects</h2></div>\n              </div>\n              <div id=\"project-card\"></div>\n              <p class=\"lock-note\" id=\"project-lock\">Choose a field to receive a project brief.</p>\n            </section>\n          </div>\n\n          <div class=\"game-column\">\n            <section class=\"module locked-module\" id=\"practice-module\">\n              <div class=\"module-heading\">\n                <span class=\"module-number\">02</span>\n                <div><p class=\"kicker\">Learn by doing · build capacity</p><h2>Training path</h2></div>\n              </div>\n              <p class=\"module-intro\" id=\"action-intro\">Choose a field to reveal its learning sequence.</p>\n              <div class=\"training-summary\" id=\"training-summary\" hidden>\n                <div><span id=\"training-progress\">0 / 0 complete</span><small id=\"training-rate\">+0/sec capacity</small></div>\n                <div class=\"training-meter\" id=\"training-meter\" role=\"progressbar\" aria-label=\"Current training stage progress\"><i></i></div>\n              </div>\n              <div class=\"learning-path\" id=\"learning-path\"></div>\n            </section>\n            <section class=\"module\" aria-labelledby=\"impact-heading\">\n              <div class=\"module-heading\">\n                <span class=\"module-number\">04</span>\n                <div><p class=\"kicker\">Practitioner → team leader → career legacy</p><h2 id=\"impact-heading\">Career impact</h2></div>\n              </div>\n              <p class=\"module-intro\">Unlock larger responsibilities as your mastery grows. Choose one of three actions at each milestone to earn mastery and lasting practice capacity.</p>\n              <div id=\"impact-actions\"></div>\n            </section>\n\n          </div>\n        </div>\n      </main>\n\n      <footer>\n        <p>An exploratory prototype. It suggests activities to investigate; it does not tell you who to become.</p>\n        <span>v0.9 · progress stays in this browser</span>\n      </footer>\n    </div>\n";
-const AI_PANEL = "        <section class=\"ai-race\" id=\"ai-race\" aria-labelledby=\"ai-race-heading\">\n          <div class=\"ai-race-head\">\n            <div>\n              <p class=\"kicker\">Live competitor model</p>\n              <h2 id=\"ai-race-heading\">The other learner</h2>\n            </div>\n            <span class=\"ai-status\" id=\"ai-status\">awaiting field</span>\n          </div>\n          <div class=\"ai-race-body\">\n            <div class=\"ai-counter\">\n              <span>AI mastery</span>\n              <strong id=\"ai-mastery-value\">0</strong>\n              <small>+<span id=\"ai-rate-value\">0.00</span>/sec</small>\n            </div>\n            <div class=\"race-lanes\" aria-label=\"Player and AI race progress\">\n              <div class=\"race-lane player-lane\">\n                <span>You</span>\n                <div id=\"player-race-meter\" role=\"progressbar\" aria-label=\"Your race progress\" aria-valuemin=\"0\" aria-valuemax=\"100\"><i></i></div>\n              </div>\n              <div class=\"race-lane ai-lane\">\n                <span>AI</span>\n                <div id=\"ai-meter\" role=\"progressbar\" aria-label=\"AI race progress\" aria-valuemin=\"0\" aria-valuemax=\"100\"><i></i></div>\n              </div>\n            </div>\n            <div class=\"ai-brief\">\n              <strong id=\"ai-headline\">The rival is waiting for you to choose a field.</strong>\n              <p id=\"ai-detail\">Its pace changes with the work.</p>\n              <p class=\"ai-relative\" id=\"ai-relative\">The race begins when you choose a field.</p>\n            </div>\n          </div>\n        </section>\n\n";
+const TEMPLATE = `    <div class="page-shell">
+      <header class="masthead">
+        <div>
+          <p class="eyebrow">Guidance terminal no. 01</p>
+          <h1>Career Engine</h1>
+        </div>
+        <div class="masthead-meta">
+          <span class="edition-label" id="edition-label"></span>
+          <span id="save-status">local save · ready</span>
+          <button class="text-button" id="reset-button" type="button">begin again</button>
+        </div>
+      </header>
+
+      <nav class="mode-nav" aria-label="Ways to play"><a href="../">Career Engine home</a><a href="../single-path/" data-endpoint="single">Single path</a><a href="../world/" data-endpoint="world">World</a><a href="../ai/" data-endpoint="ai">AI competition</a></nav>
+      <details id="world-overview" class="edition-overview" hidden><summary>World overview · citizens, status, and shared projects</summary><div id="world-dashboard"></div></details>
+      <div id="active-citizen-label" class="active-citizen-heading" hidden><p class="kicker">Active citizen</p><h2 id="active-citizen-heading"></h2></div>
+      <section class="console" aria-label="Career guidance console">
+        <div class="console-lights" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="console-copy">
+          <span class="prompt">&gt;</span>
+          <span id="console-message" aria-live="polite">You do not need to know what you want to be. Begin with a verb.</span>
+          <span class="cursor" aria-hidden="true"></span>
+        </div>
+      </section>
+
+      <main>
+        <section class="scoreboard" aria-label="Career progress">
+          <div class="primary-score">
+            <span class="score-label">Current direction</span>
+            <strong id="direction-value">Choose a field</strong>
+          </div>
+          <dl>
+            <div><dt>Mastery</dt><dd id="mastery-value">0</dd></div>
+            <div><dt>Practice rate</dt><dd><span id="rate-value">0</span><small>/sec</small></dd></div>
+          </dl>
+          <div class="goal-score">
+            <div><span class="score-label">Run objective</span><strong id="goal-status">Reach a job</strong></div>
+            <p id="goal-copy">Choose through to a real-world job, then reach 10,000 mastery.</p>
+            <div class="goal-meter" id="goal-meter" role="progressbar" aria-label="Progress toward 10,000 mastery"><i></i></div>
+          </div>
+        </section>
+
+        <div class="game-grid career-sections">
+          <section class="module" id="path-module" aria-labelledby="path-heading">
+              <div class="module-heading">
+                <span class="module-number">01</span>
+                <div><p class="kicker" id="path-kicker">Decision 1 · field</p><h2 id="path-heading" tabindex="-1">Choose path</h2></div>
+              </div>
+              <h3 id="path-prompt" class="path-prompt">Choose a field</h3>
+              <nav class="path-trail" id="path-trail" aria-label="Selected career path"></nav>
+              <p class="module-intro" id="path-intro">Begin broadly. Each choice will reveal only the next useful distinction.</p>
+              <div class="choice-list" id="path-choices"></div>
+              <p class="lock-note" id="path-lock" hidden>Complete the current starter brief to open the next decision.</p>
+              <details class="job-leaf" id="job-leaf" hidden><summary>About this career</summary><div id="career-context"></div></details>
+              <details class="career-atlas">
+                <summary>Explore the full career tree</summary>
+                <p id="atlas-count" class="module-intro"></p>
+                <label for="atlas-search">Find a career or specialty</label>
+                <input id="atlas-search" type="search" placeholder="Try bridge, heart, quantum…" />
+                <div id="atlas-tree"></div>
+              </details>
+            </section>
+          <section class="module" id="work-module" aria-labelledby="work-heading">
+            <div class="module-heading">
+              <span class="module-number">02</span>
+              <div><p class="kicker" id="work-kicker">Work follows your path</p><h2 id="work-heading" tabindex="-1">Do work</h2></div>
+            </div>
+            <h3 class="work-title" id="work-title"></h3>
+            <p class="module-intro" id="work-intro" aria-live="polite"></p>
+            <div class="training-summary" id="work-progress" hidden>
+              <div><span id="work-progress-copy"></span><small id="work-rate"></small></div>
+              <div class="training-meter" id="work-meter" role="progressbar" aria-label="Progress toward the next work stage" aria-valuemin="0" aria-valuemax="100"><i></i></div>
+            </div>
+            <div class="work-options" id="work-options"></div>
+            <details class="work-history" id="work-history" hidden>
+              <summary>Work completed</summary><div id="work-records"></div>
+            </details>
+          </section>
+        </div>
+      </main>
+
+      <footer>
+        <p>An exploratory prototype. It suggests activities to investigate; it does not tell you who to become.</p>
+        <span>v0.9.1 · progress stays in this browser</span>
+      </footer>
+    </div>
+`;
+const AI_PANEL = `        <section class="ai-race" id="ai-race" aria-labelledby="ai-race-heading">
+          <div class="ai-race-head">
+            <div>
+              <p class="kicker">Live competitor model</p>
+              <h2 id="ai-race-heading">The other learner</h2>
+            </div>
+            <span class="ai-status" id="ai-status">awaiting field</span>
+          </div>
+          <div class="ai-race-body">
+            <div class="ai-counter">
+              <span>AI mastery</span>
+              <strong id="ai-mastery-value">0</strong>
+              <small>+<span id="ai-rate-value">0.00</span>/sec</small>
+            </div>
+            <div class="race-lanes" aria-label="Player and AI race progress">
+              <div class="race-lane player-lane">
+                <span>You</span>
+                <div id="player-race-meter" role="progressbar" aria-label="Your race progress" aria-valuemin="0" aria-valuemax="100"><i></i></div>
+              </div>
+              <div class="race-lane ai-lane">
+                <span>AI</span>
+                <div id="ai-meter" role="progressbar" aria-label="AI race progress" aria-valuemin="0" aria-valuemax="100"><i></i></div>
+              </div>
+            </div>
+            <div class="ai-brief">
+              <strong id="ai-headline">The rival is waiting for you to choose a field.</strong>
+              <p id="ai-detail">Its pace changes with the work.</p>
+              <p class="ai-relative" id="ai-relative">The race begins when you choose a field.</p>
+            </div>
+          </div>
+        </section>
+
+`;
 
 export function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
