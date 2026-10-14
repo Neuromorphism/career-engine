@@ -1,6 +1,6 @@
-import { careerTree, fieldForPath, findNode, findNodeById, nodesForPath } from "./careers.js?v=0.6.0";
-import { curriculumFor } from "./curricula.js?v=0.6.0";
-import { rivalProfileForPath } from "./ai-rival.js?v=0.6.0";
+import { careerTree, fieldForPath, findNode, findNodeById, nodesForPath } from "./careers.js?v=0.9.0";
+import { curriculumFor } from "./curricula.js?v=0.9.0";
+import { rivalProfileForPath } from "./ai-rival.js?v=0.9.0";
 
 export const SAVE_KEY = "career-engine-save-v3";
 export const AI_SAVE_KEY = "career-engine-ai-save-v1";
@@ -17,11 +17,19 @@ export function createInitialState() {
     path: [],
     completedLearningKeys: [],
     completedProjectKeys: [],
+    completedImpactKeys: [],
+    learningChoices: {},
+    impactChoices: {},
     careerComplete: false,
     raceWinner: null,
     lastMessage: "Choose a field. You can refine the direction after trying a small piece of its work.",
     savedAt: Date.now(),
   };
+}
+
+function choiceRecord(input) {
+  return input && typeof input === "object" && !Array.isArray(input)
+    ? Object.fromEntries(Object.entries(input).filter(([, value]) => typeof value === "string")) : {};
 }
 
 export function hydrateState(input) {
@@ -36,6 +44,9 @@ export function hydrateState(input) {
     path: Array.isArray(input.path) ? input.path : [],
     completedLearningKeys: Array.isArray(input.completedLearningKeys) ? input.completedLearningKeys : [],
     completedProjectKeys: Array.isArray(input.completedProjectKeys) ? input.completedProjectKeys : [],
+    completedImpactKeys: Array.isArray(input.completedImpactKeys) ? input.completedImpactKeys.filter(key => typeof key === "string") : [],
+    learningChoices: choiceRecord(input.learningChoices),
+    impactChoices: choiceRecord(input.impactChoices),
     careerComplete: Boolean(input.careerComplete),
     raceWinner: input.raceWinner === "player" || input.raceWinner === "ai" ? input.raceWinner : null,
     lastMessage: typeof input.lastMessage === "string" ? input.lastMessage : fresh.lastMessage,
@@ -78,7 +89,7 @@ function withGoalCheck(state) {
     raceWinner: state.raceWinner || "player",
     lastMessage: state.raceWinner === "ai"
       ? `Career mastered—but the AI reached ${GOAL_MASTERY.toLocaleString()} first. You finished the path; begin again to try a different race.`
-      : `Career mastered. You reached ${GOAL_MASTERY.toLocaleString()} mastery as a ${currentNode(state).name}. Begin again whenever you want to explore another path.`,
+      : `Career mastered. You reached ${GOAL_MASTERY.toLocaleString()} mastery as a ${currentNode(state).name}. Your career legacy missions remain available; begin again whenever you want to explore another path.`,
   };
 }
 
@@ -113,6 +124,11 @@ export function learningTrackForNode(node, depth = 1) {
       ...learningValues(index, depth),
       index,
       key: learningKey(node.id, index),
+      choices: activity.choices.map(choice => ({
+        ...choice,
+        reward: Math.max(1, Math.round(learningValues(index, depth).reward * choice.reward_multiplier)),
+        rate: Number((learningValues(index, depth).rate * choice.rate_multiplier).toFixed(3)),
+      })),
     })),
   };
 }
@@ -136,16 +152,19 @@ export function currentLearningActivity(state) {
   return track?.activities.find((activity) => !state.completedLearningKeys.includes(activity.key)) || null;
 }
 
-export function completeLearningActivity(state, nodeId, activityIndex) {
+export function completeLearningActivity(state, nodeId, activityIndex, choiceId = null) {
   const node = currentNode(state);
   const nextActivity = currentLearningActivity(state);
   if (!node || node.id !== nodeId || !nextActivity || nextActivity.index !== activityIndex) return state;
+  const choice = choiceId === null ? nextActivity.choices[0] : nextActivity.choices.find(item => item.id === choiceId);
+  if (!choice) return state;
   return withGoalCheck({
     ...state,
-    mastery: state.mastery + nextActivity.reward,
+    mastery: state.mastery + choice.reward,
     actions: state.actions + 1,
     completedLearningKeys: [...state.completedLearningKeys, nextActivity.key],
-    lastMessage: `${nextActivity.title} complete. +${nextActivity.reward} mastery and +${nextActivity.rate}/sec practice capacity.`,
+    learningChoices: { ...state.learningChoices, [nextActivity.key]: choice.id },
+    lastMessage: `${choice.title} complete. +${choice.reward} mastery and +${choice.rate}/sec practice capacity.`,
   });
 }
 
@@ -179,13 +198,22 @@ export function work(state) {
 }
 
 export function practiceRate(state) {
-  return state.completedLearningKeys.reduce((rate, key) => {
+  const learningRate = state.completedLearningKeys.reduce((rate, key) => {
     const separator = key.lastIndexOf(":");
     const nodeId = key.slice(0, separator);
     const index = Number(key.slice(separator + 1));
     const match = findNodeById(nodeId);
-    return rate + (match && Number.isInteger(index) ? learningValues(index, match.depth).rate : 0);
+    const activity = match && Number.isInteger(index) ? learningTrackForNode(match.node, match.depth)?.activities[index] : null;
+    const choice = activity?.choices.find(item => item.id === state.learningChoices?.[key]) || activity?.choices[0];
+    return rate + (choice?.rate || 0);
   }, 0);
+  const impactRate = pathNodes(state).flatMap(node => node.impactActions || [])
+    .filter(action => state.completedImpactKeys.includes(action.id))
+    .reduce((sum, action) => {
+      const choice = action.choices.find(item => item.id === state.impactChoices?.[action.id]) || action.choices[0];
+      return sum + choice.rate;
+    }, 0);
+  return learningRate + impactRate;
 }
 
 export function aiRivalStatus(state) {
@@ -274,4 +302,37 @@ export function directionName(state) {
 
 export function pathNodes(state) {
   return nodesForPath(state.path);
+}
+
+
+export function impactActionsForState(state) {
+  const node = currentNode(state);
+  const roleReady = isLeaf(state) && learningTrackComplete(state) && !currentProject(state);
+  return (node?.impactActions || []).map((action, index, actions) => {
+    const done = state.completedImpactKeys.includes(action.id);
+    const priorDone = index === 0 || state.completedImpactKeys.includes(actions[index - 1].id);
+    const unlocked = roleReady && priorDone && state.mastery >= action.requirement;
+    const lockReason = !roleReady ? "Complete this role's training and work samples"
+      : !priorDone ? "Complete the preceding career mission"
+      : state.mastery < action.requirement ? `Reach ${action.requirement.toLocaleString()} mastery`
+      : "Ready to lead";
+    const selectedChoice = done
+      ? action.choices.find(choice => choice.id === state.impactChoices?.[action.id]) || action.choices[0] : null;
+    return { ...action, done, selectedChoice, unlocked: unlocked && !done, lockReason };
+  });
+}
+
+export function completeImpactAction(state, actionId, choiceId = null) {
+  const action = impactActionsForState(state).find(item => item.id === actionId);
+  if (!action?.unlocked) return state;
+  const choice = choiceId === null ? action.choices[0] : action.choices.find(item => item.id === choiceId);
+  if (!choice) return state;
+  return withGoalCheck({
+    ...state,
+    mastery: state.mastery + choice.reward,
+    actions: state.actions + 1,
+    completedImpactKeys: [...state.completedImpactKeys, action.id],
+    impactChoices: { ...state.impactChoices, [action.id]: choice.id },
+    lastMessage: `${choice.title} complete. ${choice.outcome} +${choice.reward} mastery; +${choice.rate}/sec practice capacity.`,
+  });
 }

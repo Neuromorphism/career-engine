@@ -1,11 +1,12 @@
 {
   "name": "career-engine",
-  "version": "0.6.0",
+  "version": "0.9.0",
   "private": true,
   "type": "module",
   "scripts": {
     "start": "python3 -m http.server 4173",
     "test": "node --test",
-    "check": "node --check src/app.js && node --check src/game-engine.js && node --check src/careers.js && node --check src/curricula.js && node --check src/ai-rival.js"
+    "check": "python3 scripts/compile-careers.py --check && python3 scripts/compile-world.py --check && node scripts/check-js.mjs",
+    "compile": "python3 scripts/compile-careers.py && python3 scripts/compile-world.py"
   }
 }

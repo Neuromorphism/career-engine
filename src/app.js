@@ -1,13 +1,13 @@
 import {
   GOAL_MASTERY,
-  AI_SAVE_KEY,
-  SAVE_KEY,
   aiRivalStatus,
   availableChoices,
   choicesUnlocked,
   chooseNode,
   completeLearningActivity,
   completeProject,
+  completeImpactAction,
+  impactActionsForState,
   createInitialState,
   currentField,
   currentLearningActivity,
@@ -22,14 +22,24 @@ import {
   pathNodes,
   practiceRate,
   tick,
-} from "./game-engine.js?v=0.6.0";
+} from "./game-engine.js?v=0.9.0";
 
-const aiMode = document.body.dataset.mode === "ai";
-const saveKey = aiMode ? AI_SAVE_KEY : SAVE_KEY;
-const saveLabel = aiMode ? "AI save" : "local save";
+import { careerTree } from "./careers.js?v=0.9.0";
+import { careerRoutes, careerTransitions, careerStats } from "./career-data.js?v=0.9.0";
+import { evaluateImpact } from "./impact-models.js?v=0.9.0";
+
+import { mountCareerUI } from "./career-ui.js?v=0.9.0";
+import { createCareerStore } from "./save-store.js?v=0.9.0";
+
+export function startCareerApp({ mode = 'single', store = createCareerStore(mode), onChange = () => {}, onAddCitizen = () => {} } = {}) {
+mountCareerUI(mode);
+const aiMode = mode === "ai";
+const worldMode = mode === "world";
+const saveLabel = worldMode ? "world save" : aiMode ? "AI save" : "local save";
 
 const $ = (selector) => document.querySelector(selector);
 const elements = {
+  impactActions: $("#impact-actions"),
   console: $("#console-message"), direction: $("#direction-value"), mastery: $("#mastery-value"),
   rate: $("#rate-value"), goal: $("#goal-status"), goalMeter: $("#goal-meter"), goalCopy: $("#goal-copy"),
   pathKicker: $("#path-kicker"), pathHeading: $("#path-heading"), pathTrail: $("#path-trail"),
@@ -44,20 +54,10 @@ const elements = {
   aiRelative: $("#ai-relative"), aiMeter: $("#ai-meter"), playerRaceMeter: $("#player-race-meter"),
 };
 
-function load() {
-  try {
-    const raw = localStorage.getItem(saveKey) || (!aiMode ? localStorage.getItem("career-engine-save-v2") : null);
-    const parsed = raw ? JSON.parse(raw) : null;
-    const next = hydrateState(parsed);
-    return parsed?.savedAt ? tick(next, (Date.now() - parsed.savedAt) / 1000, { aiMode }) : next;
-  } catch {
-    return createInitialState();
-  }
-}
-
-let state = load();
+let state = store.load();
 let lastFrame = performance.now();
 let lastSaved = 0;
+let lastWorldRender = 0;
 let lastDynamicSignature = "";
 
 function format(value, digits = 0) {
@@ -71,9 +71,15 @@ function indefiniteArticle(phrase) {
 
 function save() {
   state.savedAt = Date.now();
-  localStorage.setItem(saveKey, JSON.stringify(state));
+  try { store.save(state); }
+  catch (error) {
+    elements.saveStatus.textContent = `${saveLabel} · unavailable`;
+    elements.console.textContent = 'Progress could not be saved. Export your world or stored progress before closing this page.';
+    return false;
+  }
   elements.saveStatus.textContent = `${saveLabel} · complete`;
   window.setTimeout(() => { elements.saveStatus.textContent = `${saveLabel} · ready`; }, 700);
+  return true;
 }
 
 function pulse(element) {
@@ -88,6 +94,15 @@ function commit(nextState, pulseTarget) {
   render();
   if (pulseTarget) pulse(pulseTarget);
   save();
+}
+
+function pathNameForId(id, nodes = careerTree) {
+  for (const node of nodes) {
+    if (node.id === id) return node.name;
+    const found = pathNameForId(id, node.children || []);
+    if (found) return found;
+  }
+  return null;
 }
 
 function renderPath() {
@@ -133,10 +148,23 @@ function renderPath() {
     const evidence = (node.evidence || []).map((item) => `
       <li><a href="${item.url}" target="_blank" rel="noreferrer">${item.label}</a><span>${item.note}</span></li>
     `).join("");
+    const routeMarkup = (ids) => ids.map(id => {
+      const route = careerRoutes[id];
+      return `<details><summary>${route.label}</summary><ol>${route.stages.map(stage => `<li>${stage}</li>`).join('')}</ol><p>${route.credential_gates.join(' · ')}</p><p>${route.notes}</p></details>`;
+    }).join('');
+    const transitions = careerTransitions.filter(edge => edge.from_id === node.id);
+    const nextRoutes = transitions.map(edge => {
+      const target = pathNameForId(edge.to_id);
+      return `<li><strong>${target}</strong><span>Transferable: ${edge.transferable_skills.join(', ')}. Additional requirements: ${edge.additional_requirements.join('; ')}.</span></li>`;
+    }).join('');
     elements.jobLeaf.innerHTML = `
       <p class="job-stamp">Specific occupation reached</p>
-      <p>This branch stops here because it names recognizable work. Build ${GOAL_MASTERY.toLocaleString()} mastery at this full job depth to complete the run.</p>
+      <p>You have reached a specific occupation. Unlock practitioner, team-leader, and career-legacy missions as you advance. Build ${GOAL_MASTERY.toLocaleString()} mastery at this full job depth to complete the run.</p>
       ${evidence ? `<details><summary>Evidence behind this job</summary><ul>${evidence}</ul></details>` : ""}
+      <details><summary>Routes into this career</summary><p>Possible routes, with US-oriented credential references. Game training simulates work; it does not grant professional authority.</p>${routeMarkup(node.entryRouteIds)}</details>
+      <details><summary>Ways to develop your professional life</summary>${routeMarkup(node.progressionRouteIds)}${routeMarkup(node.continuityRouteIds)}</details>
+      ${nextRoutes ? `<details><summary>Possible future career moves</summary><p>Investigated possibilities, not guaranteed promotions. A new game run explores a different training path.</p><ul>${nextRoutes}</ul></details>` : ''}
+
     `;
   }
 }
@@ -158,7 +186,7 @@ function renderPractice() {
   const completed = activeTrack.activities.filter((activity) => state.completedLearningKeys.includes(activity.key)).length;
   const percent = (completed / activeTrack.activities.length) * 100;
   elements.actionIntro.textContent = nextActivity
-    ? `${activeTrack.title}: complete each step in order. Every step adds mastery and lasting practice capacity.`
+    ? `${activeTrack.title}: choose one of three actions at each step. Investigation favors immediate mastery; teamwork builds more practice capacity.`
     : `${activeTrack.title} complete. Finish the applied project to open the next career decision.`;
   elements.trainingSummary.hidden = false;
   elements.trainingProgress.textContent = `${completed} / ${activeTrack.activities.length} complete`;
@@ -182,19 +210,26 @@ function renderPractice() {
           const done = state.completedLearningKeys.includes(activity.key);
           const active = nextActivity?.key === activity.key;
           const status = done ? "complete" : active ? "available" : "locked";
-          return `
-            <button class="learning-activity is-${status}" type="button" data-node="${track.nodeId}" data-activity="${activity.index}" ${active ? "" : "disabled"}>
-              <span class="activity-marker">${done ? "✓" : String(activity.index + 1).padStart(2, "0")}</span>
-              <span class="activity-copy"><small>${activity.kind}</small><strong>${activity.title}</strong><span>${activity.description}</span></span>
-              <span class="activity-reward"><b>+${activity.reward}</b><small>mastery</small><em>+${activity.rate}/s</em></span>
-            </button>`;
+          const selected = done ? activity.choices.find(choice => choice.id === state.learningChoices[activity.key]) || activity.choices[0] : null;
+          const buttons = activity.choices.map(choice => `
+            <button class="learning-activity is-${status}" type="button" data-node="${track.nodeId}" data-activity="${activity.index}" data-choice="${choice.id}" ${active ? "" : "disabled"}>
+              <span class="activity-marker">${String(activity.index + 1).padStart(2, "0")}</span>
+              <span class="activity-copy"><small>${choice.focus}</small><strong>${choice.title}</strong><span>${choice.description}</span></span>
+              <span class="activity-reward"><b>+${choice.reward}</b><small>mastery</small><em>+${choice.rate}/s</em></span>
+            </button>`).join('');
+          return `<section class="learning-step is-${status}" aria-label="${activity.title}">
+            <h4>${done ? '✓' : String(activity.index + 1).padStart(2, '0')}. ${activity.title}</h4>
+            ${active ? `<p class="choice-instruction">Choose one action to complete this step.</p><div class="stage-choices">${buttons}</div>`
+              : done ? `<p class="selected-action">Chosen: ${selected.title} · +${selected.reward} mastery · +${selected.rate}/s</p>`
+              : `<details><summary>Preview three actions · complete the preceding step first</summary><div class="stage-choices">${buttons}</div></details>`}
+          </section>`;
         }).join("")}</div>` : ""}
       </section>`;
   }).join("");
 
   elements.learningPath.querySelectorAll("[data-activity]").forEach((button) => {
     button.addEventListener("click", () => commit(
-      completeLearningActivity(state, button.dataset.node, Number(button.dataset.activity)),
+      completeLearningActivity(state, button.dataset.node, Number(button.dataset.activity), button.dataset.choice),
       elements.mastery,
     ));
   });
@@ -213,7 +248,7 @@ function renderProject() {
   if (!project) {
     const hasNext = Boolean(node.children?.length);
     const leafMessage = state.careerComplete
-      ? "Run complete. Begin again whenever you want to explore the work of another job."
+      ? "Career mastered. Your career-legacy missions remain available in module 04."
       : `Keep building your practice engine until you reach ${GOAL_MASTERY.toLocaleString()} mastery.`;
     elements.projectCard.innerHTML = `
       <div class="project-card project-done">
@@ -243,12 +278,71 @@ function renderProject() {
   elements.projectCard.querySelector("button")?.addEventListener("click", () => commit(completeProject(state), elements.mastery));
 }
 
+
+function renderImpact() {
+  const actions = impactActionsForState(state);
+  if (!actions.length) {
+    elements.impactActions.innerHTML = '<p class="empty-training">Reach a specific occupation to reveal its three career missions. Unlocks begin at 300, 2,000, and 7,000 mastery after role training and work samples.</p>';
+    return;
+  }
+  const number = value => Intl.NumberFormat("en", { maximumFractionDigits: 1 }).format(value);
+  const renderModel = (modelId) => {
+    const model = evaluateImpact(modelId);
+    return model ? `
+      <details class="impact-assumptions"><summary>${worldMode ? 'Career scenario projection · separate from world projects' : 'Projected impact for this project'}</summary>
+        <div class="impact-metrics">${Object.entries(model.metrics).map(([label, value]) => `<div><strong>${number(value)}</strong><span>${label}</span></div>`).join("")}</div>
+        <p>${model.assumptions}</p><p>${model.formula}</p><p>${model.limits}</p>
+        <p>Methodology references: ${model.references.map(ref => `<a href="${ref.url}" target="_blank" rel="noreferrer">${ref.label}</a>`).join(" · ")}. Scenario inputs are game assumptions, not values taken from these references.</p>
+      </details>` : '';
+  };
+  elements.impactActions.innerHTML = actions.map(action => {
+    const choices = action.done ? [action.selectedChoice] : action.choices;
+    return `<article class="impact-card ${action.done ? 'is-complete' : action.unlocked ? 'is-available' : 'is-locked'}">
+      <span class="project-label">${action.stage} · ${action.requirement.toLocaleString()} mastery</span>
+      <h3>${action.done ? 'Stage complete' : `Choose your ${action.stage.toLowerCase()} contribution`}</h3>
+      <p>${action.done ? 'Your chosen action is recorded below.' : action.unlocked ? 'Choose one of three actions to complete this stage.' : action.lockReason + '.'}</p>
+      <div class="stage-choices">${choices.map(choice => `<section class="impact-choice">
+        <small>${choice.focus}</small><h4>${choice.title}</h4><p>${choice.description}</p>
+        ${renderModel(choice.modelId)}
+        ${action.done ? `<p class="impact-outcome">✓ ${choice.outcome}</p>` : ''}
+        <button type="button" data-impact="${action.id}" data-choice="${choice.id}" ${action.unlocked ? '' : 'disabled'}>${action.done ? 'Chosen action completed' : action.unlocked ? `Choose action · +${choice.reward} mastery · +${choice.rate}/s` : `+${choice.reward} mastery · +${choice.rate}/s · locked`}</button>
+      </section>`).join('')}</div>
+    </article>`;
+  }).join('');
+  elements.impactActions.querySelectorAll('[data-impact]').forEach(button => {
+    button.addEventListener('click', () => commit(completeImpactAction(state, button.dataset.impact, button.dataset.choice), elements.mastery));
+  });
+}
+
+function renderAtlas(query = '') {
+  const needle = query.trim().toLowerCase();
+  let count = 0;
+  const branch = (nodes, ancestors = []) => nodes.map(node => {
+    const path = [...ancestors, node.name];
+    if (!node.children?.length) {
+      if (needle && !path.join(' ').toLowerCase().includes(needle)) return '';
+      count++;
+      return `<li class="atlas-job"><strong>${node.name}</strong><span>${node.impactActions.at(-1).title}</span></li>`;
+    }
+    const children = branch(node.children, path);
+    return children ? `<li><details ${needle ? 'open' : ''}><summary>${node.name}</summary><ul>${children}</ul></details></li>` : '';
+  }).join('');
+  const tree = branch(careerTree);
+  $('#atlas-count').textContent = `${count} careers ${needle ? 'match this search' : `across ${careerStats.fields} fields`}. Preview their legacy projects, then progress through the training tree to unlock them.`;
+  $('#atlas-tree').innerHTML = tree ? `<ul>${tree}</ul>` : '<p>No matching career. Try another specialty or field.</p>';
+}
+
+$('#atlas-search').addEventListener('input', event => renderAtlas(event.target.value));
+renderAtlas();
+
 function dynamicSignature() {
   const project = currentProject(state);
   return [
     state.careerComplete,
     choicesUnlocked(state),
     state.completedLearningKeys.length,
+    state.completedImpactKeys.length,
+    impactActionsForState(state).map(action => action.unlocked).join(","),
     project ? state.mastery >= project.requirement : "none",
   ].join("|");
 }
@@ -306,11 +400,13 @@ function render() {
   elements.rate.textContent = format(practiceRate(state), 2);
   renderGoal();
   renderAI();
-  renderPath(); renderPractice(); renderProject();
+  renderPath(); renderPractice(); renderProject(); renderImpact();
   lastDynamicSignature = dynamicSignature();
+  onChange(state);
 }
 
 $("#reset-button").addEventListener("click", () => {
+  if (worldMode) { onAddCitizen(); return; }
   if (window.confirm("Begin a new run? Your current local progress will be replaced.")) {
     state = createInitialState(); save(); render();
   }
@@ -335,9 +431,10 @@ function frame(now) {
     elements.mastery.textContent = format(state.mastery, 1);
     renderGoal();
     renderAI();
+    if (worldMode && now - lastWorldRender > 1000) { onChange(state); lastWorldRender = now; }
     const signature = dynamicSignature();
     if (signature !== lastDynamicSignature) {
-      renderPath(); renderPractice(); renderProject(); lastDynamicSignature = signature;
+      renderPath(); renderPractice(); renderProject(); renderImpact(); lastDynamicSignature = signature;
     }
   }
   requestAnimationFrame(frame);
@@ -345,3 +442,10 @@ function frame(now) {
 
 render();
 requestAnimationFrame(frame);
+
+return {
+  getState: () => state,
+  save,
+  replaceState(next) { state = next; lastFrame = performance.now(); render(); return save(); },
+};
+}

@@ -1,0 +1,882 @@
+# Shared world balance data. These are authored game units, not measured productivity.
+[scenario]
+id = "founders-settlement"
+name = "Founders’ World"
+baseline_population = 500
+baseline_coverage = 0.15
+facility_capacity = 0.65
+reliability = 0.85
+competence_mastery = 10000
+research_bonus_per_choice = 0.02
+research_bonus_cap = 0.10
+mentoring_bonus_per_choice = 0.01
+mentoring_bonus_cap = 0.05
+
+[capabilities.clinical]
+label = "Clinical practice"
+
+[capabilities.nursing]
+label = "Nursing"
+
+[capabilities.design]
+label = "Engineering design"
+
+[capabilities.construction]
+label = "Construction"
+
+[capabilities.maintenance]
+label = "Maintenance"
+
+[capabilities.teaching]
+label = "Teaching"
+
+[capabilities.research]
+label = "Research"
+
+[capabilities.logistics]
+label = "Logistics"
+
+[capabilities.food]
+label = "Food production"
+
+[capabilities.care]
+label = "Care and support"
+
+[capabilities.governance]
+label = "Coordination and governance"
+
+[capabilities.culture]
+label = "Culture and communication"
+
+[capabilities.electrical]
+label = "Electrical systems"
+
+[capabilities.water]
+label = "Water systems"
+
+[[services]]
+id = "health"
+name = "Health"
+description = "Care access and a coordinated clinical workforce."
+requirements = { clinical = 0.35, nursing = 0.2, care = 0.15 }
+
+[[services]]
+id = "learning"
+name = "Learning"
+description = "Teaching, investigation, and sustained learning opportunities."
+requirements = { teaching = 0.45, research = 0.15 }
+
+[[services]]
+id = "infrastructure"
+name = "Infrastructure"
+description = "Design, construction, maintenance, and reliable utility systems."
+requirements = { design = 0.2, construction = 0.2, maintenance = 0.15, electrical = 0.1, water = 0.1 }
+
+[[services]]
+id = "livelihoods"
+name = "Livelihoods"
+description = "Food, logistics, and dependable organizational work."
+requirements = { food = 0.2, logistics = 0.25, governance = 0.2 }
+
+[[services]]
+id = "resilience"
+name = "Resilience"
+description = "Preparedness, repairs, emergency care, and coordinated response."
+requirements = { clinical = 0.1, maintenance = 0.2, logistics = 0.2, governance = 0.15 }
+
+[[services]]
+id = "community"
+name = "Community well-being"
+description = "Everyday care, culture, communication, and trustworthy institutions."
+requirements = { care = 0.3, culture = 0.3, governance = 0.15 }
+
+[role_profiles.gpu-rtl-design-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.asic-digital-design-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.gpu-formal-verification-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.fpga-design]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.physical-design-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.dft-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.protection-engineer]
+service_id = "infrastructure"
+capabilities = { electrical = 0.6, design = 0.4 }
+
+[role_profiles.power-electronics-engineer]
+service_id = "infrastructure"
+capabilities = { electrical = 0.6, design = 0.4 }
+
+[role_profiles.embedded-systems-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.control-systems-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.rf-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.graduate-traffic-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.rail-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.bridge-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.structural-engineering]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.water-resources-engineer]
+service_id = "infrastructure"
+capabilities = { water = 0.6, design = 0.3, research = 0.1 }
+
+[role_profiles.water-treatment-engineer]
+service_id = "infrastructure"
+capabilities = { water = 0.6, design = 0.3, research = 0.1 }
+
+[role_profiles.geotechnical-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.hvac-design-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.mechanical-design-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.robotics-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.manufacturing-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.thermal-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.software-developer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.security-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.sre-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.process-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.bioprocess-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.aircraft-systems-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.space-systems-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.medical-device-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.prosthetics-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.industrial-engineer]
+service_id = "infrastructure"
+capabilities = { design = 0.65, research = 0.2, maintenance = 0.15 }
+
+[role_profiles.family-medicine-physician]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.geriatrician]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.emergency-medicine-physician]
+service_id = "resilience"
+capabilities = { clinical = 0.35, maintenance = 0.3, logistics = 0.35 }
+
+[role_profiles.general-pediatrician]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.general-surgeon]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.cardiac-surgeon]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.congenital-heart-surgeon]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.thoracic-surgeon]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.neurosurgeon]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.orthopedic-surgeon]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.transplant-surgeon]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.vascular-surgeon]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.cardiologist]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.oncologist]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.neurologist]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.nephrologist]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.pulmonologist]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.endocrinologist]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.infectious-disease-physician]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.interventional-cardiologist]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.electrophysiologist]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.radiologist]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.pathologist]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.anesthesiologist]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.psychiatrist]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.rehabilitation-physician]
+service_id = "health"
+capabilities = { clinical = 0.55, care = 0.45 }
+
+[role_profiles.registered-nurse]
+service_id = "health"
+capabilities = { nursing = 0.8, care = 0.2 }
+
+[role_profiles.physical-therapist]
+service_id = "health"
+capabilities = { clinical = 0.55, care = 0.45 }
+
+[role_profiles.clinical-pharmacist]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.dentist]
+service_id = "health"
+capabilities = { clinical = 0.8, care = 0.2 }
+
+[role_profiles.public-defender]
+service_id = "community"
+capabilities = { governance = 0.8, care = 0.2 }
+
+[role_profiles.prosecutor]
+service_id = "community"
+capabilities = { governance = 0.8, care = 0.2 }
+
+[role_profiles.appellate-attorney]
+service_id = "community"
+capabilities = { governance = 0.8, care = 0.2 }
+
+[role_profiles.corporate-associate]
+service_id = "community"
+capabilities = { governance = 0.8, care = 0.2 }
+
+[role_profiles.environmental-attorney]
+service_id = "community"
+capabilities = { governance = 0.8, care = 0.2 }
+
+[role_profiles.civil-rights-attorney]
+service_id = "community"
+capabilities = { governance = 0.8, care = 0.2 }
+
+[role_profiles.legal-aid-attorney]
+service_id = "community"
+capabilities = { governance = 0.8, care = 0.2 }
+
+[role_profiles.immigration-attorney]
+service_id = "community"
+capabilities = { governance = 0.8, care = 0.2 }
+
+[role_profiles.patent-attorney]
+service_id = "community"
+capabilities = { governance = 0.8, care = 0.2 }
+
+[role_profiles.privacy-attorney]
+service_id = "community"
+capabilities = { governance = 0.8, care = 0.2 }
+
+[role_profiles.labor-attorney]
+service_id = "community"
+capabilities = { governance = 0.8, care = 0.2 }
+
+[role_profiles.tax-attorney]
+service_id = "community"
+capabilities = { governance = 0.8, care = 0.2 }
+
+[role_profiles.family-law-attorney]
+service_id = "community"
+capabilities = { governance = 0.8, care = 0.2 }
+
+[role_profiles.estate-attorney]
+service_id = "community"
+capabilities = { governance = 0.8, care = 0.2 }
+
+[role_profiles.commercial-electrician]
+service_id = "infrastructure"
+capabilities = { electrical = 0.6, construction = 0.2, maintenance = 0.2 }
+
+[role_profiles.structural-welder]
+service_id = "infrastructure"
+capabilities = { construction = 0.85, maintenance = 0.15 }
+
+[role_profiles.service-plumber]
+service_id = "infrastructure"
+capabilities = { water = 0.5, maintenance = 0.3, construction = 0.2 }
+
+[role_profiles.lineworker]
+service_id = "infrastructure"
+capabilities = { electrical = 0.6, construction = 0.2, maintenance = 0.2 }
+
+[role_profiles.industrial-electrician]
+service_id = "infrastructure"
+capabilities = { electrical = 0.6, construction = 0.2, maintenance = 0.2 }
+
+[role_profiles.solar-installer]
+service_id = "infrastructure"
+capabilities = { electrical = 0.6, construction = 0.2, maintenance = 0.2 }
+
+[role_profiles.hvac-technician]
+service_id = "infrastructure"
+capabilities = { maintenance = 0.85, construction = 0.15 }
+
+[role_profiles.pipefitter]
+service_id = "infrastructure"
+capabilities = { water = 0.5, maintenance = 0.3, construction = 0.2 }
+
+[role_profiles.refrigeration-technician]
+service_id = "infrastructure"
+capabilities = { maintenance = 0.85, construction = 0.15 }
+
+[role_profiles.carpenter]
+service_id = "infrastructure"
+capabilities = { construction = 0.85, maintenance = 0.15 }
+
+[role_profiles.mason]
+service_id = "infrastructure"
+capabilities = { construction = 0.85, maintenance = 0.15 }
+
+[role_profiles.elevator-technician]
+service_id = "infrastructure"
+capabilities = { maintenance = 0.85, construction = 0.15 }
+
+[role_profiles.cnc-machinist]
+service_id = "infrastructure"
+capabilities = { construction = 0.45, maintenance = 0.55 }
+
+[role_profiles.industrial-mechanic]
+service_id = "infrastructure"
+capabilities = { maintenance = 0.85, construction = 0.15 }
+
+[role_profiles.automotive-technician]
+service_id = "infrastructure"
+capabilities = { maintenance = 0.85, construction = 0.15 }
+
+[role_profiles.cell-biology-scientist]
+service_id = "learning"
+capabilities = { research = 0.75, teaching = 0.25 }
+
+[role_profiles.immunologist]
+service_id = "learning"
+capabilities = { research = 0.75, teaching = 0.25 }
+
+[role_profiles.geneticist]
+service_id = "learning"
+capabilities = { research = 0.75, teaching = 0.25 }
+
+[role_profiles.neuroscientist]
+service_id = "learning"
+capabilities = { research = 0.75, teaching = 0.25 }
+
+[role_profiles.clinical-trial-scientist]
+service_id = "learning"
+capabilities = { research = 0.75, teaching = 0.25 }
+
+[role_profiles.research-physicist]
+service_id = "learning"
+capabilities = { research = 0.75, teaching = 0.25 }
+
+[role_profiles.photonics-scientist]
+service_id = "learning"
+capabilities = { research = 0.75, teaching = 0.25 }
+
+[role_profiles.quantum-scientist]
+service_id = "learning"
+capabilities = { research = 0.75, teaching = 0.25 }
+
+[role_profiles.astrophysicist]
+service_id = "learning"
+capabilities = { research = 0.75, teaching = 0.25 }
+
+[role_profiles.environmental-scientist]
+service_id = "resilience"
+capabilities = { research = 0.5, maintenance = 0.3, governance = 0.2 }
+
+[role_profiles.data-scientist]
+service_id = "learning"
+capabilities = { research = 0.75, teaching = 0.25 }
+
+[role_profiles.analytical-chemist]
+service_id = "learning"
+capabilities = { research = 0.75, teaching = 0.25 }
+
+[role_profiles.materials-scientist]
+service_id = "learning"
+capabilities = { research = 0.75, teaching = 0.25 }
+
+[role_profiles.medicinal-chemist]
+service_id = "learning"
+capabilities = { research = 0.75, teaching = 0.25 }
+
+[role_profiles.climate-scientist]
+service_id = "resilience"
+capabilities = { research = 0.5, maintenance = 0.3, governance = 0.2 }
+
+[role_profiles.geologist]
+service_id = "resilience"
+capabilities = { research = 0.5, maintenance = 0.3, governance = 0.2 }
+
+[role_profiles.hydrologist]
+service_id = "infrastructure"
+capabilities = { water = 0.6, design = 0.3, research = 0.1 }
+
+[role_profiles.ecologist]
+service_id = "resilience"
+capabilities = { research = 0.5, maintenance = 0.3, governance = 0.2 }
+
+[role_profiles.biostatistician]
+service_id = "learning"
+capabilities = { research = 0.75, teaching = 0.25 }
+
+[role_profiles.operations-research-scientist]
+service_id = "learning"
+capabilities = { research = 0.75, teaching = 0.25 }
+
+[role_profiles.fp-and-a-analyst]
+service_id = "livelihoods"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.investment-analyst]
+service_id = "livelihoods"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.risk-manager]
+service_id = "livelihoods"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.actuary]
+service_id = "livelihoods"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.product-marketing-manager]
+service_id = "livelihoods"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.supply-chain-analyst]
+service_id = "livelihoods"
+capabilities = { logistics = 0.75, governance = 0.25 }
+
+[role_profiles.product-manager]
+service_id = "livelihoods"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.small-business-owner]
+service_id = "livelihoods"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.accountant]
+service_id = "livelihoods"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.auditor]
+service_id = "livelihoods"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.operations-manager]
+service_id = "livelihoods"
+capabilities = { logistics = 0.75, governance = 0.25 }
+
+[role_profiles.human-resources-manager]
+service_id = "livelihoods"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.organizational-development-specialist]
+service_id = "livelihoods"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.social-enterprise-founder]
+service_id = "livelihoods"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.healthcare-administrator]
+service_id = "health"
+capabilities = { governance = 0.7, care = 0.3 }
+
+[role_profiles.construction-manager]
+service_id = "infrastructure"
+capabilities = { construction = 0.5, governance = 0.5 }
+
+[role_profiles.elementary-teacher]
+service_id = "learning"
+capabilities = { teaching = 0.85, research = 0.15 }
+
+[role_profiles.special-education-teacher]
+service_id = "learning"
+capabilities = { teaching = 0.85, research = 0.15 }
+
+[role_profiles.secondary-teacher]
+service_id = "learning"
+capabilities = { teaching = 0.85, research = 0.15 }
+
+[role_profiles.teacher-assistant]
+service_id = "learning"
+capabilities = { teaching = 0.85, research = 0.15 }
+
+[role_profiles.vocational-instructor]
+service_id = "learning"
+capabilities = { teaching = 0.85, research = 0.15 }
+
+[role_profiles.adult-educator]
+service_id = "learning"
+capabilities = { teaching = 0.85, research = 0.15 }
+
+[role_profiles.university-lecturer]
+service_id = "learning"
+capabilities = { teaching = 0.85, research = 0.15 }
+
+[role_profiles.librarian]
+service_id = "learning"
+capabilities = { teaching = 0.85, research = 0.15 }
+
+[role_profiles.graphic-designer]
+service_id = "community"
+capabilities = { culture = 0.85, research = 0.15 }
+
+[role_profiles.ux-designer]
+service_id = "community"
+capabilities = { culture = 0.85, research = 0.15 }
+
+[role_profiles.journalist]
+service_id = "community"
+capabilities = { culture = 0.85, research = 0.15 }
+
+[role_profiles.technical-writer]
+service_id = "community"
+capabilities = { culture = 0.85, research = 0.15 }
+
+[role_profiles.film-director]
+service_id = "community"
+capabilities = { culture = 0.85, research = 0.15 }
+
+[role_profiles.musician]
+service_id = "community"
+capabilities = { culture = 0.85, research = 0.15 }
+
+[role_profiles.game-designer]
+service_id = "community"
+capabilities = { culture = 0.85, research = 0.15 }
+
+[role_profiles.museum-conservator]
+service_id = "community"
+capabilities = { culture = 0.85, research = 0.15 }
+
+[role_profiles.social-worker]
+service_id = "community"
+capabilities = { care = 0.8, governance = 0.2 }
+
+[role_profiles.clinical-social-worker]
+service_id = "community"
+capabilities = { care = 0.8, governance = 0.2 }
+
+[role_profiles.community-health-worker]
+service_id = "community"
+capabilities = { care = 0.8, governance = 0.2 }
+
+[role_profiles.career-counselor]
+service_id = "community"
+capabilities = { care = 0.8, governance = 0.2 }
+
+[role_profiles.firefighter]
+service_id = "resilience"
+capabilities = { clinical = 0.35, maintenance = 0.3, logistics = 0.35 }
+
+[role_profiles.paramedic]
+service_id = "resilience"
+capabilities = { clinical = 0.35, maintenance = 0.3, logistics = 0.35 }
+
+[role_profiles.emergency-manager]
+service_id = "resilience"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.public-safety-officer]
+service_id = "resilience"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.farmer]
+service_id = "livelihoods"
+capabilities = { food = 0.85, research = 0.15 }
+
+[role_profiles.forester]
+service_id = "resilience"
+capabilities = { research = 0.5, maintenance = 0.3, governance = 0.2 }
+
+[role_profiles.agronomist]
+service_id = "livelihoods"
+capabilities = { food = 0.85, research = 0.15 }
+
+[role_profiles.veterinarian]
+service_id = "livelihoods"
+capabilities = { clinical = 0.5, food = 0.5 }
+
+[role_profiles.chef]
+service_id = "livelihoods"
+capabilities = { food = 0.85, governance = 0.15 }
+
+[role_profiles.baker]
+service_id = "livelihoods"
+capabilities = { food = 0.85, governance = 0.15 }
+
+[role_profiles.hotel-manager]
+service_id = "livelihoods"
+capabilities = { food = 0.7, governance = 0.3 }
+
+[role_profiles.event-planner]
+service_id = "livelihoods"
+capabilities = { food = 0.7, governance = 0.3 }
+
+[role_profiles.barber]
+service_id = "community"
+capabilities = { care = 0.8, culture = 0.2 }
+
+[role_profiles.childcare-worker]
+service_id = "community"
+capabilities = { care = 0.8, governance = 0.2 }
+
+[role_profiles.fitness-trainer]
+service_id = "community"
+capabilities = { care = 0.8, culture = 0.2 }
+
+[role_profiles.funeral-director]
+service_id = "community"
+capabilities = { care = 0.8, culture = 0.2 }
+
+[role_profiles.sales-representative]
+service_id = "livelihoods"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.real-estate-agent]
+service_id = "livelihoods"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.customer-service-specialist]
+service_id = "livelihoods"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.administrative-coordinator]
+service_id = "livelihoods"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.bookkeeper]
+service_id = "livelihoods"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.medical-records-specialist]
+service_id = "livelihoods"
+capabilities = { governance = 0.6, logistics = 0.4 }
+
+[role_profiles.airline-pilot]
+service_id = "livelihoods"
+capabilities = { logistics = 0.85, maintenance = 0.15 }
+
+[role_profiles.air-traffic-controller]
+service_id = "livelihoods"
+capabilities = { logistics = 0.85, maintenance = 0.15 }
+
+[role_profiles.ship-captain]
+service_id = "livelihoods"
+capabilities = { logistics = 0.85, maintenance = 0.15 }
+
+[role_profiles.truck-driver]
+service_id = "livelihoods"
+capabilities = { logistics = 0.85, maintenance = 0.15 }
+
+[role_profiles.transit-operator]
+service_id = "livelihoods"
+capabilities = { logistics = 0.85, maintenance = 0.15 }
+
+[role_profiles.warehouse-technician]
+service_id = "livelihoods"
+capabilities = { logistics = 0.75, governance = 0.25 }
+
+[role_profiles.military-logistics-specialist]
+service_id = "resilience"
+capabilities = { logistics = 0.6, governance = 0.4 }
+
+[role_profiles.military-communications-specialist]
+service_id = "resilience"
+capabilities = { logistics = 0.6, governance = 0.4 }
+
+[role_profiles.home-health-aide]
+service_id = "community"
+capabilities = { care = 0.8, governance = 0.2 }
+
+[role_profiles.custodian]
+service_id = "infrastructure"
+capabilities = { maintenance = 0.85, construction = 0.15 }
+
+[role_profiles.groundskeeper]
+service_id = "infrastructure"
+capabilities = { maintenance = 0.85, construction = 0.15 }
+
+[role_profiles.agricultural-worker]
+service_id = "livelihoods"
+capabilities = { food = 0.85, research = 0.15 }
+
+[[projects]]
+id = "community-clinic"
+eligible_roles = ["family-medicine-physician", "geriatrician", "emergency-medicine-physician", "general-pediatrician", "general-surgeon", "cardiac-surgeon", "congenital-heart-surgeon", "thoracic-surgeon", "neurosurgeon", "orthopedic-surgeon", "transplant-surgeon", "vascular-surgeon", "cardiologist", "oncologist", "neurologist", "nephrologist", "pulmonologist", "endocrinologist", "infectious-disease-physician", "interventional-cardiologist", "electrophysiologist", "radiologist", "pathologist", "anesthesiologist", "psychiatrist", "rehabilitation-physician", "registered-nurse", "physical-therapist", "clinical-pharmacist", "dentist", "home-health-aide", "social-worker", "clinical-social-worker", "community-health-worker", "healthcare-administrator"]
+name = "Community clinic"
+service_id = "health"
+requirements = { clinical = 0.35, nursing = 0.35, care = 0.15 }
+facility_bonus = 0.35
+description = "Establish a coordinated clinic with qualified clinical, nursing, and support capacity."
+
+[[projects]]
+id = "learning-center"
+eligible_roles = ["gpu-rtl-design-engineer", "asic-digital-design-engineer", "gpu-formal-verification-engineer", "fpga-design", "physical-design-engineer", "dft-engineer", "embedded-systems-engineer", "control-systems-engineer", "rf-engineer", "graduate-traffic-engineer", "rail-engineer", "bridge-engineer", "structural-engineering", "water-resources-engineer", "water-treatment-engineer", "geotechnical-engineer", "hvac-design-engineer", "mechanical-design-engineer", "robotics-engineer", "manufacturing-engineer", "thermal-engineer", "software-developer", "security-engineer", "sre-engineer", "process-engineer", "bioprocess-engineer", "aircraft-systems-engineer", "space-systems-engineer", "medical-device-engineer", "prosthetics-engineer", "industrial-engineer", "public-defender", "prosecutor", "appellate-attorney", "corporate-associate", "environmental-attorney", "civil-rights-attorney", "legal-aid-attorney", "immigration-attorney", "patent-attorney", "privacy-attorney", "labor-attorney", "tax-attorney", "family-law-attorney", "estate-attorney", "cell-biology-scientist", "immunologist", "geneticist", "neuroscientist", "clinical-trial-scientist", "research-physicist", "photonics-scientist", "quantum-scientist", "astrophysicist", "environmental-scientist", "data-scientist", "analytical-chemist", "materials-scientist", "medicinal-chemist", "climate-scientist", "geologist", "hydrologist", "ecologist", "biostatistician", "operations-research-scientist", "fp-and-a-analyst", "investment-analyst", "risk-manager", "actuary", "product-marketing-manager", "supply-chain-analyst", "product-manager", "small-business-owner", "accountant", "auditor", "operations-manager", "human-resources-manager", "organizational-development-specialist", "social-enterprise-founder", "healthcare-administrator", "construction-manager", "elementary-teacher", "special-education-teacher", "secondary-teacher", "teacher-assistant", "vocational-instructor", "adult-educator", "university-lecturer", "librarian", "graphic-designer", "ux-designer", "journalist", "technical-writer", "film-director", "musician", "game-designer", "museum-conservator", "social-worker", "clinical-social-worker", "community-health-worker", "career-counselor", "emergency-manager", "public-safety-officer", "farmer", "forester", "agronomist", "chef", "baker", "hotel-manager", "event-planner", "childcare-worker", "sales-representative", "real-estate-agent", "customer-service-specialist", "administrative-coordinator", "bookkeeper", "medical-records-specialist", "warehouse-technician", "military-logistics-specialist", "military-communications-specialist", "home-health-aide", "agricultural-worker"]
+name = "Learning and apprenticeship center"
+service_id = "learning"
+requirements = { teaching = 0.5, research = 0.2, governance = 0.2 }
+facility_bonus = 0.35
+description = "Build a lasting place for instruction, practical learning, and career development."
+
+[[projects]]
+id = "water-works"
+eligible_roles = ["water-resources-engineer", "water-treatment-engineer", "geotechnical-engineer", "structural-engineering", "service-plumber", "pipefitter", "commercial-electrician", "industrial-electrician", "protection-engineer", "control-systems-engineer", "industrial-mechanic", "construction-manager", "carpenter", "structural-welder"]
+name = "Community water works"
+service_id = "infrastructure"
+requirements = { water = 0.4, design = 0.2, construction = 0.25, maintenance = 0.15, electrical = 0.15 }
+facility_bonus = 0.35
+description = "Commission a maintained water service with design, installation, controls, and upkeep."
+
+[[projects]]
+id = "local-crossing"
+eligible_roles = ["structural-engineering", "bridge-engineer", "geotechnical-engineer", "graduate-traffic-engineer", "rail-engineer", "carpenter", "structural-welder", "mason", "construction-manager", "industrial-mechanic"]
+name = "Local bridge and crossing"
+service_id = "infrastructure"
+requirements = { design = 0.35, construction = 0.5, maintenance = 0.15 }
+facility_bonus = 0.2
+description = "Build a local crossing suited to this 500-resident starting scenario. Century-scale regional bridge estimates remain separate career scenarios."
+
+[[projects]]
+id = "food-cooperative"
+eligible_roles = ["emergency-medicine-physician", "public-defender", "prosecutor", "appellate-attorney", "corporate-associate", "environmental-attorney", "civil-rights-attorney", "legal-aid-attorney", "immigration-attorney", "patent-attorney", "privacy-attorney", "labor-attorney", "tax-attorney", "family-law-attorney", "estate-attorney", "environmental-scientist", "climate-scientist", "geologist", "ecologist", "fp-and-a-analyst", "investment-analyst", "risk-manager", "actuary", "product-marketing-manager", "supply-chain-analyst", "product-manager", "small-business-owner", "accountant", "auditor", "operations-manager", "human-resources-manager", "organizational-development-specialist", "social-enterprise-founder", "healthcare-administrator", "construction-manager", "social-worker", "clinical-social-worker", "community-health-worker", "career-counselor", "firefighter", "paramedic", "emergency-manager", "public-safety-officer", "farmer", "forester", "agronomist", "veterinarian", "chef", "baker", "hotel-manager", "event-planner", "childcare-worker", "sales-representative", "real-estate-agent", "customer-service-specialist", "administrative-coordinator", "bookkeeper", "medical-records-specialist", "airline-pilot", "air-traffic-controller", "ship-captain", "truck-driver", "transit-operator", "warehouse-technician", "military-logistics-specialist", "military-communications-specialist", "home-health-aide", "agricultural-worker"]
+name = "Community food cooperative"
+service_id = "livelihoods"
+requirements = { food = 0.4, logistics = 0.3, governance = 0.2 }
+facility_bonus = 0.35
+description = "Coordinate local production, dependable distribution, and accountable operations."
+
+[[projects]]
+id = "emergency-network"
+eligible_roles = ["gpu-rtl-design-engineer", "asic-digital-design-engineer", "gpu-formal-verification-engineer", "fpga-design", "physical-design-engineer", "dft-engineer", "embedded-systems-engineer", "control-systems-engineer", "rf-engineer", "graduate-traffic-engineer", "rail-engineer", "bridge-engineer", "structural-engineering", "geotechnical-engineer", "hvac-design-engineer", "mechanical-design-engineer", "robotics-engineer", "manufacturing-engineer", "thermal-engineer", "software-developer", "security-engineer", "sre-engineer", "process-engineer", "bioprocess-engineer", "aircraft-systems-engineer", "space-systems-engineer", "medical-device-engineer", "prosthetics-engineer", "industrial-engineer", "family-medicine-physician", "geriatrician", "emergency-medicine-physician", "general-pediatrician", "general-surgeon", "cardiac-surgeon", "congenital-heart-surgeon", "thoracic-surgeon", "neurosurgeon", "orthopedic-surgeon", "transplant-surgeon", "vascular-surgeon", "cardiologist", "oncologist", "neurologist", "nephrologist", "pulmonologist", "endocrinologist", "infectious-disease-physician", "interventional-cardiologist", "electrophysiologist", "radiologist", "pathologist", "anesthesiologist", "psychiatrist", "rehabilitation-physician", "physical-therapist", "clinical-pharmacist", "dentist", "public-defender", "prosecutor", "appellate-attorney", "corporate-associate", "environmental-attorney", "civil-rights-attorney", "legal-aid-attorney", "immigration-attorney", "patent-attorney", "privacy-attorney", "labor-attorney", "tax-attorney", "family-law-attorney", "estate-attorney", "commercial-electrician", "structural-welder", "service-plumber", "lineworker", "industrial-electrician", "solar-installer", "hvac-technician", "pipefitter", "refrigeration-technician", "carpenter", "mason", "elevator-technician", "cnc-machinist", "industrial-mechanic", "automotive-technician", "environmental-scientist", "climate-scientist", "geologist", "ecologist", "fp-and-a-analyst", "investment-analyst", "risk-manager", "actuary", "product-marketing-manager", "supply-chain-analyst", "product-manager", "small-business-owner", "accountant", "auditor", "operations-manager", "human-resources-manager", "organizational-development-specialist", "social-enterprise-founder", "healthcare-administrator", "construction-manager", "social-worker", "clinical-social-worker", "community-health-worker", "career-counselor", "firefighter", "paramedic", "emergency-manager", "public-safety-officer", "forester", "chef", "baker", "hotel-manager", "event-planner", "childcare-worker", "sales-representative", "real-estate-agent", "customer-service-specialist", "administrative-coordinator", "bookkeeper", "medical-records-specialist", "airline-pilot", "air-traffic-controller", "ship-captain", "truck-driver", "transit-operator", "warehouse-technician", "military-logistics-specialist", "military-communications-specialist", "home-health-aide", "custodian", "groundskeeper"]
+name = "Emergency response network"
+service_id = "resilience"
+requirements = { clinical = 0.2, logistics = 0.3, governance = 0.25, maintenance = 0.2 }
+facility_bonus = 0.35
+description = "Connect trained responders, logistics, planning, and maintained equipment."
+
+[[projects]]
+id = "community-center"
+eligible_roles = ["family-medicine-physician", "geriatrician", "general-pediatrician", "general-surgeon", "cardiac-surgeon", "congenital-heart-surgeon", "thoracic-surgeon", "neurosurgeon", "orthopedic-surgeon", "transplant-surgeon", "vascular-surgeon", "cardiologist", "oncologist", "neurologist", "nephrologist", "pulmonologist", "endocrinologist", "infectious-disease-physician", "interventional-cardiologist", "electrophysiologist", "radiologist", "pathologist", "anesthesiologist", "psychiatrist", "rehabilitation-physician", "registered-nurse", "physical-therapist", "clinical-pharmacist", "dentist", "public-defender", "prosecutor", "appellate-attorney", "corporate-associate", "environmental-attorney", "civil-rights-attorney", "legal-aid-attorney", "immigration-attorney", "patent-attorney", "privacy-attorney", "labor-attorney", "tax-attorney", "family-law-attorney", "estate-attorney", "environmental-scientist", "climate-scientist", "geologist", "ecologist", "fp-and-a-analyst", "investment-analyst", "risk-manager", "actuary", "product-marketing-manager", "supply-chain-analyst", "product-manager", "small-business-owner", "accountant", "auditor", "operations-manager", "human-resources-manager", "organizational-development-specialist", "social-enterprise-founder", "healthcare-administrator", "construction-manager", "graphic-designer", "ux-designer", "journalist", "technical-writer", "film-director", "musician", "game-designer", "museum-conservator", "social-worker", "clinical-social-worker", "community-health-worker", "career-counselor", "emergency-manager", "public-safety-officer", "forester", "chef", "baker", "hotel-manager", "event-planner", "barber", "childcare-worker", "fitness-trainer", "funeral-director", "sales-representative", "real-estate-agent", "customer-service-specialist", "administrative-coordinator", "bookkeeper", "medical-records-specialist", "warehouse-technician", "military-logistics-specialist", "military-communications-specialist", "home-health-aide"]
+name = "Community and cultural center"
+service_id = "community"
+requirements = { care = 0.3, culture = 0.4, governance = 0.2 }
+facility_bonus = 0.35
+description = "Create a shared institution for care, participation, culture, and community trust."

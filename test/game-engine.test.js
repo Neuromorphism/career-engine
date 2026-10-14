@@ -10,6 +10,8 @@ import {
   chooseNode,
   completeLearningActivity,
   completeProject,
+  completeImpactAction,
+  impactActionsForState,
   createInitialState,
   currentLearningActivity,
   currentNode,
@@ -40,12 +42,13 @@ function chooseAndComplete(state, nodeId) {
   return completeProject(next);
 }
 
-test("the first interaction is a choice among six fields", () => {
+test("the first interaction offers the expanded fields and preserves the original six", () => {
   const state = createInitialState();
   assert.equal(state.path.length, 0);
-  assert.deepEqual(availableChoices(state).map((node) => node.name), [
+  assert.deepEqual(availableChoices(state).slice(0, 6).map((node) => node.name), [
     "Engineering", "Medicine", "Law", "Skilled Trades", "Science", "Business",
   ]);
+  assert.equal(availableChoices(state).length, 15);
   assert.equal(work(state), state);
 });
 
@@ -57,7 +60,7 @@ test("choosing a field immediately starts its small starter project", () => {
 
 test("the next specialization stays locked until training and the applied brief are complete", () => {
   let state = chooseNode(createInitialState(), "engineering");
-  assert.equal(availableChoices(state).length, 3);
+  assert.equal(availableChoices(state).length, 8);
   assert.equal(choicesUnlocked(state), false);
   assert.equal(chooseNode(state, "electrical-engineering"), state);
   state = { ...state, mastery: 100 };
@@ -98,7 +101,7 @@ test("completed learning activities produce mastery over time", () => {
   assert.equal(state.mastery, 1.4);
 });
 
-test("medical specialties require medical school completion", () => {
+test("clinical specialties require foundation training completion", () => {
   let state = chooseNode(createInitialState(), "medicine");
   assert.equal(availableChoices(state).some((node) => node.id === "surgery"), true);
   assert.equal(chooseNode(state, "surgery"), state);
@@ -191,4 +194,139 @@ test("all tree ids are unique and every node has a specific curriculum", () => {
   visit(careerTree);
   assert.equal(new Set(ids).size, ids.length);
   assert.equal(leaves.every((node) => node.jobTitle && node.projects?.length && node.evidence?.length), true);
+});
+
+
+test("every expanded career is reachable and its impact missions obey prerequisites", () => {
+  let leaves = 0;
+  const visit = (nodes, state) => {
+    for (const node of nodes) {
+      let next = completeTraining(chooseNode(state, node.id));
+      assert.equal(currentNode(next).id, node.id);
+      while (currentProject(next)) {
+        next = { ...next, mastery: Math.max(next.mastery, currentProject(next).requirement) };
+        next = completeProject(next);
+      }
+      if (node.children?.length) { visit(node.children, next); continue; }
+      leaves++;
+      assert.equal(node.impactActions.length, 3);
+      // Completing later missions first remains impossible, even with enough mastery.
+      next = { ...next, mastery: 8000 };
+      assert.equal(completeImpactAction(next, node.impactActions[2].id), next);
+      for (const action of node.impactActions) {
+        assert.equal(impactActionsForState(next).find(a => a.id === action.id).unlocked, true);
+        const rate = practiceRate(next);
+        const previousMastery = next.mastery;
+        next = completeImpactAction(next, action.id);
+        assert.equal(next.mastery, previousMastery + action.reward);
+        assert.ok(Math.abs(practiceRate(next) - rate - action.rate) < 1e-9);
+        assert.equal(completeImpactAction(next, action.id), next);
+      }
+      const restored = hydrateState(next);
+      assert.deepEqual(restored.completedImpactKeys, next.completedImpactKeys);
+      assert.ok(impactActionsForState(restored).every(action => action.done));
+    }
+  };
+  visit(careerTree, createInitialState());
+  assert.equal(leaves, 182);
+});
+
+test("impact gates enforce role training, work samples, and exact mastery thresholds", () => {
+  let state = chooseAndComplete(createInitialState(), "trades");
+  state = chooseNode(state, "service-plumber");
+  const id = currentNode(state).impactActions[0].id;
+  state = { ...state, mastery: 10000 };
+  assert.equal(completeImpactAction(state, id), state);
+  state = completeTraining(state);
+  assert.equal(completeImpactAction(state, id), state);
+  state = completeProject(state);
+  state = { ...state, mastery: 299 };
+  assert.equal(completeImpactAction(state, id), state);
+  state = { ...state, mastery: 300 };
+  const next = completeImpactAction(state, id);
+  assert.notEqual(next, state);
+  assert.equal(next.mastery, 380);
+});
+
+test("old completed saves can continue into career legacy missions", () => {
+  let state = chooseAndComplete(createInitialState(), "trades");
+  state = chooseAndComplete(state, "service-plumber");
+  state = { ...state, mastery: GOAL_MASTERY };
+  delete state.completedImpactKeys;
+  const restored = hydrateState(state);
+  assert.equal(restored.careerComplete, true);
+  assert.deepEqual(restored.completedImpactKeys, []);
+  assert.equal(impactActionsForState(restored)[0].unlocked, true);
+});
+
+test("every training step offers three distinct choices with their own lasting rewards", () => {
+  const visit = (nodes) => {
+    for (const node of nodes) {
+      const track = learningTrackForNode(node);
+      assert.ok(track.activities.every(activity => activity.choices.length === 3));
+      for (const activity of track.activities) {
+        assert.equal(new Set(activity.choices.map(choice => choice.id)).size, 3);
+        assert.equal(new Set(activity.choices.map(choice => choice.title)).size, 3);
+      }
+      if (node.children?.length) visit(node.children);
+    }
+  };
+  visit(careerTree);
+  const initial = chooseNode(createInitialState(), "engineering");
+  const activity = currentLearningActivity(initial);
+  for (const choice of activity.choices) {
+    const next = completeLearningActivity(initial, "engineering", activity.index, choice.id);
+    assert.equal(next.mastery, choice.reward);
+    assert.equal(practiceRate(next), choice.rate);
+    assert.equal(next.learningChoices[activity.key], choice.id);
+    assert.equal(completeLearningActivity(next, "engineering", activity.index, choice.id), next);
+    assert.equal(practiceRate(hydrateState(next)), choice.rate);
+  }
+  assert.equal(completeLearningActivity(initial, "engineering", activity.index, "not-a-choice"), initial);
+});
+
+test("all three contribution choices work at every career milestone, including after reload", () => {
+  const visit = (nodes, state) => {
+    for (const node of nodes) {
+      let next = completeTraining(chooseNode(state, node.id));
+      while (currentProject(next)) {
+        next = { ...next, mastery: Math.max(next.mastery, currentProject(next).requirement) };
+        next = completeProject(next);
+      }
+      if (node.children?.length) { visit(node.children, next); continue; }
+      next = { ...next, mastery: 8000 };
+      for (const action of node.impactActions) {
+        assert.equal(action.choices.length, 3);
+        assert.equal(new Set(action.choices.map(choice => choice.title)).size, 3);
+        assert.equal(completeImpactAction(next, action.id, "not-a-choice"), next);
+        const baselineRate = practiceRate(next);
+        for (const choice of action.choices) {
+          const chosen = completeImpactAction(next, action.id, choice.id);
+          assert.equal(chosen.mastery, next.mastery + choice.reward);
+          assert.ok(Math.abs(practiceRate(chosen) - baselineRate - choice.rate) < 1e-9);
+          assert.equal(chosen.impactChoices[action.id], choice.id);
+          const restored = hydrateState(chosen);
+          const milestone = impactActionsForState(restored).find(item => item.id === action.id);
+          assert.equal(milestone.selectedChoice.id, choice.id);
+          assert.equal(completeImpactAction(restored, action.id, action.choices[0].id), restored);
+          assert.ok(Math.abs(practiceRate(restored) - practiceRate(chosen)) < 1e-9);
+        }
+        next = completeImpactAction(next, action.id, action.choices[2].id);
+      }
+    }
+  };
+  visit(careerTree, createInitialState());
+});
+
+test("legacy completions retain their original practice rates and project outcomes", () => {
+  let state = chooseAndComplete(createInitialState(), "trades");
+  state = chooseAndComplete(state, "service-plumber");
+  state = { ...state, mastery: 8000 };
+  state = completeImpactAction(state, currentNode(state).impactActions[0].id);
+  const originalRate = practiceRate(state);
+  delete state.learningChoices;
+  delete state.impactChoices;
+  const restored = hydrateState(state);
+  assert.equal(practiceRate(restored), originalRate);
+  assert.equal(impactActionsForState(restored)[0].selectedChoice.id, currentNode(restored).impactActions[0].choices[0].id);
 });
