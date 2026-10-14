@@ -115,11 +115,11 @@ test("surgical cases are sequential and locked behind the residency milestone", 
   let state = chooseAndComplete(createInitialState(), "medicine");
   state = chooseNode(state, "surgery");
   const track = learningTrackForNode(currentNode(state), state.path.length);
-  assert.equal(track.activities[0].title, "Begin surgical residency");
-  assert.equal(currentLearningActivity(state).title, "Begin surgical residency");
+  assert.equal(track.activities[0].choices[0].title, "Begin surgical residency");
+  assert.equal(currentLearningActivity(state).choices[0].title, "Begin surgical residency");
   assert.equal(completeLearningActivity(state, "surgery", 2), state);
   state = completeLearningActivity(state, "surgery", 0);
-  assert.equal(currentLearningActivity(state).title, "Evaluate a surgical consult");
+  assert.equal(currentLearningActivity(state).choices[0].title, "Evaluate a surgical consult");
 });
 
 test("the AI rival pauses for supervised surgical practice", () => {
@@ -179,7 +179,7 @@ test("legacy paths treat previously passed training stages as complete", () => {
   });
   const priorKeys = learningTrackForNode(careerTree[0], 1).activities.map((activity) => activity.key);
   assert.equal(priorKeys.every((key) => state.completedLearningKeys.includes(key)), true);
-  assert.equal(currentLearningActivity(state).title, "Minimize a control function");
+  assert.equal(currentLearningActivity(state).choices[0].title, "Minimize a control function");
 });
 
 test("all tree ids are unique and every node has a specific curriculum", () => {

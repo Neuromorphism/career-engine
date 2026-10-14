@@ -1,8 +1,8 @@
-import { startCareerApp } from '../src/app.js?v=0.9.1';
-import { showLoadError, downloadJSON } from '../src/career-ui.js?v=0.9.1';
-import { createWorldStore } from './save-store.js?v=0.9.0';
-import { activeCitizen, addCitizen, switchCitizen, assignCitizen, renameWorld, commissionProject, hydrateWorld } from './world-engine.js?v=0.9.0';
-import { mountWorldUI, renderWorldUI, worldFeedback } from './world-ui.js?v=0.9.1';
+import { startCareerApp } from '../src/app.js?v=0.10.0';
+import { showLoadError, downloadJSON } from '../src/career-ui.js?v=0.10.0';
+import { createWorldStore } from './save-store.js?v=0.10.0';
+import { activeCitizen, addCitizen, switchCitizen, assignCitizen, renameWorld, commissionProject, hydrateWorld } from './world-engine.js?v=0.10.0';
+import { mountWorldUI, renderWorldUI, worldFeedback } from './world-ui.js?v=0.10.0';
 const store = createWorldStore();
 let app, mounted = false;
 function changeWorld(transform, message) {

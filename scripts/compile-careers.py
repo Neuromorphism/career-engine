@@ -40,7 +40,11 @@ def compile_data(data):
  def validate_choices(choices, owner, training=False):
   if not 2 <= len(choices) <= 3:raise ValueError(f'{owner} needs two or three action choices')
   if len({choice['title'] for choice in choices}) != len(choices):raise ValueError(f'{owner} needs distinct choice titles')
+  subjects=[choice.get('task_subject') for choice in choices]
+  if any(not isinstance(subject,str) or not subject.strip() for subject in subjects):raise ValueError('Missing task subject')
+  if len({subject.strip().casefold() for subject in subjects}) != len(choices):raise ValueError(f'{owner} needs different task subjects')
   for choice in choices:
+   if choice['title'].startswith(('Investigate:','Rehearse together:','Improve the evidence for:','Prepare a team for:')):raise ValueError('Repeated task approach template')
    if choice['id'] in choice_ids:raise ValueError('Duplicate action choice ID')
    choice_ids.add(choice['id'])
    if not choice['description']:raise ValueError('Missing choice description')

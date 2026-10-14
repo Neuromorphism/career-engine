@@ -17,15 +17,15 @@ import {
   pathNodes,
   practiceRate,
   tick,
-} from "./game-engine.js?v=0.9.0";
+} from "./game-engine.js?v=0.10.0";
 
-import { careerTree } from "./careers.js?v=0.9.0";
-import { careerRoutes, careerTransitions, careerStats } from "./career-data.js?v=0.9.0";
-import { evaluateImpact } from "./impact-models.js?v=0.9.0";
+import { careerTree } from "./careers.js?v=0.10.0";
+import { careerRoutes, careerTransitions, careerStats } from "./career-data.js?v=0.10.0";
+import { evaluateImpact } from "./impact-models.js?v=0.10.0";
 
-import { mountCareerUI, escapeHtml as e } from "./career-ui.js?v=0.9.1";
-import { workOptionsForState, completedWorkForState } from "./work-options.js?v=0.9.1";
-import { createCareerStore } from "./save-store.js?v=0.9.0";
+import { mountCareerUI, escapeHtml as e } from "./career-ui.js?v=0.10.0";
+import { workOptionsForState, completedWorkForState } from "./work-options.js?v=0.10.0";
+import { createCareerStore } from "./save-store.js?v=0.10.0";
 
 export function startCareerApp({ mode = 'single', store = createCareerStore(mode), onChange = () => {}, onAddCitizen = () => {} } = {}) {
 mountCareerUI(mode);

@@ -130,16 +130,22 @@ test('shared projects require a real team and are commissioned and credited exac
   assert.ok(Math.abs(worldMetrics(restored).services.find(s=>s.id==='infrastructure').facility - .85) < 1e-9);
 });
 
-test('research and mentoring improve bounded reliability without inventing project delivery or workers', () => {
-  let career=careerAt('registered-nurse');
-  for (const action of findNode(career.path).impactActions) career=completeImpactAction(career,action.id,action.choices[1].id);
-  const world=createWorld(undefined,career);
-  const metrics=worldMetrics(world);
-  const health=metrics.services.find(s=>s.id==='health');
-  assert.equal(health.choiceCounts.research,3);
-  assert.ok(health.reliability>.85);
-  assert.equal(metrics.namedCitizens,1);
-  assert.equal(Object.keys(world.projects).length,0);
+test('distinct career contributions support bounded reliability regardless of historical ID suffix', () => {
+  const reliabilities = [];
+  for (let index = 0; index < 3; index++) {
+    let career = careerAt('registered-nurse');
+    for (const action of findNode(career.path).impactActions) career = completeImpactAction(career, action.id, action.choices[index].id);
+    let world = createWorld(undefined, career);
+    const metrics = worldMetrics(world), health = metrics.services.find(s => s.id === 'health');
+    assert.equal(health.completedContributions, 3);
+    assert.ok(health.reliability > .85 && health.reliability <= 1);
+    assert.equal(metrics.namedCitizens, 1);
+    assert.equal(Object.keys(world.projects).length, 0);
+    reliabilities.push(health.reliability);
+    world = assignCitizen(world, world.activeCitizenId, null, .5);
+    assert.equal(worldMetrics(world).services.find(s => s.id === 'health').completedContributions, 1.5);
+  }
+  assert.equal(new Set(reliabilities).size, 1);
 });
 
 test('all shared career endpoints have valid profiles and at least one usable assignment', () => {

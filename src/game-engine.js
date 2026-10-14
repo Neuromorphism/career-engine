@@ -1,6 +1,6 @@
-import { careerTree, fieldForPath, findNode, findNodeById, nodesForPath } from "./careers.js?v=0.9.0";
-import { curriculumFor } from "./curricula.js?v=0.9.0";
-import { rivalProfileForPath } from "./ai-rival.js?v=0.9.0";
+import { careerTree, fieldForPath, findNode, findNodeById, nodesForPath } from "./careers.js?v=0.10.0";
+import { curriculumFor } from "./curricula.js?v=0.10.0";
+import { rivalProfileForPath } from "./ai-rival.js?v=0.10.0";
 
 export const SAVE_KEY = "career-engine-save-v3";
 export const AI_SAVE_KEY = "career-engine-ai-save-v1";
@@ -20,6 +20,9 @@ export function createInitialState() {
     completedImpactKeys: [],
     learningChoices: {},
     impactChoices: {},
+    learningChoiceTitles: {},
+    impactChoiceTitles: {},
+    impactChoiceOutcomes: {},
     careerComplete: false,
     raceWinner: null,
     lastMessage: "Choose a field. You can refine the direction after trying a small piece of its work.",
@@ -47,6 +50,9 @@ export function hydrateState(input) {
     completedImpactKeys: Array.isArray(input.completedImpactKeys) ? input.completedImpactKeys.filter(key => typeof key === "string") : [],
     learningChoices: choiceRecord(input.learningChoices),
     impactChoices: choiceRecord(input.impactChoices),
+    learningChoiceTitles: choiceRecord(input.learningChoiceTitles),
+    impactChoiceTitles: choiceRecord(input.impactChoiceTitles),
+    impactChoiceOutcomes: choiceRecord(input.impactChoiceOutcomes),
     careerComplete: Boolean(input.careerComplete),
     raceWinner: input.raceWinner === "player" || input.raceWinner === "ai" ? input.raceWinner : null,
     lastMessage: typeof input.lastMessage === "string" ? input.lastMessage : fresh.lastMessage,
@@ -164,6 +170,7 @@ export function completeLearningActivity(state, nodeId, activityIndex, choiceId 
     actions: state.actions + 1,
     completedLearningKeys: [...state.completedLearningKeys, nextActivity.key],
     learningChoices: { ...state.learningChoices, [nextActivity.key]: choice.id },
+    learningChoiceTitles: { ...state.learningChoiceTitles, [nextActivity.key]: choice.title },
     lastMessage: `${choice.title} complete. +${choice.reward} mastery and +${choice.rate}/sec practice capacity.`,
   });
 }
@@ -333,6 +340,8 @@ export function completeImpactAction(state, actionId, choiceId = null) {
     actions: state.actions + 1,
     completedImpactKeys: [...state.completedImpactKeys, action.id],
     impactChoices: { ...state.impactChoices, [action.id]: choice.id },
+    impactChoiceTitles: { ...state.impactChoiceTitles, [action.id]: choice.title },
+    impactChoiceOutcomes: { ...state.impactChoiceOutcomes, [action.id]: choice.outcome },
     lastMessage: `${choice.title} complete. ${choice.outcome} +${choice.reward} mastery; +${choice.rate}/sec practice capacity.`,
   });
 }

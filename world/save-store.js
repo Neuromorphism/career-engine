@@ -1,5 +1,5 @@
-import { SAVE_KEY } from '../src/game-engine.js?v=0.9.0';
-import { WORLD_SAVE_KEY, createWorld, hydrateWorld, activeCitizen, updateActiveCareer, tickWorld } from './world-engine.js?v=0.9.0';
+import { SAVE_KEY } from '../src/game-engine.js?v=0.10.0';
+import { WORLD_SAVE_KEY, createWorld, hydrateWorld, activeCitizen, updateActiveCareer, tickWorld } from './world-engine.js?v=0.10.0';
 export function createWorldStore(storage = localStorage, now = () => Date.now()) {
   let world;
   return {

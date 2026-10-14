@@ -22,7 +22,7 @@ def compile_world():
   if not project.get('eligible_roles') or set(project['eligible_roles'])-occupations:raise ValueError('Unknown or missing qualified project roles')
   if any(not any(data['role_profiles'][role]['capabilities'].get(capability,0)>0 for role in project['eligible_roles']) for capability in project['requirements']):raise ValueError('Project lacks an eligible role for a required capability')
   if project['service_id'] not in services or not 0<project['facility_bonus']<=1:raise ValueError('Invalid project service or benefit')
- for key in ['baseline_coverage','facility_capacity','reliability','research_bonus_cap','mentoring_bonus_cap']:
+ for key in ['baseline_coverage','facility_capacity','reliability','experience_bonus_cap','experience_bonus_per_milestone']:
   if not 0<=data['scenario'][key]<=1:raise ValueError('Invalid world balance parameter')
  if data['scenario']['baseline_population']<1 or data['scenario']['competence_mastery']<=0:raise ValueError('Invalid world scale')
  return '// Generated from data/world.toml. Run npm run compile; do not edit.\n// Source SHA-256: '+hashlib.sha256(source).hexdigest()+'\nexport const worldData = '+json.dumps(data,ensure_ascii=False,indent=2)+';\n'

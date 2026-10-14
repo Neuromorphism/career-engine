@@ -1,5 +1,5 @@
 // Generated from data/world.toml. Run npm run compile; do not edit.
-// Source SHA-256: 3529cbadead3827aed3ac6fe91d615499255381b90c9ed886582c162caf526b4
+// Source SHA-256: 28e95db63c5abc7ea833214895a87aec7ed42a1150b4be244825bba6347b7fb1
 export const worldData = {
   "scenario": {
     "id": "founders-settlement",
@@ -9,10 +9,8 @@ export const worldData = {
     "facility_capacity": 0.65,
     "reliability": 0.85,
     "competence_mastery": 10000,
-    "research_bonus_per_choice": 0.02,
-    "research_bonus_cap": 0.1,
-    "mentoring_bonus_per_choice": 0.01,
-    "mentoring_bonus_cap": 0.05
+    "experience_bonus_per_milestone": 0.015,
+    "experience_bonus_cap": 0.15
   },
   "capabilities": {
     "clinical": {

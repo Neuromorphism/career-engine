@@ -9,3 +9,5 @@ The selector does not change rewards, prerequisites, save schemas, or source dat
 World management and AI competition details are collapsed overview panels. The active citizen label stays outside the world overview; adding or switching citizens closes the overview and returns to that citizen's career. The header's Add citizen control opens and focuses the creation form. Shared world projects remain world management controls.
 
 Validation: existing engine/world/impact tests; new selector tests for ordered work, prerequisite gates, all three impact choices, and legacy history; generated-data and JavaScript checks. Browser checks cover exactly two career sections in all modes, training-to-project and impact transitions, history reload, citizen adding/switching and save isolation, AI progress, root redirect, and 390px mobile layout. No runtime or resource errors appeared.
+
+The v0.10.0 action-content revision is documented in `11-distinct-career-tasks.md`; it preserves this two-section interface while replacing the repeated task approaches.

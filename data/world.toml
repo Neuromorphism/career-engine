@@ -7,10 +7,8 @@ baseline_coverage = 0.15
 facility_capacity = 0.65
 reliability = 0.85
 competence_mastery = 10000
-research_bonus_per_choice = 0.02
-research_bonus_cap = 0.10
-mentoring_bonus_per_choice = 0.01
-mentoring_bonus_cap = 0.05
+experience_bonus_per_milestone = 0.015
+experience_bonus_cap = 0.15
 
 [capabilities.clinical]
 label = "Clinical practice"

@@ -97,7 +97,7 @@ const TEMPLATE = `    <div class="page-shell">
 
       <footer>
         <p>An exploratory prototype. It suggests activities to investigate; it does not tell you who to become.</p>
-        <span>v0.9.1 · progress stays in this browser</span>
+        <span>v0.10.0 · progress stays in this browser</span>
       </footer>
     </div>
 `;

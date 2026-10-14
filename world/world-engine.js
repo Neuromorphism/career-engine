@@ -1,5 +1,5 @@
-import { createInitialState, hydrateState, currentNode, currentProject, isLeaf, learningTrackComplete, tick } from '../src/game-engine.js?v=0.9.0';
-import { worldData } from './world-data.js?v=0.9.0';
+import { createInitialState, hydrateState, currentNode, currentProject, isLeaf, learningTrackComplete, tick } from '../src/game-engine.js?v=0.10.0';
+import { worldData } from './world-data.js?v=0.10.0';
 export { worldData };
 export const WORLD_SAVE_KEY = 'career-engine-world-save-v1';
 const cleanName = (value, fallback) => typeof value === 'string' && value.trim() ? value.trim().slice(0, 80) : fallback;
@@ -88,21 +88,14 @@ export function assignCitizen(world, id, assignment, availability) {
   if (assignment?.startsWith('project:') && world.projects[assignment.slice(8)]) return world;
   return { ...world, citizens: world.citizens.map(c => c.id === id ? { ...c, assignment, availability } : c) };
 }
-function choiceCounts(citizen) {
-  const counts = { research: 0, mentoring: 0 };
-  if (!citizenReady(citizen)) return counts;
-  for (const action of currentNode(citizen.career).impactActions) {
-    if (!citizen.career.completedImpactKeys.includes(action.id)) continue;
-    const choice = action.choices.find(c => c.id === citizen.career.impactChoices[action.id]) || action.choices[0];
-    if (choice.id.endsWith(':improve')) counts.research++;
-    if (choice.id.endsWith(':teach')) counts.mentoring++;
-  }
-  return counts;
+function completedContributions(citizen) {
+  if (!citizenReady(citizen)) return 0;
+  return currentNode(citizen.career).impactActions.filter(action => citizen.career.completedImpactKeys.includes(action.id)).length;
 }
 export function worldMetrics(world) {
   const pools = Object.fromEntries(worldData.services.map(s => [s.id, {}]));
   const contributors = Object.fromEntries(worldData.services.map(s => [s.id, []]));
-  const counts = Object.fromEntries(worldData.services.map(s => [s.id, { research: 0, mentoring: 0 }]));
+  const counts = Object.fromEntries(worldData.services.map(s => [s.id, 0]));
   for (const citizen of world.citizens) {
     const assignment = citizenAssignment(citizen);
     if (!assignment?.startsWith('service:')) continue;
@@ -118,9 +111,7 @@ export function worldMetrics(world) {
     }
     if (contributed) {
       contributors[sid].push({ citizenId: citizen.id, name: citizen.name, capabilities: contribution });
-      const chosen = choiceCounts(citizen);
-      counts[sid].research += chosen.research * citizen.availability;
-      counts[sid].mentoring += chosen.mentoring * citizen.availability;
+      counts[sid] += completedContributions(citizen) * citizen.availability;
     }
   }
   const scenario = worldData.scenario;
@@ -132,13 +123,13 @@ export function worldMetrics(world) {
     });
     const bonus = worldData.projects.filter(p => p.service_id === service.id && world.projects[p.id]).reduce((sum,p) => sum + p.facility_bonus, 0);
     const facility = Math.min(1, scenario.facility_capacity + bonus);
-    const reliability = Math.min(1, scenario.reliability + Math.min(scenario.research_bonus_cap, counts[service.id].research * scenario.research_bonus_per_choice) + Math.min(scenario.mentoring_bonus_cap, counts[service.id].mentoring * scenario.mentoring_bonus_per_choice));
+    const reliability = Math.min(1, scenario.reliability + Math.min(scenario.experience_bonus_cap, counts[service.id] * scenario.experience_bonus_per_milestone));
     const workforce = Math.min(...ratios.map(row => row.ratio));
     const coverage = Math.min(1, facility, workforce) * reliability;
     const baselineCoverage = Math.min(1, scenario.facility_capacity, scenario.baseline_coverage) * scenario.reliability;
     const capacity = ratios.reduce((sum,row) => sum + row.ratio, 0) / ratios.length;
     const limiting = ratios.filter(row => row.ratio <= workforce + .00001).map(row => row.label);
-    return { ...service, capacity, coverage, baselineCoverage, addedCoverage: Math.max(0, coverage - baselineCoverage), workforce, facility, reliability, ratios, contributors: contributors[service.id], choiceCounts: counts[service.id], bottleneck: facility < workforce ? 'Facility capacity' : limiting.join(', ') };
+    return { ...service, capacity, coverage, baselineCoverage, addedCoverage: Math.max(0, coverage - baselineCoverage), workforce, facility, reliability, ratios, contributors: contributors[service.id], completedContributions: counts[service.id], bottleneck: facility < workforce ? 'Facility capacity' : limiting.join(', ') };
   });
   return {
     population: scenario.baseline_population + world.citizens.filter(c => c.origin === 'newcomer').length,

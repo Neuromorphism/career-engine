@@ -1,6 +1,6 @@
 # Impact missions and estimates
 
-Each career has three sequential milestones, with three alternative actions at each milestone. The table lists the original delivery option; investigation uses 1.4× mastery and about 0.75× practice rate, while mentoring uses 0.8× mastery and about 1.35× practice rate. Each option has explicit rewards in the TOML.
+Each career has three sequential milestones, with three alternative actions at each milestone. The table lists the first task option. The second and third options are different work subjects, retaining their existing reward profiles (1.4× / about 0.75×, and 0.8× / about 1.35×) for save and balance continuity. These multipliers do not label learning styles. Each option has explicit rewards in the TOML.
 
 Delivery option rewards:
 
@@ -10,7 +10,7 @@ Delivery option rewards:
 | Team leader | 2,000 | 200 | 0.7/sec |
 | Career legacy | 7,000 | 400 | 1.2/sec |
 
-Choose one contribution—delivery, quality-improvement investigation, or team training—to complete a milestone. Only delivery carries the original project’s numeric impact model. Investigation and mentoring record their own outcome without claiming that the project was delivered.
+Choose one of three distinct contributions to complete a milestone. Only the task matching a numeric scenario carries that model; the other tasks record their own qualitative outcomes. Read `11-distinct-career-tasks.md` for the current action design.
 
 Role training and all job work samples must be complete. Each later mission requires the preceding mission. Repeated clicks cannot duplicate rewards. Missions remain available after the existing 10,000-mastery completion condition. Completing missions is a simulated accomplishment, not evidence of actual clinical or professional competence.
 

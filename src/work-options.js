@@ -1,4 +1,4 @@
-import { GOAL_MASTERY, currentNode, currentLearningActivity, currentProject, impactActionsForState, isLeaf, learningTrackForNode, learningTracksForPath, pathNodes, projectKey, practiceRate } from './game-engine.js?v=0.9.0';
+import { GOAL_MASTERY, currentNode, currentLearningActivity, currentProject, impactActionsForState, isLeaf, learningTrackForNode, learningTracksForPath, pathNodes, projectKey, practiceRate } from './game-engine.js?v=0.10.0';
 
 /** Select only the work relevant to this citizen's current path and prerequisites. */
 export function workOptionsForState(state) {
@@ -9,7 +9,7 @@ export function workOptionsForState(state) {
     const track = learningTrackForNode(node, state.path.length);
     return {
       phase: 'training', title: activity.title,
-      description: 'Choose one action. Investigation favors immediate mastery; collaboration builds more lasting practice capacity.',
+      description: 'Choose one of three different career tasks. Each explores a different part of the work and adds the mastery and practice capacity shown.',
       progress: { value: activity.index, total: track.activities.length, unit: 'steps' },
       options: activity.choices.map(choice => ({ ...choice, kind: 'training', nodeId: node.id, activityIndex: activity.index })),
     };
@@ -23,7 +23,7 @@ export function workOptionsForState(state) {
   if (!isLeaf(state)) return { phase: 'choose-path', title: 'Your next path is open', description: 'You have completed this stage. Choose your next specialization in Choose path.', options: [] };
   const milestone = impactActionsForState(state).find(action => !action.done);
   if (milestone?.unlocked) return {
-    phase: 'impact', title: `${milestone.stage} contribution`, description: 'Choose one contribution: deliver the project, investigate an improvement, or prepare a team.',
+    phase: 'impact', title: `${milestone.stage} contribution`, description: 'Choose one of three distinct contributions to make at this stage of your career.',
     options: milestone.choices.map(choice => ({ ...choice, kind: 'impact', actionId: milestone.id })),
   };
   const target = milestone?.requirement || GOAL_MASTERY;
@@ -41,7 +41,7 @@ export function completedWorkForState(state) {
     for (const activity of track.activities) {
       if (!state.completedLearningKeys.includes(activity.key)) continue;
       const choice = activity.choices.find(c => c.id === state.learningChoices?.[activity.key]) || activity.choices[0];
-      records.push({ kind: 'Training', title: choice.title, context: track.nodeName, reward: choice.reward, rate: choice.rate });
+      records.push({ kind: 'Training', title: state.learningChoiceTitles?.[activity.key] || choice.legacy_title || choice.title, context: track.nodeName, reward: choice.reward, rate: choice.rate });
     }
   }
   for (const node of pathNodes(state)) {
@@ -51,7 +51,7 @@ export function completedWorkForState(state) {
     for (const action of node.impactActions || []) {
       if (!state.completedImpactKeys.includes(action.id)) continue;
       const choice = action.choices.find(c => c.id === state.impactChoices?.[action.id]) || action.choices[0];
-      records.push({ kind: action.stage, title: choice.title, context: node.name, outcome: choice.outcome, reward: choice.reward, rate: choice.rate });
+      records.push({ kind: action.stage, title: state.impactChoiceTitles?.[action.id] || choice.legacy_title || choice.title, context: node.name, outcome: state.impactChoiceOutcomes?.[action.id] || choice.legacy_outcome || choice.outcome, reward: choice.reward, rate: choice.rate });
     }
   }
   return records;

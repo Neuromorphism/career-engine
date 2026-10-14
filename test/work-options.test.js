@@ -64,3 +64,15 @@ test('legacy choice histories retain completed work records', () => {
   assert.equal(completedWorkForState(legacy).length, completedWorkForState(state).length);
   assert.ok(completedWorkForState(legacy).every(record => record.title));
 });
+
+test('old choice IDs preserve the tasks players actually completed', () => {
+  const legacy = {
+    ...chooseNode(createInitialState(), 'engineering'),
+    completedLearningKeys: ['engineering:0'],
+    learningChoices: { 'engineering:0': 'engineering:learning:0:investigate' },
+  };
+  assert.equal(completedWorkForState(legacy)[0].title, 'Investigate: Frame a requirement');
+  const choice = workOptionsForState(chooseNode(createInitialState(), 'engineering')).options[1];
+  const fresh = completeLearningActivity(chooseNode(createInitialState(), 'engineering'), choice.nodeId, choice.activityIndex, choice.id);
+  assert.equal(completedWorkForState(fresh)[0].title, 'Build a solar-powered lamp');
+});
