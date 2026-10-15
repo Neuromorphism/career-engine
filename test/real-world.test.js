@@ -48,7 +48,7 @@ test('economic identities preserve million-dollar and percentage conversions',()
   assert.equal(r.employed,5400);assert.equal(r.gdpPerCapita,10000);assert.equal(r.outputPerEmployed,100e6/5400);
 });
 test('models share an interface while legacy saves remain byte-compatible',()=>{
-  assert.deepEqual(listWorldModels().map(m=>m.id),['founders','real-world']);
+  assert.deepEqual(listWorldModels().map(m=>m.id),['founders','real-world','world-infra']);
   for(const {id} of listWorldModels())for(const method of ['create','hydrate','metrics','tick','step'])assert.equal(typeof getWorldModel(id)[method],'function');
   const legacy=createWorld();assert.equal(getWorldModel('founders').metrics(legacy).population,500);
   assert.deepEqual(getWorldModel('founders').hydrate(legacy),legacy);

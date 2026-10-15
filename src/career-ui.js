@@ -27,7 +27,7 @@ const TEMPLATE = `    <div class="page-shell">
         </div>
       </header>
 
-      <nav class="mode-nav" aria-label="Ways to play"><a href="../">Career Engine home</a><a href="../single-path/" data-endpoint="single">Single path</a><a href="../world/" data-endpoint="world">World</a><a href="../ai/" data-endpoint="ai">AI competition</a><a href="../real-world/" data-endpoint="real-world">Real world</a></nav>
+      <nav class="mode-nav" aria-label="Ways to play"><a href="../">Career Engine home</a><a href="../single-path/" data-endpoint="single">Single path</a><a href="../world/" data-endpoint="world">World</a><a href="../ai/" data-endpoint="ai">AI competition</a><a href="../world-infra/">World infra</a><a href="../real-world/" data-endpoint="real-world">Real world</a></nav>
       <details id="world-overview" class="edition-overview" hidden><summary>World overview · citizens, status, and shared projects</summary><div id="world-dashboard"></div></details>
       <div id="active-citizen-label" class="active-citizen-heading" hidden><p class="kicker">Active citizen</p><h2 id="active-citizen-heading"></h2></div>
       <section class="console" aria-label="Career guidance console">

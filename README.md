@@ -66,3 +66,7 @@ npm run check
 ```
 
 Checks validate source integrity and generated freshness. Tests cover every reachable career, progression gates, save compatibility, duplicate reward prevention, AI behavior, and important model arithmetic. GitHub Pages can serve the repository root directly; no deployment is performed by these commands.
+
+## Infrastructure world
+
+Open `/world-infra/` for automatic profession-gated infrastructure, a 49-element TOML catalog, and optional historical household starting conditions. See `world-infra/README.md` for the model, evidence, assumptions and validation. This version uses a separate save.

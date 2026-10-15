@@ -1,12 +1,14 @@
 import { getWorldModel } from '../src/world-models/registry.js';
 import { SAVE_KEY } from '../src/game-engine.js?v=0.10.0';
 import { WORLD_SAVE_KEY, activeCitizen, updateActiveCareer } from './world-engine.js?v=0.10.0';
-export function createWorldStore(storage = localStorage, now = () => Date.now()) {
-  const model = getWorldModel('founders');
+export function createWorldStore(storage = localStorage, now = () => Date.now(), options = {}) {
+  const model = getWorldModel(options.modelId || 'founders');
+  const key = options.saveKey || WORLD_SAVE_KEY;
+  const settle = next => model.step(next);
   let world;
   return {
     load() {
-      const raw = storage.getItem(WORLD_SAVE_KEY);
+      const raw = storage.getItem(key);
       if (raw) {
         world = model.hydrate(JSON.parse(raw));
         world = model.tick(world, Math.max(0, (now() - world.savedAt) / 1000));
@@ -22,13 +24,13 @@ export function createWorldStore(storage = localStorage, now = () => Date.now())
       return activeCitizen(world).career;
     },
     getWorld() { return world; },
-    syncCareer(career) { world = updateActiveCareer(world, career); },
+    syncCareer(career) { world = settle(updateActiveCareer(world, career)); },
     save(career) {
-      world = updateActiveCareer(world, career);
+      world = settle(updateActiveCareer(world, career));
       world = { ...world, savedAt: now() };
-      storage.setItem(WORLD_SAVE_KEY, JSON.stringify(world));
+      storage.setItem(key, JSON.stringify(world));
     },
-    updateWorld(next) { world = next; },
-    rawSave() { return storage.getItem(WORLD_SAVE_KEY); },
+    updateWorld(next) { world = settle(next); },
+    rawSave() { return storage.getItem(key); },
   };
 }

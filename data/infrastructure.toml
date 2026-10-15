@@ -1,0 +1,569 @@
+# Infrastructure source of truth. Groups are AND; professions within a group are OR.
+# Profession presence is a game unlock, not an empirical construction production function.
+version = 1
+coverage_per_unlock = 1.0
+historical_scope = "United States housing units; national aggregates, not metropolitan estimates"
+
+[[sources]]
+id = "census-plumbing"
+url = "https://www2.census.gov/programs-surveys/decennial/tables/time-series/coh-plumbing/plumbing-tab.txt"
+retrieved = "2026-10-15"
+note = "US row transcribed from Census 1940–1990 table. Shares computed from complete and lacking counts. Complete means hot/cold water, bath/shower and flush toilet; exclusive-use requirement removed in 1990. Earlier US boundaries differ (Alaska/Hawaii not included in 1940)."
+
+[[sources]]
+id = "nps-electricity"
+url = "https://www.nps.gov/edis/learn/kidsyouth/the-electric-light-system-phonograph-motion-pictures.htm"
+retrieved = "2026-10-15"
+note = "Half of US homes had electric power in 1925. Electricity access is a proxy for on-demand lighting, not a direct lighting measure."
+
+[[observations]]
+element = "plumbing"
+year = 1940
+complete = 19174344
+lacking = 15852098
+coverage = 0.5474248283625268
+source = "census-plumbing"
+quality = "count-derived national housing-unit share; historical definition and boundary changes apply"
+
+[[observations]]
+element = "plumbing"
+year = 1950
+complete = 28729475
+lacking = 15772717
+coverage = 0.6455743797968424
+source = "census-plumbing"
+quality = "count-derived national housing-unit share; historical definition and boundary changes apply"
+
+[[observations]]
+element = "plumbing"
+year = 1960
+complete = 48537001
+lacking = 9777783
+coverage = 0.8323275449326881
+source = "census-plumbing"
+quality = "count-derived national housing-unit share; historical definition and boundary changes apply"
+
+[[observations]]
+element = "plumbing"
+year = 1970
+complete = 62984221
+lacking = 4672345
+coverage = 0.9309402578901211
+source = "census-plumbing"
+quality = "count-derived national housing-unit share; historical definition and boundary changes apply"
+
+[[observations]]
+element = "plumbing"
+year = 1980
+complete = 84359133
+lacking = 2333690
+coverage = 0.9730809319705739
+source = "census-plumbing"
+quality = "count-derived national housing-unit share; historical definition and boundary changes apply"
+
+[[observations]]
+element = "plumbing"
+year = 1990
+complete = 101161982
+lacking = 1101696
+coverage = 0.9892269081110109
+source = "census-plumbing"
+quality = "count-derived national housing-unit share; historical definition and boundary changes apply"
+
+[[observations]]
+element = "lighting"
+year = 1925
+coverage = 0.5
+source = "nps-electricity"
+quality = "electricity-access proxy"
+
+[[elements]]
+id = "homes"
+name = "Residential homes"
+category = "Housing"
+description = "Weatherproof timber homes replace temporary shelter."
+requires = []
+profession_groups = [["carpenter"]]
+maintenance_groups = [["carpenter"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "plumbing"
+name = "Indoor plumbing"
+category = "Housing"
+description = "Homes gain piped water, bathing facilities and flush toilets; local supply and disposal are bundled."
+requires = ["homes"]
+profession_groups = [["service-plumber"]]
+maintenance_groups = [["service-plumber"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "lighting"
+name = "On-demand lighting"
+category = "Housing"
+description = "Wired homes gain switches and local electric supply; regional power is a separate improvement."
+requires = ["homes"]
+profession_groups = [["commercial-electrician", "industrial-electrician"]]
+maintenance_groups = [["commercial-electrician", "industrial-electrician"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "masonry"
+name = "Durable masonry homes"
+category = "Housing"
+description = "Masonry improves the durability of the housing stock."
+requires = ["homes"]
+profession_groups = [["mason"]]
+maintenance_groups = [["mason"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "heating"
+name = "Reliable home heating"
+category = "Housing"
+description = "Homes gain maintained heating and ventilation."
+requires = ["homes"]
+profession_groups = [["hvac-technician"]]
+maintenance_groups = [["hvac-technician"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "cooling"
+name = "Indoor climate control"
+category = "Housing"
+description = "Cooling and ventilation make homes more comfortable."
+requires = ["lighting", "heating"]
+profession_groups = [["hvac-technician"], ["refrigeration-technician"]]
+maintenance_groups = [["refrigeration-technician"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "apartments"
+name = "Apartment buildings"
+category = "Housing"
+description = "Coordinated multi-storey housing uses structural design and construction supervision."
+requires = ["masonry", "plumbing"]
+profession_groups = [["structural-engineering"], ["construction-manager"], ["carpenter"]]
+maintenance_groups = [["carpenter"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "elevators"
+name = "Accessible lifts"
+category = "Housing"
+description = "Maintained lifts connect floors and improve access."
+requires = ["apartments", "lighting"]
+profession_groups = [["elevator-technician"]]
+maintenance_groups = [["elevator-technician"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "wells"
+name = "Protected community wells"
+category = "Water"
+description = "Local water collection gains source protection."
+requires = []
+profession_groups = [["water-resources-engineer", "hydrologist"]]
+maintenance_groups = [["water-resources-engineer", "hydrologist"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "water-mains"
+name = "Water distribution mains"
+category = "Water"
+description = "A shared distribution network supplements household systems."
+requires = ["wells"]
+profession_groups = [["pipefitter"], ["water-resources-engineer"]]
+maintenance_groups = [["water-resources-engineer"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "treatment"
+name = "Drinking-water treatment"
+category = "Water"
+description = "Treatment and testing support safer piped water."
+requires = ["water-mains"]
+profession_groups = [["water-treatment-engineer"], ["analytical-chemist"]]
+maintenance_groups = [["analytical-chemist"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "sewers"
+name = "Separate sanitary sewers"
+category = "Water"
+description = "Shared sewers replace bundled local disposal systems."
+requires = ["plumbing"]
+profession_groups = [["pipefitter"], ["water-resources-engineer"]]
+maintenance_groups = [["water-resources-engineer"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "wastewater"
+name = "Wastewater treatment"
+category = "Water"
+description = "Collected wastewater receives engineered treatment."
+requires = ["sewers"]
+profession_groups = [["water-treatment-engineer"], ["process-engineer"]]
+maintenance_groups = [["process-engineer"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "drainage"
+name = "Stormwater drainage"
+category = "Water"
+description = "Drainage routes rainfall away from buildings."
+requires = []
+profession_groups = [["water-resources-engineer"], ["geotechnical-engineer"]]
+maintenance_groups = [["geotechnical-engineer"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "floodworks"
+name = "Flood protection works"
+category = "Water"
+description = "Flood barriers and catchment design reduce exposure in the scenario."
+requires = ["drainage"]
+profession_groups = [["hydrologist"], ["structural-engineering"]]
+maintenance_groups = [["structural-engineering"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "grid"
+name = "Regional electricity grid"
+category = "Energy"
+description = "Interconnected supply supplements local generation."
+requires = ["lighting"]
+profession_groups = [["lineworker"], ["protection-engineer"]]
+maintenance_groups = [["protection-engineer"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "solar"
+name = "Rooftop solar"
+category = "Energy"
+description = "Homes add distributed solar generation."
+requires = ["lighting"]
+profession_groups = [["solar-installer"]]
+maintenance_groups = [["solar-installer"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "storage"
+name = "Battery storage"
+category = "Energy"
+description = "Storage supports more flexible local energy supply."
+requires = ["solar"]
+profession_groups = [["power-electronics-engineer"], ["commercial-electrician", "industrial-electrician"]]
+maintenance_groups = [["commercial-electrician", "industrial-electrician"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "substations"
+name = "Protected substations"
+category = "Energy"
+description = "Protection and switchgear improve grid resilience."
+requires = ["grid"]
+profession_groups = [["protection-engineer"], ["industrial-electrician"]]
+maintenance_groups = [["industrial-electrician"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "district-heat"
+name = "District heating"
+category = "Energy"
+description = "A shared heat network connects buildings."
+requires = ["heating"]
+profession_groups = [["pipefitter"], ["thermal-engineer"]]
+maintenance_groups = [["thermal-engineer"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "paths"
+name = "Neighborhood paths"
+category = "Transport"
+description = "Maintained paths connect homes and gathering places."
+requires = []
+profession_groups = [["groundskeeper"]]
+maintenance_groups = [["groundskeeper"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "roads"
+name = "All-weather roads"
+category = "Transport"
+description = "Engineered surfaces support regular vehicle access."
+requires = ["paths"]
+profession_groups = [["construction-manager"], ["geotechnical-engineer"]]
+maintenance_groups = [["geotechnical-engineer"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "bridges"
+name = "Road bridges"
+category = "Transport"
+description = "Designed crossings connect divided neighborhoods."
+requires = ["roads"]
+profession_groups = [["bridge-engineer"], ["structural-welder"]]
+maintenance_groups = [["structural-welder"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "signals"
+name = "Traffic signals"
+category = "Transport"
+description = "Signal control coordinates road crossings."
+requires = ["roads", "lighting"]
+profession_groups = [["graduate-traffic-engineer"], ["commercial-electrician"]]
+maintenance_groups = [["commercial-electrician"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "bus"
+name = "Bus network"
+category = "Transport"
+description = "A maintained fleet provides shared transport."
+requires = ["roads"]
+profession_groups = [["transit-operator"], ["automotive-technician"]]
+maintenance_groups = [["automotive-technician"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "rail"
+name = "Urban rail"
+category = "Transport"
+description = "Rail infrastructure and operations connect districts."
+requires = ["grid"]
+profession_groups = [["rail-engineer"], ["transit-operator"], ["industrial-electrician"]]
+maintenance_groups = [["industrial-electrician"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "depots"
+name = "Freight depots"
+category = "Transport"
+description = "Freight handling supports coordinated deliveries."
+requires = ["roads"]
+profession_groups = [["warehouse-technician"], ["truck-driver"], ["supply-chain-analyst"]]
+maintenance_groups = [["supply-chain-analyst"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "clinic"
+name = "Neighborhood clinic"
+category = "Health"
+description = "A staffed clinic provides a local place for primary care."
+requires = ["homes", "plumbing"]
+profession_groups = [["family-medicine-physician"], ["registered-nurse"]]
+maintenance_groups = [["registered-nurse"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "hospital"
+name = "General hospital"
+category = "Health"
+description = "Specialist teams coordinate inpatient facilities."
+requires = ["clinic", "lighting"]
+profession_groups = [["general-surgeon"], ["registered-nurse"], ["healthcare-administrator"]]
+maintenance_groups = [["healthcare-administrator"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "pharmacy"
+name = "Community pharmacy"
+category = "Health"
+description = "Medicine storage and dispensing become locally available."
+requires = ["clinic"]
+profession_groups = [["clinical-pharmacist"]]
+maintenance_groups = [["clinical-pharmacist"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "ambulance"
+name = "Ambulance station"
+category = "Health"
+description = "Emergency transport links homes with care."
+requires = ["roads", "clinic"]
+profession_groups = [["paramedic"], ["automotive-technician"]]
+maintenance_groups = [["automotive-technician"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "fire"
+name = "Fire station"
+category = "Safety"
+description = "A staffed station supports local emergency response."
+requires = ["roads"]
+profession_groups = [["firefighter"]]
+maintenance_groups = [["firefighter"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "shelter"
+name = "Emergency shelter"
+category = "Safety"
+description = "Prepared shelter space supports displaced residents."
+requires = ["homes"]
+profession_groups = [["emergency-manager"], ["social-worker"]]
+maintenance_groups = [["social-worker"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "school"
+name = "Primary school"
+category = "Learning"
+description = "A local school combines teaching with a suitable building."
+requires = ["homes"]
+profession_groups = [["elementary-teacher"], ["carpenter"]]
+maintenance_groups = [["carpenter"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "library"
+name = "Public library"
+category = "Learning"
+description = "A staffed library offers shared reading and learning space."
+requires = ["homes"]
+profession_groups = [["librarian"]]
+maintenance_groups = [["librarian"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "workshop"
+name = "Vocational workshop"
+category = "Learning"
+description = "A maintained workshop supports practical training."
+requires = ["lighting"]
+profession_groups = [["vocational-instructor"], ["industrial-mechanic"]]
+maintenance_groups = [["industrial-mechanic"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "broadband"
+name = "Community broadband"
+category = "Communication"
+description = "Networks and maintained services connect residents."
+requires = ["grid"]
+profession_groups = [["rf-engineer"], ["sre-engineer"]]
+maintenance_groups = [["sre-engineer"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "digital-library"
+name = "Digital public library"
+category = "Communication"
+description = "Digital access expands the library collection."
+requires = ["library", "broadband"]
+profession_groups = [["software-developer"], ["librarian"]]
+maintenance_groups = [["librarian"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "market"
+name = "Covered food market"
+category = "Food"
+description = "A covered trading space connects producers and residents."
+requires = ["homes"]
+profession_groups = [["farmer"], ["small-business-owner"]]
+maintenance_groups = [["small-business-owner"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "cold-chain"
+name = "Refrigerated food storage"
+category = "Food"
+description = "Maintained cold storage supports food preservation."
+requires = ["market", "lighting"]
+profession_groups = [["refrigeration-technician"], ["warehouse-technician"]]
+maintenance_groups = [["warehouse-technician"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "bakery"
+name = "Community bakery"
+category = "Food"
+description = "A shared bakery supports local food preparation."
+requires = ["market"]
+profession_groups = [["baker"]]
+maintenance_groups = [["baker"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "parks"
+name = "Public parks"
+category = "Environment"
+description = "Planted public space gains continuing care."
+requires = ["paths"]
+profession_groups = [["groundskeeper"], ["forester", "ecologist"]]
+maintenance_groups = [["forester", "ecologist"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "waste"
+name = "Waste collection depot"
+category = "Environment"
+description = "Collection and transfer facilities organize local waste handling."
+requires = ["roads"]
+profession_groups = [["custodian"], ["truck-driver"]]
+maintenance_groups = [["truck-driver"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "recycling"
+name = "Materials recovery center"
+category = "Environment"
+description = "Sorting equipment supports material recovery."
+requires = ["waste", "lighting"]
+profession_groups = [["industrial-mechanic"], ["environmental-scientist"]]
+maintenance_groups = [["environmental-scientist"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "monitoring"
+name = "Environmental monitoring"
+category = "Environment"
+description = "A monitoring station measures local environmental conditions."
+requires = ["lighting"]
+profession_groups = [["environmental-scientist"], ["analytical-chemist"]]
+maintenance_groups = [["analytical-chemist"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "civic"
+name = "Civic service center"
+category = "Civic"
+description = "Residents gain a shared place to access public services."
+requires = ["homes"]
+profession_groups = [["administrative-coordinator"], ["social-worker"]]
+maintenance_groups = [["social-worker"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "legal"
+name = "Legal aid center"
+category = "Civic"
+description = "A staffed center supports access to legal assistance."
+requires = ["civic"]
+profession_groups = [["legal-aid-attorney", "public-defender"]]
+maintenance_groups = [["legal-aid-attorney", "public-defender"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "childcare"
+name = "Childcare center"
+category = "Civic"
+description = "A dedicated care setting supports families."
+requires = ["homes", "plumbing"]
+profession_groups = [["childcare-worker"]]
+maintenance_groups = [["childcare-worker"]]
+evidence = "authored game dependency; not fitted from workforce data"
+
+[[elements]]
+id = "museum"
+name = "Local museum"
+category = "Culture"
+description = "A public collection gains appropriate stewardship."
+requires = ["homes"]
+profession_groups = [["museum-conservator"]]
+maintenance_groups = [["museum-conservator"]]
+evidence = "authored game dependency; not fitted from workforce data"
+

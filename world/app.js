@@ -1,19 +1,23 @@
+import { INFRA_SAVE_KEY, withHistoricalScenario } from '../src/world-models/infrastructure.js';
+import { mountInfrastructureUI, renderInfrastructureUI } from '../world-infra/infrastructure-ui.js';
 import { getWorldModel } from '../src/world-models/registry.js';
 import { startCareerApp } from '../src/app.js?v=0.10.0';
 import { showLoadError, downloadJSON } from '../src/career-ui.js?v=0.10.0';
 import { createWorldStore } from './save-store.js?v=0.10.0';
 import { activeCitizen, addCitizen, switchCitizen, assignCitizen, renameWorld, commissionProject } from './world-engine.js?v=0.10.0';
 import { mountWorldUI, renderWorldUI, worldFeedback } from './world-ui.js?v=0.10.0';
-const model = getWorldModel('founders');
-const store = createWorldStore();
+const infraMode = document.body.dataset.model === 'world-infra';
+const model = getWorldModel(infraMode ? 'world-infra' : 'founders');
+const store = createWorldStore(localStorage, () => Date.now(), infraMode ? { modelId: 'world-infra', saveKey: INFRA_SAVE_KEY } : {});
 let app, mounted = false;
 function changeWorld(transform, message) {
   store.syncCareer(app.getState());
-  const previous = store.getWorld(), next = transform(previous);
+  const previous = store.getWorld(), next = model.step(transform(previous));
   if (next === previous) { worldFeedback('That change is not available yet. Check the career and team requirements.'); return; }
   store.updateWorld(next);
   const saved = app.replaceState(activeCitizen(next).career);
   renderWorldUI(store.getWorld(), { force: true, metrics: model.metrics(store.getWorld()) });
+  if (infraMode) renderInfrastructureUI(store.getWorld());
   worldFeedback(saved ? message : "Changed in this tab, but browser storage is unavailable. Export your world before closing.");
 }
 const handlers = {
@@ -31,7 +35,7 @@ const handlers = {
   assign(id, assignment, availability) { changeWorld(world => assignCitizen(world, id, assignment, availability), 'Work assignment updated. World capacity has been recalculated.'); },
   rename(name) { changeWorld(world => renameWorld(world, name), 'World name saved.'); },
   commission(id) { changeWorld(world => commissionProject(world, id), 'Shared project commissioned once. The institution remains; contributors return to their usual services.'); },
-  export() { store.syncCareer(app.getState()); downloadJSON(store.getWorld(), 'career-engine-world.json'); worldFeedback('World backup exported.'); },
+  export() { store.syncCareer(app.getState()); downloadJSON(store.getWorld(), infraMode ? 'career-engine-world-infra.json' : 'career-engine-world.json'); worldFeedback('World backup exported.'); },
   async import(file) {
     try {
       const next = model.hydrate(JSON.parse(await file.text()));
@@ -46,8 +50,16 @@ try {
     onAddCitizen() { document.querySelector('#world-overview').open = true; document.querySelector('#citizen-name').focus(); document.querySelector('#add-citizen-form').scrollIntoView({ behavior: 'smooth', block: 'center' }); },
     onChange(career) {
       store.syncCareer(career);
-      if (!mounted) { mountWorldUI(handlers); mounted = true; }
+      if (!mounted) {
+        mountWorldUI(handlers);
+        if (infraMode) mountInfrastructureUI(scenario => {
+          try { changeWorld(world => withHistoricalScenario(world, scenario), 'Historical starting infrastructure added.'); }
+          catch (error) { worldFeedback(error.message); }
+        });
+        mounted = true;
+      }
       renderWorldUI(store.getWorld(), { metrics: model.metrics(store.getWorld()) });
+      if (infraMode) renderInfrastructureUI(store.getWorld());
     },
   });
   // Persist the initial world/import marker without touching the original single-path save.

@@ -6,8 +6,8 @@
   "scripts": {
     "start": "python3 -m http.server 4173",
     "test": "node --test",
-    "check": "python3 scripts/compile-careers.py --check && python3 scripts/compile-world.py --check && node scripts/check-js.mjs && python3 scripts/compile-metros.py --check && node scripts/calibrate-world.mjs --check",
-    "compile": "python3 scripts/compile-careers.py && python3 scripts/compile-world.py && python3 scripts/compile-metros.py",
+    "check": "python3 scripts/compile-careers.py --check && python3 scripts/compile-world.py --check && node scripts/check-js.mjs && python3 scripts/compile-metros.py --check && node scripts/calibrate-world.mjs --check && python3 scripts/compile-infrastructure.py --check",
+    "compile": "python3 scripts/compile-careers.py && python3 scripts/compile-world.py && python3 scripts/compile-metros.py && python3 scripts/compile-infrastructure.py",
     "calibrate": "node scripts/calibrate-world.mjs"
   }
 }
