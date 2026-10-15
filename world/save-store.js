@@ -1,13 +1,15 @@
+import { getWorldModel } from '../src/world-models/registry.js';
 import { SAVE_KEY } from '../src/game-engine.js?v=0.10.0';
-import { WORLD_SAVE_KEY, createWorld, hydrateWorld, activeCitizen, updateActiveCareer, tickWorld } from './world-engine.js?v=0.10.0';
+import { WORLD_SAVE_KEY, activeCitizen, updateActiveCareer } from './world-engine.js?v=0.10.0';
 export function createWorldStore(storage = localStorage, now = () => Date.now()) {
+  const model = getWorldModel('founders');
   let world;
   return {
     load() {
       const raw = storage.getItem(WORLD_SAVE_KEY);
       if (raw) {
-        world = hydrateWorld(JSON.parse(raw));
-        world = tickWorld(world, Math.max(0, (now() - world.savedAt) / 1000));
+        world = model.hydrate(JSON.parse(raw));
+        world = model.tick(world, Math.max(0, (now() - world.savedAt) / 1000));
       } else {
         let career = null, source = null;
         for (const key of [SAVE_KEY, 'career-engine-save-v2']) {
@@ -15,7 +17,7 @@ export function createWorldStore(storage = localStorage, now = () => Date.now())
           if (!previous) continue;
           try { career = JSON.parse(previous); source = key; break; } catch { /* Keep original bytes; an unreadable single-path save is not overwritten. */ }
         }
-        world = createWorld(undefined, career || undefined, source);
+        world = model.create(undefined, career || undefined, source);
       }
       return activeCitizen(world).career;
     },

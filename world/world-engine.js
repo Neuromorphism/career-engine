@@ -48,9 +48,9 @@ export function updateActiveCareer(world, career) {
   if (activeCitizen(world).career === career) return world;
   return { ...world, citizens: world.citizens.map(citizen => citizen.id === world.activeCitizenId ? { ...citizen, career } : citizen) };
 }
-export function addCitizen(world, name, origin = 'resident') {
-  if (origin !== 'resident' && origin !== 'newcomer') return world;
-  if (origin === 'resident' && world.citizens.filter(c => c.origin === 'resident').length >= worldData.scenario.baseline_population) return world;
+export function addCitizen(world, name, origin = 'resident', populationLimit = worldData.scenario.baseline_population) {
+  if ((origin !== 'resident' && origin !== 'newcomer') || !Number.isSafeInteger(populationLimit) || populationLimit < 1) return world;
+  if (origin === 'resident' && world.citizens.filter(c => c.origin === 'resident').length >= populationLimit) return world;
   let number = world.nextCitizenNumber;
   while (world.citizens.some(c => c.id === `citizen-${number}`)) number++;
   const id = `citizen-${number}`;

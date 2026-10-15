@@ -48,8 +48,8 @@ function updateHTML(selector, markup) {
   container.innerHTML = markup;
   for (const detail of container.querySelectorAll('details')) if (opened.has(detail.dataset.detail)) detail.open = true;
 }
-export function renderWorldUI(world, { force = false } = {}) {
-  const metrics = worldMetrics(world), status = worldStatus(world, metrics);
+export function renderWorldUI(world, { force = false, metrics = worldMetrics(world) } = {}) {
+  const status = worldStatus(world, metrics);
   document.querySelector('#world-heading').textContent = world.name;
   const nameInput = document.querySelector('#world-name-input');
   if (document.activeElement !== nameInput) nameInput.value = world.name;

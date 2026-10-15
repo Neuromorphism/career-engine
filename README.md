@@ -5,16 +5,19 @@ Career Engine is a text-first incremental game about discovering meaningful work
 ## Play locally
 
 ```bash
-npm start
+python3 -m http.server 4173
 ```
 
-Open `http://localhost:4173` to go directly to the single-path game. Its navigation links all three endpoints:
+No npm or Node.js is needed to play or deploy; any static web host can serve these files. `npm start` is an optional alias for the Python command.
+
+Open `http://localhost:4173` to go directly to the single-path game. Its navigation links all four endpoints:
 
 - **Single path** — `/single-path/`: the original career playthrough.
 - **World** — `/world/`: develop citizens in one persistent world, combine their capabilities, and build shared institutions.
 - **AI competition** — `/ai/`: a single-path race against the AI rival.
+- **Real world** — `/real-world/`: shared career play, archived metro observations, fitted annual trends, workforce scenarios, and holdout evidence.
 
-All three endpoints use one career ontology, curriculum library, action system, and core interface. Existing normal saves carry into the single-path subproject on the same site address; AI saves stay separate.
+All four endpoints use one career ontology, curriculum library, action system, and core interface. Existing normal saves carry into the single-path subproject on the same site address; AI saves stay separate.
 
 ## Career interface
 
@@ -27,6 +30,12 @@ World mode lets you add, name, switch, and continue citizens. Their mastery and 
 **World Status** gives one to three playful “Doing well” and “Needs improvement” observations. Small worlds get comments about their exact citizen mix; larger worlds get metric-driven observations. The first world can copy your normal career into its first citizen while preserving the original save. Export/import world backups from the dashboard.
 
 World profiles, service requirements, scenario baselines, and project eligibility live in `data/world.toml`. These are game balance parameters and indices. The initial world has 500 residents; its current model does not simulate demographic growth, GDP, aging, or a world clock.
+
+## Real-world metropolitan model
+
+`/real-world/` uses the same 182 careers with a separate save and a modular world-model adapter. The archived OECD-derived panel contains population, labor force, unemployment, GDP, density, and PM2.5 for eleven functional urban areas. Fit years are 2010–2016; test years are 2017–2019. Ten metros pass the declared baseline criteria; Madrid fails unemployment. Amsterdam was added after the initial failure and is disclosed as adaptive selection.
+
+The profession allocations and service indices are exploratory: this archive contains no occupation mixes, so profession effects were not trained or independently validated. The historical baseline benchmark is not proof of accurate profession-dependent outcomes. These are historical data through 2019, not current estimates. See `real-world/README.md` for methods, limitations, data attribution, and reproduction. During development, run `node scripts/calibrate-world.mjs` (or `npm run calibrate`) to export `real-world/model-data.js` and regenerate the calibration report. The browser only evaluates saved parameters and displays precomputed validation; it never fits models.
 
 ## Career source and research
 

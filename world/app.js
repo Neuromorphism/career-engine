@@ -1,8 +1,10 @@
+import { getWorldModel } from '../src/world-models/registry.js';
 import { startCareerApp } from '../src/app.js?v=0.10.0';
 import { showLoadError, downloadJSON } from '../src/career-ui.js?v=0.10.0';
 import { createWorldStore } from './save-store.js?v=0.10.0';
-import { activeCitizen, addCitizen, switchCitizen, assignCitizen, renameWorld, commissionProject, hydrateWorld } from './world-engine.js?v=0.10.0';
+import { activeCitizen, addCitizen, switchCitizen, assignCitizen, renameWorld, commissionProject } from './world-engine.js?v=0.10.0';
 import { mountWorldUI, renderWorldUI, worldFeedback } from './world-ui.js?v=0.10.0';
+const model = getWorldModel('founders');
 const store = createWorldStore();
 let app, mounted = false;
 function changeWorld(transform, message) {
@@ -11,7 +13,7 @@ function changeWorld(transform, message) {
   if (next === previous) { worldFeedback('That change is not available yet. Check the career and team requirements.'); return; }
   store.updateWorld(next);
   const saved = app.replaceState(activeCitizen(next).career);
-  renderWorldUI(store.getWorld(), { force: true });
+  renderWorldUI(store.getWorld(), { force: true, metrics: model.metrics(store.getWorld()) });
   worldFeedback(saved ? message : "Changed in this tab, but browser storage is unavailable. Export your world before closing.");
 }
 const handlers = {
@@ -32,7 +34,7 @@ const handlers = {
   export() { store.syncCareer(app.getState()); downloadJSON(store.getWorld(), 'career-engine-world.json'); worldFeedback('World backup exported.'); },
   async import(file) {
     try {
-      const next = hydrateWorld(JSON.parse(await file.text()));
+      const next = model.hydrate(JSON.parse(await file.text()));
       if (!window.confirm('Replace this world with the imported backup? Export your current world first if you want to keep it.')) return;
       changeWorld(() => next, 'World backup imported.');
     } catch (error) { worldFeedback(`Import could not be completed: ${error.message}`); }
@@ -45,7 +47,7 @@ try {
     onChange(career) {
       store.syncCareer(career);
       if (!mounted) { mountWorldUI(handlers); mounted = true; }
-      renderWorldUI(store.getWorld());
+      renderWorldUI(store.getWorld(), { metrics: model.metrics(store.getWorld()) });
     },
   });
   // Persist the initial world/import marker without touching the original single-path save.

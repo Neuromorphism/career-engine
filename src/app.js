@@ -30,7 +30,7 @@ import { createCareerStore } from "./save-store.js?v=0.10.0";
 export function startCareerApp({ mode = 'single', store = createCareerStore(mode), onChange = () => {}, onAddCitizen = () => {} } = {}) {
 mountCareerUI(mode);
 const aiMode = mode === "ai";
-const worldMode = mode === "world";
+const worldMode = mode === "world" || mode === "real-world";
 const saveLabel = worldMode ? "world save" : aiMode ? "AI save" : "local save";
 
 const $ = (selector) => document.querySelector(selector);

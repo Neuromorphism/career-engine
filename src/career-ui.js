@@ -1,13 +1,13 @@
-// One career interface shared by all three endpoints.
+// One career interface shared by all endpoints.
 export function mountCareerUI(mode) {
   document.querySelector('#game-root').innerHTML = TEMPLATE;
-  document.querySelector('#edition-label').textContent = mode === 'world' ? 'persistent world' : mode === 'ai' ? 'AI competition' : 'single path';
+  document.querySelector('#edition-label').textContent = mode === 'real-world' ? 'real-world laboratory' : mode === 'world' ? 'persistent world' : mode === 'ai' ? 'AI competition' : 'single path';
   document.querySelector(`[data-endpoint="${mode}"]`).setAttribute('aria-current', 'page');
   if (mode === 'ai') {
     document.body.classList.add('ai-mode');
     document.querySelector('.game-grid').insertAdjacentHTML('beforebegin', `<details class="edition-overview"><summary>AI competition status</summary>${AI_PANEL}</details>`);
   }
-  if (mode === 'world') {
+  if (mode === 'world' || mode === 'real-world') {
     document.querySelector('#reset-button').textContent = 'add citizen';
     document.querySelector('#world-overview').hidden = false;
     document.querySelector('#active-citizen-label').hidden = false;
@@ -27,7 +27,7 @@ const TEMPLATE = `    <div class="page-shell">
         </div>
       </header>
 
-      <nav class="mode-nav" aria-label="Ways to play"><a href="../">Career Engine home</a><a href="../single-path/" data-endpoint="single">Single path</a><a href="../world/" data-endpoint="world">World</a><a href="../ai/" data-endpoint="ai">AI competition</a></nav>
+      <nav class="mode-nav" aria-label="Ways to play"><a href="../">Career Engine home</a><a href="../single-path/" data-endpoint="single">Single path</a><a href="../world/" data-endpoint="world">World</a><a href="../ai/" data-endpoint="ai">AI competition</a><a href="../real-world/" data-endpoint="real-world">Real world</a></nav>
       <details id="world-overview" class="edition-overview" hidden><summary>World overview · citizens, status, and shared projects</summary><div id="world-dashboard"></div></details>
       <div id="active-citizen-label" class="active-citizen-heading" hidden><p class="kicker">Active citizen</p><h2 id="active-citizen-heading"></h2></div>
       <section class="console" aria-label="Career guidance console">

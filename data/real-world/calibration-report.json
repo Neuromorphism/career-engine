@@ -1,0 +1,6787 @@
+{
+  "training": "2010–2016; rolling validation within training",
+  "holdout": [
+    2017,
+    2018,
+    2019
+  ],
+  "criteria": {
+    "population": 0.05,
+    "labourForce": 0.1,
+    "unemployment": 2,
+    "gdp": 0.1
+  },
+  "passed": 10,
+  "total": 11,
+  "occupationEffectsValidated": false,
+  "sourceVerifiedAgainstPrimary": false,
+  "cities": [
+    {
+      "metroId": "london",
+      "name": "London",
+      "metrics": {
+        "population": {
+          "meanError": 0.011208148043211914,
+          "maxError": 0.01679014942627139,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.05,
+          "passed": true
+        },
+        "labourForce": {
+          "meanError": 0.022925327700140358,
+          "maxError": 0.02871790763091882,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "unemployment": {
+          "meanError": 0.35000000000000053,
+          "maxError": 0.5750000000000002,
+          "n": 3,
+          "unit": "percentage points",
+          "tolerance": 2,
+          "passed": true
+        },
+        "gdp": {
+          "meanError": 0.04430143289188759,
+          "maxError": 0.06940139257033395,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "density": {
+          "meanError": 0.011669061794981528,
+          "maxError": 0.017295506748710658,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        },
+        "pm25": {
+          "meanError": 0.06623572959393877,
+          "maxError": 0.07997906613570031,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        }
+      },
+      "passed": true,
+      "points": [
+        {
+          "observed": {
+            "year": 2017,
+            "population": 12218388,
+            "labourForce": 6403279,
+            "unemployment": 4.6,
+            "gdp": 831319,
+            "density": 1751,
+            "pm25": 11.9
+          },
+          "predicted": {
+            "year": 2017,
+            "population": 12295938.532654949,
+            "labourForce": 6512919.188019048,
+            "unemployment": 4.574999999999999,
+            "gdp": 849111.4780361492,
+            "density": 1762.9663872358537,
+            "pm25": 10.948249112985167,
+            "employed": 6214953.135167177,
+            "gdpPerCapita": 69056.25591581487,
+            "outputPerEmployed": 136623.95509170784,
+            "labourForceToPopulation": 0.5296805258681441
+          }
+        },
+        {
+          "observed": {
+            "year": 2018,
+            "population": 12320148,
+            "labourForce": 6476697,
+            "unemployment": 4.5,
+            "gdp": 846598,
+            "density": 1766,
+            "pm25": 11.4
+          },
+          "predicted": {
+            "year": 2018,
+            "population": 12449352.595314704,
+            "labourForce": 6625243.72899811,
+            "unemployment": 4.049999999999999,
+            "gdp": 882239.9432871556,
+            "density": 1785.2099267796887,
+            "pm25": 10.702157021426833,
+            "employed": 6356921.357973686,
+            "gdpPerCapita": 70866.33112304856,
+            "outputPerEmployed": 138784.15251756014,
+            "labourForceToPopulation": 0.5321757640225815
+          }
+        },
+        {
+          "observed": {
+            "year": 2019,
+            "population": 12396541,
+            "labourForce": 6551364,
+            "unemployment": 4.1,
+            "gdp": 857172,
+            "density": 1777,
+            "pm25": 11.1
+          },
+          "predicted": {
+            "year": 2019,
+            "population": 12604680.7757589,
+            "labourForce": 6739505.466208527,
+            "unemployment": 3.5249999999999995,
+            "gdp": 916660.9304722983,
+            "density": 1807.7341154924588,
+            "pm25": 10.461596528291459,
+            "employed": 6501937.898524676,
+            "gdpPerCapita": 72723.85130412858,
+            "outputPerEmployed": 140982.72619310828,
+            "labourForceToPopulation": 0.5346827568350502
+          }
+        }
+      ]
+    },
+    {
+      "metroId": "paris",
+      "name": "Paris",
+      "metrics": {
+        "population": {
+          "meanError": 0.0013851515594888817,
+          "maxError": 0.0024173865690889896,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.05,
+          "passed": true
+        },
+        "labourForce": {
+          "meanError": 0.005484850009544185,
+          "maxError": 0.009080370062376547,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "unemployment": {
+          "meanError": 0.8333333333333334,
+          "maxError": 1.4000000000000004,
+          "n": 3,
+          "unit": "percentage points",
+          "tolerance": 2,
+          "passed": true
+        },
+        "gdp": {
+          "meanError": 0.02098993658282811,
+          "maxError": 0.03343527993982791,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "density": {
+          "meanError": 0.0024702666813312406,
+          "maxError": 0.004449857358618012,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        },
+        "pm25": {
+          "meanError": 0.06918512784681806,
+          "maxError": 0.09018329728353633,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        }
+      },
+      "passed": true,
+      "points": [
+        {
+          "observed": {
+            "year": 2017,
+            "population": 13024518,
+            "labourForce": 6176526,
+            "unemployment": 9,
+            "gdp": 889968,
+            "density": 685,
+            "pm25": 12
+          },
+          "predicted": {
+            "year": 2017,
+            "population": 13025844.211151067,
+            "labourForce": 6158485.552617478,
+            "unemployment": 9.5,
+            "gdp": 881168.246006613,
+            "density": 685.3389437225674,
+            "pm25": 11.44572003083002,
+            "employed": 5573429.425118818,
+            "gdpPerCapita": 67647.68806710195,
+            "outputPerEmployed": 158101.6244747421,
+            "labourForceToPopulation": 0.4727897442029414
+          }
+        },
+        {
+          "observed": {
+            "year": 2018,
+            "population": 13064617,
+            "labourForce": 6236761,
+            "unemployment": 8.9,
+            "gdp": 910598,
+            "density": 687,
+            "pm25": 12.1
+          },
+          "predicted": {
+            "year": 2018,
+            "population": 13085993.899969192,
+            "labourForce": 6180128.902129402,
+            "unemployment": 9.5,
+            "gdp": 892707.6538730217,
+            "density": 688.6942342855775,
+            "pm25": 11.00878210286921,
+            "employed": 5593016.65642711,
+            "gdpPerCapita": 68218.55952990497,
+            "outputPerEmployed": 159611.12020776543,
+            "labourForceToPopulation": 0.4722705015278933
+          }
+        },
+        {
+          "observed": {
+            "year": 2019,
+            "population": 13114718,
+            "labourForce": 6229591,
+            "unemployment": 8.1,
+            "gdp": 935683,
+            "density": 689,
+            "pm25": 11.4
+          },
+          "predicted": {
+            "year": 2019,
+            "population": 13146421.34315059,
+            "labourForce": 6201848.314916,
+            "unemployment": 9.5,
+            "gdp": 904398.176960062,
+            "density": 692.0659517200878,
+            "pm25": 10.588524187382617,
+            "employed": 5612672.72499898,
+            "gdpPerCapita": 68794.24851473075,
+            "outputPerEmployed": 161135.02804677185,
+            "labourForceToPopulation": 0.4717518291125837
+          }
+        }
+      ]
+    },
+    {
+      "metroId": "berlin",
+      "name": "Berlin",
+      "metrics": {
+        "population": {
+          "meanError": 0.009361263399743037,
+          "maxError": 0.011591625833328423,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.05,
+          "passed": true
+        },
+        "labourForce": {
+          "meanError": 0.003816029356467262,
+          "maxError": 0.006015363710100728,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "unemployment": {
+          "meanError": 0.27333333333333254,
+          "maxError": 0.4399999999999995,
+          "n": 3,
+          "unit": "percentage points",
+          "tolerance": 2,
+          "passed": true
+        },
+        "gdp": {
+          "meanError": 0.0043700526679647,
+          "maxError": 0.006829339997864915,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "density": {
+          "meanError": 0.008997373300789481,
+          "maxError": 0.01150892616521889,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        },
+        "pm25": {
+          "meanError": 0.05806627101245706,
+          "maxError": 0.08259613767020232,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        }
+      },
+      "passed": true,
+      "points": [
+        {
+          "observed": {
+            "year": 2017,
+            "population": 4822683,
+            "labourForce": 2519917,
+            "unemployment": 8.3,
+            "gdp": 220761,
+            "density": 533,
+            "pm25": 15.1
+          },
+          "predicted": {
+            "year": 2017,
+            "population": 4790958.799292912,
+            "labourForce": 2516257.641750069,
+            "unemployment": 8.52,
+            "gdp": 219253.34807273134,
+            "density": 529.559410384414,
+            "pm25": 14.029902804420328,
+            "employed": 2301872.490672963,
+            "gdpPerCapita": 45763.98112734564,
+            "outputPerEmployed": 95249.99710502279,
+            "labourForceToPopulation": 0.5252096181919658
+          }
+        },
+        {
+          "observed": {
+            "year": 2018,
+            "population": 4872213,
+            "labourForce": 2556843,
+            "unemployment": 7.5,
+            "gdp": 228330,
+            "density": 538,
+            "pm25": 14.9
+          },
+          "predicted": {
+            "year": 2018,
+            "population": 4823909.677504691,
+            "labourForce": 2546665.3579824483,
+            "unemployment": 7.9399999999999995,
+            "gdp": 227107.30634381843,
+            "density": 533.1429070849581,
+            "pm25": 13.669317548713986,
+            "employed": 2344460.1285586418,
+            "gdpPerCapita": 47079.51050636096,
+            "outputPerEmployed": 96869.76697848235,
+            "labourForceToPopulation": 0.5279255890420788
+          }
+        },
+        {
+          "observed": {
+            "year": 2019,
+            "population": 4914049,
+            "labourForce": 2562029,
+            "unemployment": 7.2,
+            "gdp": 235025,
+            "density": 543,
+            "pm25": 13.6
+          },
+          "predicted": {
+            "year": 2019,
+            "population": 4857087.182665358,
+            "labourForce": 2577440.5362708257,
+            "unemployment": 7.359999999999999,
+            "gdp": 235242.60426634573,
+            "density": 536.7506530922861,
+            "pm25": 13.317999764667665,
+            "employed": 2387740.9128012927,
+            "gdpPerCapita": 48432.856034767494,
+            "outputPerEmployed": 98520.99237616178,
+            "labourForceToPopulation": 0.5306556047561902
+          }
+        }
+      ]
+    },
+    {
+      "metroId": "madrid",
+      "name": "Madrid",
+      "metrics": {
+        "population": {
+          "meanError": 0.01784972297652915,
+          "maxError": 0.030099553052315795,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.05,
+          "passed": true
+        },
+        "labourForce": {
+          "meanError": 0.017110873811415347,
+          "maxError": 0.03471501255084295,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "unemployment": {
+          "meanError": 2.9583333333333326,
+          "maxError": 4.037499999999998,
+          "n": 3,
+          "unit": "percentage points",
+          "tolerance": 2,
+          "passed": false
+        },
+        "gdp": {
+          "meanError": 0.0026593576194569404,
+          "maxError": 0.0042939129466960345,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "density": {
+          "meanError": 0.017684098797191194,
+          "maxError": 0.029782359679266505,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        },
+        "pm25": {
+          "meanError": 0.01822492048850297,
+          "maxError": 0.04488697350904017,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        }
+      },
+      "passed": false,
+      "points": [
+        {
+          "observed": {
+            "year": 2017,
+            "population": 6717732,
+            "labourForce": 3421636,
+            "unemployment": 13.6,
+            "gdp": 333813,
+            "density": 852,
+            "pm25": 10.1
+          },
+          "predicted": {
+            "year": 2017,
+            "population": 6675302.000000006,
+            "labourForce": 3424407.477618668,
+            "unemployment": 15.6125,
+            "gdp": 332379.63603752456,
+            "density": 847.0000000000003,
+            "pm25": 10.065697251850835,
+            "employed": 2889771.8601754536,
+            "gdpPerCapita": 49792.44924612014,
+            "outputPerEmployed": 115019.33443885912,
+            "labourForceToPopulation": 0.5129966370987658
+          }
+        },
+        {
+          "observed": {
+            "year": 2018,
+            "population": 6791667,
+            "labourForce": 3469067,
+            "unemployment": 12.4,
+            "gdp": 342879,
+            "density": 862,
+            "pm25": 9.9
+          },
+          "predicted": {
+            "year": 2018,
+            "population": 6675302.000000006,
+            "labourForce": 3414229.297473326,
+            "unemployment": 15.225,
+            "gdp": 342386.75546600093,
+            "density": 847.0000000000003,
+            "pm25": 9.836724385040537,
+            "employed": 2894412.886933012,
+            "gdpPerCapita": 51291.57534235914,
+            "outputPerEmployed": 118292.29928173861,
+            "labourForceToPopulation": 0.5114718850882436
+          }
+        },
+        {
+          "observed": {
+            "year": 2019,
+            "population": 6882461,
+            "labourForce": 3526504,
+            "unemployment": 10.8,
+            "gdp": 353490,
+            "density": 873,
+            "pm25": 9.2
+          },
+          "predicted": {
+            "year": 2019,
+            "population": 6675302.000000006,
+            "labourForce": 3404081.369379402,
+            "unemployment": 14.837499999999999,
+            "gdp": 352695.16422871465,
+            "density": 847.0000000000003,
+            "pm25": 9.612960156283169,
+            "employed": 2899000.7961977334,
+            "gdpPerCapita": 52835.83637545003,
+            "outputPerEmployed": 121660.94079425641,
+            "labourForceToPopulation": 0.5099516650152157
+          }
+        }
+      ]
+    },
+    {
+      "metroId": "tokyo",
+      "name": "Tokyo",
+      "metrics": {
+        "population": {
+          "meanError": 0.001577423284946466,
+          "maxError": 0.002450627514810133,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.05,
+          "passed": true
+        },
+        "labourForce": {
+          "meanError": 0.025947063860766683,
+          "maxError": 0.039593323104521426,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "unemployment": {
+          "meanError": 0.1383333333333332,
+          "maxError": 0.20499999999999963,
+          "n": 3,
+          "unit": "percentage points",
+          "tolerance": 2,
+          "passed": true
+        },
+        "gdp": {
+          "meanError": 0.02312464997284111,
+          "maxError": 0.029542585137389134,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "density": {
+          "meanError": 0.0016831212985283846,
+          "maxError": 0.002547286549961917,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        },
+        "pm25": {
+          "meanError": 0.03792001389000627,
+          "maxError": 0.04470853903195427,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        }
+      },
+      "passed": true,
+      "points": [
+        {
+          "observed": {
+            "year": 2017,
+            "population": 36269093,
+            "labourForce": 17859750,
+            "unemployment": 3,
+            "gdp": 1866528,
+            "density": 3201,
+            "pm25": 14.3
+          },
+          "predicted": {
+            "year": 2017,
+            "population": 36295637.10664836,
+            "labourForce": 17662526.290763687,
+            "unemployment": 3.0524999999999998,
+            "gdp": 1824451.238782287,
+            "density": 3203.645518279372,
+            "pm25": 13.779814356391684,
+            "employed": 17123377.675738126,
+            "gdpPerCapita": 50266.4062190576,
+            "outputPerEmployed": 106547.3923037583,
+            "labourForceToPopulation": 0.48662946014325226
+          }
+        },
+        {
+          "observed": {
+            "year": 2018,
+            "population": 36440366,
+            "labourForce": 18203620,
+            "unemployment": 2.6,
+            "gdp": 1887951,
+            "density": 3216,
+            "pm25": 14.3
+          },
+          "predicted": {
+            "year": 2018,
+            "population": 36496840.426462226,
+            "labourForce": 17708391.372993186,
+            "unemployment": 2.8049999999999997,
+            "gdp": 1832176.046847281,
+            "density": 3221.388765471278,
+            "pm25": 13.660667891843055,
+            "employed": 17211670.994980726,
+            "gdpPerCapita": 50200.949601074295,
+            "outputPerEmployed": 106449.63219327053,
+            "labourForceToPopulation": 0.48520340846145205
+          }
+        },
+        {
+          "observed": {
+            "year": 2019,
+            "population": 36609443,
+            "labourForce": 18486310,
+            "unemployment": 2.4,
+            "gdp": 1872303,
+            "density": 3231,
+            "pm25": 14
+          },
+          "predicted": {
+            "year": 2019,
+            "population": 36699159.10831767,
+            "labourForce": 17754375.555159654,
+            "unemployment": 2.5575,
+            "gdp": 1839933.562094778,
+            "density": 3239.230282842927,
+            "pm25": 13.542551621145169,
+            "employed": 17300307.400336444,
+            "gdpPerCapita": 50135.57822031314,
+            "outputPerEmployed": 106352.65140196274,
+            "labourForceToPopulation": 0.4837815357773611
+          }
+        }
+      ]
+    },
+    {
+      "metroId": "seoul",
+      "name": "Seoul",
+      "metrics": {
+        "population": {
+          "meanError": 0.006498007840356986,
+          "maxError": 0.010390958553216574,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.05,
+          "passed": true
+        },
+        "labourForce": {
+          "meanError": 0.012070184907658129,
+          "maxError": 0.02393800088588058,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "unemployment": {
+          "meanError": 0.06666666666666672,
+          "maxError": 0.10000000000000053,
+          "n": 3,
+          "unit": "percentage points",
+          "tolerance": 2,
+          "passed": true
+        },
+        "gdp": {
+          "meanError": 0.011764169601990232,
+          "maxError": 0.019813795345972437,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "density": {
+          "meanError": 0.006628578310794348,
+          "maxError": 0.010550327915597636,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        },
+        "pm25": {
+          "meanError": 0.019382765641171733,
+          "maxError": 0.02623154301239358,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        }
+      },
+      "passed": true,
+      "points": [
+        {
+          "observed": {
+            "year": 2017,
+            "population": 23790863,
+            "labourForce": 12424317,
+            "unemployment": 4.2,
+            "gdp": 1000723,
+            "density": 3556,
+            "pm25": 26.2
+          },
+          "predicted": {
+            "year": 2017,
+            "population": 23712047.99999997,
+            "labourForce": 12426313.371689614,
+            "unemployment": 4.2,
+            "gdp": 989397.5933841264,
+            "density": 3544.000000000001,
+            "pm25": 26.88726642692471,
+            "employed": 11904408.21007865,
+            "gdpPerCapita": 41725.5225438194,
+            "outputPerEmployed": 83111.86712721016,
+            "labourForceToPopulation": 0.5240506164499005
+          }
+        },
+        {
+          "observed": {
+            "year": 2018,
+            "population": 23468191,
+            "labourForce": 12442676,
+            "unemployment": 4.3,
+            "gdp": 1046549,
+            "density": 3507,
+            "pm25": 26.2
+          },
+          "predicted": {
+            "year": 2018,
+            "population": 23712047.99999997,
+            "labourForce": 12593380.089425854,
+            "unemployment": 4.2,
+            "gdp": 1025812.8922944679,
+            "density": 3544.000000000001,
+            "pm25": 26.775003552312324,
+            "employed": 12064458.125669967,
+            "gdpPerCapita": 43261.252351313946,
+            "outputPerEmployed": 85027.68061433361,
+            "labourForceToPopulation": 0.5310962633605444
+          }
+        },
+        {
+          "observed": {
+            "year": 2019,
+            "population": 23575540,
+            "labourForce": 12464322,
+            "unemployment": 4.1,
+            "gdp": 1068013,
+            "density": 3523,
+            "pm25": 26.4
+          },
+          "predicted": {
+            "year": 2019,
+            "population": 23712047.99999997,
+            "labourForce": 12762692.9510779,
+            "unemployment": 4.2,
+            "gdp": 1063568.4754379597,
+            "density": 3544.000000000001,
+            "pm25": 26.663209410847298,
+            "employed": 12226659.847132629,
+            "gdpPerCapita": 44853.50550226455,
+            "outputPerEmployed": 86987.65556051562,
+            "labourForceToPopulation": 0.5382366361217689
+          }
+        }
+      ]
+    },
+    {
+      "metroId": "sydney",
+      "name": "Greater Sydney",
+      "metrics": {
+        "population": {
+          "meanError": 0.006272162571569943,
+          "maxError": 0.012329424091070516,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.05,
+          "passed": true
+        },
+        "labourForce": {
+          "meanError": 0.004201310727036411,
+          "maxError": 0.005538420399012647,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "unemployment": {
+          "meanError": 0.4999999999999997,
+          "maxError": 0.5999999999999996,
+          "n": 3,
+          "unit": "percentage points",
+          "tolerance": 2,
+          "passed": true
+        },
+        "gdp": {
+          "meanError": 0.049475611092477785,
+          "maxError": 0.09609170646363886,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "density": {
+          "meanError": 0.0066889691002332665,
+          "maxError": 0.013211895938718068,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        },
+        "pm25": {
+          "meanError": 0.12772594869592044,
+          "maxError": 0.32173913043478247,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        }
+      },
+      "passed": true,
+      "points": [
+        {
+          "observed": {
+            "year": 2017,
+            "population": 5116610,
+            "labourForce": 2667570,
+            "unemployment": 4.7,
+            "gdp": 244226,
+            "density": 413,
+            "pm25": 7.9
+          },
+          "predicted": {
+            "year": 2017,
+            "population": 5119304.014871379,
+            "labourForce": 2672840.504554811,
+            "unemployment": 5,
+            "gdp": 247482.22722829142,
+            "density": 412.71497894570507,
+            "pm25": 7.800000000000002,
+            "employed": 2539198.47932707,
+            "gdpPerCapita": 48342.94398405821,
+            "outputPerEmployed": 97464.70362327814,
+            "labourForceToPopulation": 0.5221101338756817
+          }
+        },
+        {
+          "observed": {
+            "year": 2018,
+            "population": 5184555,
+            "labourForce": 2750080,
+            "unemployment": 4.4,
+            "gdp": 246686,
+            "density": 418,
+            "pm25": 8.2
+          },
+          "predicted": {
+            "year": 2018,
+            "population": 5215457.748641761,
+            "labourForce": 2736082.8026888715,
+            "unemployment": 5,
+            "gdp": 256307.31706795577,
+            "density": 420.5769230769227,
+            "pm25": 7.800000000000002,
+            "employed": 2599278.662554428,
+            "gdpPerCapita": 49143.78170060045,
+            "outputPerEmployed": 98607.09463758343,
+            "labourForceToPopulation": 0.5246102901325234
+          }
+        },
+        {
+          "observed": {
+            "year": 2019,
+            "population": 5248704,
+            "labourForce": 2816420,
+            "unemployment": 4.4,
+            "gdp": 242176,
+            "density": 423,
+            "pm25": 11.5
+          },
+          "predicted": {
+            "year": 2019,
+            "population": 5313417.497544498,
+            "labourForce": 2800821.482019813,
+            "unemployment": 5,
+            "gdp": 265447.1051045382,
+            "density": 428.58863198207774,
+            "pm25": 7.800000000000002,
+            "employed": 2660780.407918822,
+            "gdpPerCapita": 49957.88590435626,
+            "outputPerEmployed": 99762.87570163015,
+            "labourForceToPopulation": 0.527122418540264
+          }
+        }
+      ]
+    },
+    {
+      "metroId": "toronto",
+      "name": "Toronto",
+      "metrics": {
+        "population": {
+          "meanError": 0.015624829015867007,
+          "maxError": 0.025623635894787514,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.05,
+          "passed": true
+        },
+        "labourForce": {
+          "meanError": 0.023376243060939456,
+          "maxError": 0.04097304073520983,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "unemployment": {
+          "meanError": 0.16666666666666727,
+          "maxError": 0.2600000000000007,
+          "n": 3,
+          "unit": "percentage points",
+          "tolerance": 2,
+          "passed": true
+        },
+        "gdp": {
+          "meanError": 0.03549453281653661,
+          "maxError": 0.05087477995248933,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "density": {
+          "meanError": 0.01666381249206113,
+          "maxError": 0.02675879700663334,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        },
+        "pm25": {
+          "meanError": 0.11306985580162514,
+          "maxError": 0.141087198718143,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        }
+      },
+      "passed": true,
+      "points": [
+        {
+          "observed": {
+            "year": 2017,
+            "population": 7224189,
+            "labourForce": 3720535,
+            "unemployment": 6.1,
+            "gdp": 331358,
+            "density": 457,
+            "pm25": 7.5
+          },
+          "predicted": {
+            "year": 2017,
+            "population": 7181780.927185152,
+            "labourForce": 3688949.432026421,
+            "unemployment": 6.36,
+            "gdp": 338435.5455167163,
+            "density": 453.7409249636747,
+            "pm25": 6.80785830912843,
+            "employed": 3454332.2481495407,
+            "gdpPerCapita": 47124.18116732554,
+            "outputPerEmployed": 97974.23096692961,
+            "labourForceToPopulation": 0.5136538512421986
+          }
+        },
+        {
+          "observed": {
+            "year": 2018,
+            "population": 7356925,
+            "labourForce": 3775236,
+            "unemployment": 5.8,
+            "gdp": 339966,
+            "density": 465,
+            "pm25": 7.6
+          },
+          "predicted": {
+            "year": 2018,
+            "population": 7243771.353297189,
+            "labourForce": 3697216.348746633,
+            "unemployment": 6.0200000000000005,
+            "gdp": 351609.70198215684,
+            "density": 457.5129488597583,
+            "pm25": 6.527737289742113,
+            "employed": 3474643.924552086,
+            "gdpPerCapita": 48539.591441150704,
+            "outputPerEmployed": 101193.01707367976,
+            "labourForceToPopulation": 0.5103993718774337
+          }
+        },
+        {
+          "observed": {
+            "year": 2019,
+            "population": 7498434,
+            "labourForce": 3863814,
+            "unemployment": 5.7,
+            "gdp": 347612,
+            "density": 474,
+            "pm25": 7
+          },
+          "predicted": {
+            "year": 2019,
+            "population": 7306296.857402905,
+            "labourForce": 3705501.791584726,
+            "unemployment": 5.68,
+            "gdp": 365296.6840088447,
+            "density": 461.3163302188558,
+            "pm25": 6.259142330673005,
+            "employed": 3495029.2898227135,
+            "gdpPerCapita": 49997.51462859299,
+            "outputPerEmployed": 104518.91921837787,
+            "labourForceToPopulation": 0.507165512694742
+          }
+        }
+      ]
+    },
+    {
+      "metroId": "mexico-city",
+      "name": "Mexico City",
+      "metrics": {
+        "population": {
+          "meanError": 0.00023362192227961427,
+          "maxError": 0.0004032991137295287,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.05,
+          "passed": true
+        },
+        "labourForce": {
+          "meanError": 0.02925076551941121,
+          "maxError": 0.05029660801327953,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "unemployment": {
+          "meanError": 0.8000000000000002,
+          "maxError": 1.2000000000000002,
+          "n": 3,
+          "unit": "percentage points",
+          "tolerance": 2,
+          "passed": true
+        },
+        "gdp": {
+          "meanError": 0.0692229500880185,
+          "maxError": 0.110086290519816,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "density": {
+          "meanError": 0.000035717499918527836,
+          "maxError": 0.00005674318596647442,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        },
+        "pm25": {
+          "meanError": 0.1145087751288884,
+          "maxError": 0.2224896940206872,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        }
+      },
+      "passed": true,
+      "points": [
+        {
+          "observed": {
+            "year": 2017,
+            "population": 20095508,
+            "labourForce": 8861749,
+            "unemployment": 4.3,
+            "gdp": 514469,
+            "density": 4356,
+            "pm25": 22.5
+          },
+          "predicted": {
+            "year": 2017,
+            "population": 20097144.624666363,
+            "labourForce": 8857270.144647308,
+            "unemployment": 5.5,
+            "gdp": 534719.271065951,
+            "density": 4355.848445791421,
+            "pm25": 23.009972685233823,
+            "employed": 8370120.286691706,
+            "gdpPerCapita": 26606.728520511304,
+            "outputPerEmployed": 63884.29947848444,
+            "labourForceToPopulation": 0.44072281461199614
+          }
+        },
+        {
+          "observed": {
+            "year": 2018,
+            "population": 20242111,
+            "labourForce": 9215625,
+            "unemployment": 4.8,
+            "gdp": 523015,
+            "density": 4388,
+            "pm25": 20.6
+          },
+          "predicted": {
+            "year": 2018,
+            "population": 20246485.81286826,
+            "labourForce": 8875105.129623784,
+            "unemployment": 5.5,
+            "gdp": 553465.4880476152,
+            "density": 4387.931471485557,
+            "pm25": 22.626446280991736,
+            "employed": 8386974.347494476,
+            "gdpPerCapita": 27336.372996435934,
+            "outputPerEmployed": 65991.07915632977,
+            "labourForceToPopulation": 0.4383528683275468
+          }
+        },
+        {
+          "observed": {
+            "year": 2019,
+            "population": 20388714,
+            "labourForce": 9363951,
+            "unemployment": 5,
+            "gdp": 516058,
+            "density": 4420,
+            "pm25": 18.2
+          },
+          "predicted": {
+            "year": 2019,
+            "population": 20396936.750286285,
+            "labourForce": 8892976.027097443,
+            "unemployment": 5.5,
+            "gdp": 572868.9109130752,
+            "density": 4420.250804881972,
+            "pm25": 22.249312431176506,
+            "employed": 8403862.345607083,
+            "gdpPerCapita": 28086.026736589974,
+            "outputPerEmployed": 68167.33632155799,
+            "labourForceToPopulation": 0.4359956662106443
+          }
+        }
+      ]
+    },
+    {
+      "metroId": "santiago",
+      "name": "Santiago",
+      "metrics": {
+        "population": {
+          "meanError": 0.023864465733196397,
+          "maxError": 0.039859347476266745,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.05,
+          "passed": true
+        },
+        "labourForce": {
+          "meanError": 0.062094770680185964,
+          "maxError": 0.08189085188841418,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "unemployment": {
+          "meanError": 0.26666666666666633,
+          "maxError": 0.5499999999999989,
+          "n": 3,
+          "unit": "percentage points",
+          "tolerance": 2,
+          "passed": true
+        },
+        "gdp": {
+          "meanError": 0.009931485437761954,
+          "maxError": 0.022651919118576083,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "density": {
+          "meanError": 0.023493542337562887,
+          "maxError": 0.03977069422772685,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        },
+        "pm25": {
+          "meanError": 0.0680994729907773,
+          "maxError": 0.0946969696969697,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        }
+      },
+      "passed": true,
+      "points": [
+        {
+          "observed": {
+            "year": 2017,
+            "population": 7322872,
+            "labourForce": 3681990,
+            "unemployment": 7.3,
+            "gdp": 189735,
+            "density": 643,
+            "pm25": 27.6
+          },
+          "predicted": {
+            "year": 2017,
+            "population": 7261853.996765826,
+            "labourForce": 3546540.022832903,
+            "unemployment": 7.375,
+            "gdp": 194032.86187396303,
+            "density": 637.6090258724087,
+            "pm25": 28.9,
+            "employed": 3284982.6961489767,
+            "gdpPerCapita": 26719.466125369425,
+            "outputPerEmployed": 59066.631340685606,
+            "labourForceToPopulation": 0.48837941721389705
+          }
+        },
+        {
+          "observed": {
+            "year": 2018,
+            "population": 7513321,
+            "labourForce": 3824836,
+            "unemployment": 8.1,
+            "gdp": 197686,
+            "density": 659,
+            "pm25": 27.2
+          },
+          "predicted": {
+            "year": 2018,
+            "population": 7337497.821806318,
+            "labourForce": 3566253.012120327,
+            "unemployment": 7.550000000000001,
+            "gdp": 196894.30889636342,
+            "density": 644.2872739682447,
+            "pm25": 28.9,
+            "employed": 3297000.909705242,
+            "gdpPerCapita": 26833.98532824269,
+            "outputPerEmployed": 59719.21582331809,
+            "labourForceToPopulation": 0.4860312191877966
+          }
+        },
+        {
+          "observed": {
+            "year": 2019,
+            "population": 7721712,
+            "labourForce": 3905936,
+            "unemployment": 7.9,
+            "gdp": 199173,
+            "density": 678,
+            "pm25": 26.4
+          },
+          "predicted": {
+            "year": 2019,
+            "population": 7413929.598280341,
+            "labourForce": 3586075.573538375,
+            "unemployment": 7.7250000000000005,
+            "gdp": 199797.9543329035,
+            "density": 651.0354693136012,
+            "pm25": 28.9,
+            "employed": 3309051.2354825353,
+            "gdpPerCapita": 26948.99535858104,
+            "outputPerEmployed": 60379.22658630832,
+            "labourForceToPopulation": 0.48369431163335624
+          }
+        }
+      ]
+    },
+    {
+      "metroId": "amsterdam",
+      "name": "Amsterdam",
+      "metrics": {
+        "population": {
+          "meanError": 0.0038586979509536157,
+          "maxError": 0.005420681815634227,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.05,
+          "passed": true
+        },
+        "labourForce": {
+          "meanError": 0.0021244978787923834,
+          "maxError": 0.004547089061759971,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "unemployment": {
+          "meanError": 1.7666666666666666,
+          "maxError": 2.5,
+          "n": 3,
+          "unit": "percentage points",
+          "tolerance": 2,
+          "passed": true
+        },
+        "gdp": {
+          "meanError": 0.007695460736876131,
+          "maxError": 0.011813807128770512,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": 0.1,
+          "passed": true
+        },
+        "density": {
+          "meanError": 0.003946665352595017,
+          "maxError": 0.005258836044404523,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        },
+        "pm25": {
+          "meanError": 0.0541136598531303,
+          "maxError": 0.07144164693419432,
+          "n": 3,
+          "unit": "fraction",
+          "tolerance": null,
+          "passed": null
+        }
+      },
+      "passed": true,
+      "points": [
+        {
+          "observed": {
+            "year": 2017,
+            "population": 2816194,
+            "labourForce": 1498105,
+            "unemployment": 4.8,
+            "gdp": 196106,
+            "density": 851,
+            "pm25": 12.6
+          },
+          "predicted": {
+            "year": 2017,
+            "population": 2809499.08335575,
+            "labourForce": 1499626.6375883392,
+            "unemployment": 5.8,
+            "gdp": 197080.05507502804,
+            "density": 848.7773511049783,
+            "pm25": 11.699835248629151,
+            "employed": 1412648.2926082155,
+            "gdpPerCapita": 70147.75560618077,
+            "outputPerEmployed": 139511.05601179268,
+            "labourForceToPopulation": 0.5337701110039659
+          }
+        },
+        {
+          "observed": {
+            "year": 2018,
+            "population": 2839300,
+            "labourForce": 1510161,
+            "unemployment": 4,
+            "gdp": 202955,
+            "density": 858,
+            "pm25": 12.1
+          },
+          "predicted": {
+            "year": 2018,
+            "population": 2828572.7849655664,
+            "labourForce": 1508936.7180080356,
+            "unemployment": 5.8,
+            "gdp": 204234.7515373974,
+            "density": 854.5942962619022,
+            "pm25": 11.503037381938242,
+            "employed": 1421418.3883635695,
+            "gdpPerCapita": 72204.1704646761,
+            "outputPerEmployed": 143683.7691205936,
+            "labourForceToPopulation": 0.5334622202505581
+          }
+        },
+        {
+          "observed": {
+            "year": 2019,
+            "population": 2863297,
+            "labourForce": 1525240,
+            "unemployment": 3.3,
+            "gdp": 209178,
+            "density": 865,
+            "pm25": 11.8
+          },
+          "predicted": {
+            "year": 2019,
+            "population": 2847775.97801934,
+            "labourForce": 1518304.5978794412,
+            "unemployment": 5.8,
+            "gdp": 211649.18854758196,
+            "density": 860.4511068215901,
+            "pm25": 11.309549767016792,
+            "employed": 1430242.9312024335,
+            "gdpPerCapita": 74320.87010397017,
+            "outputPerEmployed": 147981.28620684342,
+            "labourForceToPopulation": 0.5331545070955472
+          }
+        }
+      ]
+    }
+  ],
+  "source": {
+    "title": "OECD City Statistics, archived by Marco Di Maio and Pasquale Somma",
+    "upstream": "https://www.oecd.org/en/data/datasets/oecd-definition-of-cities-and-functional-urban-areas.html",
+    "url": "https://github.com/Marco210210/City-Statistics-OECD-FUA-Analysis/blob/17162d21c78016d7af31fed4553ebfcd64621013/dataset/intermediate/Clean_dataset_with_NA.csv",
+    "commit": "17162d21c78016d7af31fed4553ebfcd64621013",
+    "sha256": "7d907749f881ca62edc3c7b0c648e30e6031d50f07287a749f97156e1e39c769",
+    "retrieved": "2026-10-14",
+    "coverage": "2009–2019; historical, not current estimates",
+    "license": "Mirror: CC BY-NC-SA 4.0. Attribution and noncommercial/share-alike conditions apply to this data adaptation.",
+    "quality": "Secondary archive, before its interpolation step. Original OECD API values and historical FUA boundary vintages have not been independently reverified. No missing cells are imputed here."
+  },
+  "seed": 20261014,
+  "selectionNote": "Initial panel: ten cities including Madrid. Amsterdam added after Madrid failed, retaining Madrid. City selection is adaptive; this is not an unbiased ten-city success estimate.",
+  "limits": [
+    "Historical secondary-source benchmarks, not current-world forecasts.",
+    "Occupation-mix effects are not trained: no matching observed occupation panel was acquired.",
+    "GDP/head and output/employed are arithmetic derivatives, not independent validations.",
+    "Simulation ranges use training innovations and are not calibrated coverage guarantees."
+  ],
+  "simulationCount": 6600,
+  "simulations": [
+    {
+      "metroId": "london",
+      "year": 2017,
+      "gdp": 849111.4780361492,
+      "trainingInnovationRange95": [
+        835718.5251635468,
+        864544.729223049
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.4647295282999338
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0.6099575058936632
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "london",
+      "year": 2018,
+      "gdp": 882239.9432871556,
+      "trainingInnovationRange95": [
+        860392.304918149,
+        903143.4277543471
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.4590026405418285
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0.6024409657111499
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "london",
+      "year": 2019,
+      "gdp": 916660.9304722983,
+      "trainingInnovationRange95": [
+        889551.3963711684,
+        946923.2127008378
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.45334632553926546
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0.5950170522702859
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "paris",
+      "year": 2017,
+      "gdp": 881168.246006613,
+      "trainingInnovationRange95": [
+        874947.4066633991,
+        886473.6427000326
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.43868832005482394
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0.5757784200719565
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "paris",
+      "year": 2018,
+      "gdp": 892707.6538730217,
+      "trainingInnovationRange95": [
+        883823.2252257295,
+        901454.397320076
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.4366718919454155
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0.573131858178358
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "paris",
+      "year": 2019,
+      "gdp": 904398.176960062,
+      "trainingInnovationRange95": [
+        894151.2298839741,
+        916034.4485516793
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.4346647323351546
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0.5704974611898904
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "berlin",
+      "year": 2017,
+      "gdp": 219253.34807273134,
+      "trainingInnovationRange95": [
+        215537.91086674237,
+        222621.52813646305
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 1
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 1
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "berlin",
+      "year": 2018,
+      "gdp": 227107.30634381843,
+      "trainingInnovationRange95": [
+        221922.30051760888,
+        232021.2408808352
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 1
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 1
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "berlin",
+      "year": 2019,
+      "gdp": 235242.60426634573,
+      "trainingInnovationRange95": [
+        228579.312623637,
+        241368.57125416963
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 1
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 1
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "madrid",
+      "year": 2017,
+      "gdp": 332379.63603752456,
+      "trainingInnovationRange95": [
+        324521.88357159466,
+        339785.7172554901
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.8560340362556946
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 1
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "madrid",
+      "year": 2018,
+      "gdp": 342386.75546600093,
+      "trainingInnovationRange95": [
+        333525.07789382944,
+        354135.7811045207
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.8560340362556946
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 1
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "madrid",
+      "year": 2019,
+      "gdp": 352695.16422871465,
+      "trainingInnovationRange95": [
+        338120.49043050775,
+        365631.8701385813
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.8560340362556946
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 1
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "tokyo",
+      "year": 2017,
+      "gdp": 1824451.238782287,
+      "trainingInnovationRange95": [
+        1802134.0378013027,
+        1848777.8786334405
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.15743726160517002
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0.20663640585678564
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "tokyo",
+      "year": 2018,
+      "gdp": 1832176.046847281,
+      "trainingInnovationRange95": [
+        1797912.0313561584,
+        1867936.3909386692
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.15656932620782543
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0.2054972406477709
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "tokyo",
+      "year": 2019,
+      "gdp": 1839933.562094778,
+      "trainingInnovationRange95": [
+        1795859.2243506364,
+        1877531.4349800618
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.1557061756488748
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0.20436435553914814
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "seoul",
+      "year": 2017,
+      "gdp": 989397.5933841264,
+      "trainingInnovationRange95": [
+        987117.943735527,
+        991414.6590312221
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.24098659526523064
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0.3162949062856152
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "seoul",
+      "year": 2018,
+      "gdp": 1025812.8922944679,
+      "trainingInnovationRange95": [
+        1022669.2204350261,
+        1029222.7628513507
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.24098659526523064
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0.3162949062856152
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "seoul",
+      "year": 2019,
+      "gdp": 1063568.4754379597,
+      "trainingInnovationRange95": [
+        1059067.658400264,
+        1068011.3903420297
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.24098659526523064
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0.3162949062856152
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "sydney",
+      "year": 2017,
+      "gdp": 247482.22722829142,
+      "trainingInnovationRange95": [
+        242653.76295019194,
+        252838.6822251493
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 1
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 1
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "sydney",
+      "year": 2018,
+      "gdp": 256307.31706795577,
+      "trainingInnovationRange95": [
+        248495.3473788159,
+        265065.32720627065
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 1
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 1
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "sydney",
+      "year": 2019,
+      "gdp": 265447.1051045382,
+      "trainingInnovationRange95": [
+        254558.57447122238,
+        276449.92630686844
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 1
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 1
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "toronto",
+      "year": 2017,
+      "gdp": 338435.5455167163,
+      "trainingInnovationRange95": [
+        329326.07930699043,
+        347562.8613735486
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.7956641635580199
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 1
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "toronto",
+      "year": 2018,
+      "gdp": 351609.70198215684,
+      "trainingInnovationRange95": [
+        340124.1434742567,
+        363447.9359035042
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.788855063969504
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 1
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "toronto",
+      "year": 2019,
+      "gdp": 365296.6840088447,
+      "trainingInnovationRange95": [
+        349151.3203803134,
+        384204.67268876533
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.7821042349922959
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 1
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "mexico-city",
+      "year": 2017,
+      "gdp": 534719.271065951,
+      "trainingInnovationRange95": [
+        519435.44956487435,
+        548703.5057503727
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.28433321354876695
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0.37318734278275656
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "mexico-city",
+      "year": 2018,
+      "gdp": 553465.4880476152,
+      "trainingInnovationRange95": [
+        534355.8672712971,
+        572639.1204498948
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.2822359281062904
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0.3704346556395061
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "mexico-city",
+      "year": 2019,
+      "gdp": 572868.9109130752,
+      "trainingInnovationRange95": [
+        543238.5378514584,
+        601471.6833694743
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.28015411256327555
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0.3677022727392991
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "santiago",
+      "year": 2017,
+      "gdp": 194032.86187396303,
+      "trainingInnovationRange95": [
+        183481.88613322604,
+        201485.8041554917
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.7868907467474087
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 1
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "santiago",
+      "year": 2018,
+      "gdp": 196894.30889636342,
+      "trainingInnovationRange95": [
+        181943.1016299918,
+        208016.5613813763
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.7787785227415568
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 1
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "santiago",
+      "year": 2019,
+      "gdp": 199797.9543329035,
+      "trainingInnovationRange95": [
+        186579.6839466692,
+        217029.01891582523
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0.7707499293776868
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 1
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "amsterdam",
+      "year": 2017,
+      "gdp": 197080.05507502804,
+      "trainingInnovationRange95": [
+        196355.0058080768,
+        197992.67093887916
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 1
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 1
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "amsterdam",
+      "year": 2018,
+      "gdp": 204234.7515373974,
+      "trainingInnovationRange95": [
+        203151.90647284815,
+        205438.47855822835
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 1
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 1
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    },
+    {
+      "metroId": "amsterdam",
+      "year": 2019,
+      "gdp": 211649.18854758196,
+      "trainingInnovationRange95": [
+        210170.4577675867,
+        213074.0577856457
+      ],
+      "mixes": [
+        {
+          "name": "unclassified",
+          "allocatedWorkers": 0,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "clinical",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 1
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "education",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 1
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        },
+        {
+          "name": "infrastructure",
+          "allocatedWorkers": 15000,
+          "outputFactor": 1,
+          "serviceIndices": [
+            {
+              "id": "health",
+              "index": 0
+            },
+            {
+              "id": "learning",
+              "index": 0
+            },
+            {
+              "id": "infrastructure",
+              "index": 0
+            },
+            {
+              "id": "livelihoods",
+              "index": 0
+            },
+            {
+              "id": "resilience",
+              "index": 0
+            },
+            {
+              "id": "community",
+              "index": 0
+            }
+          ],
+          "validated": false
+        }
+      ]
+    }
+  ],
+  "fittedModels": [
+    {
+      "metroId": "london",
+      "trainingStart": 2010,
+      "trainingEnd": 2016,
+      "fits": {
+        "population": {
+          "origin": 2016,
+          "last": 16.312379951287937,
+          "slope": 0.012399613929329334,
+          "window": 5,
+          "damping": 1,
+          "innovation": 0.0009896041041903465,
+          "count": 5,
+          "trainingLoss": 0.0000012235894582005788
+        },
+        "labourForce": {
+          "origin": 2016,
+          "last": 15.672198940866817,
+          "slope": 0.017099388787883387,
+          "window": 6,
+          "damping": 1,
+          "innovation": 0.0030434405482789124,
+          "count": 6,
+          "trainingLoss": 0.000014193935283868344
+        },
+        "unemployment": {
+          "origin": 2016,
+          "last": 5.1,
+          "slope": -0.5250000000000001,
+          "window": 3,
+          "damping": 0.75,
+          "innovation": 0.34731109973624497,
+          "count": 3,
+          "trainingLoss": 0.46832031250000056
+        },
+        "gdp": {
+          "origin": 2016,
+          "last": 13.613672181027384,
+          "slope": 0.03827358075369887,
+          "window": 4,
+          "damping": 1,
+          "innovation": 0.008618701768223849,
+          "count": 4,
+          "trainingLoss": 0.00016595877903999428
+        },
+        "density": {
+          "origin": 2016,
+          "last": 7.462214939768189,
+          "slope": 0.012538176784771959,
+          "window": 5,
+          "damping": 1,
+          "innovation": 0.001002198142635322,
+          "count": 5,
+          "trainingLoss": 0.0000011492400012389917
+        },
+        "pm25": {
+          "origin": 2016,
+          "last": 2.4159137783010487,
+          "slope": -0.022734233181163133,
+          "window": 3,
+          "damping": 0.75,
+          "innovation": 0.015361979655552298,
+          "count": 3,
+          "trainingLoss": 0.001033143900240143
+        }
+      }
+    },
+    {
+      "metroId": "paris",
+      "trainingStart": 2010,
+      "trainingEnd": 2016,
+      "fits": {
+        "population": {
+          "origin": 2016,
+          "last": 16.37783886809573,
+          "slope": 0.004607090083300491,
+          "window": 5,
+          "damping": 1,
+          "innovation": 0.001081548157286207,
+          "count": 5,
+          "trainingLoss": 0.000001400385107595186
+        },
+        "labourForce": {
+          "origin": 2016,
+          "last": 15.629833219704649,
+          "slope": 0.003508233730721206,
+          "window": 6,
+          "damping": 0.75,
+          "innovation": 0.004011012670776094,
+          "count": 6,
+          "trainingLoss": 0.000019942966964076667
+        },
+        "unemployment": {
+          "origin": 2016,
+          "last": 9.5,
+          "slope": 0,
+          "window": 3,
+          "damping": 0,
+          "innovation": 0.22360679774997935,
+          "count": 3,
+          "trainingLoss": 0.31750000000000017
+        },
+        "gdp": {
+          "origin": 2016,
+          "last": 13.675993285654954,
+          "slope": 0.013010572661262997,
+          "window": 4,
+          "damping": 1,
+          "innovation": 0.0035302839634841886,
+          "count": 4,
+          "trainingLoss": 0.000013818574548363298
+        },
+        "density": {
+          "origin": 2016,
+          "last": 6.525029657843462,
+          "slope": 0.004883866395589198,
+          "window": 5,
+          "damping": 1,
+          "innovation": 0.0012501316126950855,
+          "count": 5,
+          "trainingLoss": 0.000002075083106710699
+        },
+        "pm25": {
+          "origin": 2016,
+          "last": 2.4765384001174837,
+          "slope": -0.038922536430595706,
+          "window": 5,
+          "damping": 0.75,
+          "innovation": 0.08835372765294597,
+          "count": 5,
+          "trainingLoss": 0.00871867077829493
+        }
+      }
+    },
+    {
+      "metroId": "berlin",
+      "trainingStart": 2010,
+      "trainingEnd": 2016,
+      "fits": {
+        "population": {
+          "origin": 2016,
+          "last": 15.375386938801569,
+          "slope": 0.006854177421811158,
+          "window": 3,
+          "damping": 0.5,
+          "innovation": 0.006947775553683085,
+          "count": 3,
+          "trainingLoss": 0.000127613234351748
+        },
+        "labourForce": {
+          "origin": 2016,
+          "last": 14.726271227189407,
+          "slope": 0.012012065701907914,
+          "window": 5,
+          "damping": 1,
+          "innovation": 0.010962256776689756,
+          "count": 5,
+          "trainingLoss": 0.00015112800109338436
+        },
+        "unemployment": {
+          "origin": 2016,
+          "last": 9.1,
+          "slope": -0.5800000000000001,
+          "window": 5,
+          "damping": 1,
+          "innovation": 0.23537204591879632,
+          "count": 5,
+          "trainingLoss": 0.05772500000000013
+        },
+        "gdp": {
+          "origin": 2016,
+          "last": 12.262788461438106,
+          "slope": 0.03519471925091082,
+          "window": 4,
+          "damping": 1,
+          "innovation": 0.007779694054446912,
+          "count": 4,
+          "trainingLoss": 0.00026552822614849393
+        },
+        "density": {
+          "origin": 2016,
+          "last": 6.26530121273771,
+          "slope": 0.006744146924550609,
+          "window": 3,
+          "damping": 0.5,
+          "innovation": 0.006990033843491882,
+          "count": 3,
+          "trainingLoss": 0.00012762543202645763
+        },
+        "pm25": {
+          "origin": 2016,
+          "last": 2.667228206581955,
+          "slope": -0.026037240187923378,
+          "window": 6,
+          "damping": 0.5,
+          "innovation": 0.07643754959233906,
+          "count": 6,
+          "trainingLoss": 0.004054642355195228
+        }
+      }
+    },
+    {
+      "metroId": "madrid",
+      "trainingStart": 2010,
+      "trainingEnd": 2016,
+      "fits": {
+        "population": {
+          "origin": 2016,
+          "last": 15.713925004672827,
+          "slope": 0,
+          "window": 3,
+          "damping": 0,
+          "innovation": 0.003805137322813187,
+          "count": 3,
+          "trainingLoss": 0.000016454587797669854
+        },
+        "labourForce": {
+          "origin": 2016,
+          "last": 15.049415686996563,
+          "slope": -0.002976671519618509,
+          "window": 6,
+          "damping": 0.5,
+          "innovation": 0.010774854992633491,
+          "count": 6,
+          "trainingLoss": 0.00015647970077342998
+        },
+        "unemployment": {
+          "origin": 2016,
+          "last": 16,
+          "slope": -0.3875000000000002,
+          "window": 3,
+          "damping": 0.25,
+          "innovation": 1.1721374706065846,
+          "count": 3,
+          "trainingLoss": 1.6679687500000022
+        },
+        "gdp": {
+          "origin": 2016,
+          "last": 12.684369912288009,
+          "slope": 0.02966316437372485,
+          "window": 3,
+          "damping": 0.75,
+          "innovation": 0.010435544239628355,
+          "count": 3,
+          "trainingLoss": 0.0008068052160741553
+        },
+        "density": {
+          "origin": 2016,
+          "last": 6.741700694652055,
+          "slope": 0,
+          "window": 3,
+          "damping": 0,
+          "innovation": 0.003743233597237608,
+          "count": 3,
+          "trainingLoss": 0.000015707579176250183
+        },
+        "pm25": {
+          "origin": 2016,
+          "last": 2.33214389523559,
+          "slope": -0.023010563644984917,
+          "window": 5,
+          "damping": 0.75,
+          "innovation": 0.04949915972767193,
+          "count": 5,
+          "trainingLoss": 0.00281060290180101
+        }
+      }
+    },
+    {
+      "metroId": "tokyo",
+      "trainingStart": 2010,
+      "trainingEnd": 2016,
+      "fits": {
+        "population": {
+          "origin": 2016,
+          "last": 17.401679953077096,
+          "slope": 0.005528149035102459,
+          "window": 3,
+          "damping": 1,
+          "innovation": 0.000059474931520142604,
+          "count": 3,
+          "trainingLoss": 0.00000326058905261712
+        },
+        "labourForce": {
+          "origin": 2016,
+          "last": 16.684362414893513,
+          "slope": 0.002593379587796996,
+          "window": 5,
+          "damping": 0.75,
+          "innovation": 0.0031930811206062515,
+          "count": 5,
+          "trainingLoss": 0.000008773817446937132
+        },
+        "unemployment": {
+          "origin": 2016,
+          "last": 3.3,
+          "slope": -0.24749999999999997,
+          "window": 5,
+          "damping": 0.75,
+          "innovation": 0.20707788389878815,
+          "count": 5,
+          "trainingLoss": 0.04442812499999991
+        },
+        "gdp": {
+          "origin": 2016,
+          "last": 14.41256470236781,
+          "slope": 0.004225106336093187,
+          "window": 3,
+          "damping": 0.5,
+          "innovation": 0.006446837960224718,
+          "count": 3,
+          "trainingLoss": 0.00027115888253871715
+        },
+        "density": {
+          "origin": 2016,
+          "last": 8.066521490469993,
+          "slope": 0.005523174356359739,
+          "window": 3,
+          "damping": 1,
+          "innovation": 0.0001730435772868688,
+          "count": 3,
+          "trainingLoss": 0.000003344478080511431
+        },
+        "pm25": {
+          "origin": 2016,
+          "last": 2.631888840136646,
+          "slope": -0.008684046601845907,
+          "window": 3,
+          "damping": 0.25,
+          "innovation": 0.03311987109183849,
+          "count": 3,
+          "trainingLoss": 0.00132040778200101
+        }
+      }
+    },
+    {
+      "metroId": "seoul",
+      "trainingStart": 2010,
+      "trainingEnd": 2016,
+      "fits": {
+        "population": {
+          "origin": 2016,
+          "last": 16.9814938313674,
+          "slope": 0,
+          "window": 3,
+          "damping": 0,
+          "innovation": 0.022608873379796383,
+          "count": 3,
+          "trainingLoss": 0.0002658962929572812
+        },
+        "labourForce": {
+          "origin": 2016,
+          "last": 16.32197181251118,
+          "slope": 0.013355015808438253,
+          "window": 5,
+          "damping": 1,
+          "innovation": 0.008211550613004322,
+          "count": 5,
+          "trainingLoss": 0.00008570235781046028
+        },
+        "unemployment": {
+          "origin": 2016,
+          "last": 4.2,
+          "slope": 0,
+          "window": 3,
+          "damping": 0,
+          "innovation": 0.14142135623730964,
+          "count": 3,
+          "trainingLoss": 0.05999999999999997
+        },
+        "gdp": {
+          "origin": 2016,
+          "last": 13.768707168849575,
+          "slope": 0.03614437652390645,
+          "window": 3,
+          "damping": 1,
+          "innovation": 0.0011095303029486914,
+          "count": 3,
+          "trainingLoss": 0.00001183979619763768
+        },
+        "density": {
+          "origin": 2016,
+          "last": 8.173011311724972,
+          "slope": 0,
+          "window": 3,
+          "damping": 0,
+          "innovation": 0.02250761334593505,
+          "count": 3,
+          "trainingLoss": 0.0002637195847071936
+        },
+        "pm25": {
+          "origin": 2016,
+          "last": 3.295836866004329,
+          "slope": -0.0041840584988981026,
+          "window": 4,
+          "damping": 0.25,
+          "innovation": 0.04168792390264002,
+          "count": 4,
+          "trainingLoss": 0.0024746360784807736
+        }
+      }
+    },
+    {
+      "metroId": "sydney",
+      "trainingStart": 2010,
+      "trainingEnd": 2016,
+      "fits": {
+        "population": {
+          "origin": 2016,
+          "last": 15.429920688408925,
+          "slope": 0.01860836477138683,
+          "window": 3,
+          "damping": 1,
+          "innovation": 0.00042444163950250413,
+          "count": 3,
+          "trainingLoss": 0.0000048952918158731275
+        },
+        "labourForce": {
+          "origin": 2016,
+          "last": 14.7752668271185,
+          "slope": 0.023385497144398748,
+          "window": 3,
+          "damping": 1,
+          "innovation": 0.003054285785704103,
+          "count": 3,
+          "trainingLoss": 0.00003218303103964327
+        },
+        "unemployment": {
+          "origin": 2016,
+          "last": 5,
+          "slope": 0,
+          "window": 3,
+          "damping": 0,
+          "innovation": 0.15811388300841897,
+          "count": 3,
+          "trainingLoss": 0.11249999999999993
+        },
+        "gdp": {
+          "origin": 2016,
+          "last": 12.384055637682039,
+          "slope": 0.035038411551821115,
+          "window": 6,
+          "damping": 1,
+          "innovation": 0.012155359876426443,
+          "count": 6,
+          "trainingLoss": 0.00023954138723765103
+        },
+        "density": {
+          "origin": 2016,
+          "last": 6.003887067106539,
+          "slope": 0.018870163991423272,
+          "window": 3,
+          "damping": 1,
+          "innovation": 0.0014351021693221888,
+          "count": 3,
+          "trainingLoss": 0.000009042281945911184
+        },
+        "pm25": {
+          "origin": 2016,
+          "last": 2.0541237336955462,
+          "slope": 0,
+          "window": 3,
+          "damping": 0,
+          "innovation": 0.020562164409292292,
+          "count": 3,
+          "trainingLoss": 0.0008911779718303835
+        }
+      }
+    },
+    {
+      "metroId": "toronto",
+      "trainingStart": 2010,
+      "trainingEnd": 2016,
+      "fits": {
+        "population": {
+          "origin": 2016,
+          "last": 15.778463366641557,
+          "slope": 0.00859458362394803,
+          "window": 6,
+          "damping": 0.75,
+          "innovation": 0.0038941894074950136,
+          "count": 6,
+          "trainingLoss": 0.000006592056003839713
+        },
+        "labourForce": {
+          "origin": 2016,
+          "last": 15.118613781134798,
+          "slope": 0.002238487577339538,
+          "window": 6,
+          "damping": 0.75,
+          "innovation": 0.00473163139440195,
+          "count": 6,
+          "trainingLoss": 0.00002982171391265566
+        },
+        "unemployment": {
+          "origin": 2016,
+          "last": 6.7,
+          "slope": -0.33999999999999997,
+          "window": 5,
+          "damping": 1,
+          "innovation": 0.16462077633154307,
+          "count": 5,
+          "trainingLoss": 0.03427499999999989
+        },
+        "gdp": {
+          "origin": 2016,
+          "last": 12.693900844063462,
+          "slope": 0.038188097077450675,
+          "window": 4,
+          "damping": 1,
+          "innovation": 0.012694381676003775,
+          "count": 4,
+          "trainingLoss": 0.0004431547042952642
+        },
+        "density": {
+          "origin": 2016,
+          "last": 6.1092475827643655,
+          "slope": 0.008278802534635402,
+          "window": 6,
+          "damping": 0.75,
+          "innovation": 0.0040500593976504,
+          "count": 6,
+          "trainingLoss": 0.000007962208587047206
+        },
+        "pm25": {
+          "origin": 2016,
+          "last": 1.9600947840472698,
+          "slope": -0.0420172054004704,
+          "window": 4,
+          "damping": 1,
+          "innovation": 0.055749954866671496,
+          "count": 4,
+          "trainingLoss": 0.004141380551051323
+        }
+      }
+    },
+    {
+      "metroId": "mexico-city",
+      "trainingStart": 2010,
+      "trainingEnd": 2016,
+      "fits": {
+        "population": {
+          "origin": 2016,
+          "last": 16.80868481257574,
+          "slope": 0.00740349188799172,
+          "window": 3,
+          "damping": 1,
+          "innovation": 0.000027430845300102646,
+          "count": 3,
+          "trainingLoss": 7.143808785027751e-9
+        },
+        "labourForce": {
+          "origin": 2016,
+          "last": 15.994737591194285,
+          "slope": 0.002011573826360978,
+          "window": 6,
+          "damping": 0.25,
+          "innovation": 0.01691486801420641,
+          "count": 6,
+          "trainingLoss": 0.000005235759480126123
+        },
+        "unemployment": {
+          "origin": 2016,
+          "last": 5.5,
+          "slope": 0,
+          "window": 3,
+          "damping": 0,
+          "innovation": 0.9300537618869136,
+          "count": 3,
+          "trainingLoss": 0.5049999999999999
+        },
+        "gdp": {
+          "origin": 2016,
+          "last": 13.155039645393117,
+          "slope": 0.034457515788116844,
+          "window": 3,
+          "damping": 1,
+          "innovation": 0.013616928974994558,
+          "count": 3,
+          "trainingLoss": 0.0004804687682931318
+        },
+        "density": {
+          "origin": 2016,
+          "last": 8.371936178759098,
+          "slope": 0.0073385126295928416,
+          "window": 3,
+          "damping": 1,
+          "innovation": 0.00014340209505547818,
+          "count": 3,
+          "trainingLoss": 2.8755004252999288e-8
+        },
+        "pm25": {
+          "origin": 2016,
+          "last": 3.152736022363656,
+          "slope": -0.016808305399492518,
+          "window": 3,
+          "damping": 1,
+          "innovation": 0.00014125291428079834,
+          "count": 3,
+          "trainingLoss": 0.0005137984542929602
+        }
+      }
+    },
+    {
+      "metroId": "santiago",
+      "trainingStart": 2010,
+      "trainingEnd": 2016,
+      "fits": {
+        "population": {
+          "origin": 2016,
+          "last": 15.787783005048471,
+          "slope": 0.010362720606116177,
+          "window": 6,
+          "damping": 1,
+          "innovation": 0.0010884960782639968,
+          "count": 6,
+          "trainingLoss": 0.00000223912028499393
+        },
+        "labourForce": {
+          "origin": 2016,
+          "last": 15.075940063320635,
+          "slope": 0.005542981403621715,
+          "window": 6,
+          "damping": 0.5,
+          "innovation": 0.0056182577926478725,
+          "count": 6,
+          "trainingLoss": 0.000014243904519102328
+        },
+        "unemployment": {
+          "origin": 2016,
+          "last": 7.2,
+          "slope": 0.17500000000000004,
+          "window": 3,
+          "damping": 0.5,
+          "innovation": 0.57716981903076,
+          "count": 3,
+          "trainingLoss": 0.3946874999999998
+        },
+        "gdp": {
+          "origin": 2016,
+          "last": 12.161143268919911,
+          "slope": 0.014639545883402594,
+          "window": 5,
+          "damping": 0.5,
+          "innovation": 0.024056614608996055,
+          "count": 5,
+          "trainingLoss": 0.00029664377182424273
+        },
+        "density": {
+          "origin": 2016,
+          "last": 6.447305862541213,
+          "slope": 0.010419420845276127,
+          "window": 6,
+          "damping": 1,
+          "innovation": 0.0016240599453969183,
+          "count": 6,
+          "trainingLoss": 0.000004720457150773239
+        },
+        "pm25": {
+          "origin": 2016,
+          "last": 3.3638415951183864,
+          "slope": 0,
+          "window": 3,
+          "damping": 0,
+          "innovation": 0.03781614032299483,
+          "count": 3,
+          "trainingLoss": 0.00299737842782155
+        }
+      }
+    },
+    {
+      "metroId": "amsterdam",
+      "trainingStart": 2010,
+      "trainingEnd": 2016,
+      "fits": {
+        "population": {
+          "origin": 2016,
+          "last": 14.841750700394112,
+          "slope": 0.0067660628742524,
+          "window": 6,
+          "damping": 1,
+          "innovation": 0.000952995997234677,
+          "count": 6,
+          "trainingLoss": 0.000002198004137364235
+        },
+        "labourForce": {
+          "origin": 2016,
+          "last": 14.214537653136137,
+          "slope": 0.006189073679055072,
+          "window": 6,
+          "damping": 0.75,
+          "innovation": 0.008471140818266283,
+          "count": 6,
+          "trainingLoss": 0.00008234225906579629
+        },
+        "unemployment": {
+          "origin": 2016,
+          "last": 5.8,
+          "slope": 0,
+          "window": 3,
+          "damping": 0,
+          "innovation": 0.8062257748298552,
+          "count": 3,
+          "trainingLoss": 1.2374999999999996
+        },
+        "gdp": {
+          "origin": 2016,
+          "last": 12.155705238166387,
+          "slope": 0.03566005794665905,
+          "window": 3,
+          "damping": 1,
+          "innovation": 0.0020499342248214703,
+          "count": 3,
+          "trainingLoss": 0.00037520555901194815
+        },
+        "density": {
+          "origin": 2016,
+          "last": 6.736966958001855,
+          "slope": 0.006829945512335632,
+          "window": 6,
+          "damping": 1,
+          "innovation": 0.0008789551954075329,
+          "count": 6,
+          "trainingLoss": 0.0000018842443105710284
+        },
+        "pm25": {
+          "origin": 2016,
+          "last": 2.4765384001174837,
+          "slope": -0.01696363972666388,
+          "window": 5,
+          "damping": 0.5,
+          "innovation": 0.0527039282806655,
+          "count": 5,
+          "trainingLoss": 0.002488658353263452
+        }
+      }
+    }
+  ]
+}
