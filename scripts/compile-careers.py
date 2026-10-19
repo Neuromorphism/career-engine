@@ -44,7 +44,10 @@ def compile_data(data):
   if any(not isinstance(subject,str) or not subject.strip() for subject in subjects):raise ValueError('Missing task subject')
   if len({subject.strip().casefold() for subject in subjects}) != len(choices):raise ValueError(f'{owner} needs different task subjects')
   for choice in choices:
-   if choice['title'].startswith(('Investigate:','Rehearse together:','Improve the evidence for:','Prepare a team for:')):raise ValueError('Repeated task approach template')
+   if choice['title'].startswith(('Investigate:','Rehearse together:','Improve the evidence for:','Prepare a team for:','Start:','Plan:','Practice:','Verify:','Adapt:','Lead a program:','Build a lasting institution:')):raise ValueError('Repeated task approach template')
+   if training and choice['title'].startswith(('Record a trial of ','Find failure cases in ','Document the outcome of ','Review lessons from ','Scope a ')):raise ValueError('Training titles need scenario-specific actions')
+   aliases=choice.get('title_aliases',[])
+   if not isinstance(aliases,list) or any(not isinstance(alias,str) or not alias.strip() for alias in aliases):raise ValueError('Invalid training title alias')
    if choice['id'] in choice_ids:raise ValueError('Duplicate action choice ID')
    choice_ids.add(choice['id'])
    if not choice['description']:raise ValueError('Missing choice description')
@@ -63,6 +66,14 @@ def compile_data(data):
   track=node['curriculum'];curricula[nid]=track
   if len(track['activities'])<4:raise ValueError(f'Insufficient curriculum: {nid}')
   for activity in track['activities']:validate_choices(activity.get('choices',[]),nid,training=True)
+  progression_titles={}
+  for activity in track['activities']:
+   for choice in activity['choices']:
+    subject=choice['task_subject']
+    if ': ' in subject and subject.split(': ',1)[0] in ('Explore','Plan','Practice','Verify','Adapt'):subject=subject.split(': ',1)[1]
+    titles=progression_titles.setdefault(subject,set())
+    if choice['title'] in titles:raise ValueError(f'{nid} repeats a title across a work progression')
+    titles.add(choice['title'])
   if not node['projects']:raise ValueError(f'Missing applied project: {nid}')
   out={mapping.get(k,k):v for k,v in node.items() if k not in ['parent_id','curriculum','kind','source_ids','soc_major_group','mapping_status','work_settings']}
   if node['kind']=='occupation':

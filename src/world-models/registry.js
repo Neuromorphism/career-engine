@@ -1,6 +1,6 @@
-import { createWorld, hydrateWorld, worldMetrics, tickWorld } from '../../world/world-engine.js?v=0.10.0';
-import { infrastructureModel } from './infrastructure.js';
-import { realWorldModel } from './real-world.js';
+import { createWorld, hydrateWorld, worldMetrics, tickWorld } from '../../world/world-engine.js?v=0.10.1';
+import { infrastructureModel } from './infrastructure.js?v=0.10.1';
+import { realWorldModel } from './real-world.js?v=0.10.1';
 // Adapters keep population-scale models separate from career learning and old saves.
 const founders=Object.freeze({id:'founders',version:1,create:createWorld,hydrate:input=>{
   if(input?.modelId && input.modelId!=='founders') throw new Error('This backup belongs to a different world model.');

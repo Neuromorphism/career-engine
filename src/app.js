@@ -17,15 +17,15 @@ import {
   pathNodes,
   practiceRate,
   tick,
-} from "./game-engine.js?v=0.10.0";
+} from "./game-engine.js?v=0.10.1";
 
-import { careerTree } from "./careers.js?v=0.10.0";
-import { careerRoutes, careerTransitions, careerStats } from "./career-data.js?v=0.10.0";
-import { evaluateImpact } from "./impact-models.js?v=0.10.0";
+import { careerTree } from "./careers.js?v=0.10.1";
+import { careerRoutes, careerTransitions, careerStats } from "./career-data.js?v=0.10.1";
+import { evaluateImpact } from "./impact-models.js?v=0.10.1";
 
-import { mountCareerUI, escapeHtml as e } from "./career-ui.js?v=0.10.0";
-import { workOptionsForState, completedWorkForState } from "./work-options.js?v=0.10.0";
-import { createCareerStore } from "./save-store.js?v=0.10.0";
+import { mountCareerUI, escapeHtml as e } from "./career-ui.js?v=0.10.1";
+import { workOptionsForState, completedWorkForState } from "./work-options.js?v=0.10.1";
+import { createCareerStore } from "./save-store.js?v=0.10.1";
 
 export function startCareerApp({ mode = 'single', store = createCareerStore(mode), onChange = () => {}, onAddCitizen = () => {} } = {}) {
 mountCareerUI(mode);
@@ -197,7 +197,8 @@ function renderWork() {
   updateWorkProgress();
   elements.workOptions.innerHTML = workView.options.map(option => `<article class="work-card">
     <small>${e(option.focus || (option.kind === 'project' ? 'Applied project' : option.kind))}</small>
-    <h3>${e(option.title)}</h3><p>${e(option.description)}</p>
+    <h3>${e(option.title)}</h3>
+    ${option.kind === 'project' ? `<p>${e(option.description)}</p>` : option.description.replace(/[.!?]$/, '') === option.title ? '' : `<details><summary>Task context</summary><p>${e(option.description)}</p></details>`}
     ${option.deliverable ? `<details><summary>Work sample to submit</summary><p>${e(option.deliverable)}</p></details>` : ''}
     ${renderModel(option.modelId)}
     <button type="button" data-work="${e(option.id)}" ${option.enabled === false ? 'disabled' : ''}>

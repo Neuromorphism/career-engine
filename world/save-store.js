@@ -1,6 +1,6 @@
-import { getWorldModel } from '../src/world-models/registry.js';
-import { SAVE_KEY } from '../src/game-engine.js?v=0.10.0';
-import { WORLD_SAVE_KEY, activeCitizen, updateActiveCareer } from './world-engine.js?v=0.10.0';
+import { getWorldModel } from '../src/world-models/registry.js?v=0.10.1';
+import { SAVE_KEY } from '../src/game-engine.js?v=0.10.1';
+import { WORLD_SAVE_KEY, activeCitizen, updateActiveCareer } from './world-engine.js?v=0.10.1';
 export function createWorldStore(storage = localStorage, now = () => Date.now(), options = {}) {
   const model = getWorldModel(options.modelId || 'founders');
   const key = options.saveKey || WORLD_SAVE_KEY;

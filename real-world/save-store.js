@@ -1,6 +1,6 @@
-import { getWorldModel } from '../src/world-models/registry.js';
-import { activeCitizen, updateActiveCareer } from '../world/world-engine.js?v=0.10.0';
-import { REAL_WORLD_SAVE_KEY } from '../src/world-models/real-world.js';
+import { getWorldModel } from '../src/world-models/registry.js?v=0.10.1';
+import { activeCitizen, updateActiveCareer } from '../world/world-engine.js?v=0.10.1';
+import { REAL_WORLD_SAVE_KEY } from '../src/world-models/real-world.js?v=0.10.1';
 export function createRealWorldStore(storage=localStorage,now=()=>Date.now()) {
   const model=getWorldModel('real-world'); let world;
   return {

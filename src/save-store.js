@@ -1,4 +1,4 @@
-import { SAVE_KEY, AI_SAVE_KEY, createInitialState, hydrateState, tick } from './game-engine.js?v=0.10.0';
+import { SAVE_KEY, AI_SAVE_KEY, createInitialState, hydrateState, tick } from './game-engine.js?v=0.10.1';
 export function createCareerStore(mode, storage = localStorage) {
   const aiMode = mode === 'ai';
   const key = aiMode ? AI_SAVE_KEY : SAVE_KEY;

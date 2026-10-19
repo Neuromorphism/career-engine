@@ -1,5 +1,5 @@
-import { currentNode, pathNodes } from '../src/game-engine.js?v=0.10.0';
-import { worldMetrics, citizenProfile, citizenReady } from './world-engine.js?v=0.10.0';
+import { currentNode, pathNodes } from '../src/game-engine.js?v=0.10.1';
+import { worldMetrics, citizenProfile, citizenReady } from './world-engine.js?v=0.10.1';
 const percent = value => `${Math.round(value * 100)}%`;
 const trait = (id, title, description) => ({ id, title, description });
 const list = items => items.length < 2 ? items[0] || 'an open possibility' : `${items.slice(0,-1).join(', ')} and ${items.at(-1)}`;
