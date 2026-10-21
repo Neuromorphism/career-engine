@@ -1,6 +1,6 @@
 # Career Engine
 
-Career Engine is a text-first incremental game about discovering meaningful work through a career tech tree. Choose a field, complete prerequisite-based training and a bounded work sample, then specialize into a recognizable occupation. At job depth, unlock practitioner, team-leader, and career-legacy missions as mastery grows.
+Career Engine is a text-first incremental game about discovering meaningful work through a career tech tree. Find a profession through familiar work areas and cross-links, choose a training goal, and complete prerequisite-based training and a bounded work sample. At job depth, unlock practitioner, team-leader, and career-legacy missions as mastery grows.
 
 ## Play locally
 
@@ -21,7 +21,7 @@ All four endpoints use one career ontology, curriculum library, action system, a
 
 ## Career interface
 
-Every mode presents two primary sections: **Choose path** and **Do work**. Choose path offers the next unlocked career decision. Do work presents the current training step’s three actions, then an applied project, then the next unlocked occupation-specific contribution. Mastery progress explains when work opens; completed choices remain in a collapsible work history. World controls and AI competition details are available in compact overview disclosures.
+Every mode presents two primary sections: **Choose path** and **Do work**. Choose path offers searchable profession discovery across 26 work areas, including Mental Health & Psychology and Agriculture & Horticulture. A profession can appear in several areas while retaining one identity and training route. An optional saved goal guides the next unlocked training decision. Do work presents the current training step’s three actions, then an applied project, then the next unlocked occupation-specific contribution. Mastery progress explains when work opens; completed choices remain in a collapsible work history. World controls and AI competition details are available in compact overview disclosures.
 
 ## Persistent world
 
@@ -33,7 +33,7 @@ World profiles, service requirements, scenario baselines, and project eligibilit
 
 ## Real-world metropolitan model
 
-`/real-world/` uses the same 182 careers with a separate save and a modular world-model adapter. The archived OECD-derived panel contains population, labor force, unemployment, GDP, density, and PM2.5 for eleven functional urban areas. Fit years are 2010–2016; test years are 2017–2019. Ten metros pass the declared baseline criteria; Madrid fails unemployment. Amsterdam was added after the initial failure and is disclosed as adaptive selection.
+`/real-world/` uses the same 617 careers with a separate save and a modular world-model adapter. The archived OECD-derived panel contains population, labor force, unemployment, GDP, density, and PM2.5 for eleven functional urban areas. Fit years are 2010–2016; test years are 2017–2019. Ten metros pass the declared baseline criteria; Madrid fails unemployment. Amsterdam was added after the initial failure and is disclosed as adaptive selection.
 
 The profession allocations and service indices are exploratory: this archive contains no occupation mixes, so profession effects were not trained or independently validated. The historical baseline benchmark is not proof of accurate profession-dependent outcomes. These are historical data through 2019, not current estimates. See `real-world/README.md` for methods, limitations, data attribution, and reproduction. During development, run `node scripts/calibrate-world.mjs` (or `npm run calibrate`) to export `real-world/model-data.js` and regenerate the calibration report. The browser only evaluates saved parameters and displays precomputed validation; it never fits models.
 
@@ -43,7 +43,9 @@ The profession allocations and service indices are exploratory: this archive con
 
 Read [`background/README.md`](background/README.md) to resume the investigation. The background folder documents approach, authoritative sources, findings, career-life routes, impact models, implementation, and remaining work.
 
-The source contains 15 game fields, 261 nodes, 182 occupation endpoints, 546 impact missions, 29 route patterns, 54 possible transitions, and seven documented life-path examples. Its curated occupation mappings cover all 23 US SOC major groups. It is a subset of the official lists, not an exhaustive occupation database.
+The source contains 15 training fields, 696 nodes, 617 occupation endpoints, 1,851 impact missions, 32 route patterns, 54 possible transitions, and seven documented life-path examples. Its curated occupation mappings cover all 23 US SOC major groups. The browse graph is maintained separately in `data/discovery.json`.
+
+The employment audit covers all 490 detailed occupation groups above one in 10,000 US employed people in the 2025 BLS CPS. The denominator is 163.493 million people, making the cutoff 16,349.3. Published group counts do not establish separate frequencies for every specialty or title synonym. See [`background/13-profession-discovery.md`](background/13-profession-discovery.md) for sources, survey limitations, mappings, and authoring instructions; `data/employment-coverage.json` records every threshold decision.
 
 SOC, O*NET-SOC, ESCO, and ISCO provide classification context. Entry and career-development routes use government occupational profiles, licensing and apprenticeship sources, and primary biographies. Mapping precision and inferred transitions are explicit. Game-generated training and mission completion do not grant professional credentials.
 
@@ -55,7 +57,7 @@ Each occupation has three sequential impact milestones at 300, 2,000, and 7,000 
 
 Eleven numeric scenario models show assumptions, calculations, limitations, and methodology references in the game. For example, a modeled 60,000-crossing/day bridge supports 2.19 billion vehicle crossings over 100 years. Estimated time benefits remain distinct from added GDP. Clinical examples do not promise individual prognoses.
 
-The browser includes a searchable full-tree preview, entry routes, later-life options, and possible outgoing career moves. These moves are investigatory content; gameplay still follows one training path per run. Original IDs and paths remain valid, and prior saves receive an empty impact-mission record.
+The browser includes cross-linked profession previews, entry routes, later-life options, and possible outgoing career moves. These moves are investigatory content; gameplay still follows one training path per run. Original IDs and paths remain valid, and selecting a new goal never rewrites saved progress.
 
 ## Verify changes
 

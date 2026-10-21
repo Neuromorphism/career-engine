@@ -1,8 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { careerTree, findNodeById } from '../src/careers.js';
 import { learningTrackForNode, createInitialState, chooseNode, completeLearningActivity, hydrateState, practiceRate } from '../src/game-engine.js';
 import { completedWorkForState } from '../src/work-options.js';
+const legacyNodes = new Set(Object.values(JSON.parse(readFileSync(new URL('./fixtures/legacy-profession-paths.json',import.meta.url),'utf8'))).flat());
 
 test('all stages offer different task subjects rather than approaches to the same task', () => {
   let training = 0, impact = 0;
@@ -13,7 +15,7 @@ test('all stages offer different task subjects rather than approaches to the sam
         assert.equal(new Set(stage.choices.map(c => c.task_subject.toLowerCase())).size, 3, node.id);
         for (const choice of stage.choices) {
           assert.doesNotMatch(choice.title, /^(Investigate:|Rehearse together:|Improve the evidence for:|Prepare a team for:)/);
-          assert.ok(choice.legacy_title);
+          if (legacyNodes.has(node.id)) assert.ok(choice.legacy_title);
         }
       }
       training += learningTrackForNode(node).activities.length;
@@ -22,8 +24,8 @@ test('all stages offer different task subjects rather than approaches to the sam
     }
   }
   visit(careerTree);
-  assert.equal(training, 1077);
-  assert.equal(impact, 546);
+  assert.equal(training, 3252);
+  assert.equal(impact, 1851);
 });
 
 test('career choices reveal different concrete work in engineering, medicine, law, and arts', () => {

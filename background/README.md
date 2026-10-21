@@ -4,6 +4,8 @@ Research snapshot: **2026-10-14**. The user's goal is an expansive career tech t
 
 ## Current result
 
+**v0.11.0 update:** Read [`13-profession-discovery.md`](13-profession-discovery.md) first for the current 26-area browse graph, 617 playable professions, and audited US employment cutoff. The figures below describe the original research snapshot; its 182 profession paths remain compatible.
+
 - **Source of truth:** `data/careers.toml`.
 - **Coverage:** 15 game fields, 261 nodes, 182 occupation endpoints, with at least one endpoint in each of the 23 US SOC major groups.
 - **Content:** 546 impact milestones, each with three contribution choices; 29 reusable entry/development/continuity route patterns; 54 explicit possible career transitions; 7 documented individual life-path examples; 11 quantitative scenario models.

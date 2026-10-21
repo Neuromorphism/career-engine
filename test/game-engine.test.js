@@ -60,7 +60,7 @@ test("choosing a field immediately starts its small starter project", () => {
 
 test("the next specialization stays locked until training and the applied brief are complete", () => {
   let state = chooseNode(createInitialState(), "engineering");
-  assert.equal(availableChoices(state).length, 8);
+  assert.ok(availableChoices(state).some(node => node.id === 'electrical-engineering'));
   assert.equal(choicesUnlocked(state), false);
   assert.equal(chooseNode(state, "electrical-engineering"), state);
   state = { ...state, mastery: 100 };
@@ -228,7 +228,7 @@ test("every expanded career is reachable and its impact missions obey prerequisi
     }
   };
   visit(careerTree, createInitialState());
-  assert.equal(leaves, 182);
+  assert.equal(leaves, 617);
 });
 
 test("impact gates enforce role training, work samples, and exact mastery thresholds", () => {

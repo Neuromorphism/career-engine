@@ -1,8 +1,8 @@
-import { metroData } from '../../real-world/metro-data.js?v=0.10.1';
-import { createWorld, hydrateWorld, tickWorld } from '../../world/world-engine.js?v=0.10.1';
-import { predictMetro, deriveMetrics, METRIC_IDS, validateModelArtifact } from './inference.js?v=0.10.1';
-import { worldModelData } from '../../real-world/model-data.js?v=0.10.1';
-import { validateAllocations, workforceExperiment } from './professions.js?v=0.10.1';
+import { metroData } from '../../real-world/metro-data.js?v=0.11.0';
+import { createWorld, hydrateWorld, tickWorld } from '../../world/world-engine.js?v=0.11.0';
+import { predictMetro, deriveMetrics, METRIC_IDS, validateModelArtifact } from './inference.js?v=0.11.0';
+import { worldModelData } from '../../real-world/model-data.js?v=0.11.0';
+import { validateAllocations, workforceExperiment } from './professions.js?v=0.11.0';
 export const REAL_WORLD_SAVE_KEY='career-engine-real-world-save-v1';
 const metroById=new Map(metroData.metros.map(m=>[m.id,m]));
 validateModelArtifact(worldModelData,metroData);

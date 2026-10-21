@@ -1,5 +1,5 @@
 // Generated from data/world.toml. Run npm run compile; do not edit.
-// Source SHA-256: 28e95db63c5abc7ea833214895a87aec7ed42a1150b4be244825bba6347b7fb1
+// Source SHA-256: 340d458b1dc388cf0ad1e25bdd571d0dd4edf0aba0c6ab736dbb3ceb2cce8313
 export const worldData = {
   "scenario": {
     "id": "founders-settlement",
@@ -1439,6 +1439,2889 @@ export const worldData = {
       "capabilities": {
         "food": 0.85,
         "research": 0.15
+      }
+    },
+    "chief-executive": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 0.6,
+        "logistics": 0.4
+      }
+    },
+    "legislator": {
+      "service_id": "community",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "advertising-manager": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "sales-manager": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "public-relations-fundraising-manager": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "administrative-services-manager": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.6,
+        "governance": 0.4
+      }
+    },
+    "facilities-manager": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "maintenance": 1
+      }
+    },
+    "it-manager": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 0.6,
+        "maintenance": 0.4
+      }
+    },
+    "finance-manager": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "training-development-manager": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 0.6,
+        "logistics": 0.4
+      }
+    },
+    "production-manager": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "purchasing-manager": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 0.6,
+        "logistics": 0.4
+      }
+    },
+    "logistics-manager": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "education-childcare-administrator": {
+      "service_id": "learning",
+      "capabilities": {
+        "teaching": 1
+      }
+    },
+    "engineering-manager": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 1
+      }
+    },
+    "restaurant-manager": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "logistics": 0.5
+      }
+    },
+    "entertainment-recreation-manager": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.5,
+        "teaching": 0.5
+      }
+    },
+    "science-program-manager": {
+      "service_id": "learning",
+      "capabilities": {
+        "research": 1
+      }
+    },
+    "postmaster": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.6,
+        "governance": 0.4
+      }
+    },
+    "property-manager": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "community-service-manager": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.6,
+        "governance": 0.4
+      }
+    },
+    "personal-services-manager": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 1
+      }
+    },
+    "general-manager": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 0.6,
+        "logistics": 0.4
+      }
+    },
+    "talent-agent": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "retail-wholesale-buyer": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "purchasing-agent": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 0.6,
+        "logistics": 0.4
+      }
+    },
+    "claims-adjuster": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "compliance-officer": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 0.6,
+        "logistics": 0.4
+      }
+    },
+    "cost-estimator": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "hr-specialist": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 0.6,
+        "logistics": 0.4
+      }
+    },
+    "compensation-benefits-specialist": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 0.6,
+        "logistics": 0.4
+      }
+    },
+    "project-manager": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 0.6,
+        "logistics": 0.4
+      }
+    },
+    "management-consultant": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 0.6,
+        "logistics": 0.4
+      }
+    },
+    "fundraiser": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.6,
+        "governance": 0.4
+      }
+    },
+    "market-research-analyst": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "business-operations-specialist": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 0.6,
+        "logistics": 0.4
+      }
+    },
+    "property-appraiser": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "budget-analyst": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "credit-analyst": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "financial-advisor": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "insurance-underwriter": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "financial-examiner": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "loan-officer-credit-counselor": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "tax-examiner-revenue-agent": {
+      "service_id": "community",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "tax-preparer": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "financial-specialist": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "computer-research-scientist": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 0.6,
+        "maintenance": 0.4
+      }
+    },
+    "systems-analyst": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 0.6,
+        "maintenance": 0.4
+      }
+    },
+    "computer-programmer": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 0.6,
+        "maintenance": 0.4
+      }
+    },
+    "software-qa-tester": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 0.6,
+        "maintenance": 0.4
+      }
+    },
+    "web-developer": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 0.6,
+        "maintenance": 0.4
+      }
+    },
+    "it-support-technician": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 0.6,
+        "maintenance": 0.4
+      }
+    },
+    "database-administrator-architect": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 0.6,
+        "maintenance": 0.4
+      }
+    },
+    "systems-administrator": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 0.6,
+        "maintenance": 0.4
+      }
+    },
+    "network-architect": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 0.6,
+        "maintenance": 0.4
+      }
+    },
+    "it-specialist": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 0.6,
+        "maintenance": 0.4
+      }
+    },
+    "mathematical-science-specialist": {
+      "service_id": "learning",
+      "capabilities": {
+        "research": 1
+      }
+    },
+    "architect": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 1
+      }
+    },
+    "landscape-architect": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 1
+      }
+    },
+    "surveyor-cartographer": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "aerospace-engineer": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 1
+      }
+    },
+    "biomedical-engineer": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 1
+      }
+    },
+    "civil-engineer": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 1
+      }
+    },
+    "computer-hardware-engineer": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 1
+      }
+    },
+    "electrical-electronics-engineer": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 1
+      }
+    },
+    "environmental-engineer": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 1
+      }
+    },
+    "materials-engineer": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 1
+      }
+    },
+    "mechanical-engineer": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 1
+      }
+    },
+    "engineering-specialist": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 1
+      }
+    },
+    "architectural-civil-drafter": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "technical-drafter": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 1
+      }
+    },
+    "electronics-engineering-technician": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 1
+      }
+    },
+    "engineering-technician": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 1
+      }
+    },
+    "survey-mapping-technician": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "agricultural-food-scientist": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "biological-scientist": {
+      "service_id": "learning",
+      "capabilities": {
+        "research": 1
+      }
+    },
+    "physical-scientist": {
+      "service_id": "learning",
+      "capabilities": {
+        "research": 1
+      }
+    },
+    "economist": {
+      "service_id": "learning",
+      "capabilities": {
+        "research": 1
+      }
+    },
+    "clinical-psychologist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 1
+      }
+    },
+    "school-psychologist": {
+      "service_id": "learning",
+      "capabilities": {
+        "care": 0.6,
+        "teaching": 0.4
+      }
+    },
+    "psychologist": {
+      "service_id": "learning",
+      "capabilities": {
+        "research": 0.6,
+        "care": 0.4
+      }
+    },
+    "urban-planner": {
+      "service_id": "community",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "social-scientist": {
+      "service_id": "learning",
+      "capabilities": {
+        "research": 1
+      }
+    },
+    "agricultural-food-science-technician": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "biological-technician": {
+      "service_id": "learning",
+      "capabilities": {
+        "research": 1
+      }
+    },
+    "chemical-technician": {
+      "service_id": "learning",
+      "capabilities": {
+        "research": 1
+      }
+    },
+    "science-technician": {
+      "service_id": "learning",
+      "capabilities": {
+        "research": 1
+      }
+    },
+    "occupational-safety-specialist": {
+      "service_id": "resilience",
+      "capabilities": {
+        "governance": 0.5,
+        "care": 0.5
+      }
+    },
+    "addiction-counselor": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 1
+      }
+    },
+    "marriage-family-therapist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 1
+      }
+    },
+    "mental-health-counselor": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 1
+      }
+    },
+    "counselor": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 1
+      }
+    },
+    "child-family-social-worker": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.6,
+        "governance": 0.4
+      }
+    },
+    "healthcare-social-worker": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.6,
+        "governance": 0.4
+      }
+    },
+    "probation-officer": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.6,
+        "governance": 0.4
+      }
+    },
+    "social-human-service-assistant": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.6,
+        "governance": 0.4
+      }
+    },
+    "community-service-specialist": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.6,
+        "governance": 0.4
+      }
+    },
+    "clergy-member": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.6,
+        "governance": 0.4
+      }
+    },
+    "religious-education-director": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.6,
+        "governance": 0.4
+      }
+    },
+    "religious-worker": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.6,
+        "governance": 0.4
+      }
+    },
+    "lawyer": {
+      "service_id": "community",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "judge-magistrate": {
+      "service_id": "community",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "paralegal": {
+      "service_id": "community",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "title-examiner": {
+      "service_id": "community",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "legal-support-specialist": {
+      "service_id": "community",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "preschool-kindergarten-teacher": {
+      "service_id": "learning",
+      "capabilities": {
+        "teaching": 1
+      }
+    },
+    "middle-school-teacher": {
+      "service_id": "learning",
+      "capabilities": {
+        "teaching": 1
+      }
+    },
+    "tutor": {
+      "service_id": "learning",
+      "capabilities": {
+        "teaching": 1
+      }
+    },
+    "instructor": {
+      "service_id": "learning",
+      "capabilities": {
+        "teaching": 1
+      }
+    },
+    "museum-archive-specialist": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "library-technician": {
+      "service_id": "learning",
+      "capabilities": {
+        "teaching": 1
+      }
+    },
+    "education-support-specialist": {
+      "service_id": "learning",
+      "capabilities": {
+        "teaching": 1
+      }
+    },
+    "visual-artist": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "industrial-designer": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "fashion-designer": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "florist": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "interior-designer": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "visual-merchandiser": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "design-specialist": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "actor": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "professional-athlete": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.5,
+        "teaching": 0.5
+      }
+    },
+    "sports-coach": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.5,
+        "teaching": 0.5
+      }
+    },
+    "sports-official": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.5,
+        "teaching": 0.5
+      }
+    },
+    "dancer-choreographer": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "composer-music-director": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "dj": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "entertainer": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "radio-announcer": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "public-relations-specialist": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "editor": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "writer-author": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "interpreter-translator": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "court-reporter-captioner": {
+      "service_id": "community",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "communications-specialist": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "sound-lighting-broadcast-technician": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "photographer": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "camera-operator-video-editor": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "chiropractor": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "dietitian-nutritionist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "optometrist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "physician-assistant": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "audiologist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "occupational-therapist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "respiratory-therapist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "speech-language-pathologist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "therapy-specialist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "nurse-anesthetist": {
+      "service_id": "health",
+      "capabilities": {
+        "nursing": 0.8,
+        "care": 0.2
+      }
+    },
+    "nurse-practitioner": {
+      "service_id": "health",
+      "capabilities": {
+        "nursing": 0.8,
+        "care": 0.2
+      }
+    },
+    "acupuncturist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "health-practitioner": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "clinical-laboratory-technician": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "dental-hygienist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "cardiovascular-technician": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "medical-sonographer": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "radiologic-technologist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "mri-technologist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "nuclear-medicine-technologist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "emt": {
+      "service_id": "resilience",
+      "capabilities": {
+        "governance": 0.5,
+        "care": 0.5
+      }
+    },
+    "pharmacy-technician": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "psychiatric-technician": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 1
+      }
+    },
+    "surgical-technologist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "veterinary-technician": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "ophthalmic-technician": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "licensed-practical-vocational-nurse": {
+      "service_id": "health",
+      "capabilities": {
+        "nursing": 0.8,
+        "care": 0.2
+      }
+    },
+    "optician": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "health-technologist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "healthcare-technical-specialist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "personal-care-aide": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 1
+      }
+    },
+    "nursing-assistant": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "hospital-orderly": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "occupational-therapy-assistant": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "physical-therapist-assistant": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "massage-therapist": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 1
+      }
+    },
+    "dental-assistant": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "medical-assistant": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "medical-transcriptionist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "pharmacy-aide": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "veterinary-assistant": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "phlebotomist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "healthcare-support-worker": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "corrections-supervisor": {
+      "service_id": "resilience",
+      "capabilities": {
+        "governance": 0.5,
+        "care": 0.5
+      }
+    },
+    "police-supervisor": {
+      "service_id": "resilience",
+      "capabilities": {
+        "governance": 0.5,
+        "care": 0.5
+      }
+    },
+    "fire-service-supervisor": {
+      "service_id": "resilience",
+      "capabilities": {
+        "governance": 0.5,
+        "care": 0.5
+      }
+    },
+    "security-supervisor": {
+      "service_id": "resilience",
+      "capabilities": {
+        "governance": 0.5,
+        "care": 0.5
+      }
+    },
+    "fire-inspector": {
+      "service_id": "resilience",
+      "capabilities": {
+        "governance": 0.5,
+        "care": 0.5
+      }
+    },
+    "bailiff": {
+      "service_id": "resilience",
+      "capabilities": {
+        "governance": 0.5,
+        "care": 0.5
+      }
+    },
+    "correctional-officer": {
+      "service_id": "resilience",
+      "capabilities": {
+        "governance": 0.5,
+        "care": 0.5
+      }
+    },
+    "detective-criminal-investigator": {
+      "service_id": "resilience",
+      "capabilities": {
+        "governance": 0.5,
+        "care": 0.5
+      }
+    },
+    "private-investigator": {
+      "service_id": "resilience",
+      "capabilities": {
+        "governance": 0.5,
+        "care": 0.5
+      }
+    },
+    "security-guard": {
+      "service_id": "resilience",
+      "capabilities": {
+        "governance": 0.5,
+        "care": 0.5
+      }
+    },
+    "crossing-guard-flagger": {
+      "service_id": "resilience",
+      "capabilities": {
+        "governance": 0.5,
+        "care": 0.5
+      }
+    },
+    "transportation-security-screener": {
+      "service_id": "resilience",
+      "capabilities": {
+        "governance": 0.5,
+        "care": 0.5
+      }
+    },
+    "school-bus-monitor": {
+      "service_id": "resilience",
+      "capabilities": {
+        "governance": 0.5,
+        "care": 0.5
+      }
+    },
+    "protective-service-worker": {
+      "service_id": "resilience",
+      "capabilities": {
+        "governance": 0.5,
+        "care": 0.5
+      }
+    },
+    "food-service-supervisor": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "logistics": 0.5
+      }
+    },
+    "cook": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "logistics": 0.5
+      }
+    },
+    "food-preparation-worker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "logistics": 0.5
+      }
+    },
+    "bartender": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "logistics": 0.5
+      }
+    },
+    "fast-food-counter-worker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "logistics": 0.5
+      }
+    },
+    "server-waiter": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "logistics": 0.5
+      }
+    },
+    "cafeteria-institutional-food-server": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "logistics": 0.5
+      }
+    },
+    "dining-room-attendant": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "logistics": 0.5
+      }
+    },
+    "dishwasher": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "logistics": 0.5
+      }
+    },
+    "restaurant-host": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "logistics": 0.5
+      }
+    },
+    "cleaning-supervisor": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "maintenance": 1
+      }
+    },
+    "groundskeeping-supervisor": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "maintenance": 1
+      }
+    },
+    "housekeeper": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "maintenance": 1
+      }
+    },
+    "pest-control-technician": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "maintenance": 1
+      }
+    },
+    "arborist-tree-trimmer": {
+      "service_id": "resilience",
+      "capabilities": {
+        "maintenance": 0.7,
+        "research": 0.3
+      }
+    },
+    "grounds-maintenance-worker": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "maintenance": 1
+      }
+    },
+    "personal-services-supervisor": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 1
+      }
+    },
+    "animal-trainer": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "animal-caretaker": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "gaming-casino-worker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "logistics": 0.5
+      }
+    },
+    "usher-ticket-taker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "logistics": 0.5
+      }
+    },
+    "entertainment-attendant": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "logistics": 0.5
+      }
+    },
+    "hairstylist-cosmetologist": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 1
+      }
+    },
+    "nail-technician": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 1
+      }
+    },
+    "esthetician-skincare-specialist": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 1
+      }
+    },
+    "beauty-services-specialist": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 1
+      }
+    },
+    "concierge-baggage-porter": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "logistics": 0.5
+      }
+    },
+    "tour-guide": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "logistics": 0.5
+      }
+    },
+    "recreation-worker": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.5,
+        "teaching": 0.5
+      }
+    },
+    "residential-advisor": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.6,
+        "governance": 0.4
+      }
+    },
+    "personal-services-worker": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 1
+      }
+    },
+    "retail-supervisor": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "sales-team-supervisor": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "cashier": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "rental-counter-clerk": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "parts-salesperson": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "retail-sales-associate": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "advertising-sales-agent": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "insurance-agent": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "financial-services-sales-agent": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "travel-agent": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "logistics": 0.5
+      }
+    },
+    "service-sales-representative": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "product-promoter-model": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "sales-engineer": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "telemarketer": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "direct-seller-street-vendor": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "sales-specialist": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.5,
+        "governance": 0.5
+      }
+    },
+    "office-supervisor": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.6,
+        "governance": 0.4
+      }
+    },
+    "telephone-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.6,
+        "governance": 0.4
+      }
+    },
+    "debt-collector": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "billing-clerk": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "casino-cage-cashier": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "payroll-clerk": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "procurement-clerk": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.6,
+        "governance": 0.4
+      }
+    },
+    "bank-teller": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "financial-clerk": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "court-license-clerk": {
+      "service_id": "community",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "credit-clerk": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "benefits-eligibility-interviewer": {
+      "service_id": "community",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "file-clerk": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.6,
+        "governance": 0.4
+      }
+    },
+    "hotel-front-desk-clerk": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "logistics": 0.5
+      }
+    },
+    "survey-interviewer": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.6,
+        "governance": 0.4
+      }
+    },
+    "library-assistant": {
+      "service_id": "learning",
+      "capabilities": {
+        "teaching": 1
+      }
+    },
+    "loan-processing-clerk": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "order-clerk": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.6,
+        "governance": 0.4
+      }
+    },
+    "hr-assistant": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 0.6,
+        "logistics": 0.4
+      }
+    },
+    "receptionist": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.6,
+        "governance": 0.4
+      }
+    },
+    "reservation-ticket-agent": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "information-records-clerk": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.6,
+        "governance": 0.4
+      }
+    },
+    "freight-agent": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "courier": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "emergency-dispatcher": {
+      "service_id": "resilience",
+      "capabilities": {
+        "governance": 0.5,
+        "care": 0.5
+      }
+    },
+    "dispatcher": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "utility-meter-reader": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "maintenance": 1
+      }
+    },
+    "postal-clerk": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.6,
+        "governance": 0.4
+      }
+    },
+    "mail-carrier": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "mail-sorter": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.6,
+        "governance": 0.4
+      }
+    },
+    "production-planning-clerk": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "shipping-inventory-clerk": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "weighing-sampling-clerk": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "executive-assistant": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.6,
+        "governance": 0.4
+      }
+    },
+    "legal-secretary": {
+      "service_id": "community",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "medical-secretary": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "data-entry-clerk": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.6,
+        "governance": 0.4
+      }
+    },
+    "typist-word-processor": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.6,
+        "governance": 0.4
+      }
+    },
+    "insurance-processing-clerk": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "mailroom-clerk": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.6,
+        "governance": 0.4
+      }
+    },
+    "office-clerk": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.6,
+        "governance": 0.4
+      }
+    },
+    "office-machine-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.6,
+        "governance": 0.4
+      }
+    },
+    "proofreader": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "statistical-assistant": {
+      "service_id": "learning",
+      "capabilities": {
+        "research": 1
+      }
+    },
+    "administrative-support-specialist": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 0.6,
+        "governance": 0.4
+      }
+    },
+    "agricultural-forestry-supervisor": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "agricultural-grader-sorter": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "fishing-hunting-worker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "forest-conservation-worker": {
+      "service_id": "resilience",
+      "capabilities": {
+        "maintenance": 0.7,
+        "research": 0.3
+      }
+    },
+    "logger": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "construction-supervisor": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "floor-tile-installer": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "concrete-finisher": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "construction-laborer": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "construction-equipment-operator": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "drywall-installer-taper": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "glazier": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "insulation-installer": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "painter-paperhanger": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "pipelayer": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "plasterer-stucco-mason": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "roofer": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "sheet-metal-worker": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "ironworker": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "construction-trades-helper": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "building-inspector": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "fence-installer": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "hazardous-materials-removal-worker": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "highway-maintenance-worker": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "construction-specialist": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "oil-gas-drilling-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "earth-driller": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "underground-mining-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "extraction-worker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "maintenance-supervisor": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "office-equipment-repair-technician": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 0.6,
+        "maintenance": 0.4
+      }
+    },
+    "telecommunications-technician": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 0.6,
+        "maintenance": 0.4
+      }
+    },
+    "electric-motor-power-tool-repairer": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "audiovisual-installer": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 0.6,
+        "maintenance": 0.4
+      }
+    },
+    "alarm-systems-installer": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "aircraft-mechanic": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "auto-body-repairer": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "auto-glass-technician": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "diesel-mechanic": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "heavy-equipment-mechanic": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "small-engine-mechanic": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "vehicle-equipment-technician": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "control-valve-technician": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "appliance-repair-technician": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "maintenance-worker": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "maintenance": 1
+      }
+    },
+    "machinery-maintenance-worker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "millwright": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "telecommunications-lineworker": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "design": 0.6,
+        "maintenance": 0.4
+      }
+    },
+    "precision-equipment-repairer": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "vending-amusement-machine-technician": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "locksmith": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "repair-installation-specialist": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "production-supervisor": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "electronics-assembler": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "metal-fabricator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "assembler": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "butcher-meat-processor": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "logistics": 0.5
+      }
+    },
+    "food-batchmaker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "food-processing-worker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "press-cutting-machine-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "grinding-polishing-machine-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "machinist": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "foundry-worker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "molding-machine-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "tool-die-maker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "metal-plastics-worker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "printing-press-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "laundry-dry-cleaning-worker": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "maintenance": 1
+      }
+    },
+    "garment-presser": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "sewing-machine-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "tailor-dressmaker": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 1
+      }
+    },
+    "textile-machine-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "upholsterer": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "cabinetmaker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "furniture-finisher": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "woodworker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "power-plant-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "stationary-engineer-boiler-operator": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "maintenance": 1
+      }
+    },
+    "water-treatment-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "plant-system-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "chemical-process-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "mixing-grinding-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "industrial-cutting-worker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "forming-extrusion-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "quality-inspector": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "jeweler": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "medical-dental-appliance-technician": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "packaging-machine-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "industrial-painter": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "photographic-processing-technician": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "molder-caster": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "production-helper": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "production-worker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "transport-warehouse-supervisor": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "flight-attendant": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "ambulance-driver": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "school-bus-driver": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "shuttle-driver-chauffeur": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "taxi-rideshare-driver": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "vehicle-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "locomotive-engineer": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "railroad-conductor-yardmaster": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "rail-transport-worker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "sailor-marine-oiler": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "parking-attendant": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "transport-service-attendant": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "transportation-inspector": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "passenger-attendant": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "transport-operations-worker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "crane-operator": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "construction": 0.7,
+        "maintenance": 0.3
+      }
+    },
+    "hoist-dredge-conveyor-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "forklift-operator": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "vehicle-cleaner": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "maintenance": 1
+      }
+    },
+    "material-handler": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "machine-feeder": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "maintenance": 0.7,
+        "construction": 0.3
+      }
+    },
+    "packer": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "stocker-order-picker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "waste-recycling-collector": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "maintenance": 1
+      }
+    },
+    "material-moving-worker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "logistics": 1
+      }
+    },
+    "counseling-psychologist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 1
+      }
+    },
+    "industrial-organizational-psychologist": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "research": 0.5,
+        "governance": 0.5
+      }
+    },
+    "research-psychologist": {
+      "service_id": "learning",
+      "capabilities": {
+        "research": 1
+      }
+    },
+    "clinical-neuropsychologist": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.6,
+        "research": 0.4
+      }
+    },
+    "rancher": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "horticulturist": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.5,
+        "research": 0.5
+      }
+    },
+    "greenhouse-grower": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "plant-nursery-manager": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "livestock-farm-worker": {
+      "service_id": "livelihoods",
+      "capabilities": {
+        "food": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "public-policy-analyst": {
+      "service_id": "community",
+      "capabilities": {
+        "governance": 0.7,
+        "research": 0.3
+      }
+    },
+    "public-administration-manager": {
+      "service_id": "community",
+      "capabilities": {
+        "governance": 1
+      }
+    },
+    "mental-health-nurse": {
+      "service_id": "health",
+      "capabilities": {
+        "nursing": 0.8,
+        "care": 0.2
+      }
+    },
+    "school-counselor": {
+      "service_id": "learning",
+      "capabilities": {
+        "teaching": 1
+      }
+    },
+    "infantry-service-member": {
+      "service_id": "resilience",
+      "capabilities": {
+        "governance": 0.6,
+        "logistics": 0.4
+      }
+    },
+    "ob-gyn-physician": {
+      "service_id": "health",
+      "capabilities": {
+        "clinical": 1
+      }
+    },
+    "ophthalmologist": {
+      "service_id": "health",
+      "capabilities": {
+        "clinical": 1
+      }
+    },
+    "dermatologist": {
+      "service_id": "health",
+      "capabilities": {
+        "clinical": 1
+      }
+    },
+    "urologist": {
+      "service_id": "health",
+      "capabilities": {
+        "clinical": 1
+      }
+    },
+    "nurse-midwife": {
+      "service_id": "health",
+      "capabilities": {
+        "nursing": 0.8,
+        "care": 0.2
+      }
+    },
+    "dietetic-technician": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 0.8,
+        "maintenance": 0.2
+      }
+    },
+    "psychiatric-aide": {
+      "service_id": "health",
+      "capabilities": {
+        "care": 1
+      }
+    },
+    "animator": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "illustrator": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "tv-media-producer": {
+      "service_id": "community",
+      "capabilities": {
+        "culture": 1
+      }
+    },
+    "gis-specialist": {
+      "service_id": "infrastructure",
+      "capabilities": {
+        "research": 0.5,
+        "design": 0.5
+      }
+    },
+    "data-analyst": {
+      "service_id": "learning",
+      "capabilities": {
+        "research": 0.8,
+        "governance": 0.2
+      }
+    },
+    "statistician": {
+      "service_id": "learning",
+      "capabilities": {
+        "research": 1
+      }
+    },
+    "conservation-scientist": {
+      "service_id": "resilience",
+      "capabilities": {
+        "research": 0.6,
+        "maintenance": 0.4
+      }
+    },
+    "corporate-trainer": {
+      "service_id": "learning",
+      "capabilities": {
+        "teaching": 1
+      }
+    },
+    "health-educator": {
+      "service_id": "community",
+      "capabilities": {
+        "care": 0.6,
+        "governance": 0.4
       }
     }
   },

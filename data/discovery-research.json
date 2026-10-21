@@ -1,0 +1,137 @@
+{
+  "review_date": "2026-10-20",
+  "sources": [
+    {
+      "id": "G1",
+      "type": "Government",
+      "title": "BLS Standard Occupational Classification",
+      "url": "https://www.bls.gov/soc/2018/major_groups.htm",
+      "finding": "Administrative/statistical structure: psychology and farm management do not sit where a casual browser necessarily expects. Retain codes as reference metadata, not the browsing tree."
+    },
+    {
+      "id": "G2",
+      "type": "Government",
+      "title": "BLS: Psychologists",
+      "url": "https://www.bls.gov/ooh/life-physical-and-social-science/psychologists.htm",
+      "finding": "Distinguishes clinical/counseling, school, workplace, and other psychology work. Supports multiple discovery paths without assuming all psychology is therapy."
+    },
+    {
+      "id": "G3",
+      "type": "Government",
+      "title": "BLS: Farmers, Ranchers, and Other Agricultural Managers",
+      "url": "https://www.bls.gov/ooh/management/farmers-ranchers-and-other-agricultural-managers.htm",
+      "finding": "Groups farm and ranch management; a game may offer differentiated scenarios while retaining a shared statistical reference."
+    },
+    {
+      "id": "G4",
+      "type": "Government",
+      "title": "O*NET: Clinical and Counseling Psychologists",
+      "url": "https://www.onetonline.org/link/summary/19-3033.00",
+      "finding": "Reported titles help construct search vocabulary. Reported title lists do not establish credential equivalence between all listed professions."
+    },
+    {
+      "id": "G5",
+      "type": "Government",
+      "title": "O*NET: Farmers, Ranchers, and Other Agricultural Managers",
+      "url": "https://www.onetonline.org/link/summary/11-9013.00",
+      "finding": "Reported titles include ranch, greenhouse, and nursery management. This supports explicit cultivation and livestock subfamilies."
+    },
+    {
+      "id": "G6",
+      "type": "Government",
+      "title": "O*NET: Landscaping and Groundskeeping Workers",
+      "url": "https://www.onetonline.org/link/summary/37-3011.00",
+      "finding": "Groundskeeper and landscaper vocabulary overlaps; keep grounds discoverable from plant-related categories and facilities."
+    },
+    {
+      "id": "G7",
+      "type": "Government",
+      "title": "OPM: Psychology Series 0180",
+      "url": "https://www.opm.gov/policy-data-oversight/classification-qualifications/general-schedule-qualification-standards/0100/psychology-series-0180/",
+      "finding": "Federal psychology has a distinct occupational series and professional requirements. Keep series and qualifications separate from player-facing category labels."
+    },
+    {
+      "id": "T1",
+      "type": "Tax / industry",
+      "title": "IRS: 2025 Schedule C instructions and principal activity codes",
+      "url": "https://www.irs.gov/instructions/i1040sc",
+      "finding": "Tax activity codes classify businesses. The list distinguishes mental-health practitioner offices from other physician offices and directs farming activity to Schedule F. Do not assign business activity codes as person-level occupation codes."
+    },
+    {
+      "id": "T2",
+      "type": "Tax / industry",
+      "title": "Census: NAICS overview",
+      "url": "https://www.census.gov/naics/",
+      "finding": "NAICS classifies business establishments. Industry, employer sector, and occupation must remain separate relations."
+    },
+    {
+      "id": "M1",
+      "type": "Military",
+      "title": "U.S. Army career browsing",
+      "url": "https://www.goarmy.com/careers-and-jobs/browse-jobs",
+      "finding": "Public career navigation exposes recognizable specialty routes such as medical, law, cyber, aviation, and bands. Parts of the job finder are client-rendered; no complete job taxonomy was extracted."
+    },
+    {
+      "id": "M2",
+      "type": "Military",
+      "title": "U.S. Navy: Business, Logistics & Administration",
+      "url": "https://www.navy.com/careers-benefits/careers/business-logistics-administration",
+      "finding": "Military recruiting also uses recognizable occupational groupings; service context should not hide transferable work."
+    },
+    {
+      "id": "M3",
+      "type": "Military",
+      "title": "U.S. Navy: Clinical Psychology",
+      "url": "https://www.navy.com/careers-benefits/careers/medical/clinical-psychology/",
+      "finding": "A concrete military psychology route demonstrates overlap between medical, psychological, and service settings; it is not a substitute for the civilian role definition."
+    },
+    {
+      "id": "M4",
+      "type": "Military / government",
+      "title": "O*NET military and other crosswalks",
+      "url": "https://www.onetcenter.org/crosswalks.html",
+      "finding": "MOC and supplemental military linkages support many-to-many discovery. Similar duties do not automatically confer civilian credentials."
+    },
+    {
+      "id": "J1",
+      "type": "Job board",
+      "title": "SEEK: Psychology, Counselling & Social Work",
+      "url": "https://au.seek.com/jobs-in-healthcare-medical/psychology-counselling-social-work",
+      "finding": "A public browse family explicitly names psychology and counseling but nests it in healthcare. Supports both a prominent psychology entry and healthcare cross-links; not evidence that every board makes mental health top-level."
+    },
+    {
+      "id": "J2",
+      "type": "Job board",
+      "title": "SEEK: Farming, Animals & Conservation",
+      "url": "https://au.seek.com/jobs-in-farming-animals-conservation",
+      "finding": "Shows explicit horticulture and farm-labor subdivisions alongside animals and conservation. Supports separating recognizable work while preserving cross-links."
+    },
+    {
+      "id": "J3",
+      "type": "Job board",
+      "title": "Reed: job-search specialisms",
+      "url": "https://www.reed.co.uk/jobs",
+      "finding": "Separately exposes IT, engineering, accounting, HR, manufacturing, social care, customer service, and other recognizable work categories. Supports splitting several overly broad current game branches."
+    },
+    {
+      "id": "F1",
+      "type": "Discussion forum",
+      "title": "r/psychologystudents: counselor versus therapist",
+      "url": "https://www.reddit.com/r/psychologystudents/comments/16aokl0/what_are_the_differences_between_a_counselor_and/",
+      "finding": "Illustrates confusion among professional labels and the ambiguity of therapist. Comments conflict about regulation; use only as language/problem evidence, not licensing authority."
+    },
+    {
+      "id": "F2",
+      "type": "Discussion forum",
+      "title": "r/Horticulture: career path in horticulture",
+      "url": "https://www.reddit.com/r/Horticulture/comments/1qbhhn5/career_path_in_horticulture/",
+      "finding": "Illustrates searching across horticulture, landscaping, nursery work, growing, and forestry. One discussion is not a representative preference survey."
+    }
+  ],
+  "limitations": [
+    "Forums illustrate vocabulary and confusion, not representative preferences or credential rules.",
+    "Job-board structures are design references, not proof of universal usability.",
+    "Military and civilian roles can overlap without sharing credentials.",
+    "Tax and NAICS categories describe business activities or establishments, not person-level occupations."
+  ]
+}

@@ -1,5 +1,5 @@
-import { createInitialState, hydrateState, currentNode, currentProject, isLeaf, learningTrackComplete, tick } from '../src/game-engine.js?v=0.10.1';
-import { worldData } from './world-data.js?v=0.10.1';
+import { createInitialState, hydrateState, currentNode, currentProject, isLeaf, learningTrackComplete, tick } from '../src/game-engine.js?v=0.11.0';
+import { worldData } from './world-data.js?v=0.11.0';
 export { worldData };
 export const WORLD_SAVE_KEY = 'career-engine-world-save-v1';
 const cleanName = (value, fallback) => typeof value === 'string' && value.trim() ? value.trim().slice(0, 80) : fallback;

@@ -17,15 +17,17 @@ import {
   pathNodes,
   practiceRate,
   tick,
-} from "./game-engine.js?v=0.10.1";
+} from "./game-engine.js?v=0.11.0";
 
-import { careerTree } from "./careers.js?v=0.10.1";
-import { careerRoutes, careerTransitions, careerStats } from "./career-data.js?v=0.10.1";
-import { evaluateImpact } from "./impact-models.js?v=0.10.1";
+import { careerTree } from "./careers.js?v=0.11.0";
+import { careerRoutes, careerTransitions, careerStats } from "./career-data.js?v=0.11.0";
+import { evaluateImpact } from "./impact-models.js?v=0.11.0";
 
-import { mountCareerUI, escapeHtml as e } from "./career-ui.js?v=0.10.1";
-import { workOptionsForState, completedWorkForState } from "./work-options.js?v=0.10.1";
-import { createCareerStore } from "./save-store.js?v=0.10.1";
+import { mountCareerUI, escapeHtml as e } from "./career-ui.js?v=0.11.0";
+import { workOptionsForState, completedWorkForState } from "./work-options.js?v=0.11.0";
+import { createCareerStore } from "./save-store.js?v=0.11.0";
+import { professionById, nextGoalStep, selectProfessionGoal } from './discovery.js?v=0.11.0';
+import { mountProfessionBrowser } from './discovery-ui.js?v=0.11.0';
 
 export function startCareerApp({ mode = 'single', store = createCareerStore(mode), onChange = () => {}, onAddCitizen = () => {} } = {}) {
 mountCareerUI(mode);
@@ -55,6 +57,7 @@ let lastSaved = 0;
 let lastWorldRender = 0;
 let lastDynamicSignature = "";
 let workView = null;
+let legacyBrowsing = false;
 
 function format(value, digits = 0) {
   if (value >= 1000) return Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 }).format(value);
@@ -103,10 +106,22 @@ function pathNameForId(id, nodes = careerTree) {
 
 function renderPath() {
   const node = currentNode(state);
-  const choices = availableChoices(state);
+  const nextStep = nextGoalStep(state);
+  const choices = nextStep ? availableChoices(state).filter(choice => choice.id === nextStep.id) : availableChoices(state);
+  const goal = professionById.get(state.targetOccupationId);
   const unlocked = choicesUnlocked(state);
   const depth = state.path.length + 1;
   const trail = pathNodes(state);
+  const showTraining = Boolean(node || goal || legacyBrowsing);
+  elements.pathPrompt.hidden = !showTraining;
+  elements.pathIntro.hidden = !showTraining;
+  const goalElement = $('#profession-goal');
+  goalElement.hidden = false;
+  goalElement.innerHTML = goal ? `<strong>Your goal: ${e(goal.label)}</strong><p>Your training progress and prerequisites remain on the route below.</p><button type="button" data-change-goal>Explore professions</button><button type="button" data-clear-goal>Clear goal</button>` : `<button type="button" data-broad-browse>${legacyBrowsing ? 'Hide broad training fields' : 'Explore broad training fields instead'}</button>`;
+  goalElement.querySelector('[data-change-goal]')?.addEventListener('click', () => professionBrowser.open());
+  goalElement.querySelector('[data-clear-goal]')?.addEventListener('click', () => commit({ ...state, targetOccupationId: null }, elements.direction));
+  goalElement.querySelector('[data-broad-browse]')?.addEventListener('click', () => { legacyBrowsing = !legacyBrowsing; renderPath(); });
+  professionBrowser.refresh();
 
   elements.pathTrail.innerHTML = trail.length
     ? trail.map((item, index) => `<span>${index + 1}. ${item.name}</span>`).join("<i>→</i>")
@@ -114,8 +129,8 @@ function renderPath() {
 
   if (!node) {
     elements.pathKicker.textContent = "Decision 1 · field";
-    elements.pathPrompt.textContent = "Choose a field";
-    elements.pathIntro.textContent = "Begin broadly. Each choice reveals only the next useful distinction.";
+    elements.pathPrompt.textContent = goal ? `Start training toward ${goal.label}` : "Choose a training field";
+    elements.pathIntro.textContent = goal ? 'Begin with the first step on this profession’s route. Each completed stage opens the next.' : "Begin broadly. Each choice reveals only the next useful distinction.";
   } else if (choices.length) {
     const label = node.decisionLabel || "specialization";
     elements.pathKicker.textContent = `Decision ${depth} · ${label}`;
@@ -137,7 +152,7 @@ function renderPath() {
     button.addEventListener("click", () => commit(chooseNode(state, button.dataset.node), elements.direction));
   });
 
-  elements.pathChoices.hidden = !unlocked;
+  elements.pathChoices.hidden = !unlocked || !showTraining;
   elements.pathLock.hidden = unlocked || choices.length === 0;
   elements.pathLock.textContent = "Do work to open your next path choice.";
   elements.jobLeaf.hidden = !node || !isLeaf(state);
@@ -223,26 +238,10 @@ function renderWork() {
   elements.workRecords.innerHTML = records.map(record => `<div class="work-record"><small>${e(record.kind)} · ${e(record.context)}</small><strong>${e(record.title)}</strong>${record.outcome ? `<p>${e(record.outcome)}</p>` : ''}</div>`).join('');
 }
 
-function renderAtlas(query = '') {
-  const needle = query.trim().toLowerCase();
-  let count = 0;
-  const branch = (nodes, ancestors = []) => nodes.map(node => {
-    const path = [...ancestors, node.name];
-    if (!node.children?.length) {
-      if (needle && !path.join(' ').toLowerCase().includes(needle)) return '';
-      count++;
-      return `<li class="atlas-job"><strong>${node.name}</strong><span>${node.impactActions.at(-1).title}</span></li>`;
-    }
-    const children = branch(node.children, path);
-    return children ? `<li><details ${needle ? 'open' : ''}><summary>${node.name}</summary><ul>${children}</ul></details></li>` : '';
-  }).join('');
-  const tree = branch(careerTree);
-  $('#atlas-count').textContent = `${count} careers ${needle ? 'match this search' : `across ${careerStats.fields} fields`}. Preview their legacy projects, then progress through the training tree to unlock them.`;
-  $('#atlas-tree').innerHTML = tree ? `<ul>${tree}</ul>` : '<p>No matching career. Try another specialty or field.</p>';
-}
-
-$('#atlas-search').addEventListener('input', event => renderAtlas(event.target.value));
-renderAtlas();
+const professionBrowser = mountProfessionBrowser($('#profession-discovery'), {
+  getState: () => state,
+  onChooseGoal: id => commit(selectProfessionGoal(state, id), elements.direction),
+});
 
 function dynamicSignature() {
   const project = currentProject(state);

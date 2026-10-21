@@ -878,3 +878,2871 @@ service_id = "community"
 requirements = { care = 0.3, culture = 0.4, governance = 0.2 }
 facility_bonus = 0.35
 description = "Create a shared institution for care, participation, culture, and community trust."
+
+[role_profiles."chief-executive"]
+service_id = "livelihoods"
+
+[role_profiles."chief-executive".capabilities]
+governance = 0.6
+logistics = 0.4
+
+[role_profiles."legislator"]
+service_id = "community"
+
+[role_profiles."legislator".capabilities]
+governance = 1
+
+[role_profiles."advertising-manager"]
+service_id = "livelihoods"
+
+[role_profiles."advertising-manager".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."sales-manager"]
+service_id = "livelihoods"
+
+[role_profiles."sales-manager".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."public-relations-fundraising-manager"]
+service_id = "livelihoods"
+
+[role_profiles."public-relations-fundraising-manager".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."administrative-services-manager"]
+service_id = "livelihoods"
+
+[role_profiles."administrative-services-manager".capabilities]
+logistics = 0.6
+governance = 0.4
+
+[role_profiles."facilities-manager"]
+service_id = "infrastructure"
+
+[role_profiles."facilities-manager".capabilities]
+maintenance = 1
+
+[role_profiles."it-manager"]
+service_id = "infrastructure"
+
+[role_profiles."it-manager".capabilities]
+design = 0.6
+maintenance = 0.4
+
+[role_profiles."finance-manager"]
+service_id = "livelihoods"
+
+[role_profiles."finance-manager".capabilities]
+governance = 1
+
+[role_profiles."training-development-manager"]
+service_id = "livelihoods"
+
+[role_profiles."training-development-manager".capabilities]
+governance = 0.6
+logistics = 0.4
+
+[role_profiles."production-manager"]
+service_id = "livelihoods"
+
+[role_profiles."production-manager".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."purchasing-manager"]
+service_id = "livelihoods"
+
+[role_profiles."purchasing-manager".capabilities]
+governance = 0.6
+logistics = 0.4
+
+[role_profiles."logistics-manager"]
+service_id = "livelihoods"
+
+[role_profiles."logistics-manager".capabilities]
+logistics = 1
+
+[role_profiles."education-childcare-administrator"]
+service_id = "learning"
+
+[role_profiles."education-childcare-administrator".capabilities]
+teaching = 1
+
+[role_profiles."engineering-manager"]
+service_id = "infrastructure"
+
+[role_profiles."engineering-manager".capabilities]
+design = 1
+
+[role_profiles."restaurant-manager"]
+service_id = "livelihoods"
+
+[role_profiles."restaurant-manager".capabilities]
+food = 0.5
+logistics = 0.5
+
+[role_profiles."entertainment-recreation-manager"]
+service_id = "community"
+
+[role_profiles."entertainment-recreation-manager".capabilities]
+care = 0.5
+teaching = 0.5
+
+[role_profiles."science-program-manager"]
+service_id = "learning"
+
+[role_profiles."science-program-manager".capabilities]
+research = 1
+
+[role_profiles."postmaster"]
+service_id = "livelihoods"
+
+[role_profiles."postmaster".capabilities]
+logistics = 0.6
+governance = 0.4
+
+[role_profiles."property-manager"]
+service_id = "livelihoods"
+
+[role_profiles."property-manager".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."community-service-manager"]
+service_id = "community"
+
+[role_profiles."community-service-manager".capabilities]
+care = 0.6
+governance = 0.4
+
+[role_profiles."personal-services-manager"]
+service_id = "community"
+
+[role_profiles."personal-services-manager".capabilities]
+care = 1
+
+[role_profiles."general-manager"]
+service_id = "livelihoods"
+
+[role_profiles."general-manager".capabilities]
+governance = 0.6
+logistics = 0.4
+
+[role_profiles."talent-agent"]
+service_id = "community"
+
+[role_profiles."talent-agent".capabilities]
+culture = 1
+
+[role_profiles."retail-wholesale-buyer"]
+service_id = "livelihoods"
+
+[role_profiles."retail-wholesale-buyer".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."purchasing-agent"]
+service_id = "livelihoods"
+
+[role_profiles."purchasing-agent".capabilities]
+governance = 0.6
+logistics = 0.4
+
+[role_profiles."claims-adjuster"]
+service_id = "livelihoods"
+
+[role_profiles."claims-adjuster".capabilities]
+governance = 1
+
+[role_profiles."compliance-officer"]
+service_id = "livelihoods"
+
+[role_profiles."compliance-officer".capabilities]
+governance = 0.6
+logistics = 0.4
+
+[role_profiles."cost-estimator"]
+service_id = "infrastructure"
+
+[role_profiles."cost-estimator".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."hr-specialist"]
+service_id = "livelihoods"
+
+[role_profiles."hr-specialist".capabilities]
+governance = 0.6
+logistics = 0.4
+
+[role_profiles."compensation-benefits-specialist"]
+service_id = "livelihoods"
+
+[role_profiles."compensation-benefits-specialist".capabilities]
+governance = 0.6
+logistics = 0.4
+
+[role_profiles."project-manager"]
+service_id = "livelihoods"
+
+[role_profiles."project-manager".capabilities]
+governance = 0.6
+logistics = 0.4
+
+[role_profiles."management-consultant"]
+service_id = "livelihoods"
+
+[role_profiles."management-consultant".capabilities]
+governance = 0.6
+logistics = 0.4
+
+[role_profiles."fundraiser"]
+service_id = "community"
+
+[role_profiles."fundraiser".capabilities]
+care = 0.6
+governance = 0.4
+
+[role_profiles."market-research-analyst"]
+service_id = "livelihoods"
+
+[role_profiles."market-research-analyst".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."business-operations-specialist"]
+service_id = "livelihoods"
+
+[role_profiles."business-operations-specialist".capabilities]
+governance = 0.6
+logistics = 0.4
+
+[role_profiles."property-appraiser"]
+service_id = "livelihoods"
+
+[role_profiles."property-appraiser".capabilities]
+governance = 1
+
+[role_profiles."budget-analyst"]
+service_id = "livelihoods"
+
+[role_profiles."budget-analyst".capabilities]
+governance = 1
+
+[role_profiles."credit-analyst"]
+service_id = "livelihoods"
+
+[role_profiles."credit-analyst".capabilities]
+governance = 1
+
+[role_profiles."financial-advisor"]
+service_id = "livelihoods"
+
+[role_profiles."financial-advisor".capabilities]
+governance = 1
+
+[role_profiles."insurance-underwriter"]
+service_id = "livelihoods"
+
+[role_profiles."insurance-underwriter".capabilities]
+governance = 1
+
+[role_profiles."financial-examiner"]
+service_id = "livelihoods"
+
+[role_profiles."financial-examiner".capabilities]
+governance = 1
+
+[role_profiles."loan-officer-credit-counselor"]
+service_id = "livelihoods"
+
+[role_profiles."loan-officer-credit-counselor".capabilities]
+governance = 1
+
+[role_profiles."tax-examiner-revenue-agent"]
+service_id = "community"
+
+[role_profiles."tax-examiner-revenue-agent".capabilities]
+governance = 1
+
+[role_profiles."tax-preparer"]
+service_id = "livelihoods"
+
+[role_profiles."tax-preparer".capabilities]
+governance = 1
+
+[role_profiles."financial-specialist"]
+service_id = "livelihoods"
+
+[role_profiles."financial-specialist".capabilities]
+governance = 1
+
+[role_profiles."computer-research-scientist"]
+service_id = "infrastructure"
+
+[role_profiles."computer-research-scientist".capabilities]
+design = 0.6
+maintenance = 0.4
+
+[role_profiles."systems-analyst"]
+service_id = "infrastructure"
+
+[role_profiles."systems-analyst".capabilities]
+design = 0.6
+maintenance = 0.4
+
+[role_profiles."computer-programmer"]
+service_id = "infrastructure"
+
+[role_profiles."computer-programmer".capabilities]
+design = 0.6
+maintenance = 0.4
+
+[role_profiles."software-qa-tester"]
+service_id = "infrastructure"
+
+[role_profiles."software-qa-tester".capabilities]
+design = 0.6
+maintenance = 0.4
+
+[role_profiles."web-developer"]
+service_id = "infrastructure"
+
+[role_profiles."web-developer".capabilities]
+design = 0.6
+maintenance = 0.4
+
+[role_profiles."it-support-technician"]
+service_id = "infrastructure"
+
+[role_profiles."it-support-technician".capabilities]
+design = 0.6
+maintenance = 0.4
+
+[role_profiles."database-administrator-architect"]
+service_id = "infrastructure"
+
+[role_profiles."database-administrator-architect".capabilities]
+design = 0.6
+maintenance = 0.4
+
+[role_profiles."systems-administrator"]
+service_id = "infrastructure"
+
+[role_profiles."systems-administrator".capabilities]
+design = 0.6
+maintenance = 0.4
+
+[role_profiles."network-architect"]
+service_id = "infrastructure"
+
+[role_profiles."network-architect".capabilities]
+design = 0.6
+maintenance = 0.4
+
+[role_profiles."it-specialist"]
+service_id = "infrastructure"
+
+[role_profiles."it-specialist".capabilities]
+design = 0.6
+maintenance = 0.4
+
+[role_profiles."mathematical-science-specialist"]
+service_id = "learning"
+
+[role_profiles."mathematical-science-specialist".capabilities]
+research = 1
+
+[role_profiles."architect"]
+service_id = "infrastructure"
+
+[role_profiles."architect".capabilities]
+design = 1
+[role_profiles."landscape-architect"]
+service_id = "infrastructure"
+
+[role_profiles."landscape-architect".capabilities]
+design = 1
+[role_profiles."surveyor-cartographer"]
+service_id = "infrastructure"
+
+[role_profiles."surveyor-cartographer".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."aerospace-engineer"]
+service_id = "infrastructure"
+
+[role_profiles."aerospace-engineer".capabilities]
+design = 1
+
+[role_profiles."biomedical-engineer"]
+service_id = "infrastructure"
+
+[role_profiles."biomedical-engineer".capabilities]
+design = 1
+
+[role_profiles."civil-engineer"]
+service_id = "infrastructure"
+
+[role_profiles."civil-engineer".capabilities]
+design = 1
+
+[role_profiles."computer-hardware-engineer"]
+service_id = "infrastructure"
+
+[role_profiles."computer-hardware-engineer".capabilities]
+design = 1
+
+[role_profiles."electrical-electronics-engineer"]
+service_id = "infrastructure"
+
+[role_profiles."electrical-electronics-engineer".capabilities]
+design = 1
+
+[role_profiles."environmental-engineer"]
+service_id = "infrastructure"
+
+[role_profiles."environmental-engineer".capabilities]
+design = 1
+
+[role_profiles."materials-engineer"]
+service_id = "infrastructure"
+
+[role_profiles."materials-engineer".capabilities]
+design = 1
+
+[role_profiles."mechanical-engineer"]
+service_id = "infrastructure"
+
+[role_profiles."mechanical-engineer".capabilities]
+design = 1
+
+[role_profiles."engineering-specialist"]
+service_id = "infrastructure"
+
+[role_profiles."engineering-specialist".capabilities]
+design = 1
+
+[role_profiles."architectural-civil-drafter"]
+service_id = "infrastructure"
+
+[role_profiles."architectural-civil-drafter".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."technical-drafter"]
+service_id = "infrastructure"
+
+[role_profiles."technical-drafter".capabilities]
+design = 1
+
+[role_profiles."electronics-engineering-technician"]
+service_id = "infrastructure"
+
+[role_profiles."electronics-engineering-technician".capabilities]
+design = 1
+
+[role_profiles."engineering-technician"]
+service_id = "infrastructure"
+
+[role_profiles."engineering-technician".capabilities]
+design = 1
+
+[role_profiles."survey-mapping-technician"]
+service_id = "infrastructure"
+
+[role_profiles."survey-mapping-technician".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."agricultural-food-scientist"]
+service_id = "livelihoods"
+
+[role_profiles."agricultural-food-scientist".capabilities]
+food = 0.8
+maintenance = 0.2
+
+[role_profiles."biological-scientist"]
+service_id = "learning"
+
+[role_profiles."biological-scientist".capabilities]
+research = 1
+
+[role_profiles."physical-scientist"]
+service_id = "learning"
+
+[role_profiles."physical-scientist".capabilities]
+research = 1
+
+[role_profiles."economist"]
+service_id = "learning"
+
+[role_profiles."economist".capabilities]
+research = 1
+
+[role_profiles."clinical-psychologist"]
+service_id = "health"
+
+[role_profiles."clinical-psychologist".capabilities]
+care = 1
+
+[role_profiles."school-psychologist"]
+service_id = "learning"
+
+[role_profiles."school-psychologist".capabilities]
+care = 0.6
+teaching = 0.4
+[role_profiles."psychologist"]
+service_id = "learning"
+
+[role_profiles."psychologist".capabilities]
+research = 0.6
+care = 0.4
+[role_profiles."urban-planner"]
+service_id = "community"
+
+[role_profiles."urban-planner".capabilities]
+governance = 1
+
+[role_profiles."social-scientist"]
+service_id = "learning"
+
+[role_profiles."social-scientist".capabilities]
+research = 1
+
+[role_profiles."agricultural-food-science-technician"]
+service_id = "livelihoods"
+
+[role_profiles."agricultural-food-science-technician".capabilities]
+food = 0.8
+maintenance = 0.2
+
+[role_profiles."biological-technician"]
+service_id = "learning"
+
+[role_profiles."biological-technician".capabilities]
+research = 1
+
+[role_profiles."chemical-technician"]
+service_id = "learning"
+
+[role_profiles."chemical-technician".capabilities]
+research = 1
+
+[role_profiles."science-technician"]
+service_id = "learning"
+
+[role_profiles."science-technician".capabilities]
+research = 1
+
+[role_profiles."occupational-safety-specialist"]
+service_id = "resilience"
+
+[role_profiles."occupational-safety-specialist".capabilities]
+governance = 0.5
+care = 0.5
+
+[role_profiles."addiction-counselor"]
+service_id = "health"
+
+[role_profiles."addiction-counselor".capabilities]
+care = 1
+
+[role_profiles."marriage-family-therapist"]
+service_id = "health"
+
+[role_profiles."marriage-family-therapist".capabilities]
+care = 1
+
+[role_profiles."mental-health-counselor"]
+service_id = "health"
+
+[role_profiles."mental-health-counselor".capabilities]
+care = 1
+
+[role_profiles."counselor"]
+service_id = "health"
+
+[role_profiles."counselor".capabilities]
+care = 1
+
+[role_profiles."child-family-social-worker"]
+service_id = "community"
+
+[role_profiles."child-family-social-worker".capabilities]
+care = 0.6
+governance = 0.4
+
+[role_profiles."healthcare-social-worker"]
+service_id = "community"
+
+[role_profiles."healthcare-social-worker".capabilities]
+care = 0.6
+governance = 0.4
+
+[role_profiles."probation-officer"]
+service_id = "community"
+
+[role_profiles."probation-officer".capabilities]
+care = 0.6
+governance = 0.4
+
+[role_profiles."social-human-service-assistant"]
+service_id = "community"
+
+[role_profiles."social-human-service-assistant".capabilities]
+care = 0.6
+governance = 0.4
+
+[role_profiles."community-service-specialist"]
+service_id = "community"
+
+[role_profiles."community-service-specialist".capabilities]
+care = 0.6
+governance = 0.4
+
+[role_profiles."clergy-member"]
+service_id = "community"
+
+[role_profiles."clergy-member".capabilities]
+care = 0.6
+governance = 0.4
+
+[role_profiles."religious-education-director"]
+service_id = "community"
+
+[role_profiles."religious-education-director".capabilities]
+care = 0.6
+governance = 0.4
+
+[role_profiles."religious-worker"]
+service_id = "community"
+
+[role_profiles."religious-worker".capabilities]
+care = 0.6
+governance = 0.4
+
+[role_profiles."lawyer"]
+service_id = "community"
+
+[role_profiles."lawyer".capabilities]
+governance = 1
+
+[role_profiles."judge-magistrate"]
+service_id = "community"
+
+[role_profiles."judge-magistrate".capabilities]
+governance = 1
+
+[role_profiles."paralegal"]
+service_id = "community"
+
+[role_profiles."paralegal".capabilities]
+governance = 1
+
+[role_profiles."title-examiner"]
+service_id = "community"
+
+[role_profiles."title-examiner".capabilities]
+governance = 1
+
+[role_profiles."legal-support-specialist"]
+service_id = "community"
+
+[role_profiles."legal-support-specialist".capabilities]
+governance = 1
+
+[role_profiles."preschool-kindergarten-teacher"]
+service_id = "learning"
+
+[role_profiles."preschool-kindergarten-teacher".capabilities]
+teaching = 1
+
+[role_profiles."middle-school-teacher"]
+service_id = "learning"
+
+[role_profiles."middle-school-teacher".capabilities]
+teaching = 1
+
+[role_profiles."tutor"]
+service_id = "learning"
+
+[role_profiles."tutor".capabilities]
+teaching = 1
+
+[role_profiles."instructor"]
+service_id = "learning"
+
+[role_profiles."instructor".capabilities]
+teaching = 1
+
+[role_profiles."museum-archive-specialist"]
+service_id = "community"
+
+[role_profiles."museum-archive-specialist".capabilities]
+culture = 1
+
+[role_profiles."library-technician"]
+service_id = "learning"
+
+[role_profiles."library-technician".capabilities]
+teaching = 1
+
+[role_profiles."education-support-specialist"]
+service_id = "learning"
+
+[role_profiles."education-support-specialist".capabilities]
+teaching = 1
+
+[role_profiles."visual-artist"]
+service_id = "community"
+
+[role_profiles."visual-artist".capabilities]
+culture = 1
+
+[role_profiles."industrial-designer"]
+service_id = "community"
+
+[role_profiles."industrial-designer".capabilities]
+culture = 1
+
+[role_profiles."fashion-designer"]
+service_id = "community"
+
+[role_profiles."fashion-designer".capabilities]
+culture = 1
+
+[role_profiles."florist"]
+service_id = "community"
+
+[role_profiles."florist".capabilities]
+culture = 1
+
+[role_profiles."interior-designer"]
+service_id = "community"
+
+[role_profiles."interior-designer".capabilities]
+culture = 1
+
+[role_profiles."visual-merchandiser"]
+service_id = "livelihoods"
+
+[role_profiles."visual-merchandiser".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."design-specialist"]
+service_id = "community"
+
+[role_profiles."design-specialist".capabilities]
+culture = 1
+
+[role_profiles."actor"]
+service_id = "community"
+
+[role_profiles."actor".capabilities]
+culture = 1
+
+[role_profiles."professional-athlete"]
+service_id = "community"
+
+[role_profiles."professional-athlete".capabilities]
+care = 0.5
+teaching = 0.5
+
+[role_profiles."sports-coach"]
+service_id = "community"
+
+[role_profiles."sports-coach".capabilities]
+care = 0.5
+teaching = 0.5
+
+[role_profiles."sports-official"]
+service_id = "community"
+
+[role_profiles."sports-official".capabilities]
+care = 0.5
+teaching = 0.5
+
+[role_profiles."dancer-choreographer"]
+service_id = "community"
+
+[role_profiles."dancer-choreographer".capabilities]
+culture = 1
+
+[role_profiles."composer-music-director"]
+service_id = "community"
+
+[role_profiles."composer-music-director".capabilities]
+culture = 1
+
+[role_profiles."dj"]
+service_id = "community"
+
+[role_profiles."dj".capabilities]
+culture = 1
+
+[role_profiles."entertainer"]
+service_id = "community"
+
+[role_profiles."entertainer".capabilities]
+culture = 1
+
+[role_profiles."radio-announcer"]
+service_id = "community"
+
+[role_profiles."radio-announcer".capabilities]
+culture = 1
+
+[role_profiles."public-relations-specialist"]
+service_id = "livelihoods"
+
+[role_profiles."public-relations-specialist".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."editor"]
+service_id = "community"
+
+[role_profiles."editor".capabilities]
+culture = 1
+
+[role_profiles."writer-author"]
+service_id = "community"
+
+[role_profiles."writer-author".capabilities]
+culture = 1
+
+[role_profiles."interpreter-translator"]
+service_id = "community"
+
+[role_profiles."interpreter-translator".capabilities]
+culture = 1
+
+[role_profiles."court-reporter-captioner"]
+service_id = "community"
+
+[role_profiles."court-reporter-captioner".capabilities]
+governance = 1
+
+[role_profiles."communications-specialist"]
+service_id = "community"
+
+[role_profiles."communications-specialist".capabilities]
+culture = 1
+
+[role_profiles."sound-lighting-broadcast-technician"]
+service_id = "community"
+
+[role_profiles."sound-lighting-broadcast-technician".capabilities]
+culture = 1
+
+[role_profiles."photographer"]
+service_id = "community"
+
+[role_profiles."photographer".capabilities]
+culture = 1
+
+[role_profiles."camera-operator-video-editor"]
+service_id = "community"
+
+[role_profiles."camera-operator-video-editor".capabilities]
+culture = 1
+
+[role_profiles."chiropractor"]
+service_id = "health"
+
+[role_profiles."chiropractor".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."dietitian-nutritionist"]
+service_id = "health"
+
+[role_profiles."dietitian-nutritionist".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."optometrist"]
+service_id = "health"
+
+[role_profiles."optometrist".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."physician-assistant"]
+service_id = "health"
+
+[role_profiles."physician-assistant".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."audiologist"]
+service_id = "health"
+
+[role_profiles."audiologist".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."occupational-therapist"]
+service_id = "health"
+
+[role_profiles."occupational-therapist".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."respiratory-therapist"]
+service_id = "health"
+
+[role_profiles."respiratory-therapist".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."speech-language-pathologist"]
+service_id = "health"
+
+[role_profiles."speech-language-pathologist".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."therapy-specialist"]
+service_id = "health"
+
+[role_profiles."therapy-specialist".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."nurse-anesthetist"]
+service_id = "health"
+
+[role_profiles."nurse-anesthetist".capabilities]
+nursing = 0.8
+care = 0.2
+
+[role_profiles."nurse-practitioner"]
+service_id = "health"
+
+[role_profiles."nurse-practitioner".capabilities]
+nursing = 0.8
+care = 0.2
+
+[role_profiles."acupuncturist"]
+service_id = "health"
+
+[role_profiles."acupuncturist".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."health-practitioner"]
+service_id = "health"
+
+[role_profiles."health-practitioner".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."clinical-laboratory-technician"]
+service_id = "health"
+
+[role_profiles."clinical-laboratory-technician".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."dental-hygienist"]
+service_id = "health"
+
+[role_profiles."dental-hygienist".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."cardiovascular-technician"]
+service_id = "health"
+
+[role_profiles."cardiovascular-technician".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."medical-sonographer"]
+service_id = "health"
+
+[role_profiles."medical-sonographer".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."radiologic-technologist"]
+service_id = "health"
+
+[role_profiles."radiologic-technologist".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."mri-technologist"]
+service_id = "health"
+
+[role_profiles."mri-technologist".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."nuclear-medicine-technologist"]
+service_id = "health"
+
+[role_profiles."nuclear-medicine-technologist".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."emt"]
+service_id = "resilience"
+
+[role_profiles."emt".capabilities]
+governance = 0.5
+care = 0.5
+
+[role_profiles."pharmacy-technician"]
+service_id = "health"
+
+[role_profiles."pharmacy-technician".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."psychiatric-technician"]
+service_id = "health"
+
+[role_profiles."psychiatric-technician".capabilities]
+care = 1
+
+[role_profiles."surgical-technologist"]
+service_id = "health"
+
+[role_profiles."surgical-technologist".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."veterinary-technician"]
+service_id = "community"
+
+[role_profiles."veterinary-technician".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."ophthalmic-technician"]
+service_id = "health"
+
+[role_profiles."ophthalmic-technician".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."licensed-practical-vocational-nurse"]
+service_id = "health"
+
+[role_profiles."licensed-practical-vocational-nurse".capabilities]
+nursing = 0.8
+care = 0.2
+
+[role_profiles."optician"]
+service_id = "health"
+
+[role_profiles."optician".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."health-technologist"]
+service_id = "health"
+
+[role_profiles."health-technologist".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."healthcare-technical-specialist"]
+service_id = "health"
+
+[role_profiles."healthcare-technical-specialist".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."personal-care-aide"]
+service_id = "community"
+
+[role_profiles."personal-care-aide".capabilities]
+care = 1
+
+[role_profiles."nursing-assistant"]
+service_id = "health"
+
+[role_profiles."nursing-assistant".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."hospital-orderly"]
+service_id = "health"
+
+[role_profiles."hospital-orderly".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."occupational-therapy-assistant"]
+service_id = "health"
+
+[role_profiles."occupational-therapy-assistant".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."physical-therapist-assistant"]
+service_id = "health"
+
+[role_profiles."physical-therapist-assistant".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."massage-therapist"]
+service_id = "community"
+
+[role_profiles."massage-therapist".capabilities]
+care = 1
+
+[role_profiles."dental-assistant"]
+service_id = "health"
+
+[role_profiles."dental-assistant".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."medical-assistant"]
+service_id = "health"
+
+[role_profiles."medical-assistant".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."medical-transcriptionist"]
+service_id = "health"
+
+[role_profiles."medical-transcriptionist".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."pharmacy-aide"]
+service_id = "health"
+
+[role_profiles."pharmacy-aide".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."veterinary-assistant"]
+service_id = "community"
+
+[role_profiles."veterinary-assistant".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."phlebotomist"]
+service_id = "health"
+
+[role_profiles."phlebotomist".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."healthcare-support-worker"]
+service_id = "health"
+
+[role_profiles."healthcare-support-worker".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."corrections-supervisor"]
+service_id = "resilience"
+
+[role_profiles."corrections-supervisor".capabilities]
+governance = 0.5
+care = 0.5
+
+[role_profiles."police-supervisor"]
+service_id = "resilience"
+
+[role_profiles."police-supervisor".capabilities]
+governance = 0.5
+care = 0.5
+
+[role_profiles."fire-service-supervisor"]
+service_id = "resilience"
+
+[role_profiles."fire-service-supervisor".capabilities]
+governance = 0.5
+care = 0.5
+
+[role_profiles."security-supervisor"]
+service_id = "resilience"
+
+[role_profiles."security-supervisor".capabilities]
+governance = 0.5
+care = 0.5
+
+[role_profiles."fire-inspector"]
+service_id = "resilience"
+
+[role_profiles."fire-inspector".capabilities]
+governance = 0.5
+care = 0.5
+
+[role_profiles."bailiff"]
+service_id = "resilience"
+
+[role_profiles."bailiff".capabilities]
+governance = 0.5
+care = 0.5
+
+[role_profiles."correctional-officer"]
+service_id = "resilience"
+
+[role_profiles."correctional-officer".capabilities]
+governance = 0.5
+care = 0.5
+
+[role_profiles."detective-criminal-investigator"]
+service_id = "resilience"
+
+[role_profiles."detective-criminal-investigator".capabilities]
+governance = 0.5
+care = 0.5
+
+[role_profiles."private-investigator"]
+service_id = "resilience"
+
+[role_profiles."private-investigator".capabilities]
+governance = 0.5
+care = 0.5
+
+[role_profiles."security-guard"]
+service_id = "resilience"
+
+[role_profiles."security-guard".capabilities]
+governance = 0.5
+care = 0.5
+
+[role_profiles."crossing-guard-flagger"]
+service_id = "resilience"
+
+[role_profiles."crossing-guard-flagger".capabilities]
+governance = 0.5
+care = 0.5
+
+[role_profiles."transportation-security-screener"]
+service_id = "resilience"
+
+[role_profiles."transportation-security-screener".capabilities]
+governance = 0.5
+care = 0.5
+
+[role_profiles."school-bus-monitor"]
+service_id = "resilience"
+
+[role_profiles."school-bus-monitor".capabilities]
+governance = 0.5
+care = 0.5
+
+[role_profiles."protective-service-worker"]
+service_id = "resilience"
+
+[role_profiles."protective-service-worker".capabilities]
+governance = 0.5
+care = 0.5
+
+[role_profiles."food-service-supervisor"]
+service_id = "livelihoods"
+
+[role_profiles."food-service-supervisor".capabilities]
+food = 0.5
+logistics = 0.5
+
+[role_profiles."cook"]
+service_id = "livelihoods"
+
+[role_profiles."cook".capabilities]
+food = 0.5
+logistics = 0.5
+
+[role_profiles."food-preparation-worker"]
+service_id = "livelihoods"
+
+[role_profiles."food-preparation-worker".capabilities]
+food = 0.5
+logistics = 0.5
+
+[role_profiles."bartender"]
+service_id = "livelihoods"
+
+[role_profiles."bartender".capabilities]
+food = 0.5
+logistics = 0.5
+
+[role_profiles."fast-food-counter-worker"]
+service_id = "livelihoods"
+
+[role_profiles."fast-food-counter-worker".capabilities]
+food = 0.5
+logistics = 0.5
+
+[role_profiles."server-waiter"]
+service_id = "livelihoods"
+
+[role_profiles."server-waiter".capabilities]
+food = 0.5
+logistics = 0.5
+
+[role_profiles."cafeteria-institutional-food-server"]
+service_id = "livelihoods"
+
+[role_profiles."cafeteria-institutional-food-server".capabilities]
+food = 0.5
+logistics = 0.5
+
+[role_profiles."dining-room-attendant"]
+service_id = "livelihoods"
+
+[role_profiles."dining-room-attendant".capabilities]
+food = 0.5
+logistics = 0.5
+
+[role_profiles."dishwasher"]
+service_id = "livelihoods"
+
+[role_profiles."dishwasher".capabilities]
+food = 0.5
+logistics = 0.5
+
+[role_profiles."restaurant-host"]
+service_id = "livelihoods"
+
+[role_profiles."restaurant-host".capabilities]
+food = 0.5
+logistics = 0.5
+
+[role_profiles."cleaning-supervisor"]
+service_id = "infrastructure"
+
+[role_profiles."cleaning-supervisor".capabilities]
+maintenance = 1
+
+[role_profiles."groundskeeping-supervisor"]
+service_id = "infrastructure"
+
+[role_profiles."groundskeeping-supervisor".capabilities]
+maintenance = 1
+
+[role_profiles."housekeeper"]
+service_id = "infrastructure"
+
+[role_profiles."housekeeper".capabilities]
+maintenance = 1
+
+[role_profiles."pest-control-technician"]
+service_id = "infrastructure"
+
+[role_profiles."pest-control-technician".capabilities]
+maintenance = 1
+
+[role_profiles."arborist-tree-trimmer"]
+service_id = "resilience"
+
+[role_profiles."arborist-tree-trimmer".capabilities]
+maintenance = 0.7
+research = 0.3
+
+[role_profiles."grounds-maintenance-worker"]
+service_id = "infrastructure"
+
+[role_profiles."grounds-maintenance-worker".capabilities]
+maintenance = 1
+
+[role_profiles."personal-services-supervisor"]
+service_id = "community"
+
+[role_profiles."personal-services-supervisor".capabilities]
+care = 1
+
+[role_profiles."animal-trainer"]
+service_id = "community"
+
+[role_profiles."animal-trainer".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."animal-caretaker"]
+service_id = "community"
+
+[role_profiles."animal-caretaker".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."gaming-casino-worker"]
+service_id = "livelihoods"
+
+[role_profiles."gaming-casino-worker".capabilities]
+food = 0.5
+logistics = 0.5
+
+[role_profiles."usher-ticket-taker"]
+service_id = "livelihoods"
+
+[role_profiles."usher-ticket-taker".capabilities]
+food = 0.5
+logistics = 0.5
+
+[role_profiles."entertainment-attendant"]
+service_id = "livelihoods"
+
+[role_profiles."entertainment-attendant".capabilities]
+food = 0.5
+logistics = 0.5
+
+[role_profiles."hairstylist-cosmetologist"]
+service_id = "community"
+
+[role_profiles."hairstylist-cosmetologist".capabilities]
+care = 1
+
+[role_profiles."nail-technician"]
+service_id = "community"
+
+[role_profiles."nail-technician".capabilities]
+care = 1
+
+[role_profiles."esthetician-skincare-specialist"]
+service_id = "community"
+
+[role_profiles."esthetician-skincare-specialist".capabilities]
+care = 1
+
+[role_profiles."beauty-services-specialist"]
+service_id = "community"
+
+[role_profiles."beauty-services-specialist".capabilities]
+care = 1
+
+[role_profiles."concierge-baggage-porter"]
+service_id = "livelihoods"
+
+[role_profiles."concierge-baggage-porter".capabilities]
+food = 0.5
+logistics = 0.5
+
+[role_profiles."tour-guide"]
+service_id = "livelihoods"
+
+[role_profiles."tour-guide".capabilities]
+food = 0.5
+logistics = 0.5
+
+[role_profiles."recreation-worker"]
+service_id = "community"
+
+[role_profiles."recreation-worker".capabilities]
+care = 0.5
+teaching = 0.5
+
+[role_profiles."residential-advisor"]
+service_id = "community"
+
+[role_profiles."residential-advisor".capabilities]
+care = 0.6
+governance = 0.4
+
+[role_profiles."personal-services-worker"]
+service_id = "community"
+
+[role_profiles."personal-services-worker".capabilities]
+care = 1
+
+[role_profiles."retail-supervisor"]
+service_id = "livelihoods"
+
+[role_profiles."retail-supervisor".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."sales-team-supervisor"]
+service_id = "livelihoods"
+
+[role_profiles."sales-team-supervisor".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."cashier"]
+service_id = "livelihoods"
+
+[role_profiles."cashier".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."rental-counter-clerk"]
+service_id = "livelihoods"
+
+[role_profiles."rental-counter-clerk".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."parts-salesperson"]
+service_id = "livelihoods"
+
+[role_profiles."parts-salesperson".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."retail-sales-associate"]
+service_id = "livelihoods"
+
+[role_profiles."retail-sales-associate".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."advertising-sales-agent"]
+service_id = "livelihoods"
+
+[role_profiles."advertising-sales-agent".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."insurance-agent"]
+service_id = "livelihoods"
+
+[role_profiles."insurance-agent".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."financial-services-sales-agent"]
+service_id = "livelihoods"
+
+[role_profiles."financial-services-sales-agent".capabilities]
+governance = 1
+
+[role_profiles."travel-agent"]
+service_id = "livelihoods"
+
+[role_profiles."travel-agent".capabilities]
+food = 0.5
+logistics = 0.5
+
+[role_profiles."service-sales-representative"]
+service_id = "livelihoods"
+
+[role_profiles."service-sales-representative".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."product-promoter-model"]
+service_id = "livelihoods"
+
+[role_profiles."product-promoter-model".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."sales-engineer"]
+service_id = "livelihoods"
+
+[role_profiles."sales-engineer".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."telemarketer"]
+service_id = "livelihoods"
+
+[role_profiles."telemarketer".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."direct-seller-street-vendor"]
+service_id = "livelihoods"
+
+[role_profiles."direct-seller-street-vendor".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."sales-specialist"]
+service_id = "livelihoods"
+
+[role_profiles."sales-specialist".capabilities]
+logistics = 0.5
+governance = 0.5
+
+[role_profiles."office-supervisor"]
+service_id = "livelihoods"
+
+[role_profiles."office-supervisor".capabilities]
+logistics = 0.6
+governance = 0.4
+
+[role_profiles."telephone-operator"]
+service_id = "livelihoods"
+
+[role_profiles."telephone-operator".capabilities]
+logistics = 0.6
+governance = 0.4
+
+[role_profiles."debt-collector"]
+service_id = "livelihoods"
+
+[role_profiles."debt-collector".capabilities]
+governance = 1
+
+[role_profiles."billing-clerk"]
+service_id = "livelihoods"
+
+[role_profiles."billing-clerk".capabilities]
+governance = 1
+
+[role_profiles."casino-cage-cashier"]
+service_id = "livelihoods"
+
+[role_profiles."casino-cage-cashier".capabilities]
+governance = 1
+
+[role_profiles."payroll-clerk"]
+service_id = "livelihoods"
+
+[role_profiles."payroll-clerk".capabilities]
+governance = 1
+
+[role_profiles."procurement-clerk"]
+service_id = "livelihoods"
+
+[role_profiles."procurement-clerk".capabilities]
+logistics = 0.6
+governance = 0.4
+
+[role_profiles."bank-teller"]
+service_id = "livelihoods"
+
+[role_profiles."bank-teller".capabilities]
+governance = 1
+
+[role_profiles."financial-clerk"]
+service_id = "livelihoods"
+
+[role_profiles."financial-clerk".capabilities]
+governance = 1
+
+[role_profiles."court-license-clerk"]
+service_id = "community"
+
+[role_profiles."court-license-clerk".capabilities]
+governance = 1
+
+[role_profiles."credit-clerk"]
+service_id = "livelihoods"
+
+[role_profiles."credit-clerk".capabilities]
+governance = 1
+
+[role_profiles."benefits-eligibility-interviewer"]
+service_id = "community"
+
+[role_profiles."benefits-eligibility-interviewer".capabilities]
+governance = 1
+
+[role_profiles."file-clerk"]
+service_id = "livelihoods"
+
+[role_profiles."file-clerk".capabilities]
+logistics = 0.6
+governance = 0.4
+
+[role_profiles."hotel-front-desk-clerk"]
+service_id = "livelihoods"
+
+[role_profiles."hotel-front-desk-clerk".capabilities]
+food = 0.5
+logistics = 0.5
+
+[role_profiles."survey-interviewer"]
+service_id = "livelihoods"
+
+[role_profiles."survey-interviewer".capabilities]
+logistics = 0.6
+governance = 0.4
+
+[role_profiles."library-assistant"]
+service_id = "learning"
+
+[role_profiles."library-assistant".capabilities]
+teaching = 1
+
+[role_profiles."loan-processing-clerk"]
+service_id = "livelihoods"
+
+[role_profiles."loan-processing-clerk".capabilities]
+governance = 1
+
+[role_profiles."order-clerk"]
+service_id = "livelihoods"
+
+[role_profiles."order-clerk".capabilities]
+logistics = 0.6
+governance = 0.4
+
+[role_profiles."hr-assistant"]
+service_id = "livelihoods"
+
+[role_profiles."hr-assistant".capabilities]
+governance = 0.6
+logistics = 0.4
+
+[role_profiles."receptionist"]
+service_id = "livelihoods"
+
+[role_profiles."receptionist".capabilities]
+logistics = 0.6
+governance = 0.4
+
+[role_profiles."reservation-ticket-agent"]
+service_id = "livelihoods"
+
+[role_profiles."reservation-ticket-agent".capabilities]
+logistics = 1
+
+[role_profiles."information-records-clerk"]
+service_id = "livelihoods"
+
+[role_profiles."information-records-clerk".capabilities]
+logistics = 0.6
+governance = 0.4
+
+[role_profiles."freight-agent"]
+service_id = "livelihoods"
+
+[role_profiles."freight-agent".capabilities]
+logistics = 1
+
+[role_profiles."courier"]
+service_id = "livelihoods"
+
+[role_profiles."courier".capabilities]
+logistics = 1
+
+[role_profiles."emergency-dispatcher"]
+service_id = "resilience"
+
+[role_profiles."emergency-dispatcher".capabilities]
+governance = 0.5
+care = 0.5
+
+[role_profiles."dispatcher"]
+service_id = "livelihoods"
+
+[role_profiles."dispatcher".capabilities]
+logistics = 1
+
+[role_profiles."utility-meter-reader"]
+service_id = "infrastructure"
+
+[role_profiles."utility-meter-reader".capabilities]
+maintenance = 1
+
+[role_profiles."postal-clerk"]
+service_id = "livelihoods"
+
+[role_profiles."postal-clerk".capabilities]
+logistics = 0.6
+governance = 0.4
+
+[role_profiles."mail-carrier"]
+service_id = "livelihoods"
+
+[role_profiles."mail-carrier".capabilities]
+logistics = 1
+
+[role_profiles."mail-sorter"]
+service_id = "livelihoods"
+
+[role_profiles."mail-sorter".capabilities]
+logistics = 0.6
+governance = 0.4
+
+[role_profiles."production-planning-clerk"]
+service_id = "livelihoods"
+
+[role_profiles."production-planning-clerk".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."shipping-inventory-clerk"]
+service_id = "livelihoods"
+
+[role_profiles."shipping-inventory-clerk".capabilities]
+logistics = 1
+
+[role_profiles."weighing-sampling-clerk"]
+service_id = "livelihoods"
+
+[role_profiles."weighing-sampling-clerk".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."executive-assistant"]
+service_id = "livelihoods"
+
+[role_profiles."executive-assistant".capabilities]
+logistics = 0.6
+governance = 0.4
+
+[role_profiles."legal-secretary"]
+service_id = "community"
+
+[role_profiles."legal-secretary".capabilities]
+governance = 1
+
+[role_profiles."medical-secretary"]
+service_id = "health"
+
+[role_profiles."medical-secretary".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."data-entry-clerk"]
+service_id = "livelihoods"
+
+[role_profiles."data-entry-clerk".capabilities]
+logistics = 0.6
+governance = 0.4
+
+[role_profiles."typist-word-processor"]
+service_id = "livelihoods"
+
+[role_profiles."typist-word-processor".capabilities]
+logistics = 0.6
+governance = 0.4
+
+[role_profiles."insurance-processing-clerk"]
+service_id = "livelihoods"
+
+[role_profiles."insurance-processing-clerk".capabilities]
+governance = 1
+
+[role_profiles."mailroom-clerk"]
+service_id = "livelihoods"
+
+[role_profiles."mailroom-clerk".capabilities]
+logistics = 0.6
+governance = 0.4
+
+[role_profiles."office-clerk"]
+service_id = "livelihoods"
+
+[role_profiles."office-clerk".capabilities]
+logistics = 0.6
+governance = 0.4
+
+[role_profiles."office-machine-operator"]
+service_id = "livelihoods"
+
+[role_profiles."office-machine-operator".capabilities]
+logistics = 0.6
+governance = 0.4
+
+[role_profiles."proofreader"]
+service_id = "community"
+
+[role_profiles."proofreader".capabilities]
+culture = 1
+
+[role_profiles."statistical-assistant"]
+service_id = "learning"
+
+[role_profiles."statistical-assistant".capabilities]
+research = 1
+
+[role_profiles."administrative-support-specialist"]
+service_id = "livelihoods"
+
+[role_profiles."administrative-support-specialist".capabilities]
+logistics = 0.6
+governance = 0.4
+
+[role_profiles."agricultural-forestry-supervisor"]
+service_id = "livelihoods"
+
+[role_profiles."agricultural-forestry-supervisor".capabilities]
+food = 0.8
+maintenance = 0.2
+
+[role_profiles."agricultural-grader-sorter"]
+service_id = "livelihoods"
+
+[role_profiles."agricultural-grader-sorter".capabilities]
+food = 0.8
+maintenance = 0.2
+
+[role_profiles."fishing-hunting-worker"]
+service_id = "livelihoods"
+
+[role_profiles."fishing-hunting-worker".capabilities]
+food = 0.8
+maintenance = 0.2
+
+[role_profiles."forest-conservation-worker"]
+service_id = "resilience"
+
+[role_profiles."forest-conservation-worker".capabilities]
+maintenance = 0.7
+research = 0.3
+
+[role_profiles."logger"]
+service_id = "livelihoods"
+
+[role_profiles."logger".capabilities]
+food = 0.8
+maintenance = 0.2
+
+[role_profiles."construction-supervisor"]
+service_id = "infrastructure"
+
+[role_profiles."construction-supervisor".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."floor-tile-installer"]
+service_id = "infrastructure"
+
+[role_profiles."floor-tile-installer".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."concrete-finisher"]
+service_id = "infrastructure"
+
+[role_profiles."concrete-finisher".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."construction-laborer"]
+service_id = "infrastructure"
+
+[role_profiles."construction-laborer".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."construction-equipment-operator"]
+service_id = "infrastructure"
+
+[role_profiles."construction-equipment-operator".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."drywall-installer-taper"]
+service_id = "infrastructure"
+
+[role_profiles."drywall-installer-taper".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."glazier"]
+service_id = "infrastructure"
+
+[role_profiles."glazier".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."insulation-installer"]
+service_id = "infrastructure"
+
+[role_profiles."insulation-installer".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."painter-paperhanger"]
+service_id = "infrastructure"
+
+[role_profiles."painter-paperhanger".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."pipelayer"]
+service_id = "infrastructure"
+
+[role_profiles."pipelayer".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."plasterer-stucco-mason"]
+service_id = "infrastructure"
+
+[role_profiles."plasterer-stucco-mason".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."roofer"]
+service_id = "infrastructure"
+
+[role_profiles."roofer".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."sheet-metal-worker"]
+service_id = "infrastructure"
+
+[role_profiles."sheet-metal-worker".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."ironworker"]
+service_id = "infrastructure"
+
+[role_profiles."ironworker".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."construction-trades-helper"]
+service_id = "infrastructure"
+
+[role_profiles."construction-trades-helper".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."building-inspector"]
+service_id = "infrastructure"
+
+[role_profiles."building-inspector".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."fence-installer"]
+service_id = "infrastructure"
+
+[role_profiles."fence-installer".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."hazardous-materials-removal-worker"]
+service_id = "infrastructure"
+
+[role_profiles."hazardous-materials-removal-worker".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."highway-maintenance-worker"]
+service_id = "infrastructure"
+
+[role_profiles."highway-maintenance-worker".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."construction-specialist"]
+service_id = "infrastructure"
+
+[role_profiles."construction-specialist".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."oil-gas-drilling-operator"]
+service_id = "livelihoods"
+
+[role_profiles."oil-gas-drilling-operator".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."earth-driller"]
+service_id = "infrastructure"
+
+[role_profiles."earth-driller".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."underground-mining-operator"]
+service_id = "livelihoods"
+
+[role_profiles."underground-mining-operator".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."extraction-worker"]
+service_id = "livelihoods"
+
+[role_profiles."extraction-worker".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."maintenance-supervisor"]
+service_id = "livelihoods"
+
+[role_profiles."maintenance-supervisor".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."office-equipment-repair-technician"]
+service_id = "infrastructure"
+
+[role_profiles."office-equipment-repair-technician".capabilities]
+design = 0.6
+maintenance = 0.4
+
+[role_profiles."telecommunications-technician"]
+service_id = "infrastructure"
+
+[role_profiles."telecommunications-technician".capabilities]
+design = 0.6
+maintenance = 0.4
+
+[role_profiles."electric-motor-power-tool-repairer"]
+service_id = "livelihoods"
+
+[role_profiles."electric-motor-power-tool-repairer".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."audiovisual-installer"]
+service_id = "infrastructure"
+
+[role_profiles."audiovisual-installer".capabilities]
+design = 0.6
+maintenance = 0.4
+
+[role_profiles."alarm-systems-installer"]
+service_id = "infrastructure"
+
+[role_profiles."alarm-systems-installer".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."aircraft-mechanic"]
+service_id = "livelihoods"
+
+[role_profiles."aircraft-mechanic".capabilities]
+logistics = 1
+
+[role_profiles."auto-body-repairer"]
+service_id = "livelihoods"
+
+[role_profiles."auto-body-repairer".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."auto-glass-technician"]
+service_id = "livelihoods"
+
+[role_profiles."auto-glass-technician".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."diesel-mechanic"]
+service_id = "livelihoods"
+
+[role_profiles."diesel-mechanic".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."heavy-equipment-mechanic"]
+service_id = "livelihoods"
+
+[role_profiles."heavy-equipment-mechanic".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."small-engine-mechanic"]
+service_id = "livelihoods"
+
+[role_profiles."small-engine-mechanic".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."vehicle-equipment-technician"]
+service_id = "livelihoods"
+
+[role_profiles."vehicle-equipment-technician".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."control-valve-technician"]
+service_id = "livelihoods"
+
+[role_profiles."control-valve-technician".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."appliance-repair-technician"]
+service_id = "livelihoods"
+
+[role_profiles."appliance-repair-technician".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."maintenance-worker"]
+service_id = "infrastructure"
+
+[role_profiles."maintenance-worker".capabilities]
+maintenance = 1
+
+[role_profiles."machinery-maintenance-worker"]
+service_id = "livelihoods"
+
+[role_profiles."machinery-maintenance-worker".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."millwright"]
+service_id = "livelihoods"
+
+[role_profiles."millwright".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."telecommunications-lineworker"]
+service_id = "infrastructure"
+
+[role_profiles."telecommunications-lineworker".capabilities]
+design = 0.6
+maintenance = 0.4
+
+[role_profiles."precision-equipment-repairer"]
+service_id = "livelihoods"
+
+[role_profiles."precision-equipment-repairer".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."vending-amusement-machine-technician"]
+service_id = "livelihoods"
+
+[role_profiles."vending-amusement-machine-technician".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."locksmith"]
+service_id = "infrastructure"
+
+[role_profiles."locksmith".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."repair-installation-specialist"]
+service_id = "livelihoods"
+
+[role_profiles."repair-installation-specialist".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."production-supervisor"]
+service_id = "livelihoods"
+
+[role_profiles."production-supervisor".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."electronics-assembler"]
+service_id = "livelihoods"
+
+[role_profiles."electronics-assembler".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."metal-fabricator"]
+service_id = "livelihoods"
+
+[role_profiles."metal-fabricator".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."assembler"]
+service_id = "livelihoods"
+
+[role_profiles."assembler".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."butcher-meat-processor"]
+service_id = "livelihoods"
+
+[role_profiles."butcher-meat-processor".capabilities]
+food = 0.5
+logistics = 0.5
+
+[role_profiles."food-batchmaker"]
+service_id = "livelihoods"
+
+[role_profiles."food-batchmaker".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."food-processing-worker"]
+service_id = "livelihoods"
+
+[role_profiles."food-processing-worker".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."press-cutting-machine-operator"]
+service_id = "livelihoods"
+
+[role_profiles."press-cutting-machine-operator".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."grinding-polishing-machine-operator"]
+service_id = "livelihoods"
+
+[role_profiles."grinding-polishing-machine-operator".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."machinist"]
+service_id = "livelihoods"
+
+[role_profiles."machinist".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."foundry-worker"]
+service_id = "livelihoods"
+
+[role_profiles."foundry-worker".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."molding-machine-operator"]
+service_id = "livelihoods"
+
+[role_profiles."molding-machine-operator".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."tool-die-maker"]
+service_id = "livelihoods"
+
+[role_profiles."tool-die-maker".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."metal-plastics-worker"]
+service_id = "livelihoods"
+
+[role_profiles."metal-plastics-worker".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."printing-press-operator"]
+service_id = "livelihoods"
+
+[role_profiles."printing-press-operator".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."laundry-dry-cleaning-worker"]
+service_id = "infrastructure"
+
+[role_profiles."laundry-dry-cleaning-worker".capabilities]
+maintenance = 1
+
+[role_profiles."garment-presser"]
+service_id = "livelihoods"
+
+[role_profiles."garment-presser".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."sewing-machine-operator"]
+service_id = "livelihoods"
+
+[role_profiles."sewing-machine-operator".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."tailor-dressmaker"]
+service_id = "community"
+
+[role_profiles."tailor-dressmaker".capabilities]
+care = 1
+
+[role_profiles."textile-machine-operator"]
+service_id = "livelihoods"
+
+[role_profiles."textile-machine-operator".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."upholsterer"]
+service_id = "livelihoods"
+
+[role_profiles."upholsterer".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."cabinetmaker"]
+service_id = "livelihoods"
+
+[role_profiles."cabinetmaker".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."furniture-finisher"]
+service_id = "livelihoods"
+
+[role_profiles."furniture-finisher".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."woodworker"]
+service_id = "livelihoods"
+
+[role_profiles."woodworker".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."power-plant-operator"]
+service_id = "livelihoods"
+
+[role_profiles."power-plant-operator".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."stationary-engineer-boiler-operator"]
+service_id = "infrastructure"
+
+[role_profiles."stationary-engineer-boiler-operator".capabilities]
+maintenance = 1
+
+[role_profiles."water-treatment-operator"]
+service_id = "livelihoods"
+
+[role_profiles."water-treatment-operator".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."plant-system-operator"]
+service_id = "livelihoods"
+
+[role_profiles."plant-system-operator".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."chemical-process-operator"]
+service_id = "livelihoods"
+
+[role_profiles."chemical-process-operator".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."mixing-grinding-operator"]
+service_id = "livelihoods"
+
+[role_profiles."mixing-grinding-operator".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."industrial-cutting-worker"]
+service_id = "livelihoods"
+
+[role_profiles."industrial-cutting-worker".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."forming-extrusion-operator"]
+service_id = "livelihoods"
+
+[role_profiles."forming-extrusion-operator".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."quality-inspector"]
+service_id = "livelihoods"
+
+[role_profiles."quality-inspector".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."jeweler"]
+service_id = "community"
+
+[role_profiles."jeweler".capabilities]
+culture = 1
+
+[role_profiles."medical-dental-appliance-technician"]
+service_id = "health"
+
+[role_profiles."medical-dental-appliance-technician".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."packaging-machine-operator"]
+service_id = "livelihoods"
+
+[role_profiles."packaging-machine-operator".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."industrial-painter"]
+service_id = "livelihoods"
+
+[role_profiles."industrial-painter".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."photographic-processing-technician"]
+service_id = "community"
+
+[role_profiles."photographic-processing-technician".capabilities]
+culture = 1
+
+[role_profiles."molder-caster"]
+service_id = "livelihoods"
+
+[role_profiles."molder-caster".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."production-helper"]
+service_id = "livelihoods"
+
+[role_profiles."production-helper".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."production-worker"]
+service_id = "livelihoods"
+
+[role_profiles."production-worker".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."transport-warehouse-supervisor"]
+service_id = "livelihoods"
+
+[role_profiles."transport-warehouse-supervisor".capabilities]
+logistics = 1
+
+[role_profiles."flight-attendant"]
+service_id = "livelihoods"
+
+[role_profiles."flight-attendant".capabilities]
+logistics = 1
+
+[role_profiles."ambulance-driver"]
+service_id = "livelihoods"
+
+[role_profiles."ambulance-driver".capabilities]
+logistics = 1
+
+[role_profiles."school-bus-driver"]
+service_id = "livelihoods"
+
+[role_profiles."school-bus-driver".capabilities]
+logistics = 1
+
+[role_profiles."shuttle-driver-chauffeur"]
+service_id = "livelihoods"
+
+[role_profiles."shuttle-driver-chauffeur".capabilities]
+logistics = 1
+
+[role_profiles."taxi-rideshare-driver"]
+service_id = "livelihoods"
+
+[role_profiles."taxi-rideshare-driver".capabilities]
+logistics = 1
+
+[role_profiles."vehicle-operator"]
+service_id = "livelihoods"
+
+[role_profiles."vehicle-operator".capabilities]
+logistics = 1
+
+[role_profiles."locomotive-engineer"]
+service_id = "livelihoods"
+
+[role_profiles."locomotive-engineer".capabilities]
+logistics = 1
+
+[role_profiles."railroad-conductor-yardmaster"]
+service_id = "livelihoods"
+
+[role_profiles."railroad-conductor-yardmaster".capabilities]
+logistics = 1
+
+[role_profiles."rail-transport-worker"]
+service_id = "livelihoods"
+
+[role_profiles."rail-transport-worker".capabilities]
+logistics = 1
+
+[role_profiles."sailor-marine-oiler"]
+service_id = "livelihoods"
+
+[role_profiles."sailor-marine-oiler".capabilities]
+logistics = 1
+
+[role_profiles."parking-attendant"]
+service_id = "livelihoods"
+
+[role_profiles."parking-attendant".capabilities]
+logistics = 1
+
+[role_profiles."transport-service-attendant"]
+service_id = "livelihoods"
+
+[role_profiles."transport-service-attendant".capabilities]
+logistics = 1
+
+[role_profiles."transportation-inspector"]
+service_id = "livelihoods"
+
+[role_profiles."transportation-inspector".capabilities]
+logistics = 1
+
+[role_profiles."passenger-attendant"]
+service_id = "livelihoods"
+
+[role_profiles."passenger-attendant".capabilities]
+logistics = 1
+
+[role_profiles."transport-operations-worker"]
+service_id = "livelihoods"
+
+[role_profiles."transport-operations-worker".capabilities]
+logistics = 1
+
+[role_profiles."crane-operator"]
+service_id = "infrastructure"
+
+[role_profiles."crane-operator".capabilities]
+construction = 0.7
+maintenance = 0.3
+
+[role_profiles."hoist-dredge-conveyor-operator"]
+service_id = "livelihoods"
+
+[role_profiles."hoist-dredge-conveyor-operator".capabilities]
+logistics = 1
+
+[role_profiles."forklift-operator"]
+service_id = "livelihoods"
+
+[role_profiles."forklift-operator".capabilities]
+logistics = 1
+
+[role_profiles."vehicle-cleaner"]
+service_id = "infrastructure"
+
+[role_profiles."vehicle-cleaner".capabilities]
+maintenance = 1
+
+[role_profiles."material-handler"]
+service_id = "livelihoods"
+
+[role_profiles."material-handler".capabilities]
+logistics = 1
+
+[role_profiles."machine-feeder"]
+service_id = "livelihoods"
+
+[role_profiles."machine-feeder".capabilities]
+maintenance = 0.7
+construction = 0.3
+
+[role_profiles."packer"]
+service_id = "livelihoods"
+
+[role_profiles."packer".capabilities]
+logistics = 1
+
+[role_profiles."stocker-order-picker"]
+service_id = "livelihoods"
+
+[role_profiles."stocker-order-picker".capabilities]
+logistics = 1
+
+[role_profiles."waste-recycling-collector"]
+service_id = "infrastructure"
+
+[role_profiles."waste-recycling-collector".capabilities]
+maintenance = 1
+
+[role_profiles."material-moving-worker"]
+service_id = "livelihoods"
+
+[role_profiles."material-moving-worker".capabilities]
+logistics = 1
+
+[role_profiles."counseling-psychologist"]
+service_id = "health"
+
+[role_profiles."counseling-psychologist".capabilities]
+care = 1
+
+[role_profiles."industrial-organizational-psychologist"]
+service_id = "livelihoods"
+
+[role_profiles."industrial-organizational-psychologist".capabilities]
+research = 0.5
+governance = 0.5
+[role_profiles."research-psychologist"]
+service_id = "learning"
+
+[role_profiles."research-psychologist".capabilities]
+research = 1
+
+[role_profiles."clinical-neuropsychologist"]
+service_id = "health"
+
+[role_profiles."clinical-neuropsychologist".capabilities]
+care = 0.6
+research = 0.4
+[role_profiles."rancher"]
+service_id = "livelihoods"
+
+[role_profiles."rancher".capabilities]
+food = 0.8
+maintenance = 0.2
+
+[role_profiles."horticulturist"]
+service_id = "livelihoods"
+
+[role_profiles."horticulturist".capabilities]
+food = 0.5
+research = 0.5
+[role_profiles."greenhouse-grower"]
+service_id = "livelihoods"
+
+[role_profiles."greenhouse-grower".capabilities]
+food = 0.8
+maintenance = 0.2
+
+[role_profiles."plant-nursery-manager"]
+service_id = "livelihoods"
+
+[role_profiles."plant-nursery-manager".capabilities]
+food = 0.8
+maintenance = 0.2
+
+[role_profiles."livestock-farm-worker"]
+service_id = "livelihoods"
+
+[role_profiles."livestock-farm-worker".capabilities]
+food = 0.8
+maintenance = 0.2
+
+[role_profiles."public-policy-analyst"]
+service_id = "community"
+
+[role_profiles."public-policy-analyst".capabilities]
+governance = 0.7
+research = 0.3
+[role_profiles."public-administration-manager"]
+service_id = "community"
+
+[role_profiles."public-administration-manager".capabilities]
+governance = 1
+
+[role_profiles."mental-health-nurse"]
+service_id = "health"
+
+[role_profiles."mental-health-nurse".capabilities]
+nursing = 0.8
+care = 0.2
+
+[role_profiles."school-counselor"]
+service_id = "learning"
+
+[role_profiles."school-counselor".capabilities]
+teaching = 1
+
+[role_profiles."infantry-service-member"]
+service_id = "resilience"
+
+[role_profiles."infantry-service-member".capabilities]
+governance = 0.6
+logistics = 0.4
+
+[role_profiles."ob-gyn-physician"]
+service_id = "health"
+
+[role_profiles."ob-gyn-physician".capabilities]
+clinical = 1
+[role_profiles."ophthalmologist"]
+service_id = "health"
+
+[role_profiles."ophthalmologist".capabilities]
+clinical = 1
+[role_profiles."dermatologist"]
+service_id = "health"
+
+[role_profiles."dermatologist".capabilities]
+clinical = 1
+[role_profiles."urologist"]
+service_id = "health"
+
+[role_profiles."urologist".capabilities]
+clinical = 1
+[role_profiles."nurse-midwife"]
+service_id = "health"
+
+[role_profiles."nurse-midwife".capabilities]
+nursing = 0.8
+care = 0.2
+
+[role_profiles."dietetic-technician"]
+service_id = "health"
+
+[role_profiles."dietetic-technician".capabilities]
+care = 0.8
+maintenance = 0.2
+
+[role_profiles."psychiatric-aide"]
+service_id = "health"
+
+[role_profiles."psychiatric-aide".capabilities]
+care = 1
+
+[role_profiles."animator"]
+service_id = "community"
+
+[role_profiles."animator".capabilities]
+culture = 1
+
+[role_profiles."illustrator"]
+service_id = "community"
+
+[role_profiles."illustrator".capabilities]
+culture = 1
+
+[role_profiles."tv-media-producer"]
+service_id = "community"
+
+[role_profiles."tv-media-producer".capabilities]
+culture = 1
+
+[role_profiles."gis-specialist"]
+service_id = "infrastructure"
+
+[role_profiles."gis-specialist".capabilities]
+research = 0.5
+design = 0.5
+[role_profiles."data-analyst"]
+service_id = "learning"
+
+[role_profiles."data-analyst".capabilities]
+research = 0.8
+governance = 0.2
+[role_profiles."statistician"]
+service_id = "learning"
+
+[role_profiles."statistician".capabilities]
+research = 1
+
+[role_profiles."conservation-scientist"]
+service_id = "resilience"
+
+[role_profiles."conservation-scientist".capabilities]
+research = 0.6
+maintenance = 0.4
+[role_profiles."corporate-trainer"]
+service_id = "learning"
+
+[role_profiles."corporate-trainer".capabilities]
+teaching = 1
+
+[role_profiles."health-educator"]
+service_id = "community"
+
+[role_profiles."health-educator".capabilities]
+care = 0.6
+governance = 0.4

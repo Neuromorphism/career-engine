@@ -55,7 +55,7 @@ test('models share an interface while legacy saves remain byte-compatible',()=>{
   assert.throws(()=>getWorldModel('unknown'));
   assert.throws(()=>getWorldModel('founders').hydrate(createRealWorld()),/different world model/);
 });
-test('all 182 careers have explicit mappings; allocations conserve the modeled workforce',()=>{
+test('all careers have explicit mappings; allocations conserve the modeled workforce',()=>{
   assert.equal(professions.length,Object.keys(worldData.role_profiles).length);
   assert.ok(professions.every(p=>p.sector&&p.mappingStatus&&p.serviceId));
   let w=createRealWorld();w=allocateWorkers(w,'registered-nurse',1000);

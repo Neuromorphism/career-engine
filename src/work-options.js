@@ -1,9 +1,9 @@
-import { GOAL_MASTERY, currentNode, currentLearningActivity, currentProject, impactActionsForState, isLeaf, learningTrackForNode, learningTracksForPath, pathNodes, projectKey, practiceRate } from './game-engine.js?v=0.10.1';
+import { GOAL_MASTERY, currentNode, currentLearningActivity, currentProject, impactActionsForState, isLeaf, learningTrackForNode, learningTracksForPath, pathNodes, projectKey, practiceRate } from './game-engine.js?v=0.11.0';
 
 /** Select only the work relevant to this citizen's current path and prerequisites. */
 export function workOptionsForState(state) {
   const node = currentNode(state);
-  if (!node) return { phase: 'choose-path', title: 'Choose a field to begin', description: 'Choose a field in Choose path to reveal your first work options.', options: [] };
+  if (!node) return { phase: 'choose-path', title: state.targetOccupationId ? 'Begin your selected training route' : 'Find a profession to begin', description: state.targetOccupationId ? 'Start the first training step in Choose path to reveal your work options.' : 'Find a profession in Choose path, then begin its training route.', options: [] };
   const activity = currentLearningActivity(state);
   if (activity) {
     const track = learningTrackForNode(node, state.path.length);

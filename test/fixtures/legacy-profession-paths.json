@@ -1,0 +1,948 @@
+{
+  "gpu-rtl-design-engineer": [
+    "engineering",
+    "electrical-engineering",
+    "digital-design",
+    "vlsi-design",
+    "gpu-rtl-design-engineer"
+  ],
+  "asic-digital-design-engineer": [
+    "engineering",
+    "electrical-engineering",
+    "digital-design",
+    "vlsi-design",
+    "asic-digital-design-engineer"
+  ],
+  "gpu-formal-verification-engineer": [
+    "engineering",
+    "electrical-engineering",
+    "digital-design",
+    "design-verification",
+    "gpu-formal-verification-engineer"
+  ],
+  "fpga-design": [
+    "engineering",
+    "electrical-engineering",
+    "digital-design",
+    "fpga-design"
+  ],
+  "physical-design-engineer": [
+    "engineering",
+    "electrical-engineering",
+    "digital-design",
+    "chip-implementation",
+    "physical-design-engineer"
+  ],
+  "dft-engineer": [
+    "engineering",
+    "electrical-engineering",
+    "digital-design",
+    "chip-implementation",
+    "dft-engineer"
+  ],
+  "protection-engineer": [
+    "engineering",
+    "electrical-engineering",
+    "power-systems",
+    "protection-engineer"
+  ],
+  "power-electronics-engineer": [
+    "engineering",
+    "electrical-engineering",
+    "power-systems",
+    "power-electronics-engineer"
+  ],
+  "embedded-systems-engineer": [
+    "engineering",
+    "electrical-engineering",
+    "electronics-controls",
+    "embedded-systems-engineer"
+  ],
+  "control-systems-engineer": [
+    "engineering",
+    "electrical-engineering",
+    "electronics-controls",
+    "control-systems-engineer"
+  ],
+  "rf-engineer": [
+    "engineering",
+    "electrical-engineering",
+    "electronics-controls",
+    "rf-engineer"
+  ],
+  "graduate-traffic-engineer": [
+    "engineering",
+    "civil-engineering",
+    "transportation-engineering",
+    "graduate-traffic-engineer"
+  ],
+  "rail-engineer": [
+    "engineering",
+    "civil-engineering",
+    "transportation-engineering",
+    "mobility-systems",
+    "rail-engineer"
+  ],
+  "bridge-engineer": [
+    "engineering",
+    "civil-engineering",
+    "transportation-engineering",
+    "mobility-systems",
+    "bridge-engineer"
+  ],
+  "structural-engineering": [
+    "engineering",
+    "civil-engineering",
+    "structural-engineering"
+  ],
+  "water-resources-engineer": [
+    "engineering",
+    "civil-engineering",
+    "water-engineering",
+    "water-resources-engineer"
+  ],
+  "water-treatment-engineer": [
+    "engineering",
+    "civil-engineering",
+    "water-engineering",
+    "water-treatment-engineer"
+  ],
+  "geotechnical-engineer": [
+    "engineering",
+    "civil-engineering",
+    "water-engineering",
+    "geotechnical-engineer"
+  ],
+  "hvac-design-engineer": [
+    "engineering",
+    "mechanical-engineering",
+    "hvac-design-engineer"
+  ],
+  "mechanical-design-engineer": [
+    "engineering",
+    "mechanical-engineering",
+    "mechanical-design-engineer"
+  ],
+  "robotics-engineer": [
+    "engineering",
+    "mechanical-engineering",
+    "robotics-manufacturing",
+    "robotics-engineer"
+  ],
+  "manufacturing-engineer": [
+    "engineering",
+    "mechanical-engineering",
+    "robotics-manufacturing",
+    "manufacturing-engineer"
+  ],
+  "thermal-engineer": [
+    "engineering",
+    "mechanical-engineering",
+    "robotics-manufacturing",
+    "thermal-engineer"
+  ],
+  "software-developer": [
+    "engineering",
+    "software-engineering",
+    "software-developer"
+  ],
+  "security-engineer": [
+    "engineering",
+    "software-engineering",
+    "security-engineer"
+  ],
+  "sre-engineer": [
+    "engineering",
+    "software-engineering",
+    "sre-engineer"
+  ],
+  "process-engineer": [
+    "engineering",
+    "chemical-engineering",
+    "process-engineer"
+  ],
+  "bioprocess-engineer": [
+    "engineering",
+    "chemical-engineering",
+    "bioprocess-engineer"
+  ],
+  "aircraft-systems-engineer": [
+    "engineering",
+    "aerospace-engineering",
+    "aircraft-systems-engineer"
+  ],
+  "space-systems-engineer": [
+    "engineering",
+    "aerospace-engineering",
+    "space-systems-engineer"
+  ],
+  "medical-device-engineer": [
+    "engineering",
+    "biomedical-engineering",
+    "medical-device-engineer"
+  ],
+  "prosthetics-engineer": [
+    "engineering",
+    "biomedical-engineering",
+    "prosthetics-engineer"
+  ],
+  "industrial-engineer": [
+    "engineering",
+    "industrial-engineering",
+    "industrial-engineer"
+  ],
+  "family-medicine-physician": [
+    "medicine",
+    "primary-care",
+    "family-medicine-physician"
+  ],
+  "geriatrician": [
+    "medicine",
+    "primary-care",
+    "primary-care-specialties",
+    "geriatrician"
+  ],
+  "emergency-medicine-physician": [
+    "medicine",
+    "emergency-medicine-physician"
+  ],
+  "general-pediatrician": [
+    "medicine",
+    "general-pediatrician"
+  ],
+  "general-surgeon": [
+    "medicine",
+    "surgery",
+    "general-surgeon"
+  ],
+  "cardiac-surgeon": [
+    "medicine",
+    "surgery",
+    "cardiothoracic-surgery",
+    "cardiac-surgeon"
+  ],
+  "congenital-heart-surgeon": [
+    "medicine",
+    "surgery",
+    "cardiothoracic-surgery",
+    "congenital-heart-surgeon"
+  ],
+  "thoracic-surgeon": [
+    "medicine",
+    "surgery",
+    "cardiothoracic-surgery",
+    "thoracic-surgeon"
+  ],
+  "neurosurgeon": [
+    "medicine",
+    "surgery",
+    "specialist-surgery",
+    "neurosurgeon"
+  ],
+  "orthopedic-surgeon": [
+    "medicine",
+    "surgery",
+    "specialist-surgery",
+    "orthopedic-surgeon"
+  ],
+  "transplant-surgeon": [
+    "medicine",
+    "surgery",
+    "specialist-surgery",
+    "transplant-surgeon"
+  ],
+  "vascular-surgeon": [
+    "medicine",
+    "surgery",
+    "specialist-surgery",
+    "vascular-surgeon"
+  ],
+  "cardiologist": [
+    "medicine",
+    "internal-medicine",
+    "cardiologist"
+  ],
+  "oncologist": [
+    "medicine",
+    "internal-medicine",
+    "oncologist"
+  ],
+  "neurologist": [
+    "medicine",
+    "internal-medicine",
+    "neurologist"
+  ],
+  "nephrologist": [
+    "medicine",
+    "internal-medicine",
+    "nephrologist"
+  ],
+  "pulmonologist": [
+    "medicine",
+    "internal-medicine",
+    "pulmonologist"
+  ],
+  "endocrinologist": [
+    "medicine",
+    "internal-medicine",
+    "endocrinologist"
+  ],
+  "infectious-disease-physician": [
+    "medicine",
+    "internal-medicine",
+    "infectious-disease-physician"
+  ],
+  "interventional-cardiologist": [
+    "medicine",
+    "internal-medicine",
+    "cardiac-procedures",
+    "interventional-cardiologist"
+  ],
+  "electrophysiologist": [
+    "medicine",
+    "internal-medicine",
+    "cardiac-procedures",
+    "electrophysiologist"
+  ],
+  "radiologist": [
+    "medicine",
+    "diagnostics-anesthesia",
+    "radiologist"
+  ],
+  "pathologist": [
+    "medicine",
+    "diagnostics-anesthesia",
+    "pathologist"
+  ],
+  "anesthesiologist": [
+    "medicine",
+    "diagnostics-anesthesia",
+    "anesthesiologist"
+  ],
+  "psychiatrist": [
+    "medicine",
+    "mental-health",
+    "psychiatrist"
+  ],
+  "rehabilitation-physician": [
+    "medicine",
+    "mental-health",
+    "rehabilitation-physician"
+  ],
+  "registered-nurse": [
+    "medicine",
+    "patient-care-professions",
+    "registered-nurse"
+  ],
+  "physical-therapist": [
+    "medicine",
+    "patient-care-professions",
+    "physical-therapist"
+  ],
+  "clinical-pharmacist": [
+    "medicine",
+    "patient-care-professions",
+    "clinical-pharmacist"
+  ],
+  "dentist": [
+    "medicine",
+    "patient-care-professions",
+    "dentist"
+  ],
+  "public-defender": [
+    "law",
+    "criminal-law",
+    "public-defender"
+  ],
+  "prosecutor": [
+    "law",
+    "criminal-law",
+    "criminal-justice-specialties",
+    "prosecutor"
+  ],
+  "appellate-attorney": [
+    "law",
+    "criminal-law",
+    "criminal-justice-specialties",
+    "appellate-attorney"
+  ],
+  "corporate-associate": [
+    "law",
+    "corporate-associate"
+  ],
+  "environmental-attorney": [
+    "law",
+    "environmental-attorney"
+  ],
+  "civil-rights-attorney": [
+    "law",
+    "civil-rights-litigation",
+    "civil-rights-attorney"
+  ],
+  "legal-aid-attorney": [
+    "law",
+    "civil-rights-litigation",
+    "legal-aid-attorney"
+  ],
+  "immigration-attorney": [
+    "law",
+    "civil-rights-litigation",
+    "immigration-attorney"
+  ],
+  "patent-attorney": [
+    "law",
+    "commercial-specialties",
+    "patent-attorney"
+  ],
+  "privacy-attorney": [
+    "law",
+    "commercial-specialties",
+    "privacy-attorney"
+  ],
+  "labor-attorney": [
+    "law",
+    "commercial-specialties",
+    "labor-attorney"
+  ],
+  "tax-attorney": [
+    "law",
+    "commercial-specialties",
+    "tax-attorney"
+  ],
+  "family-law-attorney": [
+    "law",
+    "family-estate-law",
+    "family-law-attorney"
+  ],
+  "estate-attorney": [
+    "law",
+    "family-estate-law",
+    "estate-attorney"
+  ],
+  "commercial-electrician": [
+    "trades",
+    "commercial-electrician"
+  ],
+  "structural-welder": [
+    "trades",
+    "structural-welder"
+  ],
+  "service-plumber": [
+    "trades",
+    "service-plumber"
+  ],
+  "lineworker": [
+    "trades",
+    "electrical-specialties",
+    "lineworker"
+  ],
+  "industrial-electrician": [
+    "trades",
+    "electrical-specialties",
+    "industrial-electrician"
+  ],
+  "solar-installer": [
+    "trades",
+    "electrical-specialties",
+    "solar-installer"
+  ],
+  "hvac-technician": [
+    "trades",
+    "building-services",
+    "hvac-technician"
+  ],
+  "pipefitter": [
+    "trades",
+    "building-services",
+    "pipefitter"
+  ],
+  "refrigeration-technician": [
+    "trades",
+    "building-services",
+    "refrigeration-technician"
+  ],
+  "carpenter": [
+    "trades",
+    "construction-craft",
+    "carpenter"
+  ],
+  "mason": [
+    "trades",
+    "construction-craft",
+    "mason"
+  ],
+  "elevator-technician": [
+    "trades",
+    "construction-craft",
+    "elevator-technician"
+  ],
+  "cnc-machinist": [
+    "trades",
+    "precision-maintenance",
+    "cnc-machinist"
+  ],
+  "industrial-mechanic": [
+    "trades",
+    "precision-maintenance",
+    "industrial-mechanic"
+  ],
+  "automotive-technician": [
+    "trades",
+    "precision-maintenance",
+    "automotive-technician"
+  ],
+  "cell-biology-scientist": [
+    "science",
+    "life-sciences",
+    "cell-biology-scientist"
+  ],
+  "immunologist": [
+    "science",
+    "life-sciences",
+    "biomedical-research",
+    "immunologist"
+  ],
+  "geneticist": [
+    "science",
+    "life-sciences",
+    "biomedical-research",
+    "geneticist"
+  ],
+  "neuroscientist": [
+    "science",
+    "life-sciences",
+    "biomedical-research",
+    "neuroscientist"
+  ],
+  "clinical-trial-scientist": [
+    "science",
+    "life-sciences",
+    "biomedical-research",
+    "clinical-trial-scientist"
+  ],
+  "research-physicist": [
+    "science",
+    "physical-sciences",
+    "research-physicist"
+  ],
+  "photonics-scientist": [
+    "science",
+    "physical-sciences",
+    "advanced-physics",
+    "photonics-scientist"
+  ],
+  "quantum-scientist": [
+    "science",
+    "physical-sciences",
+    "advanced-physics",
+    "quantum-scientist"
+  ],
+  "astrophysicist": [
+    "science",
+    "physical-sciences",
+    "advanced-physics",
+    "astrophysicist"
+  ],
+  "environmental-scientist": [
+    "science",
+    "environmental-scientist"
+  ],
+  "data-scientist": [
+    "science",
+    "data-scientist"
+  ],
+  "analytical-chemist": [
+    "science",
+    "chemistry",
+    "analytical-chemist"
+  ],
+  "materials-scientist": [
+    "science",
+    "chemistry",
+    "materials-scientist"
+  ],
+  "medicinal-chemist": [
+    "science",
+    "chemistry",
+    "medicinal-chemist"
+  ],
+  "climate-scientist": [
+    "science",
+    "earth-environment",
+    "climate-scientist"
+  ],
+  "geologist": [
+    "science",
+    "earth-environment",
+    "geologist"
+  ],
+  "hydrologist": [
+    "science",
+    "earth-environment",
+    "hydrologist"
+  ],
+  "ecologist": [
+    "science",
+    "earth-environment",
+    "ecologist"
+  ],
+  "biostatistician": [
+    "science",
+    "quantitative-science",
+    "biostatistician"
+  ],
+  "operations-research-scientist": [
+    "science",
+    "quantitative-science",
+    "operations-research-scientist"
+  ],
+  "fp-and-a-analyst": [
+    "business",
+    "finance",
+    "fp-and-a-analyst"
+  ],
+  "investment-analyst": [
+    "business",
+    "finance",
+    "finance-specialties",
+    "investment-analyst"
+  ],
+  "risk-manager": [
+    "business",
+    "finance",
+    "finance-specialties",
+    "risk-manager"
+  ],
+  "actuary": [
+    "business",
+    "finance",
+    "finance-specialties",
+    "actuary"
+  ],
+  "product-marketing-manager": [
+    "business",
+    "product-marketing-manager"
+  ],
+  "supply-chain-analyst": [
+    "business",
+    "supply-chain-analyst"
+  ],
+  "product-manager": [
+    "business",
+    "product-manager"
+  ],
+  "small-business-owner": [
+    "business",
+    "small-business-owner"
+  ],
+  "accountant": [
+    "business",
+    "accounting-governance",
+    "accountant"
+  ],
+  "auditor": [
+    "business",
+    "accounting-governance",
+    "auditor"
+  ],
+  "operations-manager": [
+    "business",
+    "operations-people",
+    "operations-manager"
+  ],
+  "human-resources-manager": [
+    "business",
+    "operations-people",
+    "human-resources-manager"
+  ],
+  "organizational-development-specialist": [
+    "business",
+    "operations-people",
+    "organizational-development-specialist"
+  ],
+  "social-enterprise-founder": [
+    "business",
+    "enterprise-public-service",
+    "social-enterprise-founder"
+  ],
+  "healthcare-administrator": [
+    "business",
+    "enterprise-public-service",
+    "healthcare-administrator"
+  ],
+  "construction-manager": [
+    "business",
+    "enterprise-public-service",
+    "construction-manager"
+  ],
+  "elementary-teacher": [
+    "education",
+    "school-education",
+    "elementary-teacher"
+  ],
+  "special-education-teacher": [
+    "education",
+    "school-education",
+    "special-education-teacher"
+  ],
+  "secondary-teacher": [
+    "education",
+    "school-education",
+    "secondary-teacher"
+  ],
+  "teacher-assistant": [
+    "education",
+    "school-education",
+    "teacher-assistant"
+  ],
+  "vocational-instructor": [
+    "education",
+    "adult-higher-education",
+    "vocational-instructor"
+  ],
+  "adult-educator": [
+    "education",
+    "adult-higher-education",
+    "adult-educator"
+  ],
+  "university-lecturer": [
+    "education",
+    "adult-higher-education",
+    "university-lecturer"
+  ],
+  "librarian": [
+    "education",
+    "adult-higher-education",
+    "librarian"
+  ],
+  "graphic-designer": [
+    "arts-media",
+    "design-communication",
+    "graphic-designer"
+  ],
+  "ux-designer": [
+    "arts-media",
+    "design-communication",
+    "ux-designer"
+  ],
+  "journalist": [
+    "arts-media",
+    "design-communication",
+    "journalist"
+  ],
+  "technical-writer": [
+    "arts-media",
+    "design-communication",
+    "technical-writer"
+  ],
+  "film-director": [
+    "arts-media",
+    "performance-production",
+    "film-director"
+  ],
+  "musician": [
+    "arts-media",
+    "performance-production",
+    "musician"
+  ],
+  "game-designer": [
+    "arts-media",
+    "performance-production",
+    "game-designer"
+  ],
+  "museum-conservator": [
+    "arts-media",
+    "performance-production",
+    "museum-conservator"
+  ],
+  "social-worker": [
+    "community-service",
+    "social-support",
+    "social-worker"
+  ],
+  "clinical-social-worker": [
+    "community-service",
+    "social-support",
+    "clinical-social-worker"
+  ],
+  "community-health-worker": [
+    "community-service",
+    "social-support",
+    "community-health-worker"
+  ],
+  "career-counselor": [
+    "community-service",
+    "social-support",
+    "career-counselor"
+  ],
+  "firefighter": [
+    "community-service",
+    "protective-emergency-service",
+    "firefighter"
+  ],
+  "paramedic": [
+    "community-service",
+    "protective-emergency-service",
+    "paramedic"
+  ],
+  "emergency-manager": [
+    "community-service",
+    "protective-emergency-service",
+    "emergency-manager"
+  ],
+  "public-safety-officer": [
+    "community-service",
+    "protective-emergency-service",
+    "public-safety-officer"
+  ],
+  "farmer": [
+    "agriculture-land",
+    "food-land-systems",
+    "farmer"
+  ],
+  "forester": [
+    "agriculture-land",
+    "food-land-systems",
+    "forester"
+  ],
+  "agronomist": [
+    "agriculture-land",
+    "food-land-systems",
+    "agronomist"
+  ],
+  "veterinarian": [
+    "agriculture-land",
+    "food-land-systems",
+    "veterinarian"
+  ],
+  "chef": [
+    "hospitality-food",
+    "culinary-hospitality",
+    "chef"
+  ],
+  "baker": [
+    "hospitality-food",
+    "culinary-hospitality",
+    "baker"
+  ],
+  "hotel-manager": [
+    "hospitality-food",
+    "culinary-hospitality",
+    "hotel-manager"
+  ],
+  "event-planner": [
+    "hospitality-food",
+    "culinary-hospitality",
+    "event-planner"
+  ],
+  "barber": [
+    "personal-services",
+    "care-wellbeing",
+    "barber"
+  ],
+  "childcare-worker": [
+    "personal-services",
+    "care-wellbeing",
+    "childcare-worker"
+  ],
+  "fitness-trainer": [
+    "personal-services",
+    "care-wellbeing",
+    "fitness-trainer"
+  ],
+  "funeral-director": [
+    "personal-services",
+    "care-wellbeing",
+    "funeral-director"
+  ],
+  "sales-representative": [
+    "sales-administration",
+    "customer-commercial-service",
+    "sales-representative"
+  ],
+  "real-estate-agent": [
+    "sales-administration",
+    "customer-commercial-service",
+    "real-estate-agent"
+  ],
+  "customer-service-specialist": [
+    "sales-administration",
+    "customer-commercial-service",
+    "customer-service-specialist"
+  ],
+  "administrative-coordinator": [
+    "sales-administration",
+    "administrative-operations",
+    "administrative-coordinator"
+  ],
+  "bookkeeper": [
+    "sales-administration",
+    "administrative-operations",
+    "bookkeeper"
+  ],
+  "medical-records-specialist": [
+    "sales-administration",
+    "administrative-operations",
+    "medical-records-specialist"
+  ],
+  "airline-pilot": [
+    "transportation",
+    "flight-marine",
+    "airline-pilot"
+  ],
+  "air-traffic-controller": [
+    "transportation",
+    "flight-marine",
+    "air-traffic-controller"
+  ],
+  "ship-captain": [
+    "transportation",
+    "flight-marine",
+    "ship-captain"
+  ],
+  "truck-driver": [
+    "transportation",
+    "ground-logistics",
+    "truck-driver"
+  ],
+  "transit-operator": [
+    "transportation",
+    "ground-logistics",
+    "transit-operator"
+  ],
+  "warehouse-technician": [
+    "transportation",
+    "ground-logistics",
+    "warehouse-technician"
+  ],
+  "military-logistics-specialist": [
+    "military-service",
+    "military-technical-service",
+    "military-logistics-specialist"
+  ],
+  "military-communications-specialist": [
+    "military-service",
+    "military-technical-service",
+    "military-communications-specialist"
+  ],
+  "home-health-aide": [
+    "personal-services",
+    "care-wellbeing",
+    "home-health-aide"
+  ],
+  "custodian": [
+    "trades",
+    "building-stewardship",
+    "custodian"
+  ],
+  "groundskeeper": [
+    "trades",
+    "building-stewardship",
+    "groundskeeper"
+  ],
+  "agricultural-worker": [
+    "agriculture-land",
+    "food-land-systems",
+    "agricultural-worker"
+  ]
+}

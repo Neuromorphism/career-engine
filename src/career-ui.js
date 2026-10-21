@@ -43,7 +43,7 @@ const TEMPLATE = `    <div class="page-shell">
         <section class="scoreboard" aria-label="Career progress">
           <div class="primary-score">
             <span class="score-label">Current direction</span>
-            <strong id="direction-value">Choose a field</strong>
+            <strong id="direction-value">Explore professions</strong>
           </div>
           <dl>
             <div><dt>Mastery</dt><dd id="mastery-value">0</dd></div>
@@ -62,19 +62,14 @@ const TEMPLATE = `    <div class="page-shell">
                 <span class="module-number">01</span>
                 <div><p class="kicker" id="path-kicker">Decision 1 · field</p><h2 id="path-heading" tabindex="-1">Choose path</h2></div>
               </div>
+              <div id="profession-discovery"></div>
+              <div id="profession-goal" class="profession-goal" hidden></div>
               <h3 id="path-prompt" class="path-prompt">Choose a field</h3>
               <nav class="path-trail" id="path-trail" aria-label="Selected career path"></nav>
               <p class="module-intro" id="path-intro">Begin broadly. Each choice will reveal only the next useful distinction.</p>
               <div class="choice-list" id="path-choices"></div>
               <p class="lock-note" id="path-lock" hidden>Complete the current starter brief to open the next decision.</p>
               <details class="job-leaf" id="job-leaf" hidden><summary>About this career</summary><div id="career-context"></div></details>
-              <details class="career-atlas">
-                <summary>Explore the full career tree</summary>
-                <p id="atlas-count" class="module-intro"></p>
-                <label for="atlas-search">Find a career or specialty</label>
-                <input id="atlas-search" type="search" placeholder="Try bridge, heart, quantum…" />
-                <div id="atlas-tree"></div>
-              </details>
             </section>
           <section class="module" id="work-module" aria-labelledby="work-heading">
             <div class="module-heading">
@@ -97,7 +92,7 @@ const TEMPLATE = `    <div class="page-shell">
 
       <footer>
         <p>An exploratory prototype. It suggests activities to investigate; it does not tell you who to become.</p>
-        <span>v0.10.0 · progress stays in this browser</span>
+        <span>v0.11.0 · progress stays in this browser</span>
       </footer>
     </div>
 `;

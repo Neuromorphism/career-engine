@@ -1,4 +1,4 @@
-import { impactModels } from "./career-data.js?v=0.10.1";
+import { impactModels } from "./career-data.js?v=0.11.0";
 export { impactModels };
 
 export function evaluateImpact(modelId) {

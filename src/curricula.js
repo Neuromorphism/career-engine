@@ -1,4 +1,4 @@
-import { curricula } from "./career-data.js?v=0.10.1";
+import { curricula } from "./career-data.js?v=0.11.0";
 export { curricula };
 
 export function curriculumFor(nodeId) {

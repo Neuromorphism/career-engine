@@ -627,3 +627,32 @@ a:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visibl
 .work-next-link { color: var(--green); padding: 12px 0; }
 #career-context { margin-top: 14px; }
 [hidden] { display: none !important; }
+
+/* Profession discovery is independent of training and saved career paths. */
+.profession-browser { margin: 18px 0; padding: 16px; border: 1px solid var(--line); background: var(--paper-bright); }
+.profession-browser > summary { cursor: pointer; font-size: 14px; font-weight: 600; }
+.profession-browser p, .profession-preview p { font-size: 12px; line-height: 1.6; }
+.profession-browser label { display: block; font-size: 11px; line-height: 1.6; }
+.profession-browser input, .profession-browser select { width: 100%; max-width: 100%; min-width: 0; margin: 5px 0 12px; padding: 10px; font: inherit; font-size: 12px; background: var(--paper); color: var(--ink); border: 1px solid var(--line); }
+.profession-filters { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.profession-category-grid, .profession-results { display: grid; gap: 8px; grid-template-columns: 1fr 1fr; }
+.profession-category, .profession-result { text-align: left; padding: 12px; border: 1px solid var(--line); color: var(--ink); background: var(--paper); cursor: pointer; min-width: 0; overflow-wrap: anywhere; }
+.profession-category strong, .profession-result strong { display: block; font-size: 12px; line-height: 1.5; }
+.profession-category span, .profession-result span { display: block; color: var(--muted); font-size: 10px; line-height: 1.6; margin: 5px 0; }
+.profession-category small, .profession-result small { font-size: 9px; color: var(--green); }
+.profession-pagination { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 12px; font-size: 11px; }
+.profession-pagination button, .profession-goal button, .profession-cross-links button, [data-close-preview] { padding: 8px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); font: inherit; font-size: 11px; cursor: pointer; }
+.profession-goal { border-left: 3px solid var(--green); padding: 10px 12px; margin: 16px 0; font-size: 12px; }
+.profession-goal p { font-size: 11px; line-height: 1.6; }
+.profession-goal button { margin: 4px 8px 0 0; }
+.profession-preview { width: min(640px, calc(100vw - 30px)); max-height: calc(100dvh - 40px); padding: 24px; background: var(--paper-bright); border: 1px solid var(--ink); color: var(--ink); }
+.profession-preview::backdrop { background: rgb(0 0 0 / 45%); }
+.profession-preview h3 { font-family: var(--serif); font-size: 24px; margin: 12px 0; }
+.profession-preview details { margin: 16px 0; font-size: 12px; line-height: 1.7; }
+.profession-preview summary { cursor: pointer; }
+.profession-cross-links { display: grid; gap: 6px; }
+.profession-home, .discovery-hint { border-left: 3px solid var(--green); padding-left: 12px; }
+.profession-follow { padding: 12px; width: 100%; font: inherit; font-size: 12px; color: var(--paper-bright); background: var(--ink); border: 1px solid var(--ink); cursor: pointer; }
+.profession-follow:disabled, .profession-pagination button:disabled { opacity: .5; cursor: default; }
+@media (max-width: 520px) { .profession-category-grid, .profession-results, .profession-filters { grid-template-columns: 1fr; } .profession-browser { padding: 12px; } }
+.profession-category-grid[hidden], .profession-results[hidden], .profession-goal[hidden] { display: none; }

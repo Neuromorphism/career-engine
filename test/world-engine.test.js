@@ -158,7 +158,7 @@ test('all shared career endpoints have valid profiles and at least one usable as
     assert.ok(Object.values(citizenContribution(citizen)).some(value=>value>0),node.id);
   });
   visit(careerTree);
-  assert.equal(count,182);
+  assert.equal(count,617);
 });
 
 test('world migration copies single-path progress once and never changes either original endpoint save', () => {

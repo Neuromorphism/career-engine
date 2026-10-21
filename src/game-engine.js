@@ -1,6 +1,7 @@
-import { careerTree, fieldForPath, findNode, findNodeById, nodesForPath } from "./careers.js?v=0.10.1";
-import { curriculumFor } from "./curricula.js?v=0.10.1";
-import { rivalProfileForPath } from "./ai-rival.js?v=0.10.1";
+import { careerTree, fieldForPath, findNode, findNodeById, nodesForPath } from "./careers.js?v=0.11.0";
+import { curriculumFor } from "./curricula.js?v=0.11.0";
+import { rivalProfileForPath } from "./ai-rival.js?v=0.11.0";
+import { canFollowRoute } from './discovery.js?v=0.11.0';
 
 export const SAVE_KEY = "career-engine-save-v3";
 export const AI_SAVE_KEY = "career-engine-ai-save-v1";
@@ -15,6 +16,7 @@ export function createInitialState() {
     aiMastery: 0,
     actions: 0,
     path: [],
+    targetOccupationId: null,
     completedLearningKeys: [],
     completedProjectKeys: [],
     completedImpactKeys: [],
@@ -25,7 +27,7 @@ export function createInitialState() {
     impactChoiceOutcomes: {},
     careerComplete: false,
     raceWinner: null,
-    lastMessage: "Choose a field. You can refine the direction after trying a small piece of its work.",
+    lastMessage: "Find a profession to explore. You can refine your goal after trying a small piece of its work.",
     savedAt: Date.now(),
   };
 }
@@ -45,6 +47,7 @@ export function hydrateState(input) {
     aiMastery: Number.isFinite(input.aiMastery) ? Math.max(0, input.aiMastery) : 0,
     actions: Number.isFinite(input.actions) ? Math.max(0, input.actions) : 0,
     path: Array.isArray(input.path) ? input.path : [],
+    targetOccupationId: typeof input.targetOccupationId === 'string' ? input.targetOccupationId : null,
     completedLearningKeys: Array.isArray(input.completedLearningKeys) ? input.completedLearningKeys : [],
     completedProjectKeys: Array.isArray(input.completedProjectKeys) ? input.completedProjectKeys : [],
     completedImpactKeys: Array.isArray(input.completedImpactKeys) ? input.completedImpactKeys.filter(key => typeof key === "string") : [],
@@ -59,6 +62,7 @@ export function hydrateState(input) {
     savedAt: Number.isFinite(input.savedAt) ? input.savedAt : fresh.savedAt,
   };
   if (state.path.length && !findNode(state.path)) state.path = [];
+  if (!canFollowRoute(state, state.targetOccupationId)) state.targetOccupationId = null;
   if (!hasLearningProgress && state.path.length > 1) {
     state.completedLearningKeys = nodesForPath(state.path).slice(0, -1).flatMap((node, index) => (
       learningTrackForNode(node, index + 1)?.activities.map((activity) => activity.key) || []
@@ -192,6 +196,7 @@ export function chooseNode(state, nodeId) {
   return withGoalCheck({
     ...state,
     path: [...state.path, nodeId],
+    targetOccupationId: state.targetOccupationId && canFollowRoute({ ...state, path: [...state.path, nodeId] }, state.targetOccupationId) ? state.targetOccupationId : null,
     lastMessage: node.jobTitle
       ? `${node.name} reached: a real-world job leaf. Its projects are grounded in occupation data and current postings where available.`
       : `${node.name} selected. Complete its learning track and applied brief before narrowing the path again.`,
@@ -230,7 +235,7 @@ export function aiRivalStatus(state) {
   let relative;
   if (state.raceWinner === "player") relative = "You reached mastery first. The rival has stopped.";
   else if (state.raceWinner === "ai") relative = "AI reached mastery first. You can still finish the career path.";
-  else if (!state.path.length) relative = "The race begins when you choose a field.";
+  else if (!state.path.length) relative = "The race begins when you start a training route.";
   else if (Math.abs(difference) < 1) relative = "You are running nearly even.";
   else if (difference > 0) relative = `You lead by ${Math.floor(difference).toLocaleString()} mastery.`;
   else relative = `AI leads by ${Math.floor(Math.abs(difference)).toLocaleString()} mastery.`;
@@ -304,7 +309,7 @@ export function goalProgress(state) {
 
 export function directionName(state) {
   const node = currentNode(state);
-  return node?.name || "Choose a field";
+  return node?.name || "Explore professions";
 }
 
 export function pathNodes(state) {

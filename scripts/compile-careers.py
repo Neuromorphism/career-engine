@@ -28,6 +28,8 @@ def compile_data(data):
  nodes=indexed(data['nodes'],'node'); sources=indexed(data['sources'],'source'); routes=indexed(data['routes'],'route'); groups=indexed(data['soc_major_groups'],'SOC group')
  models=indexed(data['impact_models'],'impact model');indexed(data['transitions'],'transition')
  if len(groups)!=23:raise ValueError('Expected all 23 SOC major groups')
+ for route in routes.values():
+  if not route.get('label') or not route.get('stages') or not isinstance(route.get('credential_gates'),list) or not route.get('notes'):raise ValueError('Career route needs stages, credential gates, and explanatory notes')
  for record in data['routes']+data['transitions']+data.get('life_path_examples',[]):
   if any(ref not in sources for ref in record.get('source_ids',[])):raise ValueError('Unknown provenance source')
  for edge in data['transitions']:
@@ -113,7 +115,7 @@ def compile_data(data):
 def render(source_bytes):
  payload=compile_data(tomllib.loads(source_bytes.decode()))
  checksum=hashlib.sha256(source_bytes).hexdigest()
- return '// Generated from data/careers.toml. Run npm run compile; do not edit.\n'+f'// Source SHA-256: {checksum}\n'+''.join(f'export const {key} = {json.dumps(value,ensure_ascii=False,indent=2)};\n\n' for key,value in payload.items()).rstrip()+'\n',payload['careerStats']
+ return '// Generated from data/careers.toml. Run npm run compile; do not edit.\n'+f'// Source SHA-256: {checksum}\n'+''.join(f'export const {key} = {json.dumps(value,ensure_ascii=False,separators=(",",":"))};\n\n' for key,value in payload.items()).rstrip()+'\n',payload['careerStats']
 
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('--check',action='store_true');args=parser.parse_args()

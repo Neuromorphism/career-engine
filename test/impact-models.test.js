@@ -27,8 +27,9 @@ test('solar output includes annual degradation and correct MWh-to-tonnes convers
 
 test('the source preserves occupational coverage and auditable career routes', () => {
   assert.equal(careerStats.socGroupsRepresented, 23);
-  assert.equal(careerStats.impactActions, 546);
-  assert.equal(Object.keys(careerRoutes).length, 29);
+  assert.equal(careerStats.impactActions, 1851);
+  assert.equal(Object.keys(careerRoutes).length, 32);
+  assert.ok(Object.values(careerRoutes).every(route => route.stages.length && Array.isArray(route.credential_gates) && route.notes));
   assert.ok(careerTransitions.every(edge => edge.automatic_unlock === false && edge.additional_requirements.length));
   assert.ok(Object.values(impactModels).every(model => model.assumptions && model.limits && model.references.length));
   assert.equal(evaluateImpact('unknown'), null);
