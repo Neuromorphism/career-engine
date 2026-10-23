@@ -49,6 +49,6 @@ export function installEngineeringEdition() {
     }
     root.children.push(family);
   }
-  discoveryData.categories = [{ id: 'engineering', label: 'Engineering jobs', families }];
+  discoveryData.categories = [{ id: 'engineering', label: 'Engineering', families }];
   discoveryData.search_routes = [];
 }

@@ -1,5 +1,5 @@
 import { populatedCategories, findProfessions, professionById, browsePathLabel, searchHint, canFollowRoute } from './discovery.js?v=0.11.1';
-import { discoveryPageSize, discoveryView, directionProfessions } from './discovery-navigation.js?v=0.11.1';
+import { discoveryPageSize, discoveryView, directionProfessions, rootedDiscoveryView } from './discovery-navigation.js?v=0.11.1';
 import { learningTrackForNode } from './game-engine.js?v=0.11.1';
 import { escapeHtml as e } from './career-ui.js?v=0.11.1';
 
@@ -18,16 +18,18 @@ function browseLink(view) {
 }
 
 /** Discovery uses canonical professions; browsing never changes saved progress. */
-export function mountProfessionBrowser(container, { getState, onChooseGoal, onOpen = () => {} }) {
-  let view = readLocation(), previewId = null, previewSignature = '';
+export function mountProfessionBrowser(container, { getState, onChooseGoal, onOpen = () => {}, rootCategory = '' }) {
+  const rootView = { category: rootCategory };
+  const scopedView = input => rootedDiscoveryView(input, rootCategory);
+  let view = scopedView(readLocation()), previewId = null, previewSignature = '';
   const initiallyOpen = !getState().path.length && !getState().targetOccupationId;
   container.innerHTML = `<details class="profession-browser" ${initiallyOpen ? 'open' : ''}>
     <summary>Explore professions</summary>
     <div class="discovery-step"></div>
     <form class="profession-search-form"><label for="profession-search">Have a title in mind? Search every profession.</label>
-      <div class="profession-search-row"><input id="profession-search" name="query" maxlength="160" type="search" placeholder="Try psychology, plants, or electrician" autocomplete="off" /><button type="submit">Search</button></div>
+      <div class="profession-search-row"><input id="profession-search" name="query" maxlength="160" type="search" placeholder="${rootCategory ? 'Try thermal, robotics, or protection' : 'Try psychology, plants, or electrician'}" autocomplete="off" /><button type="submit">Search</button></div>
     </form>
-    <a class="discovery-all" href="${browseLink({ all: true })}">Browse every work area →</a>
+    <a class="discovery-all" href="${browseLink(rootCategory ? rootView : { all: true })}">${rootCategory ? 'Browse engineering families' : 'Browse every work area'} →</a>
     <p class="discovery-note">${professionById.size} professions · ${populatedCategories().length} work areas. Exploring is not a commitment.</p>
   </details>
   <dialog class="profession-preview" aria-labelledby="profession-preview-title"><button type="button" data-close-preview aria-label="Close profession preview">Close</button><div class="profession-preview-content"></div></dialog>`;
@@ -36,7 +38,7 @@ export function mountProfessionBrowser(container, { getState, onChooseGoal, onOp
 
   function go(nextView) {
     const hash = browseLink(nextView);
-    if (location.hash === hash) { view = nextView; render(true); }
+    if (location.hash === hash) { view = scopedView(nextView); render(true); }
     else location.hash = hash;
   }
   function preview(id) {
@@ -66,11 +68,11 @@ export function mountProfessionBrowser(container, { getState, onChooseGoal, onOp
   function render(focus = false) {
     const result = discoveryView(view);
     const { direction, category, family } = result;
-    const crumbs = [{ label: 'Start', view: {} }];
+    const crumbs = rootCategory ? [{ label: 'Engineering', view: rootView }] : [{ label: 'Start', view: {} }];
     if (!result.query) {
       if (direction) crumbs.push({ label: direction.label, view: { direction: direction.id } });
       else if (view.all) crumbs.push({ label: 'All work areas', view: { all: true } });
-      if (category) crumbs.push({ label: category.label, view: { direction: direction?.id, category: category.id, all: view.all } });
+      if (category && !rootCategory) crumbs.push({ label: category.label, view: { direction: direction?.id, category: category.id, all: view.all } });
       if (family) crumbs.push({ label: family.label, view });
     }
     const breadcrumbMarkup = crumbs.map((c, index) => index === crumbs.length - 1 && !result.query ? `<span aria-current="location">${e(c.label)}</span>` : `<a href="${e(browseLink(c.view))}">${e(c.label)}</a>`).join('<span aria-hidden="true">/</span>');
@@ -93,7 +95,7 @@ export function mountProfessionBrowser(container, { getState, onChooseGoal, onOp
       return url ? `<a class="discovery-choice" href="${e(browseLink(url))}">${content}</a>` : `<button type="button" class="discovery-choice profession-result" data-preview-profession="${e(item.id)}">${content}</button>`;
     }).join('');
     const hint = searchHint(result.query);
-    const parent = result.query ? {} : crumbs.length > 1 ? crumbs.at(-2).view : null;
+    const parent = result.query ? rootView : crumbs.length > 1 ? crumbs.at(-2).view : null;
     $('.discovery-step').innerHTML = `<nav class="discovery-breadcrumbs" aria-label="Career exploration path">${breadcrumbMarkup}${result.query ? '<span aria-current="location">Search results</span>' : ''}</nav>
       ${parent ? `<a class="discovery-back" href="${e(browseLink(parent))}">← Back</a>` : ''}
       <h3 id="discovery-heading" tabindex="-1">${e(result.title)}</h3><p>${e(result.copy)}</p>
@@ -113,7 +115,7 @@ export function mountProfessionBrowser(container, { getState, onChooseGoal, onOp
     const browsing = location.hash.startsWith(hashPrefix);
     if (!browsing && !new URL(event.oldURL).hash.startsWith(hashPrefix)) return;
     if (dialog.open) dialog.close();
-    view = readLocation();
+    view = scopedView(readLocation());
     if (browsing) details.open = true;
     render(browsing || (!location.hash && details.open));
   });
@@ -130,7 +132,7 @@ export function mountProfessionBrowser(container, { getState, onChooseGoal, onOp
     close() { details.open = false; },
     reset() {
       if (dialog.open) dialog.close();
-      view = {}; previewId = null;
+      view = scopedView({}); previewId = null;
       // Citizen switches and resets must not inherit the previous citizen's browsing context.
       if (location.hash.startsWith(hashPrefix)) history.replaceState(null, '', location.pathname + location.search);
       details.open = !getState().path.length && !getState().targetOccupationId;

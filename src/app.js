@@ -257,6 +257,7 @@ function renderWork() {
 }
 
 const professionBrowser = mountProfessionBrowser($('#profession-discovery'), {
+  rootCategory: mode === 'engineering' ? 'engineering' : '',
   getState: () => state,
   onChooseGoal: id => { legacyBrowsing = false; commit(selectProfessionGoal(state, id), elements.direction); },
   onOpen: () => { if (legacyBrowsing) { legacyBrowsing = false; renderPath(); } },

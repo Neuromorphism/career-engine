@@ -67,3 +67,18 @@ test('every new job can complete training, projects, and all contribution milest
     assert.equal(state.completedImpactKeys.length, 3);
   }
 });
+
+test('engineering exploration starts and resets at Engineering while preserving deep links and search', async () => {
+  const { discoveryView, rootedDiscoveryView } = await import('../src/discovery-navigation.js?v=0.11.1');
+  const scoped = input => rootedDiscoveryView(input, 'engineering');
+  for (const input of [{}, { all: true }, { direction: 'build' }, { category: 'healthcare', family: 'nursing' }]) {
+    const result = discoveryView(scoped(input));
+    assert.equal(result.kind, 'families');
+    assert.equal(result.title, 'Engineering');
+    assert.equal(result.total, 13);
+  }
+  const family = jobId(engineeringFamilies[0][0]);
+  assert.equal(discoveryView(scoped({ category: 'engineering', family })).kind, 'professions');
+  assert.equal(discoveryView(scoped({ query: 'Protection Engineer' })).items[0].id, jobId('Protection Engineer'));
+  assert.equal(discoveryView(rootedDiscoveryView({})).kind, 'directions');
+});

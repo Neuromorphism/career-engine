@@ -43,3 +43,9 @@ export function discoveryView(input = {}) {
   return { title, copy, kind, direction, category, family, query, page, total: items.length,
     items: items.slice(page * discoveryPageSize, (page + 1) * discoveryPageSize) };
 }
+
+// Editions can keep exploration rooted in their own work area, including resets.
+export function rootedDiscoveryView(input = {}, categoryId = '') {
+  if (!categoryId) return input;
+  return { category: categoryId, family: input.category === categoryId ? input.family : undefined, query: input.query, page: input.page };
+}
