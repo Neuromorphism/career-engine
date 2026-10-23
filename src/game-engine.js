@@ -1,7 +1,7 @@
-import { careerTree, fieldForPath, findNode, findNodeById, nodesForPath } from "./careers.js?v=0.11.0";
-import { curriculumFor } from "./curricula.js?v=0.11.0";
-import { rivalProfileForPath } from "./ai-rival.js?v=0.11.0";
-import { canFollowRoute } from './discovery.js?v=0.11.0';
+import { careerTree, fieldForPath, findNode, findNodeById, nodesForPath } from "./careers.js?v=0.11.1";
+import { curriculumFor } from "./curricula.js?v=0.11.1";
+import { rivalProfileForPath } from "./ai-rival.js?v=0.11.1";
+import { canFollowRoute } from './discovery.js?v=0.11.1';
 
 export const SAVE_KEY = "career-engine-save-v3";
 export const AI_SAVE_KEY = "career-engine-ai-save-v1";

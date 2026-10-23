@@ -1,5 +1,5 @@
-import { discoveryData } from './discovery-data.js?v=0.11.0';
-import { careerTree } from './careers.js?v=0.11.0';
+import { discoveryData } from './discovery-data.js?v=0.11.1';
+import { careerTree } from './careers.js?v=0.11.1';
 export { discoveryData };
 const normalize = text => String(text || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 const categoryById = new Map(discoveryData.categories.map(c => [c.id, c]));

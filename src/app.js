@@ -17,17 +17,17 @@ import {
   pathNodes,
   practiceRate,
   tick,
-} from "./game-engine.js?v=0.11.0";
+} from "./game-engine.js?v=0.11.1";
 
-import { careerTree } from "./careers.js?v=0.11.0";
-import { careerRoutes, careerTransitions, careerStats } from "./career-data.js?v=0.11.0";
-import { evaluateImpact } from "./impact-models.js?v=0.11.0";
+import { careerTree } from "./careers.js?v=0.11.1";
+import { careerRoutes, careerTransitions, careerStats } from "./career-data.js?v=0.11.1";
+import { evaluateImpact } from "./impact-models.js?v=0.11.1";
 
-import { mountCareerUI, escapeHtml as e } from "./career-ui.js?v=0.11.0";
-import { workOptionsForState, completedWorkForState } from "./work-options.js?v=0.11.0";
-import { createCareerStore } from "./save-store.js?v=0.11.0";
-import { professionById, nextGoalStep, selectProfessionGoal } from './discovery.js?v=0.11.0';
-import { mountProfessionBrowser } from './discovery-ui.js?v=0.11.0';
+import { mountCareerUI, escapeHtml as e } from "./career-ui.js?v=0.11.1";
+import { workOptionsForState, completedWorkForState } from "./work-options.js?v=0.11.1";
+import { createCareerStore } from "./save-store.js?v=0.11.1";
+import { professionById, nextGoalStep, selectProfessionGoal } from './discovery.js?v=0.11.1';
+import { mountProfessionBrowser } from './discovery-ui.js?v=0.11.1';
 
 export function startCareerApp({ mode = 'single', store = createCareerStore(mode), onChange = () => {}, onAddCitizen = () => {} } = {}) {
 mountCareerUI(mode);
@@ -58,6 +58,8 @@ let lastWorldRender = 0;
 let lastDynamicSignature = "";
 let workView = null;
 let legacyBrowsing = false;
+let pathChoicePage = 0;
+let pathChoiceContext = '';
 
 function format(value, digits = 0) {
   if (value >= 1000) return Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 }).format(value);
@@ -112,15 +114,25 @@ function renderPath() {
   const unlocked = choicesUnlocked(state);
   const depth = state.path.length + 1;
   const trail = pathNodes(state);
+  const choiceContext = `${state.path.join('/')}|${state.targetOccupationId || ''}`;
+  if (pathChoiceContext !== choiceContext) { pathChoiceContext = choiceContext; pathChoicePage = 0; }
+  const pageSize = 6;
+  pathChoicePage = Math.min(pathChoicePage, Math.max(0, Math.ceil(choices.length / pageSize) - 1));
   const showTraining = Boolean(node || goal || legacyBrowsing);
   elements.pathPrompt.hidden = !showTraining;
   elements.pathIntro.hidden = !showTraining;
   const goalElement = $('#profession-goal');
-  goalElement.hidden = false;
-  goalElement.innerHTML = goal ? `<strong>Your goal: ${e(goal.label)}</strong><p>Your training progress and prerequisites remain on the route below.</p><button type="button" data-change-goal>Explore professions</button><button type="button" data-clear-goal>Clear goal</button>` : `<button type="button" data-broad-browse>${legacyBrowsing ? 'Hide broad training fields' : 'Explore broad training fields instead'}</button>`;
+  goalElement.hidden = !goal && Boolean(node);
+  goalElement.innerHTML = goal ? `<strong>Your goal: ${e(goal.label)}</strong><p>Complete the next training step below.</p><button type="button" data-change-goal>Change direction</button><button type="button" data-clear-goal>Clear goal</button>` : `<button type="button" data-broad-browse>${legacyBrowsing ? 'Explore professions instead' : 'Choose as I go instead'}</button>`;
   goalElement.querySelector('[data-change-goal]')?.addEventListener('click', () => professionBrowser.open());
-  goalElement.querySelector('[data-clear-goal]')?.addEventListener('click', () => commit({ ...state, targetOccupationId: null }, elements.direction));
-  goalElement.querySelector('[data-broad-browse]')?.addEventListener('click', () => { legacyBrowsing = !legacyBrowsing; renderPath(); });
+  goalElement.querySelector('[data-clear-goal]')?.addEventListener('click', () => {
+    commit({ ...state, targetOccupationId: null }, elements.direction); professionBrowser.open();
+  });
+  goalElement.querySelector('[data-broad-browse]')?.addEventListener('click', () => {
+    legacyBrowsing = !legacyBrowsing;
+    if (legacyBrowsing) professionBrowser.close(); else professionBrowser.open();
+    renderPath();
+  });
   professionBrowser.refresh();
 
   elements.pathTrail.innerHTML = trail.length
@@ -128,7 +140,7 @@ function renderPath() {
     : "";
 
   if (!node) {
-    elements.pathKicker.textContent = "Decision 1 · field";
+    elements.pathKicker.textContent = showTraining ? "Decision 1 · field" : "Explore · one step at a time";
     elements.pathPrompt.textContent = goal ? `Start training toward ${goal.label}` : "Choose a training field";
     elements.pathIntro.textContent = goal ? 'Begin with the first step on this profession’s route. Each completed stage opens the next.' : "Begin broadly. Each choice reveals only the next useful distinction.";
   } else if (choices.length) {
@@ -142,7 +154,7 @@ function renderPath() {
     elements.pathIntro.textContent = node.blurb;
   }
 
-  elements.pathChoices.innerHTML = choices.map((choice) => `
+  elements.pathChoices.innerHTML = choices.slice(pathChoicePage * pageSize, (pathChoicePage + 1) * pageSize).map((choice) => `
     <button class="choice-button" type="button" data-node="${choice.id}" ${unlocked ? "" : "disabled"}>
       <strong>${choice.name}</strong><span>${choice.blurb}</span>
       ${choice.jobTitle ? '<em>job leaf</em>' : `<em>${choice.children?.length || 0} paths</em>`}
@@ -153,6 +165,12 @@ function renderPath() {
   });
 
   elements.pathChoices.hidden = !unlocked || !showTraining;
+  const pagination = $('#path-choice-pagination');
+  pagination.hidden = elements.pathChoices.hidden || choices.length <= pageSize;
+  pagination.innerHTML = pagination.hidden ? '' : `<button type="button" data-path-page="previous" ${pathChoicePage ? '' : 'disabled'}>← Previous</button><span>${pathChoicePage * pageSize + 1}–${Math.min((pathChoicePage + 1) * pageSize, choices.length)} of ${choices.length}</span><button type="button" data-path-page="next" ${(pathChoicePage + 1) * pageSize < choices.length ? '' : 'disabled'}>Next →</button>`;
+  pagination.querySelectorAll('[data-path-page]').forEach(button => button.addEventListener('click', () => {
+    pathChoicePage += button.dataset.pathPage === 'next' ? 1 : -1; renderPath(); elements.pathPrompt.focus();
+  }));
   elements.pathLock.hidden = unlocked || choices.length === 0;
   elements.pathLock.textContent = "Do work to open your next path choice.";
   elements.jobLeaf.hidden = !node || !isLeaf(state);
@@ -240,7 +258,8 @@ function renderWork() {
 
 const professionBrowser = mountProfessionBrowser($('#profession-discovery'), {
   getState: () => state,
-  onChooseGoal: id => commit(selectProfessionGoal(state, id), elements.direction),
+  onChooseGoal: id => { legacyBrowsing = false; commit(selectProfessionGoal(state, id), elements.direction); },
+  onOpen: () => { if (legacyBrowsing) { legacyBrowsing = false; renderPath(); } },
 });
 
 function dynamicSignature() {
@@ -316,7 +335,7 @@ function render() {
 $("#reset-button").addEventListener("click", () => {
   if (worldMode) { onAddCitizen(); return; }
   if (window.confirm("Begin a new run? Your current local progress will be replaced.")) {
-    state = createInitialState(); save(); render();
+    state = createInitialState(); legacyBrowsing = false; professionBrowser.reset(); save(); render();
   }
 });
 
@@ -355,6 +374,6 @@ requestAnimationFrame(frame);
 return {
   getState: () => state,
   save,
-  replaceState(next) { state = next; lastFrame = performance.now(); render(); return save(); },
+  replaceState(next) { state = next; legacyBrowsing = false; professionBrowser.reset(); lastFrame = performance.now(); render(); return save(); },
 };
 }

@@ -1,6 +1,6 @@
-import { careerTree } from '../careers.js?v=0.11.0';
-import { worldData, citizenReady, citizenContribution } from '../../world/world-engine.js?v=0.11.0';
-import { currentNode } from '../game-engine.js?v=0.11.0';
+import { careerTree } from '../careers.js?v=0.11.1';
+import { worldData, citizenReady, citizenContribution } from '../../world/world-engine.js?v=0.11.1';
+import { currentNode } from '../game-engine.js?v=0.11.1';
 // Classification bridges are authored, not observed metro occupation shares.
 const sectors = {
  engineering:'technical', medicine:'health', law:'governance', trades:'infrastructure',

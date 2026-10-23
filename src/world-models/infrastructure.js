@@ -1,6 +1,6 @@
-import { infrastructureData as data } from '../../world-infra/infrastructure-data.js?v=0.11.0';
-import { createWorld, hydrateWorld, tickWorld, worldMetrics, citizenReady } from '../../world/world-engine.js?v=0.11.0';
-import { currentNode } from '../game-engine.js?v=0.11.0';
+import { infrastructureData as data } from '../../world-infra/infrastructure-data.js?v=0.11.1';
+import { createWorld, hydrateWorld, tickWorld, worldMetrics, citizenReady } from '../../world/world-engine.js?v=0.11.1';
+import { currentNode } from '../game-engine.js?v=0.11.1';
 export { data as infrastructureData };
 export const INFRA_SAVE_KEY='career-engine-world-infra-save-v1';
 const byId=new Map(data.elements.map(e=>[e.id,e]));

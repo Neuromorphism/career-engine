@@ -21,6 +21,8 @@ All four endpoints use one career ontology, curriculum library, action system, a
 
 ## Career interface
 
+Career selection begins with six broad directions. Reveal a work area, then a family, then a short list of professions; each screen shows at most six choices, with Back, breadcrumbs, and pagination. Search stays available across the full catalog. Profession previews show real work examples and an optional training route. Choosing a goal collapses discovery to the goal and its next required training step. “Change direction” reopens exploration without replacing progress; incompatible routes remain previewable but cannot be selected. The “Choose as I go” alternative retains the original training choices, also in short lists. The same interface is used in every mode.
+
 Every mode presents two primary sections: **Choose path** and **Do work**. Choose path offers searchable profession discovery across 26 work areas, including Mental Health & Psychology and Agriculture & Horticulture. A profession can appear in several areas while retaining one identity and training route. An optional saved goal guides the next unlocked training decision. Do work presents the current training step’s three actions, then an applied project, then the next unlocked occupation-specific contribution. Mastery progress explains when work opens; completed choices remain in a collapsible work history. World controls and AI competition details are available in compact overview disclosures.
 
 ## Persistent world

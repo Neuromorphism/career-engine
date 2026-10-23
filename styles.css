@@ -628,31 +628,46 @@ a:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visibl
 #career-context { margin-top: 14px; }
 [hidden] { display: none !important; }
 
-/* Profession discovery is independent of training and saved career paths. */
-.profession-browser { margin: 18px 0; padding: 16px; border: 1px solid var(--line); background: var(--paper-bright); }
-.profession-browser > summary { cursor: pointer; font-size: 14px; font-weight: 600; }
+/* One career browsing level at a time, independent of training prerequisites. */
+.profession-browser { margin: 18px 0; padding: 20px; border: 1px solid var(--line); background: var(--paper-bright); }
+.profession-browser > summary { cursor: pointer; font-size: 13px; font-weight: 600; }
 .profession-browser p, .profession-preview p { font-size: 12px; line-height: 1.6; }
-.profession-browser label { display: block; font-size: 11px; line-height: 1.6; }
-.profession-browser input, .profession-browser select { width: 100%; max-width: 100%; min-width: 0; margin: 5px 0 12px; padding: 10px; font: inherit; font-size: 12px; background: var(--paper); color: var(--ink); border: 1px solid var(--line); }
-.profession-filters { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.profession-category-grid, .profession-results { display: grid; gap: 8px; grid-template-columns: 1fr 1fr; }
-.profession-category, .profession-result { text-align: left; padding: 12px; border: 1px solid var(--line); color: var(--ink); background: var(--paper); cursor: pointer; min-width: 0; overflow-wrap: anywhere; }
-.profession-category strong, .profession-result strong { display: block; font-size: 12px; line-height: 1.5; }
-.profession-category span, .profession-result span { display: block; color: var(--muted); font-size: 10px; line-height: 1.6; margin: 5px 0; }
-.profession-category small, .profession-result small { font-size: 9px; color: var(--green); }
-.profession-pagination { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 12px; font-size: 11px; }
-.profession-pagination button, .profession-goal button, .profession-cross-links button, [data-close-preview] { padding: 8px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); font: inherit; font-size: 11px; cursor: pointer; }
+.discovery-breadcrumbs { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 22px 0 12px; color: var(--muted); font-size: 10px; line-height: 1.7; }
+.discovery-breadcrumbs a, .discovery-back, .discovery-all { color: var(--ink); text-underline-offset: 3px; }
+.discovery-breadcrumbs a { padding-block: 5px; }
+.discovery-back { display: inline-block; padding-block: 8px; font-size: 11px; }
+#discovery-heading { margin: 12px 0; font-family: var(--serif); font-size: 27px; line-height: 1.2; font-weight: 500; }
+.discovery-count, .profession-browser .discovery-note { font-size: 10px; color: var(--muted); }
+.discovery-choices { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+.discovery-choice { display: flex; align-items: start; justify-content: space-between; gap: 10px; padding: 14px; border: 1px solid var(--line); color: var(--ink); background: var(--paper-bright); cursor: pointer; text-align: left; text-decoration: none; font: inherit; min-width: 0; overflow-wrap: anywhere; }
+.discovery-choice:hover { background: #edf2e8; border-color: var(--green); }
+.discovery-choice strong { display: block; font-size: 12px; line-height: 1.5; }
+.discovery-choice > span > span { display: block; color: var(--muted); font-size: 10px; line-height: 1.6; margin: 6px 0; }
+.discovery-choice small { display: block; margin-top: 8px; font-size: 9px; color: var(--green); line-height: 1.6; }
+.discovery-arrow { color: var(--green); }
+.is-profession-list { grid-template-columns: 1fr; }
+.profession-search-form { border-top: 1px solid var(--line); margin-top: 22px; padding-top: 18px; }
+.profession-search-form label { display: block; font-size: 11px; line-height: 1.6; margin-bottom: 10px; }
+.profession-search-row { display: flex; gap: 6px; }
+.profession-search-row input { width: 100%; min-width: 0; padding: 12px; font: inherit; font-size: 11px; background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 0; }
+.profession-search-row button { padding: 12px; border: 1px solid var(--ink); background: var(--ink); color: var(--paper-bright); font: inherit; font-size: 11px; cursor: pointer; }
+.discovery-all { display: inline-block; padding: 12px 0; margin-top: 6px; font-size: 11px; }
+.profession-browser .discovery-note { margin: 4px 0 0; }
+.profession-pagination { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 16px; font-size: 10px; }
+.profession-pagination a, .profession-pagination button, .profession-goal button, .profession-cross-links a, [data-close-preview] { padding: 10px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); font: inherit; font-size: 11px; cursor: pointer; }
+.profession-pagination a { text-decoration: none; }
 .profession-goal { border-left: 3px solid var(--green); padding: 10px 12px; margin: 16px 0; font-size: 12px; }
 .profession-goal p { font-size: 11px; line-height: 1.6; }
 .profession-goal button { margin: 4px 8px 0 0; }
 .profession-preview { width: min(640px, calc(100vw - 30px)); max-height: calc(100dvh - 40px); padding: 24px; background: var(--paper-bright); border: 1px solid var(--ink); color: var(--ink); }
 .profession-preview::backdrop { background: rgb(0 0 0 / 45%); }
-.profession-preview h3 { font-family: var(--serif); font-size: 24px; margin: 12px 0; }
+.profession-preview h3 { font-family: var(--serif); font-size: 28px; margin: 16px 0; }
+.profession-preview h4 { margin-bottom: 8px; font-size: 13px; }
+.profession-work-samples { padding-left: 18px; font-size: 12px; line-height: 1.8; }
 .profession-preview details { margin: 16px 0; font-size: 12px; line-height: 1.7; }
 .profession-preview summary { cursor: pointer; }
-.profession-cross-links { display: grid; gap: 6px; }
+.profession-cross-links { display: grid; gap: 6px; margin-top: 12px; }
 .profession-home, .discovery-hint { border-left: 3px solid var(--green); padding-left: 12px; }
 .profession-follow { padding: 12px; width: 100%; font: inherit; font-size: 12px; color: var(--paper-bright); background: var(--ink); border: 1px solid var(--ink); cursor: pointer; }
 .profession-follow:disabled, .profession-pagination button:disabled { opacity: .5; cursor: default; }
-@media (max-width: 520px) { .profession-category-grid, .profession-results, .profession-filters { grid-template-columns: 1fr; } .profession-browser { padding: 12px; } }
-.profession-category-grid[hidden], .profession-results[hidden], .profession-goal[hidden] { display: none; }
+@media (max-width: 520px) { .discovery-choices { grid-template-columns: 1fr; } .profession-browser { padding: 14px; } }

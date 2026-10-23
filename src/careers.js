@@ -1,4 +1,4 @@
-import { careerTree } from "./career-data.js?v=0.11.0";
+import { careerTree } from "./career-data.js?v=0.11.1";
 export { careerTree };
 
 export function findNode(path) {

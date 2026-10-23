@@ -1,7 +1,7 @@
-import { currentNode } from '../src/game-engine.js?v=0.11.0';
-import { escapeHtml as e } from '../src/career-ui.js?v=0.11.0';
-import { worldData, worldMetrics, citizenReady, citizenAssignment, assignmentOptions, projectReadiness } from './world-engine.js?v=0.11.0';
-import { worldStatus } from './world-status.js?v=0.11.0';
+import { currentNode } from '../src/game-engine.js?v=0.11.1';
+import { escapeHtml as e } from '../src/career-ui.js?v=0.11.1';
+import { worldData, worldMetrics, citizenReady, citizenAssignment, assignmentOptions, projectReadiness } from './world-engine.js?v=0.11.1';
+import { worldStatus } from './world-status.js?v=0.11.1';
 const percent = value => `${Math.round(value * 100)}%`;
 const number = value => Intl.NumberFormat('en', { maximumFractionDigits: 2 }).format(value);
 export function mountWorldUI(handlers) {

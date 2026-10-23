@@ -1,6 +1,6 @@
-import { infrastructureMetrics, infrastructureData } from '../src/world-models/infrastructure.js?v=0.11.0';
-import { professions } from '../src/world-models/professions.js?v=0.11.0';
-import { escapeHtml as e } from '../src/career-ui.js?v=0.11.0';
+import { infrastructureMetrics, infrastructureData } from '../src/world-models/infrastructure.js?v=0.11.1';
+import { professions } from '../src/world-models/professions.js?v=0.11.1';
+import { escapeHtml as e } from '../src/career-ui.js?v=0.11.1';
 const names=new Map(professions.map(p=>[p.id,p.name]));
 const elementNames=new Map(infrastructureData.elements.map(p=>[p.id,p.name]));
 const groupsLabel=groups=>groups.map(g=>g.map(id=>names.get(id)||id).join(' or ')).join(' + ');

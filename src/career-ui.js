@@ -64,10 +64,11 @@ const TEMPLATE = `    <div class="page-shell">
               </div>
               <div id="profession-discovery"></div>
               <div id="profession-goal" class="profession-goal" hidden></div>
-              <h3 id="path-prompt" class="path-prompt">Choose a field</h3>
+              <h3 id="path-prompt" class="path-prompt" tabindex="-1">Choose a field</h3>
               <nav class="path-trail" id="path-trail" aria-label="Selected career path"></nav>
               <p class="module-intro" id="path-intro">Begin broadly. Each choice will reveal only the next useful distinction.</p>
               <div class="choice-list" id="path-choices"></div>
+              <nav class="profession-pagination" id="path-choice-pagination" aria-label="More training paths" hidden></nav>
               <p class="lock-note" id="path-lock" hidden>Complete the current starter brief to open the next decision.</p>
               <details class="job-leaf" id="job-leaf" hidden><summary>About this career</summary><div id="career-context"></div></details>
             </section>
@@ -92,7 +93,7 @@ const TEMPLATE = `    <div class="page-shell">
 
       <footer>
         <p>An exploratory prototype. It suggests activities to investigate; it does not tell you who to become.</p>
-        <span>v0.11.0 · progress stays in this browser</span>
+        <span>v0.11.1 · progress stays in this browser</span>
       </footer>
     </div>
 `;
