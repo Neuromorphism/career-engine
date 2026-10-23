@@ -13,6 +13,7 @@ No npm or Node.js is needed to play or deploy; any static web host can serve the
 Open `http://localhost:4173` to go directly to the single-path game. Its navigation links all four endpoints:
 
 - **Single path** — `/single-path/`: the original career playthrough.
+- **Engineering** — `/engineering/`: 137 jobs, including 74 additional specialties across 12 technical areas, with a separate save.
 - **World** — `/world/`: develop citizens in one persistent world, combine their capabilities, and build shared institutions.
 - **AI competition** — `/ai/`: a single-path race against the AI rival.
 - **Real world** — `/real-world/`: shared career play, archived metro observations, fitted annual trends, workforce scenarios, and holdout evidence.
@@ -74,3 +75,9 @@ Checks validate source integrity and generated freshness. Tests cover every reac
 ## Infrastructure world
 
 Open `/world-infra/` for automatic profession-gated infrastructure, a 49-element TOML catalog, and optional historical household starting conditions. See `world-infra/README.md` for the model, evidence, assumptions and validation. This version uses a separate save.
+
+## Engineering edition
+
+The Engineering navigation link opens `/engineering/`. It preserves the original engineering paths and adds 74 authored specialist jobs spanning power, chips, structures, water, mechanical systems, aerospace, robotics, manufacturing, materials, medical devices, software, and systems assurance. Browse the Engineering jobs area, then select a work family or search for a title, constraint, or failure mode. Each added job has five training stages, three work samples, and practitioner, team-leader, and career-legacy contributions.
+
+The catalog lives in `engineering/catalog.js`; `engineering/install.js` installs it only for this edition before the shared engine indexes discovery. These are exploratory specialties and fictional technical exercises, not independently researched occupational classifications or qualifying professional training. Normal and engineering saves remain separate.

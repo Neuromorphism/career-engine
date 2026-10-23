@@ -1,10 +1,11 @@
 import { SAVE_KEY, AI_SAVE_KEY, createInitialState, hydrateState, tick } from './game-engine.js?v=0.11.1';
 export function createCareerStore(mode, storage = localStorage) {
   const aiMode = mode === 'ai';
-  const key = aiMode ? AI_SAVE_KEY : SAVE_KEY;
+  const engineeringMode = mode === 'engineering';
+  const key = engineeringMode ? 'career-engine-engineering-save-v1' : aiMode ? AI_SAVE_KEY : SAVE_KEY;
   return {
     load() {
-      const raw = storage.getItem(key) || (!aiMode ? storage.getItem('career-engine-save-v2') : null);
+      const raw = storage.getItem(key) || (!aiMode && !engineeringMode ? storage.getItem('career-engine-save-v2') : null);
       if (!raw) return createInitialState();
       // Preserve unreadable saves instead of silently replacing them on the next autosave.
       const parsed = JSON.parse(raw);

@@ -149,7 +149,7 @@ function renderPath() {
     elements.pathPrompt.textContent = unlocked ? `Choose ${indefiniteArticle(label)} ${label}` : node.name;
     elements.pathIntro.textContent = node.blurb;
   } else {
-    elements.pathKicker.textContent = "Real-world job leaf";
+    elements.pathKicker.textContent = "Career destination";
     elements.pathPrompt.textContent = node.jobTitle || node.name;
     elements.pathIntro.textContent = node.blurb;
   }
@@ -157,7 +157,7 @@ function renderPath() {
   elements.pathChoices.innerHTML = choices.slice(pathChoicePage * pageSize, (pathChoicePage + 1) * pageSize).map((choice) => `
     <button class="choice-button" type="button" data-node="${choice.id}" ${unlocked ? "" : "disabled"}>
       <strong>${choice.name}</strong><span>${choice.blurb}</span>
-      ${choice.jobTitle ? '<em>job leaf</em>' : `<em>${choice.children?.length || 0} paths</em>`}
+      ${choice.jobTitle ? '<em>job</em>' : `<em>${choice.children?.length || 0} paths</em>`}
     </button>
   `).join("");
   elements.pathChoices.querySelectorAll("[data-node]").forEach((button) => {
