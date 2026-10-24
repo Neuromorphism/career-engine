@@ -1,6 +1,7 @@
 import { careerTree, curricula } from '../src/career-data.js?v=0.11.1';
 import { discoveryData } from '../src/discovery-data.js?v=0.11.1';
 import { engineeringFamilies } from './catalog.js';
+import { organizeEngineeringTree } from './tree.js';
 export const jobId = title => `eng-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-$/, '')}`;
 let installed = false;
 export function installEngineeringEdition() {
@@ -49,6 +50,8 @@ export function installEngineeringEdition() {
     }
     root.children.push(family);
   }
+  organizeEngineeringTree(root, curricula);
+  discoveryData.engineeringTree = root;
   discoveryData.categories = [{ id: 'engineering', label: 'Engineering', families }];
   discoveryData.search_routes = [];
 }

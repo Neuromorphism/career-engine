@@ -24,6 +24,7 @@ const TEMPLATE = `    <div class="page-shell">
           <span class="edition-label" id="edition-label"></span>
           <span id="save-status">local save · ready</span>
           <button class="text-button" id="reset-button" type="button">begin again</button>
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">☾ Dark mode</button>
         </div>
       </header>
 

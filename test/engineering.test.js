@@ -73,12 +73,41 @@ test('engineering exploration starts and resets at Engineering while preserving 
   const scoped = input => rootedDiscoveryView(input, 'engineering');
   for (const input of [{}, { all: true }, { direction: 'build' }, { category: 'healthcare', family: 'nursing' }]) {
     const result = discoveryView(scoped(input));
-    assert.equal(result.kind, 'families');
+    assert.equal(result.kind, 'tree');
     assert.equal(result.title, 'Engineering');
-    assert.equal(result.total, 13);
+    assert.equal(result.total, 6);
   }
   const family = jobId(engineeringFamilies[0][0]);
-  assert.equal(discoveryView(scoped({ category: 'engineering', family })).kind, 'professions');
+  assert.equal(discoveryView(scoped({ category: 'engineering', family })).kind, 'tree');
   assert.equal(discoveryView(scoped({ query: 'Protection Engineer' })).items[0].id, jobId('Protection Engineer'));
   assert.equal(discoveryView(rootedDiscoveryView({})).kind, 'directions');
+});
+
+
+test('engineering is a unique tree with at most six choices and every endpoint browsable', async () => {
+  const { discoveryView } = await import('../src/discovery-navigation.js?v=0.11.1');
+  const seen = new Set();
+  function visit(node) {
+    assert.ok(!seen.has(node.id), node.id); seen.add(node.id);
+    if (!node.children?.length) {
+      assert.ok(professionById.has(node.id), node.id);
+      return;
+    }
+    assert.ok(node.children.length <= 6, node.id);
+    const view = discoveryView({ category: 'engineering', family: node.id });
+    assert.deepEqual(view.items.map(n => n.id), node.children.map(n => n.id));
+    node.children.forEach(visit);
+  }
+  visit(careerTree[0]);
+  assert.equal([...professionById.keys()].filter(id => seen.has(id)).length, professionById.size);
+});
+
+
+test('existing engineering saves retain their job and completed progress after regrouping', () => {
+  const oldPath = ['engineering', jobId('Power & energy'), jobId('Protection Engineer')];
+  const saved = { ...createInitialState(), path: oldPath, mastery: 543, completedProjectKeys: ['kept'] };
+  const restored = hydrateState(saved);
+  assert.deepEqual(restored.path, trainingRouteFor(jobId('Protection Engineer')).map(n => n.id));
+  assert.equal(restored.mastery, 543);
+  assert.deepEqual(restored.completedProjectKeys, ['kept']);
 });

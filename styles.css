@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light;
   --paper: #f2efe6;
   --paper-bright: #fffdf6;
   --ink: #171814;
@@ -15,7 +16,7 @@
 
 * { box-sizing: border-box; }
 
-html { background: #d9d4c5; }
+html { background: var(--paper); }
 
 body {
   margin: 0;
@@ -671,3 +672,46 @@ a:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visibl
 .profession-follow { padding: 12px; width: 100%; font: inherit; font-size: 12px; color: var(--paper-bright); background: var(--ink); border: 1px solid var(--ink); cursor: pointer; }
 .profession-follow:disabled, .profession-pagination button:disabled { opacity: .5; cursor: default; }
 @media (max-width: 520px) { .discovery-choices { grid-template-columns: 1fr; } .profession-browser { padding: 14px; } }
+
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #191c20;
+  --paper-bright: #23282e;
+  --ink: #f0eee6;
+  --muted: #b4b7bd;
+  --line: #50565e;
+  --red: #ff967c;
+  --blue: #64c9d4;
+  --yellow: #edc94a;
+  --green: #94c69b;
+  --shadow: 5px 5px 0 rgba(0, 0, 0, .3);
+}
+.theme-toggle {
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  background: var(--paper-bright);
+  color: var(--ink);
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 11px;
+}
+.theme-toggle:hover { border-color: var(--ink); }
+:root[data-theme="dark"] .choice-button:hover:not(:disabled),
+:root[data-theme="dark"] .project-button:hover:not(:disabled),
+:root[data-theme="dark"] .learning-activity.is-available:hover { background: #3b3522; }
+:root[data-theme="dark"] .training-summary,
+:root[data-theme="dark"] .learning-activity.is-complete:disabled,
+:root[data-theme="dark"] .job-leaf,
+:root[data-theme="dark"] .impact-card.is-complete,
+:root[data-theme="dark"] .citizen-card.is-active,
+:root[data-theme="dark"] .world-project.is-complete,
+:root[data-theme="dark"] .discovery-choice:hover { background: #273b30; }
+:root[data-theme="dark"] .learning-activity.is-locked:disabled { background: var(--paper); }
+:root[data-theme="dark"] .path-trail span { color: #a6e2e7; background: #263d43; border-color: var(--blue); }
+:root[data-theme="dark"] .job-leaf p { color: #bcd7c1; }
+:root[data-theme="dark"] .job-leaf a { color: var(--blue); }
+:root[data-theme="dark"] .choice-button.is-selected { color: #14292d; }
+:root[data-theme="dark"] .choice-button.is-selected span { color: #17383c; }
+:root[data-theme="dark"] .goal-meter { background: #343b44; border-color: var(--line); }
+:root[data-theme="dark"] .training-meter { background: #334639; }

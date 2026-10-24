@@ -73,12 +73,15 @@ export function mountProfessionBrowser(container, { getState, onChooseGoal, onOp
       if (direction) crumbs.push({ label: direction.label, view: { direction: direction.id } });
       else if (view.all) crumbs.push({ label: 'All work areas', view: { all: true } });
       if (category && !rootCategory) crumbs.push({ label: category.label, view: { direction: direction?.id, category: category.id, all: view.all } });
+      for (const ancestor of result.ancestors || []) crumbs.push({ label: ancestor.label, view: { category: category.id, family: ancestor.id } });
       if (family) crumbs.push({ label: family.label, view });
     }
     const breadcrumbMarkup = crumbs.map((c, index) => index === crumbs.length - 1 && !result.query ? `<span aria-current="location">${e(c.label)}</span>` : `<a href="${e(browseLink(c.view))}">${e(c.label)}</a>`).join('<span aria-hidden="true">/</span>');
     const cards = result.items.map(item => {
       let url, label = item.label, copy = '', meta = '';
-      if (result.kind === 'directions') {
+      if (result.kind === 'tree' && item.branch) {
+        url = { category: category.id, family: item.id };
+      } else if (result.kind === 'directions') {
         url = { direction: item.id }; copy = item.copy; meta = `${directionProfessions(item).length} professions to discover`;
       } else if (result.kind === 'categories') {
         url = { ...view, category: item.id, page: 0 };

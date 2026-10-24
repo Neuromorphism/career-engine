@@ -61,7 +61,16 @@ export function hydrateState(input) {
     lastMessage: typeof input.lastMessage === "string" ? input.lastMessage : fresh.lastMessage,
     savedAt: Number.isFinite(input.savedAt) ? input.savedAt : fresh.savedAt,
   };
-  if (state.path.length && !findNode(state.path)) state.path = [];
+  if (state.path.length && !findNode(state.path)) {
+    const migrated = careerTree.find(node => node.id === state.path[0])?.previousPaths?.[JSON.stringify(state.path)];
+    if (migrated) {
+      const previousIds = new Set(state.path);
+      state.path = [...migrated];
+      state.completedLearningKeys = [...state.completedLearningKeys, ...nodesForPath(state.path)
+        .filter(node => !previousIds.has(node.id))
+        .flatMap(node => learningTrackForNode(node)?.activities.map(activity => activity.key) || [])];
+    } else state.path = [];
+  }
   if (!canFollowRoute(state, state.targetOccupationId)) state.targetOccupationId = null;
   if (!hasLearningProgress && state.path.length > 1) {
     state.completedLearningKeys = nodesForPath(state.path).slice(0, -1).flatMap((node, index) => (

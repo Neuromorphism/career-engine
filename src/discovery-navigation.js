@@ -1,4 +1,4 @@
-import { populatedCategories, findProfessions } from './discovery.js?v=0.11.1';
+import { discoveryData, professionById, populatedCategories, findProfessions } from './discovery.js?v=0.11.1';
 
 // Editorial browsing entry points. These do not change career prerequisites.
 export const careerDirections = [
@@ -19,6 +19,25 @@ export function discoveryView(input = {}) {
   const category = categories.find(c => c.id === input.category);
   const family = category?.families.find(f => f.id === input.family);
   const query = String(input.query || '').trim().slice(0, 160);
+  if (category?.id === 'engineering' && discoveryData.engineeringTree && !query) {
+    const root = discoveryData.engineeringTree;
+    let ancestors = [];
+    function locate(node, path = []) {
+      if (node.id === input.family && node.children?.length) { ancestors = path; return node; }
+      for (const child of node.children || []) {
+        const found = locate(child, [...path, node]);
+        if (found) return found;
+      }
+    }
+    const node = locate(root) || root;
+    const items = node.children.map(child => child.children?.length
+      ? { id: child.id, label: child.name, branch: true }
+      : professionById.get(child.id));
+    return { title: node.name, copy: 'Choose one direction to reveal the next choices.', kind: 'tree', category,
+      family: node === root ? undefined : { id: node.id, label: node.name },
+      ancestors: ancestors.filter(n => n !== root).map(n => ({ id: n.id, label: n.name })),
+      query: '', page: 0, total: items.length, items };
+  }
   let title, copy, items, kind;
   if (query) {
     title = `Explore “${query}”`;
