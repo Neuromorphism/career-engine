@@ -60,7 +60,7 @@ test("choosing a field immediately starts its small starter project", () => {
   assert.equal(currentProject(state).title, "Explore the branches · 1 of 5");
 });
 
-test("the next specialization stays locked until training and the applied brief are complete", () => {
+test("five training actions unlock the next specialization without additional projects", () => {
   let state = chooseNode(createInitialState(), "engineering");
   assert.ok(availableChoices(state).some(node => node.id === 'electrical-engineering'));
   assert.equal(choicesUnlocked(state), false);
@@ -69,9 +69,7 @@ test("the next specialization stays locked until training and the applied brief 
   assert.equal(completeProject(state), state);
   state = completeTraining(state);
   assert.equal(learningTrackComplete(state), true);
-  state = completeProject(state);
-  assert.equal(choicesUnlocked(state), false);
-  while (currentProject(state)) state = completeProject(state);
+  assert.equal(currentProject(state), null);
   assert.equal(choicesUnlocked(state), true);
   state = chooseNode(state, "electrical-engineering");
   assert.equal(currentNode(state).name, "Electrical Engineering");

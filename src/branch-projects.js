@@ -15,37 +15,48 @@ export function branchProjectsFor(node) {
     key: branchProjectKey(node.id, round), index: round,
     title: `Explore the branches · ${round + 1} of ${branchProjectRounds}`,
     requirement: node.projects?.[0]?.requirement || 8,
-    choices: node.children.map(branch => {
+    choices: node.children.map((branch, branchIndex) => {
       const roles = leaves(branch);
       const role = roles[round % roles.length];
       const activities = curriculumFor(role.id)?.activities || [];
       const activity = activities[round % (activities.length || 1)];
       const sample = activity?.choices[round % (activity.choices.length || 1)];
+      const kind = (round + branchIndex) % 2 === 0 ? 'training' : 'project';
+      const context = sample?.description || role.workDescription || role.blurb;
       return {
+        kind,
         id: `${node.id}:branch-project:${round}:${branch.id}`, branchId: branch.id, branchLabel: branch.name,
         title: sample?.title || `${stage}: ${role.workLabel || role.name}`,
-        description: sample?.description || role.workDescription || role.blurb,
-        deliverable: `A short work sample: ${stage.toLowerCase()}. Record your assumptions, result, and one question you would investigate next.`,
+        description: kind === 'training' ? `Work through a guided example of this task. ${context}` : context,
+        deliverable: kind === 'training' ? 'A short explanation of the method, your assumptions, and one practice result.' : `A short work sample: ${stage.toLowerCase()}. Record your assumptions, result, and one question you would investigate next.`,
       };
     }),
   }));
 }
 
+export function branchWorkProgress(state, node) {
+  if (!node?.children?.length) return null;
+  const legacyComplete = state.completedProjectKeys.includes(`${node.id}:0`);
+  const trainingCount = (curriculumFor(node.id)?.activities || []).filter((_, index) => state.completedLearningKeys.includes(`${node.id}:${index}`)).length;
+  const taskCount = branchProjectsFor(node).filter(project => state.completedProjectKeys.includes(project.key)).length;
+  const count = Math.min(branchProjectRounds, trainingCount + taskCount);
+  return { count, total: branchProjectRounds, done: legacyComplete || count >= branchProjectRounds };
+}
+
 export function branchChoiceSummary(state, node) {
-  const projects = branchProjectsFor(node);
-  if (!projects.length) return null;
-  // Older completed briefs have no branch selections; never infer preferences from them.
-  const selections = projects.flatMap(project => {
+  if (!branchWorkProgress(state, node)?.done) return null;
+  const selections = branchProjectsFor(node).flatMap(project => {
     if (!state.completedProjectKeys.includes(project.key)) return [];
     const choice = project.choices.find(c => c.id === state.projectChoices?.[project.key]);
     return choice ? [choice] : [];
   });
-  if (selections.length !== projects.length) return null;
+  if (!selections.length) return null;
   return {
-    total: selections.length,
+    total: branchProjectRounds,
+    unmapped: branchProjectRounds - selections.length,
     branches: node.children.map(branch => {
       const count = selections.filter(choice => choice.branchId === branch.id).length;
-      return { id: branch.id, label: branch.name, count, percent: count / selections.length * 100 };
+      return { id: branch.id, label: branch.name, count, percent: count / branchProjectRounds * 100 };
     }),
   };
 }

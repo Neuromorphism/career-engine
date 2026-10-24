@@ -728,3 +728,11 @@ a:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visibl
 .branch-choice-summary li { display: grid; gap: 6px; margin: 14px 0; font-size: 12px; }
 .branch-choice-summary li span { color: var(--muted); }
 .branch-choice-summary meter { width: 100%; height: 12px; accent-color: var(--blue); }
+
+.profession-tree { margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--line); }
+.profession-tree > summary { display: flex; justify-content: space-between; align-items: center; gap: 12px; cursor: pointer; list-style: none; font-size: 12px; }
+.profession-tree > summary::-webkit-details-marker { display: none; }
+.profession-tree > summary::after { content: '⌄'; font-size: 22px; line-height: 1; }
+.profession-tree[open] > summary::after { transform: rotate(180deg); }
+.profession-tree ul { padding-left: 18px; list-style: none; border-left: 1px solid var(--line); }
+.profession-tree li { margin: 10px 0; font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }

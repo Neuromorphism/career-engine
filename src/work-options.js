@@ -1,10 +1,21 @@
-import { branchProjectsFor, shuffledOptions } from './branch-projects.js?v=0.11.1';
+import { branchProjectsFor, shuffledOptions, branchWorkProgress } from './branch-projects.js?v=0.11.1';
 import { GOAL_MASTERY, currentNode, currentLearningActivity, currentProject, impactActionsForState, isLeaf, learningTrackForNode, learningTracksForPath, pathNodes, projectKey, practiceRate } from './game-engine.js?v=0.11.1';
 
 /** Select only the work relevant to this citizen's current path and prerequisites. */
 export function workOptionsForState(state) {
   const node = currentNode(state);
-  if (!node) return { phase: 'choose-path', title: state.targetOccupationId ? 'Begin your selected training route' : 'Find a profession to begin', description: state.targetOccupationId ? 'Start the first training step in Choose path to reveal your work options.' : 'Find a profession in Choose path, then begin its training route.', options: [] };
+  if (!node) return { phase: 'choose-path', title: 'Choose a starting direction', description: 'Choose a direction in Choose path to reveal your first work actions.', options: [] };
+  const branchProgress = branchWorkProgress(state, node);
+  if (branchProgress) {
+    if (branchProgress.done) return { phase: 'choose-path', title: 'Your next path is open', description: 'You have completed this set of work actions. Choose your next branch. You decide whether your task choices guide you.', options: [] };
+    const project = currentProject(state);
+    return {
+      phase: 'branch-work', title: `Work action ${branchProgress.count + 1} of ${branchProgress.total}`,
+      description: 'Choose one action. Training and work tasks both count toward your five actions. Each option samples a possible next branch.',
+      progress: { value: branchProgress.count, total: branchProgress.total, unit: 'actions' },
+      options: shuffledOptions(project.choices).map(choice => ({ ...choice, enabled: true })),
+    };
+  }
   const activity = currentLearningActivity(state);
   if (activity) {
     const track = learningTrackForNode(node, state.path.length);
@@ -17,9 +28,9 @@ export function workOptionsForState(state) {
   }
   const project = currentProject(state);
   if (project) return {
-    phase: 'project', title: project.title, description: project.choices ? 'Choose one task from this set. Each task samples a possible next branch. You decide whether your task choices guide your career path.' : 'Apply what you have learned to complete this work sample.',
+    phase: 'project', title: project.title, description: 'Apply what you have learned to complete this work sample.',
     progress: state.mastery < project.requirement ? { value: state.mastery, total: project.requirement, unit: 'mastery' } : null,
-    options: project.choices ? shuffledOptions(project.choices).map(choice => ({ ...choice, kind: 'project', enabled: state.mastery >= project.requirement })) : [{ id: project.key, kind: 'project', title: project.title, description: project.description, deliverable: project.deliverable, enabled: state.mastery >= project.requirement }],
+    options: [{ id: project.key, kind: 'project', title: project.title, description: project.description, deliverable: project.deliverable, enabled: state.mastery >= project.requirement }],
   };
   if (!isLeaf(state)) return { phase: 'choose-path', title: 'Your next path is open', description: 'You have completed this stage. Choose your next specialization in Choose path.', options: [] };
   const milestone = impactActionsForState(state).find(action => !action.done);
@@ -51,7 +62,7 @@ export function completedWorkForState(state) {
     for (const project of branchProjectsFor(node)) {
       if (!state.completedProjectKeys.includes(project.key)) continue;
       const choice = project.choices.find(c => c.id === state.projectChoices?.[project.key]);
-      if (choice) records.push({ kind: 'Branch work sample', title: state.projectChoiceTitles?.[project.key] || choice.title, context: `${node.name} · ${choice.branchLabel}` });
+      if (choice) records.push({ kind: state.projectChoiceKinds?.[project.key] === 'training' ? 'Training' : 'Branch work sample', title: state.projectChoiceTitles?.[project.key] || choice.title, context: `${node.name} · ${choice.branchLabel}` });
     }
     (node.projects || []).forEach((project, index) => {
       if (state.completedProjectKeys.includes(projectKey(node.id,index))) records.push({ kind: 'Project', title: project.title, context: node.name });

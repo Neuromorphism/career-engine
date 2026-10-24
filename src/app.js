@@ -1,3 +1,4 @@
+import { professionTreeMarkup } from './profession-tree.js?v=0.11.1';
 import { branchChoiceSummary } from './branch-projects.js?v=0.11.1';
 import {
   GOAL_MASTERY,
@@ -6,6 +7,7 @@ import {
   choicesUnlocked,
   chooseNode,
   completeLearningActivity,
+  completeBranchWork,
   completeProject,
   completeImpactAction,
   impactActionsForState,
@@ -27,8 +29,6 @@ import { evaluateImpact } from "./impact-models.js?v=0.11.1";
 import { mountCareerUI, escapeHtml as e } from "./career-ui.js?v=0.11.1";
 import { workOptionsForState, completedWorkForState } from "./work-options.js?v=0.11.1";
 import { createCareerStore } from "./save-store.js?v=0.11.1";
-import { professionById, nextGoalStep, selectProfessionGoal } from './discovery.js?v=0.11.1';
-import { mountProfessionBrowser } from './discovery-ui.js?v=0.11.1';
 
 export function startCareerApp({ mode = 'single', store = createCareerStore(mode), onChange = () => {}, onAddCitizen = () => {} } = {}) {
 mountCareerUI(mode);
@@ -58,7 +58,7 @@ let lastSaved = 0;
 let lastWorldRender = 0;
 let lastDynamicSignature = "";
 let workView = null;
-let legacyBrowsing = false;
+let treeContext = null;
 let pathChoicePage = 0;
 let pathChoiceContext = '';
 
@@ -109,9 +109,7 @@ function pathNameForId(id, nodes = careerTree) {
 
 function renderPath() {
   const node = currentNode(state);
-  const nextStep = nextGoalStep(state);
-  const choices = nextStep ? availableChoices(state).filter(choice => choice.id === nextStep.id) : availableChoices(state);
-  const goal = professionById.get(state.targetOccupationId);
+  const choices = availableChoices(state);
   const unlocked = choicesUnlocked(state);
   const depth = state.path.length + 1;
   const trail = pathNodes(state);
@@ -119,31 +117,23 @@ function renderPath() {
   if (pathChoiceContext !== choiceContext) { pathChoiceContext = choiceContext; pathChoicePage = 0; }
   const pageSize = 6;
   pathChoicePage = Math.min(pathChoicePage, Math.max(0, Math.ceil(choices.length / pageSize) - 1));
-  const showTraining = Boolean(node || goal || legacyBrowsing);
-  elements.pathPrompt.hidden = !showTraining;
-  elements.pathIntro.hidden = !showTraining;
-  const goalElement = $('#profession-goal');
-  goalElement.hidden = !goal && Boolean(node);
-  goalElement.innerHTML = goal ? `<strong>Your goal: ${e(goal.label)}</strong><p>Complete the next training step below.</p><button type="button" data-change-goal>Change direction</button><button type="button" data-clear-goal>Clear goal</button>` : `<button type="button" data-broad-browse>${legacyBrowsing ? 'Explore professions instead' : 'Choose as I go instead'}</button>`;
-  goalElement.querySelector('[data-change-goal]')?.addEventListener('click', () => professionBrowser.open());
-  goalElement.querySelector('[data-clear-goal]')?.addEventListener('click', () => {
-    commit({ ...state, targetOccupationId: null }, elements.direction); professionBrowser.open();
-  });
-  goalElement.querySelector('[data-broad-browse]')?.addEventListener('click', () => {
-    legacyBrowsing = !legacyBrowsing;
-    if (legacyBrowsing) professionBrowser.close(); else professionBrowser.open();
-    renderPath();
-  });
-  professionBrowser.refresh();
+  const tree = $('#profession-tree');
+  tree.hidden = choices.length === 0;
+  const nextTreeContext = state.path.join('/');
+  if (treeContext !== nextTreeContext) {
+    treeContext = nextTreeContext;
+    tree.open = false;
+    $('#profession-tree-content').innerHTML = professionTreeMarkup(choices, e);
+  }
 
   elements.pathTrail.innerHTML = trail.length
     ? trail.map((item, index) => `<span>${index + 1}. ${item.name}</span>`).join("<i>→</i>")
     : "";
 
   if (!node) {
-    elements.pathKicker.textContent = showTraining ? "Decision 1 · field" : "Explore · one step at a time";
-    elements.pathPrompt.textContent = goal ? `Start training toward ${goal.label}` : "Choose a training field";
-    elements.pathIntro.textContent = goal ? 'Begin with the first step on this profession’s route. Each completed stage opens the next.' : "Begin broadly. Each choice reveals only the next useful distinction.";
+    elements.pathKicker.textContent = "Decision 1 · field";
+    elements.pathPrompt.textContent = "Choose a starting direction";
+    elements.pathIntro.textContent = "Choose a direction, try five work actions, then choose your next branch. Open the tree below whenever you want to look ahead.";
   } else if (choices.length) {
     const label = node.decisionLabel || "specialization";
     elements.pathKicker.textContent = `Decision ${depth} · ${label}`;
@@ -165,7 +155,7 @@ function renderPath() {
     button.addEventListener("click", () => commit(chooseNode(state, button.dataset.node), elements.direction));
   });
 
-  elements.pathChoices.hidden = !unlocked || !showTraining;
+  elements.pathChoices.hidden = !unlocked;
   const pagination = $('#path-choice-pagination');
   pagination.hidden = elements.pathChoices.hidden || choices.length <= pageSize;
   pagination.innerHTML = pagination.hidden ? '' : `<button type="button" data-path-page="previous" ${pathChoicePage ? '' : 'disabled'}>← Previous</button><span>${pathChoicePage * pageSize + 1}–${Math.min((pathChoicePage + 1) * pageSize, choices.length)} of ${choices.length}</span><button type="button" data-path-page="next" ${(pathChoicePage + 1) * pageSize < choices.length ? '' : 'disabled'}>Next →</button>`;
@@ -173,7 +163,7 @@ function renderPath() {
     pathChoicePage += button.dataset.pathPage === 'next' ? 1 : -1; renderPath(); elements.pathPrompt.focus();
   }));
   elements.pathLock.hidden = unlocked || choices.length === 0;
-  elements.pathLock.textContent = "Do work to open your next path choice.";
+  elements.pathLock.textContent = "Choose five work actions in Do work to open your next path choice. Training and work tasks both count.";
   elements.jobLeaf.hidden = !node || !isLeaf(state);
   if (node && isLeaf(state)) {
     const evidence = (node.evidence || []).map((item) => `
@@ -225,23 +215,24 @@ function updateWorkProgress() {
 
 function renderWork() {
   workView = workOptionsForState(state);
-  elements.workKicker.textContent = { training: 'Learn through work', project: 'Apply your skills', impact: 'Make a contribution', waiting: 'Growing your expertise', complete: 'Career mastered', 'choose-path': 'Your next step' }[workView.phase];
+  elements.workKicker.textContent = { 'branch-work': 'Explore through work', training: 'Learn through work', project: 'Apply your skills', impact: 'Make a contribution', waiting: 'Growing your expertise', complete: 'Career mastered', 'choose-path': 'Your next step' }[workView.phase];
   elements.workTitle.textContent = workView.title;
   elements.workIntro.textContent = workView.description;
   updateWorkProgress();
   const summary = branchChoiceSummary(state, currentNode(state));
   $('#branch-choice-summary').innerHTML = summary ? `<section class="branch-choice-summary"><h3>Your task choices by profession branch</h3>
-    <p>Across ${summary.total} work samples, you chose:</p>
+    <p>Across ${summary.total} work actions, you chose:</p>
     <ul>${summary.branches.map(branch => `<li><strong>${e(branch.label)}</strong><span>${branch.count} of ${summary.total} · ${Math.round(branch.percent)}%</span><meter min="0" max="${summary.total}" value="${branch.count}" aria-label="${e(branch.label)}: ${branch.count} of ${summary.total}"></meter></li>`).join('')}</ul>
+    ${summary.unmapped ? `<p>${summary.unmapped} earlier actions have no saved branch association.</p>` : ''}
     <p>You decide whether to be guided by your task choices. These samples reflect what you picked here, not a measure of ability. You can choose any next branch.</p></section>` : '';
   elements.workOptions.innerHTML = workView.options.map(option => `<article class="work-card">
-    <small>${e(option.branchLabel || option.focus || (option.kind === 'project' ? 'Applied project' : option.kind))}</small>
+    <small>${e((option.branchLabel ? `${option.kind === 'training' ? 'Training' : 'Work task'} · ${option.branchLabel}` : '') || option.focus || (option.kind === 'project' ? 'Applied project' : option.kind))}</small>
     <h3>${e(option.title)}</h3>
     ${option.kind === 'project' ? `<p>${e(option.description)}</p>` : option.description.replace(/[.!?]$/, '') === option.title ? '' : `<details><summary>Task context</summary><p>${e(option.description)}</p></details>`}
     ${option.deliverable ? `<details><summary>Work sample to submit</summary><p>${e(option.deliverable)}</p></details>` : ''}
     ${renderModel(option.modelId)}
     <button type="button" data-work="${e(option.id)}" ${option.enabled === false ? 'disabled' : ''}>
-      ${option.kind === 'project' ? option.enabled ? option.branchId ? 'Choose this work sample' : 'Complete project' : 'Building mastery for this project' : `Choose this action · +${option.reward} mastery · +${option.rate}/s`}
+      ${option.branchId ? 'Choose this action' : option.kind === 'project' ? option.enabled ? 'Complete project' : 'Building mastery for this project' : `Choose this action · +${option.reward} mastery · +${option.rate}/s`}
     </button>
   </article>`).join('');
   if (workView.phase === 'choose-path' && state.path.length) elements.workOptions.innerHTML = '<a class="work-next-link" href="#path-heading">Choose your next path →</a>';
@@ -249,7 +240,7 @@ function renderWork() {
   elements.workOptions.querySelectorAll('[data-work]').forEach(button => button.addEventListener('click', () => {
     const option = workView.options.find(option => option.id === button.dataset.work);
     if (!option) return;
-    const next = option.kind === 'training' ? completeLearningActivity(state, option.nodeId, option.activityIndex, option.id)
+    const next = option.branchId ? completeBranchWork(state, option.id) : option.kind === 'training' ? completeLearningActivity(state, option.nodeId, option.activityIndex, option.id)
       : option.kind === 'project' ? completeProject(state, option.id)
       : completeImpactAction(state, option.actionId, option.id);
     if (next === state) return;
@@ -262,19 +253,13 @@ function renderWork() {
   elements.workRecords.innerHTML = records.map(record => `<div class="work-record"><small>${e(record.kind)} · ${e(record.context)}</small><strong>${e(record.title)}</strong>${record.outcome ? `<p>${e(record.outcome)}</p>` : ''}</div>`).join('');
 }
 
-const professionBrowser = mountProfessionBrowser($('#profession-discovery'), {
-  rootCategory: mode === 'engineering' ? 'engineering' : '',
-  getState: () => state,
-  onChooseGoal: id => { legacyBrowsing = false; commit(selectProfessionGoal(state, id), elements.direction); },
-  onOpen: () => { if (legacyBrowsing) { legacyBrowsing = false; renderPath(); } },
-});
-
 function dynamicSignature() {
   const project = currentProject(state);
   return [
     state.careerComplete,
     choicesUnlocked(state),
     state.completedLearningKeys.length,
+    state.completedProjectKeys.length,
     state.completedImpactKeys.length,
     impactActionsForState(state).map(action => action.unlocked).join(","),
     project ? state.mastery >= project.requirement : "none",
@@ -342,7 +327,7 @@ function render() {
 $("#reset-button").addEventListener("click", () => {
   if (worldMode) { onAddCitizen(); return; }
   if (window.confirm("Begin a new run? Your current local progress will be replaced.")) {
-    state = createInitialState(); legacyBrowsing = false; professionBrowser.reset(); save(); render();
+    state = createInitialState(); treeContext = null; save(); render();
   }
 });
 
@@ -381,6 +366,6 @@ requestAnimationFrame(frame);
 return {
   getState: () => state,
   save,
-  replaceState(next) { state = next; legacyBrowsing = false; professionBrowser.reset(); lastFrame = performance.now(); render(); return save(); },
+  replaceState(next) { state = next; treeContext = null; lastFrame = performance.now(); render(); return save(); },
 };
 }

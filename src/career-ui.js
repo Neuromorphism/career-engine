@@ -63,8 +63,6 @@ const TEMPLATE = `    <div class="page-shell">
                 <span class="module-number">01</span>
                 <div><p class="kicker" id="path-kicker">Decision 1 · field</p><h2 id="path-heading" tabindex="-1">Choose path</h2></div>
               </div>
-              <div id="profession-discovery"></div>
-              <div id="profession-goal" class="profession-goal" hidden></div>
               <h3 id="path-prompt" class="path-prompt" tabindex="-1">Choose a field</h3>
               <nav class="path-trail" id="path-trail" aria-label="Selected career path"></nav>
               <p class="module-intro" id="path-intro">Begin broadly. Each choice will reveal only the next useful distinction.</p>
@@ -72,6 +70,7 @@ const TEMPLATE = `    <div class="page-shell">
               <nav class="profession-pagination" id="path-choice-pagination" aria-label="More training paths" hidden></nav>
               <p class="lock-note" id="path-lock" hidden>Complete the current starter brief to open the next decision.</p>
               <details class="job-leaf" id="job-leaf" hidden><summary>About this career</summary><div id="career-context"></div></details>
+              <details id="profession-tree" class="profession-tree"><summary>See the professions tree from here</summary><div id="profession-tree-content"></div></details>
             </section>
           <section class="module" id="work-module" aria-labelledby="work-heading">
             <div class="module-heading">

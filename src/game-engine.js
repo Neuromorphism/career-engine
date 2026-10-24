@@ -1,4 +1,4 @@
-import { branchProjectsFor, branchProjectRounds } from './branch-projects.js?v=0.11.1';
+import { branchProjectsFor, branchProjectRounds, branchWorkProgress } from './branch-projects.js?v=0.11.1';
 import { careerTree, fieldForPath, findNode, findNodeById, nodesForPath } from "./careers.js?v=0.11.1";
 import { curriculumFor } from "./curricula.js?v=0.11.1";
 import { rivalProfileForPath } from "./ai-rival.js?v=0.11.1";
@@ -21,6 +21,7 @@ export function createInitialState() {
     completedLearningKeys: [],
     completedProjectKeys: [],
     completedImpactKeys: [],
+    projectChoiceKinds: {},
     projectChoices: {},
     projectChoiceTitles: {},
     learningChoices: {},
@@ -54,6 +55,7 @@ export function hydrateState(input) {
     completedLearningKeys: Array.isArray(input.completedLearningKeys) ? input.completedLearningKeys : [],
     completedProjectKeys: Array.isArray(input.completedProjectKeys) ? input.completedProjectKeys : [],
     completedImpactKeys: Array.isArray(input.completedImpactKeys) ? input.completedImpactKeys.filter(key => typeof key === "string") : [],
+    projectChoiceKinds: choiceRecord(input.projectChoiceKinds),
     projectChoices: choiceRecord(input.projectChoices),
     projectChoiceTitles: choiceRecord(input.projectChoiceTitles),
     learningChoices: choiceRecord(input.learningChoices),
@@ -123,8 +125,7 @@ export function projectKey(nodeId, index) {
 
 export function firstProjectComplete(state, node = currentNode(state)) {
   if (node?.children?.length) {
-    if (state.completedProjectKeys.includes(projectKey(node.id, 0))) return true;
-    return branchProjectsFor(node).every(project => state.completedProjectKeys.includes(project.key));
+    return branchWorkProgress(state, node).done;
   }
   if (!node || !node.projects?.length) return true;
   return state.completedProjectKeys.includes(projectKey(node.id, 0));
@@ -176,6 +177,7 @@ export function learningTrackComplete(state, node = currentNode(state)) {
 export function currentLearningActivity(state) {
   const node = currentNode(state);
   if (!node) return null;
+  if (branchWorkProgress(state, node)?.done) return null;
   const track = learningTrackForNode(node, state.path.length);
   return track?.activities.find((activity) => !state.completedLearningKeys.includes(activity.key)) || null;
 }
@@ -204,7 +206,8 @@ export function availableChoices(state) {
 
 export function choicesUnlocked(state) {
   if (!state.path.length) return true;
-  return learningTrackComplete(state) && firstProjectComplete(state);
+  const progress = branchWorkProgress(state, currentNode(state));
+  return progress ? progress.done : learningTrackComplete(state) && firstProjectComplete(state);
 }
 
 export function chooseNode(state, nodeId) {
@@ -217,7 +220,7 @@ export function chooseNode(state, nodeId) {
     targetOccupationId: state.targetOccupationId && canFollowRoute({ ...state, path: [...state.path, nodeId] }, state.targetOccupationId) ? state.targetOccupationId : null,
     lastMessage: node.jobTitle
       ? `${node.name} reached: a real-world job leaf. Its projects are grounded in occupation data and current postings where available.`
-      : `${node.name} selected. Complete its learning track and applied brief before narrowing the path again.`,
+      : `${node.name} selected. Choose five work actions before narrowing the path again.`,
   });
 }
 
@@ -243,7 +246,10 @@ export function practiceRate(state) {
       const choice = action.choices.find(item => item.id === state.impactChoices?.[action.id]) || action.choices[0];
       return sum + choice.rate;
     }, 0);
-  return learningRate + impactRate;
+  const branchRate = pathNodes(state).reduce((rate, node, depth) => rate + branchProjectsFor(node)
+    .filter(project => state.completedProjectKeys.includes(project.key) && ['training', 'project'].includes(state.projectChoiceKinds?.[project.key]))
+    .reduce((total, project) => total + learningValues(project.index, depth + 1).rate, 0), 0);
+  return learningRate + branchRate + impactRate;
 }
 
 export function aiRivalStatus(state) {
@@ -268,12 +274,34 @@ export function currentProject(state) {
   const node = currentNode(state);
   if (!node) return null;
   if (node.children?.length) {
-    if (state.completedProjectKeys.includes(projectKey(node.id, 0))) return null;
-    return branchProjectsFor(node).find(project => !state.completedProjectKeys.includes(project.key)) || null;
+    const progress = branchWorkProgress(state, node);
+    return progress.done ? null : branchProjectsFor(node)[progress.count];
   }
   return (node.projects || [])
     .map((project, index) => ({ ...project, key: projectKey(node.id, index), index }))
     .find((project) => !state.completedProjectKeys.includes(project.key)) || null;
+}
+
+/** Family training and work tasks share one five-action budget. */
+export function completeBranchWork(state, choiceId) {
+  const node = currentNode(state);
+  if (!node?.children?.length) return state;
+  const project = currentProject(state);
+  const choice = project?.choices.find(choice => choice.id === choiceId);
+  if (!choice) return state;
+  const values = learningValues(project.index, state.path.length);
+  return withGoalCheck({
+    ...state,
+    mastery: state.mastery + values.reward,
+    actions: state.actions + 1,
+    completedProjectKeys: [...state.completedProjectKeys, project.key],
+    projectChoices: { ...state.projectChoices, [project.key]: choice.id },
+    projectChoiceTitles: { ...state.projectChoiceTitles, [project.key]: choice.title },
+    projectChoiceKinds: { ...state.projectChoiceKinds, [project.key]: choice.kind },
+    lastMessage: project.index === branchProjectRounds - 1
+      ? 'Five work actions complete. Review your choices and decide which branch to take. You decide whether the results guide you.'
+      : `${choice.title} complete. ${project.index + 1} of ${branchProjectRounds} work actions chosen.`,
+  });
 }
 
 export function completeProject(state, choiceId = null) {
