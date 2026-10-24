@@ -1,3 +1,4 @@
+import { branchProjectsFor, branchProjectRounds } from './branch-projects.js?v=0.11.1';
 import { careerTree, fieldForPath, findNode, findNodeById, nodesForPath } from "./careers.js?v=0.11.1";
 import { curriculumFor } from "./curricula.js?v=0.11.1";
 import { rivalProfileForPath } from "./ai-rival.js?v=0.11.1";
@@ -20,6 +21,8 @@ export function createInitialState() {
     completedLearningKeys: [],
     completedProjectKeys: [],
     completedImpactKeys: [],
+    projectChoices: {},
+    projectChoiceTitles: {},
     learningChoices: {},
     impactChoices: {},
     learningChoiceTitles: {},
@@ -51,6 +54,8 @@ export function hydrateState(input) {
     completedLearningKeys: Array.isArray(input.completedLearningKeys) ? input.completedLearningKeys : [],
     completedProjectKeys: Array.isArray(input.completedProjectKeys) ? input.completedProjectKeys : [],
     completedImpactKeys: Array.isArray(input.completedImpactKeys) ? input.completedImpactKeys.filter(key => typeof key === "string") : [],
+    projectChoices: choiceRecord(input.projectChoices),
+    projectChoiceTitles: choiceRecord(input.projectChoiceTitles),
     learningChoices: choiceRecord(input.learningChoices),
     impactChoices: choiceRecord(input.impactChoices),
     learningChoiceTitles: choiceRecord(input.learningChoiceTitles),
@@ -117,6 +122,10 @@ export function projectKey(nodeId, index) {
 }
 
 export function firstProjectComplete(state, node = currentNode(state)) {
+  if (node?.children?.length) {
+    if (state.completedProjectKeys.includes(projectKey(node.id, 0))) return true;
+    return branchProjectsFor(node).every(project => state.completedProjectKeys.includes(project.key));
+  }
   if (!node || !node.projects?.length) return true;
   return state.completedProjectKeys.includes(projectKey(node.id, 0));
 }
@@ -258,18 +267,28 @@ export function aiPracticeRate(state) {
 export function currentProject(state) {
   const node = currentNode(state);
   if (!node) return null;
+  if (node.children?.length) {
+    if (state.completedProjectKeys.includes(projectKey(node.id, 0))) return null;
+    return branchProjectsFor(node).find(project => !state.completedProjectKeys.includes(project.key)) || null;
+  }
   return (node.projects || [])
     .map((project, index) => ({ ...project, key: projectKey(node.id, index), index }))
     .find((project) => !state.completedProjectKeys.includes(project.key)) || null;
 }
 
-export function completeProject(state) {
+export function completeProject(state, choiceId = null) {
   const project = currentProject(state);
   if (!project || !learningTrackComplete(state) || state.mastery < project.requirement) return state;
+  const choice = project.choices?.find(c => c.id === (choiceId ?? project.choices[0].id));
+  if (project.choices && !choice) return state;
   return withGoalCheck({
     ...state,
+    projectChoices: choice ? { ...state.projectChoices, [project.key]: choice.id } : state.projectChoices,
+    projectChoiceTitles: choice ? { ...state.projectChoiceTitles, [project.key]: choice.title } : state.projectChoiceTitles,
     completedProjectKeys: [...state.completedProjectKeys, project.key],
-    lastMessage: `${project.title} complete. The next decision is open. Keep the artifact; real careers are built from reviewed work, not mastery alone.`,
+    lastMessage: project.choices
+      ? `${choice.title} complete. ${project.index === branchProjectRounds - 1 ? 'Review your task choices. You decide whether they guide your next branch.' : 'Try the next set of branch tasks.'}`
+      : `${project.title} complete. Keep the artifact; real careers are built from reviewed work, not mastery alone.`,
   });
 }
 

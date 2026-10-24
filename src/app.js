@@ -1,3 +1,4 @@
+import { branchChoiceSummary } from './branch-projects.js?v=0.11.1';
 import {
   GOAL_MASTERY,
   aiRivalStatus,
@@ -228,14 +229,19 @@ function renderWork() {
   elements.workTitle.textContent = workView.title;
   elements.workIntro.textContent = workView.description;
   updateWorkProgress();
+  const summary = branchChoiceSummary(state, currentNode(state));
+  $('#branch-choice-summary').innerHTML = summary ? `<section class="branch-choice-summary"><h3>Your task choices by profession branch</h3>
+    <p>Across ${summary.total} work samples, you chose:</p>
+    <ul>${summary.branches.map(branch => `<li><strong>${e(branch.label)}</strong><span>${branch.count} of ${summary.total} · ${Math.round(branch.percent)}%</span><meter min="0" max="${summary.total}" value="${branch.count}" aria-label="${e(branch.label)}: ${branch.count} of ${summary.total}"></meter></li>`).join('')}</ul>
+    <p>You decide whether to be guided by your task choices. These samples reflect what you picked here, not a measure of ability. You can choose any next branch.</p></section>` : '';
   elements.workOptions.innerHTML = workView.options.map(option => `<article class="work-card">
-    <small>${e(option.focus || (option.kind === 'project' ? 'Applied project' : option.kind))}</small>
+    <small>${e(option.branchLabel || option.focus || (option.kind === 'project' ? 'Applied project' : option.kind))}</small>
     <h3>${e(option.title)}</h3>
     ${option.kind === 'project' ? `<p>${e(option.description)}</p>` : option.description.replace(/[.!?]$/, '') === option.title ? '' : `<details><summary>Task context</summary><p>${e(option.description)}</p></details>`}
     ${option.deliverable ? `<details><summary>Work sample to submit</summary><p>${e(option.deliverable)}</p></details>` : ''}
     ${renderModel(option.modelId)}
     <button type="button" data-work="${e(option.id)}" ${option.enabled === false ? 'disabled' : ''}>
-      ${option.kind === 'project' ? option.enabled ? 'Complete project' : 'Building mastery for this project' : `Choose this action · +${option.reward} mastery · +${option.rate}/s`}
+      ${option.kind === 'project' ? option.enabled ? option.branchId ? 'Choose this work sample' : 'Complete project' : 'Building mastery for this project' : `Choose this action · +${option.reward} mastery · +${option.rate}/s`}
     </button>
   </article>`).join('');
   if (workView.phase === 'choose-path' && state.path.length) elements.workOptions.innerHTML = '<a class="work-next-link" href="#path-heading">Choose your next path →</a>';
@@ -244,7 +250,7 @@ function renderWork() {
     const option = workView.options.find(option => option.id === button.dataset.work);
     if (!option) return;
     const next = option.kind === 'training' ? completeLearningActivity(state, option.nodeId, option.activityIndex, option.id)
-      : option.kind === 'project' ? completeProject(state)
+      : option.kind === 'project' ? completeProject(state, option.id)
       : completeImpactAction(state, option.actionId, option.id);
     if (next === state) return;
     commit(next, elements.mastery);

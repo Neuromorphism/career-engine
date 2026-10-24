@@ -1,3 +1,4 @@
+import { branchProjectsFor, shuffledOptions } from './branch-projects.js?v=0.11.1';
 import { GOAL_MASTERY, currentNode, currentLearningActivity, currentProject, impactActionsForState, isLeaf, learningTrackForNode, learningTracksForPath, pathNodes, projectKey, practiceRate } from './game-engine.js?v=0.11.1';
 
 /** Select only the work relevant to this citizen's current path and prerequisites. */
@@ -16,9 +17,9 @@ export function workOptionsForState(state) {
   }
   const project = currentProject(state);
   if (project) return {
-    phase: 'project', title: project.title, description: 'Apply what you have learned to complete this work sample.',
+    phase: 'project', title: project.title, description: project.choices ? 'Choose one task from this set. Each task samples a possible next branch. You decide whether your task choices guide your career path.' : 'Apply what you have learned to complete this work sample.',
     progress: state.mastery < project.requirement ? { value: state.mastery, total: project.requirement, unit: 'mastery' } : null,
-    options: [{ id: project.key, kind: 'project', title: project.title, description: project.description, deliverable: project.deliverable, enabled: state.mastery >= project.requirement }],
+    options: project.choices ? shuffledOptions(project.choices).map(choice => ({ ...choice, kind: 'project', enabled: state.mastery >= project.requirement })) : [{ id: project.key, kind: 'project', title: project.title, description: project.description, deliverable: project.deliverable, enabled: state.mastery >= project.requirement }],
   };
   if (!isLeaf(state)) return { phase: 'choose-path', title: 'Your next path is open', description: 'You have completed this stage. Choose your next specialization in Choose path.', options: [] };
   const milestone = impactActionsForState(state).find(action => !action.done);
@@ -47,6 +48,11 @@ export function completedWorkForState(state) {
     }
   }
   for (const node of pathNodes(state)) {
+    for (const project of branchProjectsFor(node)) {
+      if (!state.completedProjectKeys.includes(project.key)) continue;
+      const choice = project.choices.find(c => c.id === state.projectChoices?.[project.key]);
+      if (choice) records.push({ kind: 'Branch work sample', title: state.projectChoiceTitles?.[project.key] || choice.title, context: `${node.name} · ${choice.branchLabel}` });
+    }
     (node.projects || []).forEach((project, index) => {
       if (state.completedProjectKeys.includes(projectKey(node.id,index))) records.push({ kind: 'Project', title: project.title, context: node.name });
     });

@@ -37,9 +37,11 @@ function completeTraining(state) {
 
 function chooseAndComplete(state, nodeId) {
   let next = completeTraining(chooseNode(state, nodeId));
-  const project = currentProject(next);
-  next = { ...next, mastery: Math.max(next.mastery, project.requirement) };
-  return completeProject(next);
+  while (currentProject(next)) {
+    next = { ...next, mastery: Math.max(next.mastery, currentProject(next).requirement) };
+    next = completeProject(next);
+  }
+  return next;
 }
 
 test("the first interaction offers the expanded fields and preserves the original six", () => {
@@ -55,7 +57,7 @@ test("the first interaction offers the expanded fields and preserves the origina
 test("choosing a field immediately starts its small starter project", () => {
   const state = chooseNode(createInitialState(), "engineering");
   assert.deepEqual(state.path, ["engineering"]);
-  assert.equal(currentProject(state).title, "Compare a shelf bracket");
+  assert.equal(currentProject(state).title, "Explore the branches · 1 of 5");
 });
 
 test("the next specialization stays locked until training and the applied brief are complete", () => {
@@ -68,6 +70,8 @@ test("the next specialization stays locked until training and the applied brief 
   state = completeTraining(state);
   assert.equal(learningTrackComplete(state), true);
   state = completeProject(state);
+  assert.equal(choicesUnlocked(state), false);
+  while (currentProject(state)) state = completeProject(state);
   assert.equal(choicesUnlocked(state), true);
   state = chooseNode(state, "electrical-engineering");
   assert.equal(currentNode(state).name, "Electrical Engineering");
@@ -106,7 +110,7 @@ test("clinical specialties require foundation training completion", () => {
   assert.equal(availableChoices(state).some((node) => node.id === "surgery"), true);
   assert.equal(chooseNode(state, "surgery"), state);
   state = completeTraining(state);
-  state = completeProject(state);
+  while (currentProject(state)) state = completeProject(state);
   state = chooseNode(state, "surgery");
   assert.equal(currentNode(state).name, "Surgery");
 });

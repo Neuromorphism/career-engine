@@ -111,3 +111,19 @@ test('existing engineering saves retain their job and completed progress after r
   assert.equal(restored.mastery, 543);
   assert.deepEqual(restored.completedProjectKeys, ['kept']);
 });
+
+test('every engineering family offers one work sample per branch in all five rounds', async () => {
+  const { branchProjectsFor } = await import('../src/branch-projects.js?v=0.11.1');
+  function visit(node) {
+    if (!node.children?.length) return;
+    const projects = branchProjectsFor(node);
+    assert.equal(projects.length, 5);
+    for (const project of projects) {
+      assert.ok(project.choices.length <= 6);
+      assert.deepEqual(project.choices.map(c => c.branchId), node.children.map(c => c.id));
+      for (const choice of project.choices) assert.ok(choice.title && choice.description);
+    }
+    node.children.forEach(visit);
+  }
+  visit(careerTree[0]);
+});

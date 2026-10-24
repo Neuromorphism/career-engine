@@ -720,3 +720,11 @@ a:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visibl
 :root[data-theme="dark"] .choice-button.is-selected span { color: #17383c; }
 :root[data-theme="dark"] .goal-meter { background: #343b44; border-color: var(--line); }
 :root[data-theme="dark"] .training-meter { background: #334639; }
+
+.branch-choice-summary { margin: 18px 0; padding: 16px; border: 1px solid var(--line); background: var(--paper-bright); }
+.branch-choice-summary h3 { margin-top: 0; font-family: var(--serif); font-size: 22px; }
+.branch-choice-summary p { font-size: 12px; line-height: 1.6; }
+.branch-choice-summary ul { list-style: none; padding: 0; }
+.branch-choice-summary li { display: grid; gap: 6px; margin: 14px 0; font-size: 12px; }
+.branch-choice-summary li span { color: var(--muted); }
+.branch-choice-summary meter { width: 100%; height: 12px; accent-color: var(--blue); }

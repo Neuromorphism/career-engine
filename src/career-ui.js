@@ -84,6 +84,7 @@ const TEMPLATE = `    <div class="page-shell">
               <div><span id="work-progress-copy"></span><small id="work-rate"></small></div>
               <div class="training-meter" id="work-meter" role="progressbar" aria-label="Progress toward the next work stage" aria-valuemin="0" aria-valuemax="100"><i></i></div>
             </div>
+            <div id="branch-choice-summary" aria-live="polite"></div>
             <div class="work-options" id="work-options"></div>
             <details class="work-history" id="work-history" hidden>
               <summary>Work completed</summary><div id="work-records"></div>

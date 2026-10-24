@@ -32,7 +32,7 @@ test('work follows path choice, current training, project prerequisites, and nex
   state = train(state);
   state = { ...state, mastery: 0 };
   assert.equal(workOptionsForState(state).phase, 'project');
-  assert.equal(workOptionsForState(state).options.length, 1);
+  assert.equal(workOptionsForState(state).options.length, currentNode(state).children.length);
   assert.equal(workOptionsForState(state).options[0].enabled, false);
   assert.equal(completeProject(state), state);
   state = projects(state);
