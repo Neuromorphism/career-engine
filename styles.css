@@ -687,6 +687,11 @@ a:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visibl
   --green: #94c69b;
   --shadow: 5px 5px 0 rgba(0, 0, 0, .3);
 }
+:root[data-theme="dark"] #path-module,
+:root[data-theme="dark"] #work-module {
+  /* Half the saturation of the dark panel surface (#23282e). */
+  background: hsl(213 6.8% 15.9%);
+}
 .theme-toggle {
   padding: 8px 10px;
   border: 1px solid var(--line);
